@@ -118,6 +118,21 @@ $flame:         #eb5e28ff;
     text-align: justify;
 }
 
+.author-socials {
+    list-style-type: none;
+    padding-left: 0;
+    margin-bottom: 0;
+
+    li {
+        display: inline;
+        margin-right: 1rem;
+
+        &:last-child {
+            margin-right: 0;
+        }
+    }
+}
+
 /* ----- General ---------------------------- */
 @media (min-width: map-get($grid-breakpoints, "md")) {
     .limit-width {

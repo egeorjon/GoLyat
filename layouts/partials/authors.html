@@ -13,6 +13,13 @@
                 <div class="author-description" style="margin-left: {{ with $image -}}{{- math.Mul 1.2 .Width -}}px{{- end -}}">
                     <p class="author-bio">{{- .Params.Bio | markdownify -}}</p>
                     <p class="author-name">{{- .Params.Title | safeHTML -}}</p>
+                    {{- with .Params.Socials -}}
+                    <ul class="author-socials">
+                    {{- range . -}}
+                        <li><a href="{{- .url -}}" title="{{- .alt -}}"><i class="bi-{{- .icon -}}"></i></a></li>
+                    {{- end -}}
+                    </ul>
+                {{- end -}}
                 </div>
             </div><!-- col -->
         </div><!-- row -->
