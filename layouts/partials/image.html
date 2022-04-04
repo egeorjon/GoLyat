@@ -1,0 +1,46 @@
+{{/*  Available attributes                        */}}
+{{/*  context     : The Page being rendered.      */}}
+{{/*  Destination :  The related path             */}}
+{{/*  Title       : The title attribute           */}}
+{{/*  Text        : The rendered (HTML) link text */}}
+{{/*  class       : CSS Class to be added         */}}
+
+{{- $imgpath := index .Destination 0 -}}
+{{- $imgtype := 0 -}}
+{{- $image   := "" -}}
+{{- $exts    := (slice ".jpg" ".jpeg" ".gif" ".tif" ".png" ".webp") -}}
+{{- if not (strings.HasPrefix $imgpath "http") -}}
+    {{- $image = .context.Resources.GetMatch $imgpath -}}
+    {{- with $image -}}
+        {{- $imgtype = 1 -}}
+        {{- if in $exts (path.Ext $imgpath) -}}
+            {{- $imgtype = 2 -}}
+        {{- end -}}
+    {{- end -}}
+{{- end -}}
+{{- if lt $imgtype 2 -}}
+    <img class="img-fluid" src="{{- $imgpath | safeURL -}}" alt="{{- .Text | safeHTML -}}" {{- with .Title -}}title="{{- . | safeHTML -}}"{{- end -}} />
+{{- else -}}
+    {{- $sizes     := slice -}}
+    {{- $brkpoints := slice 1200 992 768 576 -}}
+    {{- $viewpoints:= slice 80 85 90 95 -}}
+    {{- $index     := 0 -}}
+    {{- range $size := $viewpoints -}}
+        {{- $sizes   = $sizes | append (printf "(min-width: %dpx) %dvw" (index $brkpoints $index) $size) -}}
+        {{- $index = add $index 1 -}}
+    {{- end -}}
+    {{- $sizes = $sizes | append "100vw" -}}
+    {{- $srcsets   := slice -}}
+    {{- $imgsizes  := slice 480 660 880 1024 -}}
+    {{- $width     := $image.Width -}}
+    {{- range $size := $imgsizes -}}
+        {{- if gt $width $size -}}
+            {{- $img    := $image.Resize (printf "%dx" $size) -}}
+            {{- $srcsets = $srcsets | append (printf "%s %dw" $img.RelPermalink $size) -}}
+        {{- end -}}
+    {{- end -}}
+    {{- if gt (len $srcsets) 0 -}}{{- $srcsets = $srcsets | append (printf "%s %dw" $image.RelPermalink $width) -}}{{- end -}}
+    {{- if .Link -}}<a href="{{- .Link -}}" title="{{- .Title -}}">{{- end -}}
+        <img {{ with $sizes -}}sizes="{{ delimit . "," }}"{{- end }} {{ with $srcsets -}}srcset="{{ delimit . "," }}"{{- end }} class="img-fluid {{ with .Class -}}{{- . | safeHTML -}}{{- end -}}" src="{{- $image.RelPermalink | safeURL -}}" alt="{{- .Text | safeHTML -}}" {{ with .Title -}}title="{{- . | safeHTML -}}"{{- end }} />
+    {{- if .Link -}}</a>{{- end -}}
+{{- end -}}

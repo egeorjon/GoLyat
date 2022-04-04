@@ -1,0 +1,43 @@
+{{/* shortcode attachments.html */}}
+{{/* Parameters    */}}
+{{/*   files     string  relative path to the image (default: none, value mandatory) */}}
+{{/*   size      boolean display or not the size of the file (default: false) */}}
+{{- $listfiles := default "*" -}}
+{{- with .Get "files" -}}{{- $listfiles = . -}}{{- end -}}
+{{- with .Page.Resources.Match $listfiles }}
+<div class="table-responsive-md">
+    <table class="table attachments">
+        <thead>
+            <tr>
+                <th>Attachment-type</th>
+                <th>Attachment-title</th>
+                {{- if $.Get "size" -}}<th>Attachment-size</th>{{- end -}}
+            </tr>
+        </thead>
+        <tbody>
+        {{- range . -}}
+            {{- $icon := index $.Site.Data.mimetype (string .MediaType) -}}
+            {{- if not $icon -}}{{- $icon = "bi-file-earmark" -}}{{- end -}}
+            {{- $stats := os.Stat (path.Join $.Page.File.Dir .Name) -}}
+            <tr>
+                <td><span class="{{- $icon -}}" style="font-size: 1.5rem;"> </span></td>
+                <td><a href="{{- .RelPermalink -}}">{{- $stats.Name -}}</a></td>
+                {{- if $.Get "size" -}}<td>{{- template "filesize" (dict "Fsize" $stats.Size) -}}</td>{{- end -}}
+            </tr>
+        {{- end -}}
+        </tbody>
+    </table>
+</div>
+{{- end -}}
+
+{{- define "filesize" -}}
+    {{- if ge .Fsize 1000000000 -}}
+        {{- div .Fsize 1000000000 }} GB
+    {{- else if ge .Fsize 1000000 -}}
+        {{ div .Fsize 1000000 }} MB
+    {{- else if ge .Fsize 1000 -}}
+        {{- div .Fsize 1000 }} kB
+    {{- else -}}
+        {{- .Fsize }} "Bytes"
+    {{- end -}}
+{{- end -}}

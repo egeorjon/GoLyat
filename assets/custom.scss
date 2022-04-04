@@ -1,0 +1,311 @@
+/*!
+ * Bootstrap v5.1.3 (https://getbootstrap.com/)
+ * Copyright 2011-2021 The Bootstrap Authors
+ * Copyright 2011-2021 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
+ */
+
+// scss-docs-start import-stack
+// Configuration
+@import "bootstrap-5.1.3/scss/functions";
+
+// scss-docs-start theme-colors-map
+$primary:       $flame; // $blue !default;
+$secondary:     $black-olive; // $gray-600 !default;
+
+// $table-striped-color:          $table-color !default;
+$table-striped-bg-factor:     0.1; // .05 !default;
+// $table-striped-bg:            rgba($black, $table-striped-bg-factor) !default;
+
+// $table-active-color:          $table-color !default;
+// $table-active-bg-factor:      .1 !default;
+// $table-active-bg:             rgba($black, $table-active-bg-factor) !default;
+
+// $table-hover-color:           $table-color !default;
+// $table-hover-bg-factor:       .075 !default;
+// $table-hover-bg:              rgba($black, $table-hover-bg-factor) !default;
+
+// Links
+//
+// Style anchor elements.
+
+$link-color:            $primary; // $primary !default;
+// $link-decoration:                         underline !default;
+// $link-shade-percentage:                   20% !default;
+// $link-hover-color:                        shift-color($link-color, $link-shade-percentage) !default;
+// $link-hover-decoration:                   null !default;
+// $stretched-link-pseudo-element:           after !default;
+// $stretched-link-z-index:                  1 !default;
+
+// $font-size-root affects the value of `rem`, which is used for as well font sizes, paddings, and margins
+// $font-size-base affects the font size of the body text
+// $font-size-root:              null !default;
+$font-size-base:        1.125rem; // 1rem !default; // Assumes the browser default, typically `16px`
+$font-size-sm:          $font-size-base * 0.8888888;  // $font-size-base * .875 !default;
+$font-size-lg:          $font-size-base * 1.1111111;  // $font-size-base * 1.25 !default;
+
+// $line-height-base:            1.5 !default;  ==> 27px
+$line-height-sm:        1.8;  // 1.25 !default;
+$line-height-lg:        1.35; // 2 !default;
+
+$h1-font-size:          $font-size-base * 2;         // $font-size-base * 2.5 !default;
+$h2-font-size:          $font-size-base * 1.7777778; // $font-size-base * 2 !default;
+$h3-font-size:          $font-size-base * 1.3333334; // $font-size-base * 1.75 !default;
+$h4-font-size:          $font-size-base * 1.1111111; // $font-size-base * 1.5 !default;
+$h5-font-size:          $font-size-base * 1;        // $font-size-base * 1.25 !default;
+// $h6-font-size:          $font-size-base !default;
+// scss-docs-end font-variables
+
+// scss-docs-start headings-variables
+// $headings-margin-bottom:      $spacer; // $spacer * .5 !default;
+// $headings-font-family:        null !default;
+// $headings-font-style:         null !default;
+// $headings-font-weight:        500 !default;
+// $headings-line-height:        1.2 !default;
+$headings-color:    $black-olive;
+// scss-docs-end headings-variables
+
+// Pagination ---------------------------------
+// $pagination-padding-y:              .375rem !default;
+// $pagination-padding-x:              .75rem !default;
+// $pagination-padding-y-sm:           .25rem !default;
+// $pagination-padding-x-sm:           .5rem !default;
+// $pagination-padding-y-lg:           .75rem !default;
+// $pagination-padding-x-lg:           1.5rem !default;
+
+ $pagination-color: $black-olive; // $link-color!default;
+// $pagination-bg:                     $white !default;
+ $pagination-border-width:           0; //$border-width !default;
+// $pagination-border-radius:          $border-radius !default;
+// $pagination-margin-start:           $pagination-border-width !default;
+// $pagination-border-color:           $gray-300 !default;
+
+// $pagination-focus-color:            $link-hover-color !default;
+// $pagination-focus-bg:               $gray-200 !default;
+// $pagination-focus-box-shadow:       $input-btn-focus-box-shadow !default;
+// $pagination-focus-outline:          0 !default;
+
+ $pagination-hover-color:            $black-olive; //$link-hover-color !default;
+ $pagination-hover-bg:               $pale-silver; // $gray-200 !default;
+ $pagination-hover-border-color:     0; // $gray-300 !default;
+
+ $pagination-active-color:           white; // $component-active-color !default;
+ $pagination-active-bg:              $flame; // $component-active-bg !default;
+ $pagination-active-border-color:    0; // $pagination-active-bg !default;
+
+// $pagination-disabled-color:         $gray-600 !default;
+// $pagination-disabled-bg:            $white !default;
+// $pagination-disabled-border-color:  $gray-300 !default;
+
+// $pagination-transition:              color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out !default;
+
+// $pagination-border-radius-sm:       $border-radius-sm !default;
+// $pagination-border-radius-lg:       $border-radius-lg !default;
+// ---- scss-docs-end pagination-variables ---------------------------
+
+// Cards
+
+// ---- scss-docs-start card-variables -------------------------------
+// $card-spacer-y:                     $spacer !default;
+// $card-spacer-x:                     $spacer !default;
+// $card-title-spacer-y:               $spacer * .5 !default;
+ $card-border-width:                 0; // $border-width !default;
+// $card-border-color:                 rgba($black, .125) !default;
+// $card-border-radius:                $border-radius !default;
+// $card-box-shadow:                   null !default;
+// $card-inner-border-radius:          subtract($card-border-radius, $card-border-width) !default;
+// $card-cap-padding-y:                $card-spacer-y * .5 !default;
+// $card-cap-padding-x:                $card-spacer-x !default;
+// $card-cap-bg:                       rgba($black, .03) !default;
+// $card-cap-color:                    null !default;
+// $card-height:                       null !default;
+// $card-color:                        null !default;
+// $card-bg:                           $white !default;
+// $card-img-overlay-padding:          $spacer !default;
+// $card-group-margin:                 $grid-gutter-width * .5 !default;
+// ---- scss-docs-end card-variables ----------------------------------
+
+@import "bootstrap-5.1.3/scss/variables";
+
+// scss-docs-start theme-colors-map
+$theme-colors: map-remove($theme-colors,
+  "success",
+  "info",
+  "warning",
+  "danger"
+);
+
+$spacers: map-merge(
+  (
+    6: $spacer * 6
+  ), $spacers
+);
+
+$table-variants: map-remove( $table-variants,
+  "primary",
+  "secondary",
+  "success",
+  "info",
+  "warning",
+  "danger",
+  "light"
+);
+
+$table-variants: map-merge(
+    ( 
+        "golyat" : $black-olive
+    ), 
+    $table-variants
+);
+
+
+@import "bootstrap-5.1.3/scss/utilities";
+
+$utilities: map-remove($utilities, 
+    "align",
+  /*  "float",*/
+    "opacity",
+    "overflow",
+ /* "display",*/
+    "shadow",
+    "position",
+    "top", 
+    "bottom",
+    "start",
+    "end",
+    "translate-middle",
+    "border",
+ /* "border-top", */
+    "border-end",
+ /* "border-bottom", */
+    "border-start",
+    "border-color",
+    "border-width",
+    "width",
+    "max-width",
+    "viewport-width",
+    "min-viewport-width",
+    "height",
+    "max-height",
+    "viewport-height",
+    "min-viewport-height",
+/*  "flex",
+    "flex-direction",
+    "flex-grow",
+    "flex-shrink",
+    "flex-wrap", */
+    "gap",
+/*  "justify-content", */
+    "align-items",
+    "align-content",
+    "align-self",
+    "order",
+    "margin",
+    "margin-x",
+/*  "margin-y", */
+    "margin-top",
+/*  "margin-end",*/
+/*  "margin-bottom", */
+/*    "margin-start",*/
+    "negative-margin",
+    "negative-margin-x",
+    "negative-margin-y",
+    "negative-margin-top",
+    "negative-margin-end",
+    "negative-margin-bottom",
+    "negative-margin-start",
+    "padding",
+    "padding-x",
+    "padding-y",
+/*    "padding-top",*/
+/*  "padding-end",*/
+/*    "padding-bottom",*/
+    "padding-start",
+    "font-family",
+    "font-size",
+    "font-style",
+    "font-weight",
+    "line-height",
+    "text-align",
+    "text-decoration",
+    "text-transform",
+    "white-space",
+    "word-wrap",
+    "color",
+    "text-opacity",
+    "background-color",
+    "bg-opacity",
+    "gradient",
+    "user-select",
+    "pointer-events",
+    "rounded",
+    "rounded-top",
+    "rounded-end",
+    "rounded-bottom",
+    "rounded-start",
+    "visibility"
+);
+
+ @import "bootstrap-5.1.3/scss/mixins";
+
+// Layout & components
+ @import "bootstrap-5.1.3/scss/root";
+ @import "bootstrap-5.1.3/scss/reboot";
+ @import"bootstrap-5.1.3/scss/type";
+ @import"bootstrap-5.1.3/scss/images";
+ @import "bootstrap-5.1.3/scss/containers";
+ @import "bootstrap-5.1.3/scss/grid";
+ @import"bootstrap-5.1.3/scss/tables";
+
+// ---- Forms -----------------------------
+ @import "bootstrap-5.1.3/scss/forms/labels";
+ @import "bootstrap-5.1.3/scss/forms/form-text";
+ @import "bootstrap-5.1.3/scss/forms/form-control";
+// @import"bootstrap-5.1.3/scss/forms/form-select";
+// @import"bootstrap-5.1.3/scss/forms/form-check";
+// @import"bootstrap-5.1.3/scss/forms/form-range";
+// @import"bootstrap-5.1.3/scss/forms/floating-labels";
+// @import "bootstrap-5.1.3/scss/forms/input-group";
+// @import"bootstrap-5.1.3/scss/forms/validation";
+// ----------------------------------------
+
+// @import"bootstrap-5.1.3/scss/buttons";
+@import"bootstrap-5.1.3/scss/transitions";
+// @import"bootstrap-5.1.3/scss/dropdown";
+// @import"bootstrap-5.1.3/scss/button-group";
+@import "bootstrap-5.1.3/scss/nav";
+@import "bootstrap-5.1.3/scss/navbar";
+@import"bootstrap-5.1.3/scss/card";
+// @import"bootstrap-5.1.3/scss/accordion";
+@import"bootstrap-5.1.3/scss/breadcrumb";
+@import"bootstrap-5.1.3/scss/pagination";
+// @import"bootstrap-5.1.3/scss/badge";
+// @import"bootstrap-5.1.3/scss/alert";
+// @import"bootstrap-5.1.3/scss/progress";
+// @import"bootstrap-5.1.3/scss/list-group";
+// @import"bootstrap-5.1.3/scss/close";
+// @import"bootstrap-5.1.3/scss/toasts";
+// @import"bootstrap-5.1.3/scss/modal";
+// @import"bootstrap-5.1.3/scss/tooltip";
+// @import"bootstrap-5.1.3/scss/popover";
+// @import"bootstrap-5.1.3/scss/carousel";
+// @import"bootstrap-5.1.3/scss/spinners";
+@import"bootstrap-5.1.3/scss/offcanvas";
+// @import"bootstrap-5.1.3/scss/placeholders";
+
+// ---- Helpers -----------------------------
+// @import"bootstrap-5.1.3/scss/helpers";
+@import"bootstrap-5.1.3/scss/helpers/clearfix";
+// @import"bootstrap-5.1.3/scss/helpers/colored-links";
+// @import"bootstrap-5.1.3/scss/helpers/ratio";
+// @import"bootstrap-5.1.3/scss/helpers/position";
+// @import"bootstrap-5.1.3/scss/helpers/stacks";
+@import "bootstrap-5.1.3/scss/helpers/visually-hidden";
+// @import"bootstrap-5.1.3/scss/helpers/stretched-link";
+// @import"bootstrap-5.1.3/scss/helpers/text-truncation";
+// @import"bootstrap-5.1.3/scss/helpers/vr";
+// ----------------------------------------
+
+// Utilities
+ @import "bootstrap-5.1.3/scss/utilities/api";
+// scss-docs-end import-stack

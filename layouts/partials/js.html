@@ -1,0 +1,47 @@
+<script src="/assets/js/bootstrap.min.js"></script>
+
+<script>
+
+    /* -----------------------------------------
+    --- Update tables                        ---
+    -------------------------------------------- */
+    var matches = document.querySelectorAll("table");
+    matches.forEach(
+        tb => {
+            if (!tb.classList.contains("attachments")) {
+                tb.classList.add("table", "table-striped");
+                tb.querySelector("thead").classList.add("table-golyat");
+                var wrapper = document.createElement('div');
+                wrapper.classList.add("table-responsive-md");
+                tb.parentNode.insertBefore(wrapper, tb);
+                wrapper.appendChild(tb);
+            }
+        }
+    );
+
+    /* -----------------------------------------
+    --- Update footnotes                     ---
+    -------------------------------------------- */
+
+    /* --- Update the badge (to fit with bootstrap styles) --- */
+    document.querySelectorAll(".footnote-ref").forEach(
+        fr => {
+            fr.classList.add("badge","bg-primary");
+            fr.classList.remove("footnote-ref");
+            var text = fr.textContent;
+            fr.textContent = "[" + text + "]";
+        }
+    );
+
+    function insertAfter(newNode, referenceNode) {
+        referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
+    }
+
+    /* --- Add the title --- */
+    if (document.querySelector(".footnotes")) {
+        var notes = document.createElement("span");
+        notes.classList.add("footnotes-title");
+        notes.textContent = "Notes";
+        insertAfter(notes, document.querySelector(".footnotes > hr"));
+    }
+</script>

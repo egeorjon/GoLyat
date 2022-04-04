@@ -1,0 +1,59 @@
+<header id="page-header" class="sticky-top pb-4 border-bottom">
+    <div class="navbar navbar-expand-md">
+        <div class="container">
+            {{- $title := .Site.Title -}}
+            {{- with .Site.Params.BrandTitle -}}{{- $title = . -}}{{- end -}}
+            {{- with .Site.Params.BrandLogo -}}
+                {{- $abs_path := path.Join "/static" . -}}
+                {{- if fileExists $abs_path -}}
+                    {{- with imageConfig $abs_path -}}
+                        <a class="navbar-brand me-auto" href="index.html" title="{{- $title -}}">
+                            <img id="logo" class="site-brand-logo" src="{{- $.Site.Params.BrandLogo | relURL -}}" width="{{- .Width -}}" height="{{- .Height -}}" alt="{{- $title -}}" />
+                        </a>
+                    {{- end -}}
+                {{- else -}}
+                    
+                {{- end -}}
+            {{- end -}}
+            <form class="search-form input-group d-none d-md-flex">
+                <input class="form-control pe-5" type="text" placeholder="Search for products" />
+                <i class="bi-search me-3"> </i>
+            </form>
+            <div class="d-flex flex-shrink-0"><!-- align-items-center -->
+                <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-expanded="false">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+        </div><!-- container -->
+    </div><!-- navbar -->
+    <div class="navbar navbar-expand-md">
+        <div class="container">
+            <div class="navbar-collapse collapse justify-content-center" id="navbarCollapse">
+                <form class="search-form input-group d-md-none my-3">
+                    <i class="bi-search"> </i>
+                    <input class="form-control" type="text" placeholder="Search for products">
+                </form>
+                <ul class="navbar-nav">
+                    {{- $currentPage := . -}}
+                    {{- if eq .Kind "page" -}}
+                        {{- with .Parent -}} {{- $currentPage = . -}}{{- end -}}
+                    {{- end -}}
+                    {{- range .Site.Menus.main -}}
+                        {{- $active := ""    -}}
+                        {{- $link   := .Name -}}
+                        {{- if or ($currentPage.IsMenuCurrent "main" .) ($currentPage.HasMenuCurrent "main" .) -}}
+                            {{- $active = " active" -}}
+                            {{- $link   = printf "%s<span class=\"visually-hidden\"> (current)</span>" .Name -}}
+                        {{- end }}
+                        {{- if .Pre -}}
+                            {{- $link = printf "<i class=\"%s\"></i> <span class=\"visually-hidden\">%s</span>" .Pre $link -}}
+                        {{- end -}}
+                        <li class="nav-item">
+                            <a class="nav-link {{- $active -}}" href="{{- .URL | absURL -}}" id="{{- .Identifier -}}" title="{{- .Name -}}">{{- safeHTML $link -}}</a>
+                        </li>
+                    {{- end -}}
+                </ul>
+            </div><!-- navbar-collapse -->
+        </div><!-- container -->
+    </div><!-- navbar-expand -->
+</header>

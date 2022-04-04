@@ -1,0 +1,22 @@
+{{- with .GetTerms "authors" -}}
+<section class="page-bottomline-author pt-4 mb-5 border-top border-bottom">
+    <div class="container limit-width">
+        {{- range . -}}
+        <div class="row pb-4">
+            <div class="col clearfix">
+                {{- $image := .Page.Resources.GetMatch .Params.Avatar -}}
+                {{- with $image -}}
+                <div class="author-picture" style="width={{- .Width }} height={{- .Height -}}">
+                    <img src="{{- .RelPermalink -}}" width="{{- .Width -}}" height="{{- .Height -}}" alt="{{- .Params.Title -}}" />
+                </div><!-- col -->
+                {{- end -}}
+                <div class="author-description" style="margin-left: {{ with $image -}}{{- math.Mul 1.2 .Width -}}px{{- end -}}">
+                    <p class="author-bio">{{- .Params.Bio | markdownify -}}</p>
+                    <p class="author-name">{{- .Params.Title | safeHTML -}}</p>
+                </div>
+            </div><!-- col -->
+        </div><!-- row -->
+        {{- end -}}
+    </div><!-- container -->
+</section>
+{{- end -}}

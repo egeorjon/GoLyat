@@ -1,0 +1,65 @@
+<!-- Available attributes                       -->
+<!-- Page        : The Page being rendered.     -->
+<!-- Destination : The URL.                     -->
+<!-- Title       : The title attribute          -->
+<!-- Text        : The rendered (HTML) link text -->
+<!-- PlainText                                  -->
+{{- $caption  := "" -}}
+{{- $titletxt := "" -}}
+{{- $alttxt   := "" -}}
+{{- with .Text -}}{{- $alttxt = . -}}{{- end -}}
+{{- with .Title -}}
+    {{- $caption  = . -}}
+    {{- $titletxt = . -}}
+{{- else -}}
+    {{- with $alttxt -}}
+        {{- $caption = . -}}
+    {{- end -}}
+{{- end -}}
+{{- $imgtype := 0 -}}
+{{- $image   := "" -}}
+{{- $exts    := (slice ".jpg" ".jpeg" ".gif" ".tif" ".png" ".webp") -}}
+{{- if not (strings.HasPrefix .Destination "http") -}}
+    {{- $image = .Page.Resources.GetMatch .Destination -}}
+    {{- with $image -}}
+        {{- $imgtype = 1 -}}
+        {{- if in $exts (path.Ext $.Destination) -}}
+            {{- $imgtype = 2 -}}
+        {{- end -}}
+    {{- end -}}
+{{- end -}}
+{{- if lt $imgtype 2 -}}
+<figure class="figure figure-center">
+    <img class="figure-img img-fluid" src="{{- .Destination | safeURL -}}" {{ with $alttxt -}}alt="{{- . | safeHTML -}}"{{- end }} {{ with $titletxt -}}title="{{- . | safeHTML -}}"{{- end -}} />
+    {{- with $caption -}}<figcaption class="figure-caption">{{ . | safeHTML -}}</figcaption>{{- end -}}
+</figure>
+{{- else -}}
+    {{- $sizes     := slice -}}
+    {{- $brkpoints := slice 1200 992 768 576 -}}
+    {{- $viewpoints:= slice 80 85 90 95 -}}
+    {{- $index     := 0 -}}
+    {{- range $size := $viewpoints -}}
+        {{- $sizes   = $sizes | append (printf "(min-width: %dpx) %dvw" (index $brkpoints $index) $size) -}}
+        {{- $index = add $index 1 -}}
+    {{- end -}}
+    {{- $sizes = $sizes | append "100vw" -}}
+
+    {{- $srcsets   := slice -}}
+    {{- $imgsizes  := slice 480 660 880 1024 -}}
+    {{- $width     := $image.Width -}}
+    {{- range $size := $imgsizes -}}
+        {{- if gt $width $size -}}
+            {{- $img    := $image.Resize (printf "%dx" $size) -}}
+            {{- $srcsets = $srcsets | append (printf "%s %dw" $img.RelPermalink $size) -}}
+        {{- end -}}
+    {{- end -}}
+    {{- if gt (len $srcsets) 0 -}}{{- $srcsets = $srcsets | append (printf "%s %dw" $image.RelPermalink $width) -}}{{- end -}}
+<figure class="figure figure-center">
+    {{- if and (gt $width 1024) (.Page.Site.Params.lightbox | default false) -}}
+        <a href="{{- $image.RelPermalink -}}" data-lightbox="{{- path.Base .Destination -}}" data-title="{{- $caption -}}" {{ with $titletxt -}}title="{{- . | safeHTML -}}"{{- end }} {{ with $alttxt -}}alt="{{- . | safeHTML -}}"{{- end -}}>
+    {{- end -}}
+    <img sizes="{{ delimit $sizes "," }}" {{ with $srcsets -}}srcset="{{ delimit $srcsets "," }}"{{- end }} class="figure-img img-fluid" src="{{- .Destination | safeURL -}}" {{ with $titletxt -}}title="{{- . | safeHTML -}}"{{- end }} {{ with $alttxt -}}alt="{{- . | safeHTML -}}"{{- end -}} />
+    {{- if and (gt $width 1024) (.Page.Site.Params.Lightbox | default false) -}}</a>{{- end -}}
+    {{- with $caption -}}<figcaption class="figure-caption">{{- . | safeHTML -}}</figcaption>{{- end -}}
+</figure>
+{{- end -}}

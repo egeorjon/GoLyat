@@ -1,0 +1,38 @@
+{{- define "main" -}}
+    <section id="page-headline" class="pt-4 pb-3 mb-5 border-bottom">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <h1>{{- .Title | safeHTML -}}{{- if eq .Kind "section" -}}<a class="ms-3" href="#"><i class="bi-rss"></i></a>{{- end -}}</h1>
+                    {{- partial "partials/breadcrumb.html" . -}}
+                </div><!-- col -->
+            </div><!-- row -->
+        </div><!-- container -->       
+    </section>
+    <section id="page-content">
+        <div class="container limit-width">
+            <div class="row">
+                {{- $string := .Summary -}}
+                {{- with .Description -}}{{- $string = . -}}{{- end -}}
+                {{- with $string -}}
+                    <div class="page-summary col mb-6">
+                        <p>{{- . | markdownify -}}</p>
+                    </div><!-- col -->
+                {{- end -}}
+            </div>
+            {{- $class := partialCached "class-columns.html" (.Site.Params.PostList.ListColumns | default (dict "sm" 1 "md" 1 "lg" 1 "xl" 1)) -}}
+            <div class="post-list {{ $class -}}">
+                {{- range .Paginator.Pages -}}
+                <div class="col mb-6">
+                    {{- partial "partials/post-list.html" (dict "context" . "kindctx" $.Kind) -}}
+                </div><!-- col -->
+                {{- end -}}
+            </div><!-- row -->
+        </div><!-- container -->
+    </section>
+    <section id="page-bottomline mb-6">
+        <div class="container">
+            {{- partial "partials/pagination-list.html" . -}}
+        </div>
+    </section>
+{{- end -}}

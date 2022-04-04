@@ -1,0 +1,133 @@
+@use "sass:map";
+
+:root {
+    --floral-white: #fffcf2ff;
+    --pale-silver: #ccc5b9ff;
+    --black-olive: #403d39ff;
+    --eerie-black: #252422ff;
+    --flame: #eb5e28ff;
+}
+
+$floral-white:  #fffcf2ff;
+$pale-silver:   #ccc5b9ff;
+$black-olive:   #403d39ff;
+$eerie-black:   #252422ff;
+$flame:         #eb5e28ff;
+
+@import "custom";
+
+@import "bootstrap-icons-1.8.1/bootstrap-icons";
+
+/* ----- Header ---------------------------- */
+@media (min-width: map-get($grid-breakpoints, "md")) {
+
+    .search-form {
+        width: 50%;
+    }
+}
+
+.search-form i {
+    --bs-text-opacity: 1;
+    color: #6c757d!important;
+    transform: translateY(-50%)!important;
+    position: absolute!important;
+    right: 0!important;
+    top: 50%!important;
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%280, 0, 0, 0.55%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+
+/* ----- headline------------------------------ */
+#page-headline {
+    background-color: var(--floral-white);
+}
+
+/* ----- meta --------------------------------- */
+.post-meta {
+    list-style-type: none;
+    padding-left: 0;
+   /* margin-bottom: 2rem!important;*/
+
+    li {
+        white-space: nowrap;
+        display: inline-block;
+        margin-right: 3rem;
+    }
+
+    li:last-child {
+        margin-right: 0;
+    }
+}
+
+
+/* ----- Post List ---------------------------- */
+.page-summary,
+.post-summary {
+    text-align: justify;
+}
+
+/* ----- Post Single ---------------------------- */
+.figure {
+    margin-bottom: 3 * $spacer;
+}
+
+.figure-center {
+    display:block!important;
+    text-align: center;
+}
+
+.figure-caption {
+    margin-top: 0.5rem;
+    font-style: italic;
+}
+
+.table {
+    margin-bottom: 3 * $spacer;
+}
+
+.post-content {
+    text-align: justify;
+
+    h2 {
+        margin-top: 3rem;
+        margin-bottom: 2rem;
+        color: $primary;
+    }
+
+    h3 {
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+    }
+}
+
+.page-bottomline-author {
+    background-color: var(--floral-white);
+}
+
+.author-picture {
+    float: left;
+    border-radius   : 50%;
+    overflow        : hidden;
+    margin-bottom   : 1rem;
+}
+
+.author-description {
+    text-align: justify;
+}
+
+/* ----- General ---------------------------- */
+@media (min-width: map-get($grid-breakpoints, "md")) {
+    .limit-width {
+        width: 960px!important;
+    }   
+}
+
+// ----------------------------------------------
+// --- Footnotes
+// ----------------------------------------------
+.footnotes p {
+    margin-bottom: 0;
+}
