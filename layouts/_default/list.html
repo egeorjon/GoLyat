@@ -3,8 +3,8 @@
         <div class="container">
             <div class="row">
                 <div class="col">
-                    <h1>{{- .Title | safeHTML -}}{{- if eq .Kind "section" -}}<a class="ms-3" href="#"><i class="bi-rss"></i></a>{{- end -}}</h1>
                     {{- partial "partials/breadcrumb.html" . -}}
+                    <h1>{{- .Title | safeHTML -}}{{- if eq .Kind "section" -}}<a class="ms-3" href="#"><i class="bi-rss"></i></a>{{- end -}}</h1>
                 </div><!-- col -->
             </div><!-- row -->
         </div><!-- container -->       
