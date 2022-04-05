@@ -152,10 +152,13 @@ $flame:         #eb5e28ff;
     }
 }
 
-.page-bottomline-prev-next {
-
+.page-bottomline-prev-next,
+.page-bottomline-pagination {
     border-top: 1px solid $gray-300;
     border-bottom: 1px solid $gray-300;
+}
+
+.page-bottomline-prev-next {
 
     a {
         display: block;
