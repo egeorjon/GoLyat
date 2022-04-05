@@ -20,7 +20,7 @@
                     </div><!-- col -->
                 {{- end -}}
             </div>
-            {{- $class := partialCached "class-columns.html" (.Site.Params.PostList.ListColumns | default (dict "sm" 1 "md" 1 "lg" 1 "xl" 1)) -}}
+            {{- $class := partial "class-columns.html" (.Site.Params.PostList.ListColumns | default (dict "sm" 1 "md" 1 "lg" 1 "xl" 1)) -}}
             <div class="post-list {{ $class -}}">
                 {{- range .Paginator.Pages -}}
                 <div class="col mb-6">
