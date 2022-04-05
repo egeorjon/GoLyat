@@ -4,29 +4,31 @@
 {{- $title := .title | default "" -}}
 {{- with .context.GetTerms "authors" -}}
     {{- range . -}}
-<aside class="card h-100 widget widget-authors">
-    <div class="card-body pb-4">
-        {{- with $title -}}<h3 class="card-title">{{- . | safeHTML -}}</h3>{{- end -}}
-        <div class="clearfix ">
-            {{- $image := .Page.Resources.GetMatch .Params.Avatar -}}
-            {{- with $image -}}
-            <div class="author-picture" style="width={{- .Width }} height={{- .Height -}}">
-                <img src="{{- .RelPermalink -}}" width="{{- .Width -}}" height="{{- .Height -}}" alt="{{- .Params.Title -}}" />
-            </div>
-            {{- end -}}
-            <div class="author-description" style="margin-left: {{ with $image -}}{{- math.Mul 1.2 .Width -}}px{{- end -}}">
-                <p class="author-name">{{- .Params.Title | safeHTML -}}</p>
-                <p class="author-bio">{{- .Params.Bio | markdownify -}}</p>
-                {{- with .Params.Socials -}}
-                <ul class="author-socials">
-                    {{- range . -}}
-                        <li><a href="{{- .url -}}" title="{{- .alt -}}"><i class="bi-{{- .icon -}}"></i></a></li>
-                    {{- end -}}
-                </ul>
+<div class="col">
+    <aside class="card h-100 widget widget-authors">
+        <div class="card-body pb-4">
+            {{- with $title -}}<h3 class="card-title">{{- . | safeHTML -}}</h3>{{- end -}}
+            <div class="clearfix ">
+                {{- $image := .Page.Resources.GetMatch .Params.Avatar -}}
+                {{- with $image -}}
+                <div class="author-picture" style="width={{- .Width }} height={{- .Height -}}">
+                    <img src="{{- .RelPermalink -}}" width="{{- .Width -}}" height="{{- .Height -}}" alt="{{- .Params.Title -}}" />
+                </div>
                 {{- end -}}
-            </div><!-- Author-description -->
-        </div><!-- clearfix -->
-    </div><!-- card-body -->
-</aside>
+                <div class="author-description" style="margin-left: {{ with $image -}}{{- math.Mul 1.2 .Width -}}px{{- end -}}">
+                    <p class="author-name">{{- .Params.Title | safeHTML -}}</p>
+                    <p class="author-bio">{{- .Params.Bio | markdownify -}}</p>
+                    {{- with .Params.Socials -}}
+                    <ul class="author-socials">
+                        {{- range . -}}
+                            <li><a href="{{- .url -}}" title="{{- .alt -}}"><i class="bi-{{- .icon -}}"></i></a></li>
+                        {{- end -}}
+                    </ul>
+                    {{- end -}}
+                </div><!-- Author-description -->
+            </div><!-- clearfix -->
+        </div><!-- card-body -->
+    </aside>
+</div>
     {{- end -}}
 {{- end -}}
