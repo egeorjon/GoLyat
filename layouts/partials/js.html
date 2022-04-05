@@ -2,6 +2,23 @@
 
 <script>
 
+    /* -----------------------------------------------
+    --- Reduce the size of the logo when scrolling ---
+    -------------------------------------------------- */
+    window.onscroll = function() {
+        navbarScroll()
+    };
+
+    function navbarScroll() {
+        var y  = window.scrollY;
+        var id = document.getElementById("page-header");
+        if (y > 20) {
+          id.classList.add('small');
+        } else if (y < 20) {
+          id.classList.remove('small');
+        }
+      }
+
     /* -----------------------------------------
     --- Update tables                        ---
     -------------------------------------------- */
