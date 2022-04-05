@@ -18,6 +18,8 @@ $flame:         #eb5e28ff;
 
 @import "bootstrap-icons-1.8.1/bootstrap-icons";
 
+@import "monokai";
+
 /* ----- Header ---------------------------- */
 @media (min-width: map-get($grid-breakpoints, "md")) {
 
@@ -103,7 +105,7 @@ $flame:         #eb5e28ff;
     }
 }
 
-.page-bottomline-author {
+.page-bottomline-authors {
     background-color: var(--floral-white);
 }
 
@@ -132,6 +134,45 @@ $flame:         #eb5e28ff;
         }
     }
 }
+
+.widget-share-links {
+    ul {
+        list-style-type: none;
+        padding-left: 0;
+        margin-bottom: 0;
+    }
+
+    li {
+        display: inline;
+        margin-right: 1rem;
+
+        &:last-child {
+            margin-right: 0;
+        }
+    }
+}
+
+.page-bottomline-prev-next {
+
+    border-top: 1px solid $gray-300;
+    border-bottom: 1px solid $gray-300;
+
+    a {
+        display: block;
+    }
+
+    ul {
+        list-style-type: none;
+        padding-left: 0;
+        margin-bottom: 0;
+    }
+
+    li {
+        line-height: 2;
+    }
+}
+
+
 
 /* ----- General ---------------------------- */
 @media (min-width: map-get($grid-breakpoints, "md")) {

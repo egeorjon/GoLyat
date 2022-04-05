@@ -1,3 +1,8 @@
+{{/* Parameters                           */}}
+{{/* .context     Page                    */}}
+{{/* .kindctx     Kind of the parent page */}}
+{{/* .meta        List of meta to be displated */}}
+{{/* .class       CSS class to be added   */}}
 {{- $context := .context -}}
 {{- $kindctx := .kindctx -}}
 <ul class="post-meta {{ with .class -}}{{- . | safeHTML -}}{{- end -}}">

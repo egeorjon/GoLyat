@@ -120,7 +120,7 @@ $headings-color:    $black-olive;
 // $card-cap-color:                    null !default;
 // $card-height:                       null !default;
 // $card-color:                        null !default;
-// $card-bg:                           $white !default;
+ $card-bg:                             transparent; // $white !default;
 // $card-img-overlay-padding:          $spacer !default;
 // $card-group-margin:                 $grid-gutter-width * .5 !default;
 // ---- scss-docs-end card-variables ----------------------------------
@@ -226,7 +226,7 @@ $utilities: map-remove($utilities,
     "font-style",
     "font-weight",
     "line-height",
-    "text-align",
+/*    "text-align",*/
     "text-decoration",
     "text-transform",
     "white-space",

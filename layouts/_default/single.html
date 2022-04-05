@@ -1,27 +1,91 @@
 {{- define "main" -}}
+    {{- $cuttent_page := . -}}
     <section id="page-headline" class="pt-4 pb-3 mb-5 border-bottom">
         <div class="container">
             <div class="row">
                 <div class="col">
-                    <h1>{{- .Title | safeHTML -}}{{- if eq .Kind "section" -}}<a class="ms-3" href="#"><i class="bi-rss"></i></a>{{- end -}}</h1>
                     {{- partial "partials/breadcrumb.html" . -}}
+                    <h1>{{- .Title | safeHTML -}}{{- if eq .Kind "section" -}}<a class="ms-3" href="#"><i class="bi-rss"></i></a>{{- end -}}</h1>
                 </div><!-- col -->
             </div><!-- row -->
         </div><!-- container -->       
     </section>
     <section id="page-content">
+    {{- $display_image  := and (isset .Params "images") (.Site.Params.Single.displayimage | default false) -}}
         <div class="container limit-width">
             <div class="row">
+                <div class="col post-summary mb-4">
+                    {{- .Summary -}}
+                </div><!-- col -->
+            </div><!-- row -->
+        </div><!-- container -->
+    {{- if $display_image -}}
+        <div class="container">
+            <div class="row">
+                <div class="col mb-4 text-center">
+                    {{- partial "partials/image.html" (dict "context" . "Destination" .Params.images "Title" .Title "Text" .Title) -}}
+                </div><!-- col -->
+            </div><!-- row -->
+        </div><!-- container -->
+    {{- end -}}
+        <div class="container limit-width">
+            <div class="row row-cols-1">
+                <div class="col">
+                {{- with .Site.Params.Single.metatop -}}
+                    {{- partial "partials/meta.html" (dict "context" $cuttent_page "kindctx" "page" "meta" . "class" "meta-top") -}}
+                {{- end -}}
+                </div>
                 <div class="page-content post-content col mb-6">
-                    <p>{{- .Content -}}</p>
+                    {{- replace .Content .Summary "" | safeHTML -}}
                 </div><!-- col -->
             </div><!-- row -->
         </div><!-- container -->
     </section>
-    {{- partial "partials/authors.html" . -}}
-    <section id="page-bottomline mb-6">
-        <div class="container">
-
+    <section class="page-bottomline page-bottomline-prev-next pt-4 pb-4 mb-5">
+        <div class="container limit-width">
+            <div class="row">
+                <div class="col-6 col-md-4">
+                    {{- with .PrevInSection -}}
+                        <a href="{{- .RelPermalink -}}" title="{{- .Title | safeHTML -}}"><i class="bi-chevron-compact-left"></i><span class="d-none d-sm-inline">Previous Post</span></a>
+                        <p class="d-none d-md-inline">{{- .Title | safeHTML -}}</p>
+                    {{- end -}}
+                </div><!-- col -->
+                <div class="col-4 d-none d-md-block text-center">
+                    <ul>
+                        <li><a href="{{- "/" | absURL -}}">Home</a></li>
+                        {{- with .Parent -}}
+                        <li><a href="{{- .RelPermalink -}}">{{- .Title | safeHTML -}}</a></li>
+                        {{- end -}}
+                    </ul>
+                </div>
+                <div class="col-6 col-md-4 text-end">
+                    {{- with .NextInSection -}}
+                        <a href="{{- .RelPermalink -}}" title="{{- .Title | safeHTML -}}"><span class="d-none d-sm-inline">Next Post</span><i class="bi-chevron-compact-right"></i></a>
+                        <p class="d-none d-md-inline">{{- .Title | safeHTML -}}</p>
+                    {{- end -}}
+                </div><!-- col -->
+            </div><!-- row -->
+        </div><!-- container -->
+    </section>
+    <section class="page-bottomline page-bottomline-tags-share mb-5">
+        <div class="container limit-width">
+            <div class="row row-cols-1 row-cols-sm-2">
+                <div class="col">
+                    {{- partial "partials/widgets/post-tags.html" (dict "context" . "title" "Topics") -}}
+                </div>
+                <div class="col">
+                    {{- partial "partials/widgets/share-links.html" (dict "context" . ) -}}
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="page-bottomline page-bottomline-authors pt-4 mb-5">
+        <div class="container limit-width">
+            <div class="row">
+                <div class="col">
+                    {{- partial "partials/widgets/authors.html" (dict "context" . ) -}}
+                </div>
+            </div>
         </div>
     </section>
 {{- end -}}
