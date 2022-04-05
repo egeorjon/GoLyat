@@ -1,0 +1,103 @@
+
+[config]
+    [config.email]
+        name        = "e-mail"
+        follow      = ""
+        followtext  = ""
+        icon        = "bi-envelope"
+        share       = "mailto:?subject=%%TITLE%%&body=%%BODY%%"
+        arialabel   = "Share by E-Mail"
+        mobile      = false
+    [config.facebook]
+        name        = "Facebook"
+        follow      = "https://www.facebook.com/%s"
+        followtext  = "Follow me on Facebook"
+        icon        = "bi-facebook"
+        share       = "https://www.facebook.com/sharer.php?u=%%URL%%"
+        arialabel   = "Share on Facebook"
+        mobile      = false
+    [config.twitter]
+        name        = "Twitter"
+        follow      = "https://twitter.com/%s"
+        followtext  = "Follow me on Twitter"
+        icon        = "bi-twitter"
+        share       = "https://twitter.com/share?url=%%URL%%&text=%%TITLE%%%%HASHTAGS%%%%VIA%%"
+        arialabel   = "Share on Twitter"
+        mobile      = false
+    [config.github]
+        name        = "GitHub"
+        follow      = "https://github.com/%s"
+        followtext  = "See my work on Github"
+        icon        = "bi-github"
+        share       = ""
+        arialabel   = ""
+        mobile      = false
+    [config.instagram]
+        name        = "Instagram"
+        follow      = "https://www.instagram.com/%s"
+        followtext  = "See my work on Instagram"
+        icon        = "bi-instagram"    
+        share       = ""
+        arialabel   = ""
+        mobile      = true
+    [config.pinterest]
+        name        = "Pinterest"
+        follow      = "https://www.pinterest.com/%s"
+        icon        = "bi-pinterest"
+        share       = "https://pinterest.com/pin/create/bookmarklet/?url=%%URL%%%%MEDIA%%&desc=%%TITLE%%"
+        arialabel   = "Share on Pinterest"
+        mobile      = false
+    [config.linkedin]
+        name        = "LinkedIn"
+        follow      = "https://linkedin.com/in/%s"
+        icon        = "bi-linkedin"
+        share       = "http://www.linkedin.com/shareArticle?mini=true&url=%%URL%%&title=%%TITLE%%&summary=%%DESC%%&source=%%HOME%%"
+        arialabel   = "Share on LinkedIn"
+        mobile      = false
+    [config.flickr]
+        name        = "Flickr"
+        follow      = "https://flickr.com/photos/%s"
+        icon        = "bi-flickr"
+        share       = ""
+        arialabel   = ""
+        mobile      = false
+    [config.whatsapp]
+        name        = "Whatsapp"
+        follow      = ""
+        followtext  = ""
+        icon        = "bi-whatsapp"
+        share       = "https://wa.me/?text=%%URL%%"
+        arialabel   = "Share on WhatsApp"
+        mobile      = true
+    [config.digg]
+        name        = "Digg"
+        follow      = ""
+        followtext  = ""
+        icon        = "bi-digg"
+        share       = "http://digg.com/submit?url=%%URL%%&title=%%TITLE%%"
+        arialabel   = "Share on Digg"
+        mobile      = false
+    [config.tumblr]
+        name        = "Tumblr"
+        follow      = ""
+        followtext  = ""
+        icon        = "bi-tumblr"
+        share       = "http://www.tumblr.com/share/link?posttype=link&title=%%TITLE%%&caption=%%DESC%%&content=%%URL%%&canonicalUrl=%%URL%%&shareSource=tumblr_share_button"
+        arialabel   = "Share on Tumblr"
+        mobile      = false
+    [config.reddit]
+        name        = "Reddit"
+        follow      = ""
+        followtext  = ""
+        icon        = "bi-reddit"
+        share       = "https://reddit.com/submit/?url=%%URL%%&resubmit=true&title=%%TITLE%%"
+        arialabel   = "Share on Reddit"
+        mobile      = false
+    [config.getpocket]
+        name        = "Pocket"
+        follow      = ""
+        followtext  = ""
+        icon        = "bi-pocket"
+        share       = "https://getpocket.com/save?url=%%URL%%&title=%%TITLE%%"
+        arialabel   = "Share on Pocket"
+        mobile      = true

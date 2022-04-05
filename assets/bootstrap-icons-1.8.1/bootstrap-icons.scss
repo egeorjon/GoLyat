@@ -401,8 +401,8 @@ $bootstrap-icons-map: (
 /*  "chevron-bar-right": "\f277", */
 /*  "chevron-bar-up": "\f278", */
 /*  "chevron-compact-down": "\f279", */
-/*  "chevron-compact-left": "\f27a", */
-/*  "chevron-compact-right": "\f27b", */
+  "chevron-compact-left": "\f27a", 
+  "chevron-compact-right": "\f27b", 
 /*  "chevron-compact-up": "\f27c", */
 /*  "chevron-contract": "\f27d", */
 /*  "chevron-double-down": "\f27e", */
@@ -579,10 +579,10 @@ $bootstrap-icons-map: (
 /*  "emoji-sunglasses": "\f329", */
 /*  "emoji-wink-fill": "\f32a", */
 /*  "emoji-wink": "\f32b", */
-  "envelope-fill": "\f32c",
+/*  "envelope-fill": "\f32c", */
 /*  "envelope-open-fill": "\f32d", */
 /*  "envelope-open": "\f32e", */
-/*  "envelope": "\f32f", */
+  "envelope": "\f32f",
 /*  "eraser-fill": "\f330", */
 /*  "eraser": "\f331", */
 /*  "exclamation-circle-fill": "\f332", */
@@ -2086,8 +2086,8 @@ $bootstrap-icons-map: (
 /*  .bi-chevron-bar-right::before { content: map-get($bootstrap-icons-map, "chevron-bar-right"); } */
 /*  .bi-chevron-bar-up::before { content: map-get($bootstrap-icons-map, "chevron-bar-up"); } */
 /*  .bi-chevron-compact-down::before { content: map-get($bootstrap-icons-map, "chevron-compact-down"); } */
-/*  .bi-chevron-compact-left::before { content: map-get($bootstrap-icons-map, "chevron-compact-left"); } */
-/*  .bi-chevron-compact-right::before { content: map-get($bootstrap-icons-map, "chevron-compact-right"); } */
+  .bi-chevron-compact-left::before { content: map-get($bootstrap-icons-map, "chevron-compact-left"); }
+  .bi-chevron-compact-right::before { content: map-get($bootstrap-icons-map, "chevron-compact-right"); }
 /*  .bi-chevron-compact-up::before { content: map-get($bootstrap-icons-map, "chevron-compact-up"); } */
 /*  .bi-chevron-contract::before { content: map-get($bootstrap-icons-map, "chevron-contract"); } */
 /*  .bi-chevron-double-down::before { content: map-get($bootstrap-icons-map, "chevron-double-down"); } */
@@ -2264,10 +2264,10 @@ $bootstrap-icons-map: (
 /*  .bi-emoji-sunglasses::before { content: map-get($bootstrap-icons-map, "emoji-sunglasses"); } */
 /*  .bi-emoji-wink-fill::before { content: map-get($bootstrap-icons-map, "emoji-wink-fill"); } */
 /*  .bi-emoji-wink::before { content: map-get($bootstrap-icons-map, "emoji-wink"); } */
-  .bi-envelope-fill::before { content: map-get($bootstrap-icons-map, "envelope-fill"); }
+/*  .bi-envelope-fill::before { content: map-get($bootstrap-icons-map, "envelope-fill"); } */
 /*  .bi-envelope-open-fill::before { content: map-get($bootstrap-icons-map, "envelope-open-fill"); } */
 /*  .bi-envelope-open::before { content: map-get($bootstrap-icons-map, "envelope-open"); } */
-/*  .bi-envelope::before { content: map-get($bootstrap-icons-map, "envelope"); } */
+ .bi-envelope::before { content: map-get($bootstrap-icons-map, "envelope"); }
 /*  .bi-eraser-fill::before { content: map-get($bootstrap-icons-map, "eraser-fill"); } */
 /*  .bi-eraser::before { content: map-get($bootstrap-icons-map, "eraser"); } */
 /*  .bi-exclamation-circle-fill::before { content: map-get($bootstrap-icons-map, "exclamation-circle-fill"); } */
