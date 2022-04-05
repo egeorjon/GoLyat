@@ -2,17 +2,20 @@
 
 :root {
     --floral-white: #fffcf2ff;
-    --pale-silver: #ccc5b9ff;
-    --black-olive: #403d39ff;
-    --eerie-black: #252422ff;
-    --flame: #eb5e28ff;
+    --pale-silver:  #ccc5b9ff;
+    --black-olive:  #403d39ff;
+    --eerie-black:  #252422ff;
+    --flame:        #eb5e28ff;
 }
 
-$floral-white:  #fffcf2ff;
-$pale-silver:   #ccc5b9ff;
-$black-olive:   #403d39ff;
-$eerie-black:   #252422ff;
-$flame:         #eb5e28ff;
+$floral-white:  #fffcf2;
+$pale-silver:   #ccc5b9;
+$black-olive:   #403d39;
+$eerie-black:   #252422;
+$flame:         #eb5e28;
+$gray-300:      #dee2e6;
+$gray-400:      #ced4da;
+$gray-500:      #adb5bd;
 
 @import "custom";
 
@@ -42,11 +45,11 @@ $flame:         #eb5e28ff;
 
 .search-form i {
     --bs-text-opacity: 1;
-    color: #6c757d!important;
-    transform: translateY(-50%)!important;
-    position: absolute!important;
-    right: 0!important;
-    top: 50%!important;
+    color     : #6c757d!important;
+    transform : translateY(-50%)!important;
+    position  : absolute!important;
+    right     : 0!important;
+    top       : 50%!important;
 }
 
 .navbar-toggler-icon {
