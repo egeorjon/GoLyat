@@ -70,21 +70,23 @@
     <section class="page-bottomline page-bottomline-tags-share mb-5">
         <div class="container limit-width">
             <div class="row row-cols-1 row-cols-sm-2">
-                <div class="col">
-                    {{- partial "partials/widgets/post-tags.html" (dict "context" . "title" "Topics") -}}
-                </div>
-                <div class="col">
-                    {{- partial "partials/widgets/share-links.html" (dict "context" . ) -}}
-                </div>
+                {{- partial "partials/widgets/post-tags.html" (dict "context" . "title" "Topics") -}}
+                {{- partial "partials/widgets/share-links.html" (dict "context" . ) -}}
             </div>
         </div>
     </section>
     <section class="page-bottomline page-bottomline-authors pt-4 mb-5">
         <div class="container limit-width">
             <div class="row">
-                <div class="col">
-                    {{- partial "partials/widgets/authors.html" (dict "context" . ) -}}
-                </div>
+                {{- partial "partials/widgets/authors.html" (dict "context" . ) -}}
+            </div>
+        </div>
+    </section>
+    {{- $class := partialCached "class-columns.html" (.Site.Params.Single.relatedcolumns | default (dict "sm" 1 "md" 3 "lg" 3 "xl" 3)) -}}
+    <section class="page-bottomline page-bottomline-posts pt-4 mb-5">
+        <div class="container limit-width">
+            <div class="row">
+                {{- partial "partials/widgets/related-posts.html" (dict "context" . "class" $class) -}}
             </div>
         </div>
     </section>
