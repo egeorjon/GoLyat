@@ -1,0 +1,29 @@
+{{/* Parameters */}}
+{{/* .context   */}}
+{{/* .title     */}}
+{{/* .class     */}}
+{{- $title := .title | default "You may like the following posts also" -}}
+{{- $class := .class | default "" -}}
+{{- $related := .context.Site.RegularPages.Related .context | first (.context.Site.Params.Single.relatedposts | default 3) -}}
+{{- with $related -}}
+{{- with $title -}}
+    <div class="row mb-2">
+        <div class="col"><h3 class="card-title">{{- . | safeHTML -}}</h3></div>
+    </div>
+{{- end -}}
+<div class="row {{ $class -}}">
+    {{- range . -}}
+    <div class="col">
+        <aside class="card h-100 widget widget-related">
+            {{- if isset .Params "images" -}}
+            {{- partial "partials/image.html" (dict "context" . "Destination" .Params.images "Title" .Title "Text" .Title "class" "card-img-top") -}}
+            {{- end -}}
+            <div class="card-body">
+                <p class="card-text">{{- .Lastmod | time.Format ($.Site.Params.FormatDate | default "2-Jan-2006") -}}</p>
+                <h4 class="card-title">{{- .Title | safeHTML -}}</h4>
+            </div>
+        </aside>
+    </div>
+    {{- end -}}
+</div>
+{{- end -}}
