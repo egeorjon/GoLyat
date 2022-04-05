@@ -1,0 +1,65 @@
+{{/* Parameters        */}}
+{{/* .context   Page   */}}
+{{/* .title     String */}}
+{{- $title := .title | default "Share this post" -}}
+{{- if .context.Site.Params.sharelinks -}}
+<aside class="card h-100 widget widget-share-links">
+    <div class="card-body">
+        {{- with $title -}}<h3 class="card-title">{{- . | safeHTML -}}</h3>{{- end -}}
+        <ul class="class-text">
+            {{- $home  := "/" | absURL -}}
+            {{- $url   := .context.Permalink | absURL | safeURL -}}
+            {{- $title := .context.Title | safeHTML -}}
+            {{- $description := "" -}}
+            {{- with .context.Params.Description -}}
+                {{- $description = . | safeHTML -}}
+            {{- else -}}
+                {{- $description = ( .context.Summary | truncate 200 ) -}}
+            {{- end -}}
+            {{- $image := "" -}}
+            {{- if isset .context.Params "images" -}}
+                {{- $image = index .context.Params.images 0 | absURL -}}
+            {{- end -}}
+            {{- $tags := "" -}}
+            {{- if isset .context.Params "tags" -}}
+                {{- $tags = (delimit .context.Params.tags ",") | safeURL -}}
+            {{- end -}}
+            {{- range sort .context.Site.Params.sharelinks "weight" -}}
+                {{- $share := . -}}
+                {{- $via   := "" -}}
+                {{- with .account -}}{{- $via = . -}}{{- end -}}
+                {{- if and (ne $.context.Site.Data.socials.config nil) (ne .id nil) -}}
+                    {{- with (index $.context.Site.Data.socials.config .id) }}
+                        {{- if .share -}}
+                            {{- $link_title := printf (i18n "share-link-with") .name -}}
+                            {{- $share_url := partial "share_regex" (dict "pattern" "%%URL%%"      "param" "%s"              "value" $url          "string" .share)     -}}
+                            {{- $share_url = partial "share_regex" (dict  "pattern" "%%HOME%%"     "param" "%s"              "value" $home         "string" $share_url) -}}
+                            {{- $share_url = partial "share_regex" (dict  "pattern" "%%TITLE%%"    "param" "%s"              "value" $title        "string" $share_url) -}}
+                            {{- $share_url = partial "share_regex" (dict  "pattern" "%%VIA%%"      "param" "&via=%s"         "value" $via          "string" $share_url) -}}
+                            {{- $share_url = partial "share_regex" (dict  "pattern" "%%HASHTAGS%%" "param" "&hashtags=%s"    "value" $tags         "string" $share_url) -}}
+                            {{- $share_url = partial "share_regex" (dict  "pattern" "%%MEDIA%%"    "param" "&media=%s"       "value" $image        "string" $share_url) -}}
+                            {{- $share_url = partial "share_regex" (dict  "pattern" "%%DESC%%"     "param" "%s"              "value" $description  "string" $share_url) -}}
+                            {{- $share_url = partial "share_regex" (dict  "pattern" "%%BODY%%"     "param" "%s"              "value" $url          "string" $share_url) -}}
+                            {{/*- $share_url = partial "share_regex" (dict  "pattern" "%%SUBJECT%%"  "param" "&subject=%s"     "value" $title        "string" $share_url) -*/}}
+                            {{/*- $share_url = partial "share_regex" (dict  "pattern" "%%TEXT%%"     "param" "%s"              "value" $title       "string" $share_url) -*/}}
+                            <li>
+                                <a href="{{- $share_url -}}" class="share-link share-{{- $share.id -}}" title="{{- .name -}}" aria-label="{{- .arialabel -}}" rel="noopener noreferrer" target="_blank">
+                                    <i class="{{- .icon -}}" style="font-size: 1.5rem;"></i><span class="visually-hidden" aria-hidden="true">{{- .name -}}</span></a>
+                            </li>
+                        {{- end -}}
+                    {{- end -}}
+                {{- end -}}
+            {{- end -}}
+        </ul>
+    </div><!-- card-body -->
+</aside><!-- card -->
+{{- end -}}
+{{- define "partials/share_regex" -}}
+    {{- $new_value := "" -}}
+    {{- if eq .value "" -}}
+        {{- $new_value = (replaceRE .pattern "" .string ) -}}
+    {{- else -}}
+        {{- $new_value = (replaceRE .pattern (printf .param .value) .string ) -}}
+    {{- end -}}
+    {{- return $new_value -}}
+{{- end -}}

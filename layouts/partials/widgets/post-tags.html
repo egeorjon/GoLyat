@@ -1,0 +1,16 @@
+{{/* Parameters */}}
+{{/* .context   */}}
+{{/* .title     */}}
+{{- $title := .title | default "Tags" -}}
+{{- $sl := slice -}}
+{{- with .context.GetTerms "tags" -}}
+<aside class="card h-100 widget widget-tags">
+    <div class="card-body">
+        {{- range . -}}
+            {{- $sl = $sl | append (printf "<a href=\"%s\">%s</a>" .Permalink (humanize .LinkTitle)) -}}
+        {{- end -}}
+        {{- with $title -}}<h3 class="card-title">{{- . | safeHTML -}}</h3>{{- end -}}
+        <p class="card-text"><i class="bi-tags"></i> <span class="visually-hidden" aria-hidden="true">Tags ({{ (len $sl) -}}):</span> {{- delimit $sl ", " -}}</p>
+    </div>
+</aside>
+{{- end -}}
