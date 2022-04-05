@@ -1,6 +1,6 @@
 {{- if gt .Paginator.TotalPages 1 -}}
 <nav class="d-flex justify-content-between" aria-label="Page navigation">
-    <ul class="pagination">
+    <ul class="pagination mb-0">
         {{- $disabled := "" -}}
         {{- $aria     := false -}}
         {{- if eq .Paginator.PageNumber 1 -}}
@@ -20,7 +20,7 @@
     </ul>
     {{- $start := math.Min (math.Sub .Paginator.TotalPages 4) (math.Max 1 (math.Sub .Paginator.PageNumber 2)) -}}
     {{- $end   := math.Min (math.Add $start 4) .Paginator.TotalPages -}}
-    <ul class="pagination">
+    <ul class="pagination mb-0">
     {{- range .Paginator.Pagers -}}
         {{- if and (ge .PageNumber $start) (le .PageNumber $end) -}}
         <li class="page-item {{ if eq . $.Paginator -}}active{{- end -}}" {{ if eq . $.Paginator -}}aria-current="page"{{- end -}}>
@@ -29,7 +29,7 @@
         {{- end -}}
     {{- end -}}
     </ul>
-    <ul class="pagination">
+    <ul class="pagination mb-0">
         {{- $disabled := "" -}}
         {{- $aria     := false -}}
         {{- if eq .Paginator.PageNumber .Paginator.TotalPages -}}
