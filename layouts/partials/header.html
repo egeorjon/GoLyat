@@ -34,20 +34,14 @@
                     <input class="form-control" type="text" placeholder="Search for products">
                 </form>
                 <ul class="navbar-nav">
-                    {{- $currentPage := . -}}
-                    {{- if eq .Kind "page" -}}
-                        {{- with .Parent -}} {{- $currentPage = . -}}{{- end -}}
-                    {{- end -}}
+                    {{- $currentPage := .CurrentSection -}}
                     {{- range .Site.Menus.main -}}
                         {{- $active := ""    -}}
                         {{- $link   := .Name -}}
-                        {{- if or ($currentPage.IsMenuCurrent "main" .) ($currentPage.HasMenuCurrent "main" .) -}}
+                        {{- if or ($currentPage.IsMenuCurrent "main" . ) ($currentPage.HasMenuCurrent "main" .) -}}
                             {{- $active = " active" -}}
                             {{- $link   = printf "%s<span class=\"visually-hidden\"> (current)</span>" .Name -}}
                         {{- end }}
-                        {{- if .Pre -}}
-                            {{- $link = printf "<i class=\"%s\"></i> <span class=\"visually-hidden\">%s</span>" .Pre $link -}}
-                        {{- end -}}
                         <li class="nav-item">
                             <a class="nav-link {{- $active -}}" href="{{- .URL | absURL -}}" id="{{- .Identifier -}}" title="{{- .Name -}}">{{- safeHTML $link -}}</a>
                         </li>
