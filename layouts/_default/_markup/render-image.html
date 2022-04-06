@@ -26,19 +26,11 @@
     {{- with $alt_caption -}}<figcaption class="figure-caption">{{ . | safeHTML -}}</figcaption>{{- end -}}
 </figure>
 {{- else -}}
-    {{- $aperture := "" -}}
-    {{- $iso      := "" -}}
-    {{- $speed    := "" -}}
-    {{- $focal    := "" -}}
     {{- if (isset $image.Params "exif") -}}
-        --- Ok for Exif ---
         {{- with $image.Exif -}}
             {{- $string := printf "f/%.1f, %s, ISO%d (%.0fmm)" .Tags.ApertureValue .Tags.ExposureTime .Tags.ISOSpeedRatings .Tags.FocalLength -}}
-            -----{{- $string -}}-----
             {{- if ne $alt_caption "" -}}{{- $alt_caption = printf "%s%s" $alt_caption "<br/>" -}}{{- end -}}
             {{- $alt_caption = printf "%s%s" $alt_caption $string -}}
-        {{- else -}}
-            --- No exif detected ---
         {{- end -}}
     {{ end }}
     {{- $sizes     := slice -}}
