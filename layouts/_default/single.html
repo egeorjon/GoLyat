@@ -1,15 +1,6 @@
 {{- define "main" -}}
     {{- $cuttent_page := . -}}
-    <section id="page-headline" class="pt-4 pb-2 mb-5">
-        <div class="container">
-            <div class="row">
-                <div class="col">
-                    {{- partial "partials/breadcrumb.html" . -}}
-                    <h1>{{- .Title | safeHTML -}}{{- if eq .Kind "section" -}}<a class="ms-3" href="#"><i class="bi-rss"></i></a>{{- end -}}</h1>
-                </div><!-- col -->
-            </div><!-- row -->
-        </div><!-- container -->       
-    </section>
+    {{- partial "partials/headline.html" . -}}
     <section id="page-content">
         <div class="container limit-width">
             <div class="row">
@@ -36,37 +27,13 @@
                 {{- end -}}
                 </div>
                 <div class="page-content post-content col mb-6">
-                    {{- replace .Content .Summary "" | safeHTML -}}
+                    {{- .Content -}}
+                    {{/*- replace .Content .Summary "" | safeHTML -*/}}
                 </div><!-- col -->
             </div><!-- row -->
         </div><!-- container -->
     </section>
-    <section class="page-bottomline page-bottomline-prev-next pt-4 pb-4 mb-5">
-        <div class="container limit-width">
-            <div class="row">
-                <div class="col-6 col-md-4">
-                    {{- with .PrevInSection -}}
-                        <a href="{{- .RelPermalink -}}" title="{{- .Title | safeHTML -}}"><i class="bi-chevron-compact-left"></i><span class="d-none d-sm-inline">Previous Post</span></a>
-                        <p class="d-none d-md-inline">{{- .Title | safeHTML -}}</p>
-                    {{- end -}}
-                </div><!-- col -->
-                <div class="col-4 d-none d-md-block text-center">
-                    <ul>
-                        <li><a href="{{- "/" | absURL -}}">Home</a></li>
-                        {{- with .Parent -}}
-                        <li><a href="{{- .RelPermalink -}}">{{- .Title | safeHTML -}}</a></li>
-                        {{- end -}}
-                    </ul>
-                </div>
-                <div class="col-6 col-md-4 text-end">
-                    {{- with .NextInSection -}}
-                        <a href="{{- .RelPermalink -}}" title="{{- .Title | safeHTML -}}"><span class="d-none d-sm-inline">Next Post</span><i class="bi-chevron-compact-right"></i></a>
-                        <p class="d-none d-md-inline">{{- .Title | safeHTML -}}</p>
-                    {{- end -}}
-                </div><!-- col -->
-            </div><!-- row -->
-        </div><!-- container -->
-    </section>
+    {{- partial "partials/pagination-single.html" . -}}
     <section class="page-bottomline page-bottomline-tags-share mb-5">
         <div class="container limit-width">
             <div class="row row-cols-1 row-cols-sm-2">
@@ -82,9 +49,9 @@
             </div>
         </div>
     </section>
-    {{- $class := partialCached "class-columns.html" (.Site.Params.Single.relatedcolumns | default (dict "sm" 1 "md" 3 "lg" 3 "xl" 3)) -}}
+    {{- $class := partialCached "class-columns.html" (.Site.Params.Single.relatedcolumns | default (dict "sm" 1 "md" 3 "lg" 3 "xl" 3)) "single" -}}
     <section class="page-bottomline page-bottomline-posts pt-4 mb-5">
-        <div class="container limit-width">
+        <div class="container">
             <div class="row">
                 {{- partial "partials/widgets/related-posts.html" (dict "context" . "class" $class) -}}
             </div>
