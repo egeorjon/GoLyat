@@ -269,6 +269,16 @@ $gray-500:      #adb5bd;
         display: block;
     }
 
+    p {
+        margin-bottom: 0;
+    }
+
+    a:hover {
+        background-color: $pale-silver;
+        color: $black-olive;
+        border-radius: $pagination-border-radius;
+    }
+
     ul {
         list-style-type: none;
         padding-left: 0;
