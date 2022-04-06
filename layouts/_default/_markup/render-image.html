@@ -4,19 +4,11 @@
 <!-- Title       : The title attribute          -->
 <!-- Text        : The rendered (HTML) link text -->
 <!-- PlainText                                  -->
-{{- $caption  := "" -}}
-{{- $titletxt := "" -}}
-{{- $alttxt   := "" -}}
-{{- with .Text -}}{{- $alttxt = . -}}{{- end -}}
-{{- with .Title -}}
-    {{- $caption  = . -}}
-    {{- $titletxt = . -}}
-{{- else -}}
-    {{- with $alttxt -}}
-        {{- $caption = . -}}
-    {{- end -}}
-{{- end -}}
-{{- $imgtype := 0 -}}
+{{- $alt_caption  := "" -}}
+{{- $title        := "" -}}
+{{- with .Text -}}{{- $alt_caption = . -}}{{- end -}}
+{{- with .Title -}}{{- $title = . -}}{{- end -}}
+{{- $imgtype := 0 -}}{{/* 0: image not self-hosted, 1: image self hosted, but format not supported, 2: Image hosted, and supported format */}}
 {{- $image   := "" -}}
 {{- $exts    := (slice ".jpg" ".jpeg" ".gif" ".tif" ".png" ".webp") -}}
 {{- if not (strings.HasPrefix .Destination "http") -}}
@@ -30,8 +22,8 @@
 {{- end -}}
 {{- if lt $imgtype 2 -}}
 <figure class="figure figure-center">
-    <img class="figure-img img-fluid" src="{{- .Destination | safeURL -}}" {{ with $alttxt -}}alt="{{- . | safeHTML -}}"{{- end }} {{ with $titletxt -}}title="{{- . | safeHTML -}}"{{- end -}} />
-    {{- with $caption -}}<figcaption class="figure-caption">{{ . | safeHTML -}}</figcaption>{{- end -}}
+    <img class="figure-img img-fluid" src="{{- .Destination | safeURL -}}" {{ with $alt_caption -}}alt="{{- . | safeHTML -}}"{{- end }} />
+    {{- with $alt_caption -}}<figcaption class="figure-caption">{{ . | safeHTML -}}</figcaption>{{- end -}}
 </figure>
 {{- else -}}
     {{- $sizes     := slice -}}
@@ -43,7 +35,6 @@
         {{- $index = add $index 1 -}}
     {{- end -}}
     {{- $sizes = $sizes | append "100vw" -}}
-
     {{- $srcsets   := slice -}}
     {{- $imgsizes  := slice 480 660 880 1024 -}}
     {{- $width     := $image.Width -}}
@@ -56,10 +47,16 @@
     {{- if gt (len $srcsets) 0 -}}{{- $srcsets = $srcsets | append (printf "%s %dw" $image.RelPermalink $width) -}}{{- end -}}
 <figure class="figure figure-center">
     {{- if and (gt $width 1024) (.Page.Site.Params.lightbox | default false) -}}
-        <a href="{{- $image.RelPermalink -}}" data-lightbox="{{- path.Base .Destination -}}" data-title="{{- $caption -}}" {{ with $titletxt -}}title="{{- . | safeHTML -}}"{{- end }} {{ with $alttxt -}}alt="{{- . | safeHTML -}}"{{- end -}}>
+        <a href="{{- $image.RelPermalink -}}" 
+            data-lightbox="{{- path.Base .Destination -}}" 
+            {{ with $title -}}data-title="{{- . | safeHTML -}}" title="{{- . | safeHTML -}}"{{- end }}>
     {{- end -}}
-    <img sizes="{{ delimit $sizes "," }}" {{ with $srcsets -}}srcset="{{ delimit $srcsets "," }}"{{- end }} class="figure-img img-fluid" src="{{- .Destination | safeURL -}}" {{ with $titletxt -}}title="{{- . | safeHTML -}}"{{- end }} {{ with $alttxt -}}alt="{{- . | safeHTML -}}"{{- end -}} />
+    <img sizes="{{ delimit $sizes "," }}" 
+        {{ with $srcsets -}}srcset="{{ delimit $srcsets "," }}"{{- end }} 
+        class="figure-img img-fluid" 
+        src="{{- .Destination | safeURL -}}" 
+        {{ with $alt_caption -}}alt="{{- . | safeHTML -}}"{{- end -}} />
     {{- if and (gt $width 1024) (.Page.Site.Params.Lightbox | default false) -}}</a>{{- end -}}
-    {{- with $caption -}}<figcaption class="figure-caption">{{- . | safeHTML -}}</figcaption>{{- end -}}
+    {{- with $alt_caption -}}<figcaption class="figure-caption">{{- . | safeHTML -}}</figcaption>{{- end -}}
 </figure>
 {{- end -}}
