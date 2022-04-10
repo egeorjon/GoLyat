@@ -45,7 +45,7 @@
     <section class="page-bottomline page-bottomline-authors pt-4 mb-5">
         <div class="container limit-width">
             <div class="row">
-                {{- partial "partials/widgets/authors.html" (dict "context" . ) -}}
+                {{- partialCached "partials/widgets/authors.html" (dict "context" . ) -}}
             </div>
         </div>
     </section>
