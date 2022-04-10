@@ -1,7 +1,7 @@
 <script src="/assets/js/bootstrap.min.js"></script>
+<script src="/assets/js/simple-lightbox.min.js"></script>
 
 <script>
-
     /* -----------------------------------------------
     --- Reduce the size of the logo when scrolling ---
     -------------------------------------------------- */
@@ -41,6 +41,17 @@
         }
     )
 /*
+
+    /* --------------------------------------------
+    --- Initiate the image galleries            ---
+    ----------------------------------------------- */
+    var matches = document.querySelectorAll(".gallery");
+    matches.forEach(
+        gal => {
+            new SimpleLightbox("#" + gal.id + " a");
+        }
+    );
+    new SimpleLightbox(".figure a");
 
     /* -----------------------------------------
     --- Update tables                        ---

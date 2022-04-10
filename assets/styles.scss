@@ -23,6 +23,8 @@ $gray-500:      #adb5bd;
 
 @import "monokai";
 
+@import "simple-lightbox-2.10.3/simple-lightbox.scss";
+
 
 /* --- Header and navigation --------------- */
 /* ----------------------------------------- */
@@ -338,4 +340,70 @@ $gray-500:      #adb5bd;
 // ----------------------------------------------
 .footnotes p {
     margin-bottom: 0;
+}
+
+
+
+$gallery-margin-bottom   : 4rem;
+$gallery-margin          : 2rem;
+$gallery-hover-scale     : 1.15;
+$gallery-caption-fontsize: 1rem;
+
+.gallery-wrapper {
+    justify-content : center;
+    margin-bottom   : $gallery-margin-bottom;
+}
+
+.gallery {
+    display   : flex;
+    flex-wrap : wrap;
+    margin    : (-1 * $gallery-margin) (-1 * $gallery-margin);
+}
+
+.gallery-thumb {
+    position   : relative;
+    margin     : $gallery-margin;
+    // box-shadow : 0.3rem 0.4rem 0.4rem rgba(0, 0, 0, 0.4);
+    box-shadow : 0.4rem 0.5rem 0.5rem rgba(0, 0, 0, 0.4);
+    overflow   : hidden;
+}
+
+.gallery-image {
+    display    : block;
+    width      : 100%;
+    height     : auto;
+    object-fit : cover;
+    transition : transform 400ms ease-out;
+}
+
+.gallery-thumb a {
+    color: white;
+    text-decoration: none;
+}
+
+.gallery-thumb a:hover .gallery-image {
+    transform: scale($gallery-hover-scale);
+}
+
+.gallery-thumb figcaption  {
+    position   : absolute;
+    bottom     : 0;
+    left       : 0;
+    right      : 0;
+    opacity    : 0;
+    transition : 0.5s ease;
+    background-color: black;
+
+    text-align : center;
+    font-size  : $gallery-caption-fontsize;
+    padding    : 0.5rem 0;
+}
+
+.gallery-thumb figcaption.center {
+    padding: 45% 0;
+    top: 0;
+}
+
+.gallery-thumb a:hover figcaption  {
+    opacity: 0.55;
 }
