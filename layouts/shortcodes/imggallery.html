@@ -1,0 +1,48 @@
+{{/* shortcode imggallery.html */}}
+{{/* Parameters    */}}
+{{/*   files         string  relative path to the image (default: none, value mandatory) */}}
+{{/*   size          int     size of the thumbnails */}}
+{{/*   thumbcaption  int     display caption below the thumbnails */}}
+{{/*   id            string  id for the gallery */}}
+
+{{- $files   := .Get "files"   | default "gallery" -}}
+{{- $size    := .Get "size"    | default 250       -}}
+{{- $caption := .Get "caption" | default 1         -}}
+{{- $overlay := .Get "overlay" | default "bottom"  -}}
+{{- if eq (path.Dir $files) "." -}}
+    {{- $files = path.Join $files "*" -}}
+{{- end -}}
+{{- with $.Page.Resources.Match $files -}}
+<div class="gallery-wrapper">
+    <div class="gallery" id="gallery-{{- $.Ordinal -}}">
+        {{- range . -}}
+        {{- $thumb := .Fill (printf "%sx%s smart" (string $size) (string $size)) }}
+        <figure class="gallery-thumb">
+            {{- $title := .Title | default "" -}}
+            {{- if (isset .Params "exif") -}}
+                {{- with .Exif -}}
+                    {{- $string := printf "f/%.1f, %s, ISO%d (%.0fmm)" .Tags.ApertureValue .Tags.ExposureTime .Tags.ISOSpeedRatings .Tags.FocalLength -}}
+                    {{- $title = delimit (slice $title $string) " - " -}}
+                {{- end -}}
+            {{ end }}
+            <a href="{{- .RelPermalink -}}"
+                {{ with .Title -}}title="{{- . | safeHTML -}}"{{end}} >
+                <img src="{{- $thumb.RelPermalink}}"
+                    class="gallery-image" 
+                    {{ with $title -}}alt="{{- . | safeHTML -}}"{{- end }}
+                    {{ with $title -}}title="{{- . | safeHTML -}}"{{- end }} />
+            {{- if $caption -}}
+                <figcaption class="{{- $overlay -}}">
+                    {{- if eq .Title .Name -}}
+                        {{- path.Base .Name | safeHTML -}}
+                    {{- else -}}
+                        {{- .Title | safeHTML -}}
+                    {{- end -}}
+                </figcaption>
+            {{- end }}
+            </a>
+        </figure>
+        {{- end }}
+    </div>
+</div>
+{{- end -}}
