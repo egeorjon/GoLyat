@@ -1,34 +1,28 @@
+{{- $context := . -}}
 <footer id="page-footer">
-    <section class="footer-main py-4">
+    <section class="footer-main pt-4 pb-4">
         <div class="container">
-            <div class="row row-cols-1 row-cols-md-2">
-                <div class="col">
-                    <aside class="widget widget-about mb-5">
-                        <h3>A propos</h3><p>A travers ce blog, je tente de partager avec vous, connaissances, opinions, avis, humeurs, sur les technologies web, et la photographie. Les articles présentés sont le résultat de mes découvertes dans ces deux domaines.</p>
-                    </aside>
-                </div>
-                <div class="col">
-                    <aside class="widget widget-text mb-5">
-                        <h3>Liens</h3>
-                        <ul>
-                            <li><a href="#">A propos</a></li>
-                            <li><a href="#">Mentions légales</a></li>
-                            <li><a href="#">Contact</a></li>
-                        </ul>
-                    </aside>
-                    <aside class="widget widget-follow mb-5">
-                        <h3>Suivez-moi !</h3>
-                        <ul>
-                            <li class="d-inline d-sm-block"><a href="#"><i class="bi-facebook"></i> <span class="d-none d-sm-inline">Facebook</span></a></li>
-                            <li class="d-inline d-sm-block"><a href="#"><i class="bi-twitter"></i> <span class="d-none d-sm-inline">Twitter</span></a></li>
-                            <li class="d-inline d-sm-block"><a href="#"><i class="bi-pinterest"></i> <span class="d-none d-sm-inline">Pinterest</span></a></li>
-                            <li class="d-inline d-sm-block"><a href="#"><i class="bi-linkedin"></i> <span class="d-none d-sm-inline">LinkedIn</span></a></li>
-                        </ul>
-                    </aside>
-                </div><!-- col -->
+            {{- $class := partialCached "class-columns.html" (.Site.Params.Footer.columns | default (dict "sm" 1 "md" 1 "lg" 2 "xl" 2)) "footer-prim" -}}
+            <div class="{{- $class -}}">
+                {{- range .Site.Params.Footer.Groups -}}
+                    {{- if gt (len .Widgets) 1 -}}
+                        {{- $class := partialCached "class-columns.html" (.columns | default (dict "sm" 1 "md" 1 "lg" 1 "xl" 1)) "footer-sec" -}}
+                        <div class="col">
+                            <div class="{{- $class -}}">
+                    {{- end -}}
+                    {{- range .Widgets -}}
+                            {{- partial (printf "partials/widgets/%s.html" .wtype) (dict "context" $context "params" .params) -}}
+                            {{/*- <aside> ... </aside> -*/}}
+                    {{- end -}}
+                    {{- if gt (len .Widgets) 1 -}}
+                            </div><!-- row -->
+                        </div><!-- col -->
+                    {{- end -}}
+                {{- end -}}
             </div><!-- row -->
         </div><!-- container -->
     </section>
+    {{- $copyright_date := .Params.Footer.Copyright.FirstDate | default "" -}}
     <section class="footer-bottom py-3">
         <div class="container">
             <div class="row">
