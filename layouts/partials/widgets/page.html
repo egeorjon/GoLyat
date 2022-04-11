@@ -1,0 +1,13 @@
+<div class="col">
+    {{- with .context.Site.GetPage .params -}}
+    <aside class="card widget widget-page">
+        <div class="card-body widget-inner">
+            <h3 class="card-title">{{ .Title }}</h3>
+            <p class="card-text">{{ .Content | safeHTML }}</p>
+        </div>
+    </aside>
+    {{- else -}}
+    <p>Error: widget not found</p>
+    {{- end -}}
+</div>
+
