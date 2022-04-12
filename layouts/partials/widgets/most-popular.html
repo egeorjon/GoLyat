@@ -1,0 +1,19 @@
+{{/* Parameters      */}}
+{{/* .context Page   */}}
+{{/* .params  file   */}}
+---{{- .context.Site.Data -}}---
+{{- with .context.Site.Data.popularposts -}}
+<div class="col">
+    <aside class="card widget widget-most-popular">
+        <div class="card-body pb-4">
+            <h3 class="card-title">Most popular</h3>
+            <ul class="card-text">
+                
+                    {{- . data -}}
+                
+                
+            </ul>
+        </div><!-- card-body -->
+    </aside>
+</div>
+{{- end -}}
