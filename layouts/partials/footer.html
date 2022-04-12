@@ -1,36 +1,60 @@
 {{- $context := . -}}
 <footer id="page-footer">
-    <section class="footer-main pt-4 pb-4">
+    <section class="footer-top pt-4 pb-4">
         <div class="container">
-            {{- $class := partialCached "class-columns.html" (.Site.Params.Footer.columns | default (dict "sm" 1 "md" 1 "lg" 2 "xl" 2)) "footer-prim" -}}
-            <div class="{{- $class -}}">
-                {{- range .Site.Params.Footer.Groups -}}
-                    {{- if gt (len .Widgets) 1 -}}
-                        {{- $class := partialCached "class-columns.html" (.columns | default (dict "sm" 1 "md" 1 "lg" 1 "xl" 1)) "footer-sec" -}}
-                        <div class="col">
-                            <div class="{{- $class -}}">
-                    {{- end -}}
-                    {{- range .Widgets -}}
-                            {{- partial (printf "partials/widgets/%s.html" .wtype) (dict "context" $context "params" .params) -}}
-                            {{/*- <aside> ... </aside> -*/}}
-                    {{- end -}}
-                    {{- if gt (len .Widgets) 1 -}}
-                            </div><!-- row -->
-                        </div><!-- col -->
-                    {{- end -}}
-                {{- end -}}
-            </div><!-- row -->
+            {{- template "groups_list" (dict "context" $context "gl" .Site.Params.Footer.Top) -}}
         </div><!-- container -->
     </section>
-    {{- $copyright_date := .Params.Footer.Copyright.FirstDate | default "" -}}
-    <section class="footer-bottom py-3">
+    <section class="footer-main pt-4 pb-4">
+        <div class="container">
+            {{- template "groups_list" (dict "context" $context "gl" .Site.Params.Footer.Main) -}}
+        </div><!-- container -->
+    </section>
+    <section class="footer-bottom pt-3 pb-3">
         <div class="container">
             <div class="row">
                 <div class="col text-center">
-                    <p class="d-md-inline me-md-5">&copy; Copyright 2008-2022 - Emmanuel GEORJON</p>
-                    <p class="d-md-inline">CC XX.YY.ZZ 4.0</p>
+                    <p>{{- .Site.Copyright | safeHTML -}}</p>
                 </div><!-- col -->
             </div><!-- row -->
         </div><!-- container -->
     </section>
 </footer>
+{{- define "groups_list" -}}
+    {{- $context := .context -}}
+    {{- if gt (len .gl.Groups) 1 -}}
+    {{- $class := partialCached "class-columns.html" (.gl.columns | default (dict "sm" 1 "md" 1 "lg" 2 "xl" 2)) "footer-prim" -}}
+    <div class="{{- $class -}}">
+        {{- range .gl.Groups -}}
+            {{- if gt (len .Widgets) 1 -}}
+                {{- $class := partialCached "class-columns.html" (.columns | default (dict "sm" 1 "md" 1 "lg" 1 "xl" 1)) "footer-sec" -}}
+                <div class="col">
+                    <div class="{{- $class -}}">
+            {{- end -}}
+            {{- template "widgets_list" (dict "context" $context "group" . ) -}}
+            {{- if gt (len .Widgets) 1 -}}
+                    </div><!-- row -->
+                </div><!-- col -->
+            {{- end -}}
+        {{- end -}}
+    </div><!-- row -->
+    {{- else -}}
+        {{- range .gl.Groups -}}
+            {{- $class := partialCached "class-columns.html" (.columns | default (dict "sm" 1 "md" 1 "lg" 1 "xl" 1)) "footer-sec" -}}
+            <div class="{{- $class -}}">
+                {{- template "widgets_list" (dict "context" $context "group" .) -}}
+            </div>
+        {{- end -}}
+    {{- end -}}
+{{- end -}}
+{{- define "widgets_list" -}}
+    {{- $context := .context -}}
+    {{- range .group.Widgets -}}
+        {{- $partialPath := printf "partials/widgets/%s.html" .wtype -}}
+        {{- if templates.Exists $partialPath -}}
+            {{- partial $partialPath (dict "context" $context "params" .params) -}}
+        {{- else -}}
+            {{- partial "partials/widgets/default.html" (dict "context" $context "params" .wtype) -}}
+        {{- end -}}
+    {{- end -}}
+{{- end -}}
