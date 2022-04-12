@@ -1,0 +1,35 @@
+{{/* Parameters      */}}
+{{/* .context Page   */}}
+{{/* .params  image and size */}}
+<div class="col">
+    <aside class="card widget widget-logo">
+        <div class="card-body pb-4">
+            <p class="card-title">Follow-me: </p>
+            <ul class="card-text">
+            {{- range sort .context.Site.Params.FollowLinks.Socials "weight" -}}
+                {{- if eq .id "rss" -}}
+                    {{- with (($.context.Site.GetPage "home").OutputFormats.Get "rss") -}}
+                        <li><a href="{{- .Permalink -}}" title="{{- $.Site.Title -}}"><i class="bi-rss"></i>
+                            <span class="visually-hidden">RSS feeds</span>
+                        </a></li>
+                    {{ end -}}
+                {{- else -}}
+                    {{- if .account -}}
+                        {{- $media := . -}}
+                        {{- if and (ne $.context.Site.Data.socials.config nil) (ne .id nil) -}}
+                            {{- with (index $.context.Site.Data.socials.config .id) }}
+                            <li>
+                                <a href="{{- printf .follow $media.account -}}" target="_blank" rel="noopener noreferrer" title="{{- .followtext -}}">
+                                    <i class="{{- .icon }}"></i>
+                                    <span class="visually-hidden">{{- .followtext -}}</span>
+                                </a>
+                            </li>
+                            {{- end -}}
+                        {{- end -}}
+                    {{- end -}}
+                {{- end -}}
+            {{- end -}}
+            </ul>
+        </div><!-- card-body -->
+    </aside>
+</div><!-- col -->
