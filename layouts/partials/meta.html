@@ -5,7 +5,7 @@
 {{/* .class       CSS class to be added   */}}
 {{- $context := .context -}}
 {{- $kindctx := .kindctx -}}
-<ul class="post-meta {{ with .class -}}{{- . | safeHTML -}}{{- end -}}">
+<ul class="post-meta inline-list {{ with .class -}}{{- . | safeHTML -}}{{- end -}}">
     {{- range $order, $meta := .meta -}}
         {{- if eq $meta "date" -}}
         <li class="post-date">
