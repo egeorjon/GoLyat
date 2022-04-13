@@ -7,7 +7,7 @@
     <aside class="card h-100 widget widget-share-links">
         <div class="card-body">
             {{- with $title -}}<h3 class="card-title">{{- . | safeHTML -}}</h3>{{- end -}}
-            <ul class="class-text">
+            <ul class="class-text inline-list">
                 {{- $home  := "/" | absURL -}}
                 {{- $url   := .context.Permalink | absURL | safeURL -}}
                 {{- $title := .context.Title | safeHTML -}}
