@@ -19,7 +19,7 @@
                     <p class="author-name">{{- .Params.Title | safeHTML -}}</p>
                     <p class="author-bio">{{- .Params.Bio | markdownify -}}</p>
                     {{- with .Params.Socials -}}
-                    <ul class="author-socials">
+                    <ul class="author-socials inline-list">
                         {{- range . -}}
                             <li><a href="{{- .url -}}" title="{{- .alt -}}"><i class="bi-{{- .icon -}}"></i></a></li>
                         {{- end -}}
