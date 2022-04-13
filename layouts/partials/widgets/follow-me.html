@@ -5,7 +5,7 @@
     <aside class="card widget widget-logo">
         <div class="card-body pb-4">
             <p class="card-title">Follow-me: </p>
-            <ul class="card-text">
+            <ul class="card-text inline-list">
             {{- range sort .context.Site.Params.FollowLinks.Socials "weight" -}}
                 {{- if eq .id "rss" -}}
                     {{- with (($.context.Site.GetPage "home").OutputFormats.Get "rss") -}}
