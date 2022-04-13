@@ -1,37 +1,52 @@
 @use "sass:map";
 
-:root {
-    --floral-white: #fffcf2ff;
-    --pale-silver:  #ccc5b9ff;
-    --black-olive:  #403d39ff;
-    --eerie-black:  #252422ff;
-    --flame:        #eb5e28ff;
-}
+$floral-white: #fffcf2ff;
+$pale-silver: #ccc5b9ff;
+$black-olive: #403d39ff;
+$eerie-black: #252422ff;
+$flame: #eb5e28ff;
 
-$floral-white:  #fffcf2;
-$pale-silver:   #ccc5b9;
-$black-olive:   #403d39;
-$eerie-black:   #252422;
-$flame:         #eb5e28;
-$gray-300:      #dee2e6;
-$gray-400:      #ced4da;
-$gray-500:      #adb5bd;
-
+// Boostrap customization
 @import "custom";
 
+// Set of icons
 @import "bootstrap-icons-1.8.1/bootstrap-icons";
 
+// Code highlight
 @import "monokai";
 
+// Lightbox
 @import "simple-lightbox-2.10.3/simple-lightbox.scss";
 
+/* ----------------------------------------- */
+/* --- Common styles ----------------------- */
+/* ----------------------------------------- */
 
-/* --- Header and navigation --------------- */
+
+
+.inline-list {
+
+    list-style-type: none;
+    padding-left: 0;
+
+    li {
+        white-space: nowrap;
+        display: inline-block;
+        margin-right: 3 * $spacer;
+    }
+
+    li:last-child {
+        margin-right: 0;
+    }
+}
+
+
+/* ----------------------------------------- */
+/* --- Header ------------------------------ */
 /* ----------------------------------------- */
 
 #page-header {
     background-color: white;
-    // border-bottom: 1px solid $pale-silver;
 }
 
 @media (min-width: map-get($grid-breakpoints, "md")) {
@@ -54,9 +69,9 @@ $gray-500:      #adb5bd;
     top       : 50%!important;
 }
 
-.navbar-toggler-icon {
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%280, 0, 0, 0.55%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
-}
+/* ----------------------------------------- */
+/* --- Navigation / Main menu -------------- */
+/* ----------------------------------------- */
 
 .navbar-nav .nav-item {
     font-size: $font-size-lg;
@@ -67,50 +82,20 @@ $gray-500:      #adb5bd;
     border-top: 1px solid $pale-silver;
 }
 
-
-.small .site-brand-logo {
-    width: 60px;
-    height: 60px;
-}
-
-.site-brand-logo {
-    width: 100%;
-    transition: 0.4s;
-}
 /* ------------------------------------------ */
-/* --- End of Header and navigation --------- */
-
-
+/* --- Headline ----------------------------- */
 /* ------------------------------------------ */
-/* ----- headline --------------------------- */
+
 #page-headline {
-    background-color: var(--floral-white);
-    // border-bottom: $pale-silver
+    background-color: var($light);
+
 }
 
-/* ----- headline --------------------------- */
+
+/* ------------------------------------------ */
+/* --- Post-list ---------------------------- */
 /* ------------------------------------------ */
 
-
-/* ----- meta --------------------------------- */
-.post-meta {
-    list-style-type: none;
-    padding-left: 0;
-   /* margin-bottom: 2rem!important;*/
-
-    li {
-        white-space: nowrap;
-        display: inline-block;
-        margin-right: 3rem;
-    }
-
-    li:last-child {
-        margin-right: 0;
-    }
-}
-
-
-/* ----- Post List ---------------------------- */
 .page-summary,
 .post-summary {
     text-align: justify;
@@ -118,26 +103,8 @@ $gray-500:      #adb5bd;
 
 
 /* ------------------------------------------ */
-/* ----- Post content ----------------------- */
-
-.figure {
-    margin-bottom: 3 * $spacer;
-}
-
-.figure-center {
-    display:block!important;
-    text-align: center;
-}
-
-.figure-caption {
-    margin-top: 0.25rem;
-    font-style: italic;
-}
-
-.table {
-    margin-bottom: 3 * $spacer;
-}
-
+/* --- Content basic styles ----------------- */
+/* ------------------------------------------ */
 .post-content {
     text-align: justify;
 
@@ -147,13 +114,51 @@ $gray-500:      #adb5bd;
         color: $primary;
     }
 
-    h3 {
+    h3,h4,h5 {
         margin-top: 2rem;
-        margin-bottom: 1rem;
     }
 }
 
-.post-content blockquote {
+
+
+/* ------------------------------------------ */
+/* --- Figures / Images --------------------- */
+/* ------------------------------------------ */
+
+.figure {
+    margin-bottom: 3 * $spacer;
+}
+  
+.figure-img {
+    margin-bottom: $spacer * .5;
+    line-height: 1;
+}
+
+.figure-center {
+    display:block!important;
+    text-align: center;
+}
+  
+.figure-caption {
+    margin-top: 0.25rem;
+    font-style: italic;
+}
+
+
+/* ------------------------------------------ */
+/* --- Tables ------------------------------- */
+/* ------------------------------------------ */
+
+.table {
+    margin-bottom: 3 * $spacer;
+}
+
+
+/* ------------------------------------------ */
+/* --- Blokcquote --------------------------- */
+/* ------------------------------------------ */
+
+blockquote {
     position: relative;
 
     border: 1px solid $pale-silver;
@@ -163,11 +168,11 @@ $gray-500:      #adb5bd;
     margin: 2rem 3rem 2rem 5rem;
 }
 
-.post-content blockquote p {
+blockquote p {
     margin-bottom: 0;
 }
 
-.post-content blockquote p:before {
+blockquote p:before {
     display: inline-block;
     font-family: $bootstrap-icons-font !important;
     font-size: 2rem;
@@ -182,172 +187,42 @@ $gray-500:      #adb5bd;
     background-color: white;
 }
 
-.post-content blockquote.info {
+blockquote.info {
     border-color: $blue-300;
 }
 
-.post-content blockquote.info p:before {
+blockquote.info p:before {
     content: "\f431";
     color: $blue-300;
 }
 
-.post-content blockquote.warning {
+blockquote.warning {
     border-color: orange;
 }
 
-.post-content blockquote.warning p:before {
+blockquote.warning p:before {
     content: "\f335";
     color: orange;
 }
 
-.post-content blockquote.error {
+blockquote.error {
     border-color: red;
 }
 
-.post-content blockquote.error p:before {
+blockquote.error p:before {
     content: "\f629";
     color: red;
 }
 
-/* ----- End of Post content ---------------- */
+
+/* ------------------------------------------ */
+/* --- Gallery ------------------------------ */
 /* ------------------------------------------ */
 
-.page-bottomline-authors {
-    background-color: var(--floral-white);
-}
-
-.author-picture {
-    float: left;
-    border-radius   : 50%;
-    overflow        : hidden;
-    margin-bottom   : 1rem;
-}
-
-.author-description {
-    text-align: justify;
-}
-
-.author-socials {
-    list-style-type: none;
-    padding-left: 0;
-    margin-bottom: 0;
-
-    li {
-        display: inline;
-        margin-right: 1rem;
-
-        &:last-child {
-            margin-right: 0;
-        }
-    }
-}
-
-.widget-share-links {
-    ul {
-        list-style-type: none;
-        padding-left: 0;
-        margin-bottom: 0;
-    }
-
-    li {
-        display: inline;
-        margin-right: 1rem;
-
-        &:last-child {
-            margin-right: 0;
-        }
-    }
-}
-
-.page-bottomline-prev-next,
-.page-bottomline-pagination {
-    border-top: 1px solid $pale-silver;
-    border-bottom: 1px solid $pale-silver;
-}
-
-.page-bottomline-prev-next {
-
-    a {
-        display: block;
-    }
-
-    p {
-        margin-bottom: 0;
-    }
-
-    a:hover {
-        background-color: $pale-silver;
-        color: $black-olive;
-        border-radius: $pagination-border-radius;
-    }
-
-    ul {
-        list-style-type: none;
-        padding-left: 0;
-        margin-bottom: 0;
-    }
-
-    li {
-        line-height: 2;
-    }
-
-    .disabled {
-        color: $gray-400;
-    }
-}
-
-.page-bottomline-posts p {
-    font-size: $font-size-sm;
-    margin-bottom: 0;
-}
-
-.footer-main {
-    background-color: var(--black-olive);
-}
-
-.footer-bottom {
-    background-color: var(--eerie-black);
-}
-
-#page-footer h3 {
-    color: white;
-}
-
-#page-footer {
-    color: var(--floral-white);
-}
-
-#page-footer a {
-    text-decoration: none;
-    color: white;
-}
-
-#page-footer a:hover {
-    color: var(--floral-white);
-    text-decoration: underline;
-}
-
-
-/* ----- General ---------------------------- */
-@media (min-width: map-get($grid-breakpoints, "md")) {
-    .limit-width {
-        width: 960px!important;
-    }   
-}
-
-// ----------------------------------------------
-// --- Footnotes
-// ----------------------------------------------
-.footnotes p {
-    margin-bottom: 0;
-}
-
-
-
-$gallery-margin-bottom   : 4rem;
+$gallery-margin-bottom   : 3rem;
 $gallery-margin          : 2rem;
 $gallery-hover-scale     : 1.15;
-$gallery-caption-fontsize: 1rem;
+$gallery-caption-fontsize: $font-size-sm;
 
 .gallery-wrapper {
     justify-content : center;
@@ -390,9 +265,9 @@ $gallery-caption-fontsize: 1rem;
     bottom     : 0;
     left       : 0;
     right      : 0;
-    opacity    : 0;
     transition : 0.5s ease;
     background-color: black;
+    opacity    : 0;
 
     text-align : center;
     font-size  : $gallery-caption-fontsize;
@@ -406,4 +281,108 @@ $gallery-caption-fontsize: 1rem;
 
 .gallery-thumb a:hover figcaption  {
     opacity: 0.55;
+}
+
+/* ------------------------------------------ */
+/* --- Pagination --------------------------- */
+/* ------------------------------------------ */
+
+.page-bottomline-prev-next,
+.page-bottomline-pagination {
+    border-top: 1px solid $pagination-border-color;
+    border-bottom: 1px solid $pagination-border-color;
+}
+
+.page-bottomline-prev-next {
+
+    a {
+        display: block;
+    }
+
+    p {
+        margin-bottom: 0;
+    }
+
+    a:hover {
+        background-color: $pagination-hover-bg;
+        color: $dark;
+        border-radius: $pagination-border-radius;
+    }
+
+    ul {
+        list-style-type: none;
+        padding-left: 0;
+        margin-bottom: 0;
+    }
+
+    li {
+        line-height: 2;
+    }
+
+    .disabled {
+        color: $gray-400;
+    }
+}
+
+
+
+/* ------------------------------------------ */
+/* --- Bottom lines-------------------------- */
+/* ------------------------------------------ */
+
+.page-bottomline-authors {
+    background-color: $light;
+}
+
+.author-picture {
+    float           : left;
+    border-radius   : 50%;
+    overflow        : hidden;
+    margin-bottom   : 1rem;
+}
+
+.author-description {
+    text-align: justify;
+}
+
+/* ------------------------------------------ */
+/* --- Related and popular posts ------------ */
+/* ------------------------------------------ */
+
+.page-bottomline-posts p {
+    font-size: $font-size-sm;
+    margin-bottom: 0;
+}
+
+/* ------------------------------------------ */
+/* --- Footer ------------------------------- */
+/* ------------------------------------------ */
+
+#page-footer {
+    background-color: $dark;
+    color: $light;
+
+    h2,h3,h4 {
+        color: white;
+    }
+
+    a {
+        color: white;
+
+        &:hover {
+            color: $primary;
+        }
+    }
+
+    li>a {
+        text-decoration: none;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
+
+.footer-main {
+    background-color: $medium;
 }
