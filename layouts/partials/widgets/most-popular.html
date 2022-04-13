@@ -1,19 +1,27 @@
 {{/* Parameters      */}}
 {{/* .context Page   */}}
 {{/* .params  file   */}}
----{{- .context.Site.Data -}}---
-{{- with .context.Site.Data.popularposts -}}
-<div class="col">
-    <aside class="card widget widget-most-popular">
-        <div class="card-body pb-4">
-            <h3 class="card-title">Most popular</h3>
-            <ul class="card-text">
-                
-                    {{- . data -}}
-                
-                
-            </ul>
-        </div><!-- card-body -->
-    </aside>
-</div>
+{{- if isset .params "filename" -}}
+    {{- $numposts := .params.numposts | default 5 -}}
+    {{- $filepath := path.Join "data" .params.filename -}}
+    {{- if os.FileExists $filepath -}}
+        {{- $data := getJSON $filepath -}}
+        {{- with $data -}}
+            <div class="col">
+                <aside class="card widget widget-most-popular">
+                    <div class="card-body pb-4">
+                        <h3 class="card-title">Most popular</h3>
+                        <ul class="card-text">
+                            {{- range first $numposts (sort $data.posts "visit" "desc") -}}
+                                {{- $page := $.context.Site.GetPage .post -}}
+                                {{- with $page -}}
+                                    <li><a href="{{- .Permalink -}}" title="{{- .Title -}}">{{- .Title -}}</a></li>
+                                {{- end -}}
+                            {{- end -}}
+                        </ul>
+                    </div><!-- card-body -->
+                </aside>
+            </div><!-- col -->
+        {{- end -}}
+    {{- end -}}
 {{- end -}}
