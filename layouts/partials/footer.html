@@ -2,12 +2,12 @@
 <footer id="page-footer">
     <section class="footer-top pt-4 pb-4">
         <div class="container">
-            {{- template "groups_list" (dict "context" $context "gl" .Site.Params.Footer.Top) -}}
+            {{- template "groups_list" (dict "context" $context "gl" .Site.Params.Footer.Top "cachecolumn" "top") -}}
         </div><!-- container -->
     </section>
     <section class="footer-main pt-4 pb-4">
         <div class="container">
-            {{- template "groups_list" (dict "context" $context "gl" .Site.Params.Footer.Main) -}}
+            {{- template "groups_list" (dict "context" $context "gl" .Site.Params.Footer.Main "cachecolumn" "main") -}}
         </div><!-- container -->
     </section>
     <section class="footer-bottom pt-3 pb-3">
@@ -23,11 +23,11 @@
 {{- define "groups_list" -}}
     {{- $context := .context -}}
     {{- if gt (len .gl.Groups) 1 -}}
-    {{- $class := partialCached "class-columns.html" (.gl.columns | default (dict "sm" 1 "md" 1 "lg" 2 "xl" 2)) "footer-prim" -}}
+    {{- $class := partialCached "class-columns.html" (.gl.columns | default (dict "sm" 1 "md" 1 "lg" 2 "xl" 2)) (printf "%s-%s" .cachecolumn "prim") -}}
     <div class="{{- $class -}}">
         {{- range .gl.Groups -}}
             {{- if gt (len .Widgets) 1 -}}
-                {{- $class := partialCached "class-columns.html" (.columns | default (dict "sm" 1 "md" 1 "lg" 1 "xl" 1)) "footer-sec" -}}
+                {{- $class := partialCached "class-columns.html" (.columns | default (dict "sm" 1 "md" 1 "lg" 1 "xl" 1)) (printf "%s-%s" .cachecolumn "sec") -}}
                 <div class="col">
                     <div class="{{- $class -}}">
             {{- end -}}
@@ -40,7 +40,7 @@
     </div><!-- row -->
     {{- else -}}
         {{- range .gl.Groups -}}
-            {{- $class := partialCached "class-columns.html" (.columns | default (dict "sm" 1 "md" 1 "lg" 1 "xl" 1)) "footer-sec" -}}
+            {{- $class := partialCached "class-columns.html" (.columns | default (dict "sm" 1 "md" 1 "lg" 1 "xl" 1))  (printf "%s-%s" .cachecolumn "prim")  -}}
             <div class="{{- $class -}}">
                 {{- template "widgets_list" (dict "context" $context "group" .) -}}
             </div>
