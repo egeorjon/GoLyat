@@ -1,8 +1,102 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-{{ range .AlternativeOutputFormats -}}
-    {{ printf `<link rel="%s" type="%s" href="%s" title="%s" />` .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML }}
-{{ end -}}
+<script>document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/,'js');</script>
+
+{{- $title := slice -}}
+{{- if and .Title (not .IsHome) -}}
+    {{- $title = slice (.Title | markdownify | plainify) -}}
+{{- end -}}
+<title>{{- delimit ($title | append (slice (.Site.Title  | markdownify | plainify))) " &dash; " -}}</title>
+
+{{- $description := .Params.description | default .Site.Params.Description |default "" -}}
+{{- with $description -}}
+    <meta name="description" content="{{- . | markdownify | plainify | htmlUnescape -}}" />
+{{- end -}}
+
+{{- $keywords := .Params.tags | default .Site.Params.Keywords |default "" -}}
+{{- with $keywords -}}
+    <meta name="keywords" content="{{- delimit . "," | plainify | htmlUnescape -}}" />
+{{- end -}}
+
+{{- with .Authors.name -}}
+<meta name="author" content="{{- . -}}">
+{{- end -}}
+
+<meta name="rating" content="General">
+
+{{- if .IsHome -}}
+    <meta name="application-name" content="{{ site.Title  | markdownify }}" />
+{{- end -}}
+
+{{- with .Site.Params.googleToken -}}
+<meta name="google-site-verification" content="verification_token">
+{{- end -}}
+
+{{- hugo.Generator -}}
+
+{{- $opengraph := .Site.Params.opengraph | default "internal" -}}
+{{- if eq $opengraph "internal" -}}
+	{{- template "_internal/opengraph.html" . -}}
+{{- else if eq $opengraph "theme" -}}
+    {{- partial "partials/opengraph.html" . -}}
+{{- end -}}
+
+{{- $twitter := .Site.Params.twitterCards | default "internal" -}}
+{{- if eq $twitter "internal" -}}
+	{{- template "_internal/twitter_cards.html" . -}}
+{{- else if eq $twitter "theme" -}}
+    {{- partial "partials/twitter.html" . -}}
+{{- end -}}
+
+{{- $schema := .Site.Params.schema | default "internal" -}}
+{{- if eq $schema "internal" -}}
+	{{- template "_internal/schema.html" . -}}
+{{- else if eq $schema "theme" -}}
+    {{- $param := anchorize (print "%s-%s" .Kind .Title) -}}
+    {{- partial "partials/schema.html" . $param -}}
+{{- end -}}
+
+{{- if .Site.Params.ThemeColor -}}
+    <meta name="theme-color" content="{{- .Site.Params.ThemeColor -}}" />
+{{- end -}}
+
+{{- if hugo.IsProduction -}}
+    <meta name="robots" content="index,follow" />
+{{- else -}}
+    <meta name="robots" content="noindex,nofollow" />
+    <meta http-equiv="cache-control" content="no-cache" />
+{{- end }}
+
+{{- if eq .Kind "section" -}}
+    {{- with . -}}<link rel="first" href="{{- .Permalink -}}">{{- end -}}
+    {{- with .PrevInSection -}}<link rel="prev" href="{{- .Permalink -}}">{{- end -}}
+    {{- with .NextInSection -}}<link rel="next" href="{{- .Permalink -}}">{{- end -}}
+    {{/*- with (last 1 .Pages) -}}<link rel="last" href="{{- .Permalink -}}">{{- end -*/}}
+{{- end -}}
+
+{{- with .Parent -}}
+    {{- if eq .Kind "section" -}}
+        <link rel="index" href="{{- .Permalink -}}">
+    {{- end -}}
+{{- else -}}
+        <link rel="index" href="/index.html">
+{{- end -}}
+
+{{- if eq .Kind "page" -}}
+    {{- with .GetTerms "authors" -}}
+        {{- range first 1 . -}}
+            <link rel="author" href="{{- .Permalink -}}">
+        {{- end -}}
+    {{- end -}}
+{{- end -}}
+
+{{- with .GetPage "copyright" -}}
+    <link rel="license" href="{{- .Permalink -}}">
+{{- end -}}
+
+{{- with .OutputFormats.Get "rss" -}}
+    {{- printf `<link rel="%s" type="%s" href="%s" title="%s" />` .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML -}}
+{{- end -}}
 
 {{- partial "partials/styles.html" . -}}
