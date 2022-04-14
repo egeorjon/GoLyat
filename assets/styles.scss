@@ -93,6 +93,17 @@ $flame: #eb5e28ff;
 /* --- Post-list ---------------------------- */
 /* ------------------------------------------ */
 
+.post-list h3 a {
+
+    color: $dark;
+    text-decoration: none;
+
+    &:hover {
+        color: $primary;
+        text-decoration: underline;
+    }
+}
+
 .page-summary,
 .post-summary {
     text-align: justify;
