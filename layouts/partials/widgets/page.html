@@ -1,5 +1,5 @@
 <div class="col">
-    {{- with .context.Site.GetPage .params -}}
+    {{- with .context.Site.GetPage .params.page -}}
     <aside class="card widget widget-page">
         <div class="card-body widget-inner">
             <h3 class="card-title">{{ .Title }}</h3>
