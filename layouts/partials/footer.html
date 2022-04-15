@@ -51,8 +51,16 @@
     {{- $context := .context -}}
     {{- range .group.Widgets -}}
         {{- $partialPath := printf "partials/widgets/%s.html" .wtype -}}
+        {{/*- $cache := "" -*/}}
+        {{/*- if (.cache | default false) -*/}}
+            {{/*- $cache = delimit .params "-" -*/}}
+        {{/*- end -*/}}
         {{- if templates.Exists $partialPath -}}
-            {{- partial $partialPath (dict "context" $context "params" .params) -}}
+            {{- if .cache | default false -}}
+                {{- partialCached $partialPath (dict "context" $context "params" .params) (printf "%s-%s" .wtype (delimit .params "-")) -}}
+            {{- else -}}
+                {{- partial $partialPath (dict "context" $context "params" .params) -}}
+            {{- end -}}
         {{- else -}}
             {{- partial "partials/widgets/default.html" (dict "context" $context "params" .wtype) -}}
         {{- end -}}
