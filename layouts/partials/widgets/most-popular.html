@@ -1,27 +1,60 @@
-{{/* Parameters      */}}
-{{/* .context Page   */}}
-{{/* .params  file   */}}
-{{- if isset .params "filename" -}}
-    {{- $numposts := .params.numposts | default 5 -}}
-    {{- $filepath := path.Join "data" .params.filename -}}
-    {{- if os.FileExists $filepath -}}
-        {{- $data := getJSON $filepath -}}
-        {{- with $data -}}
-            <div class="col">
-                <aside class="card widget widget-most-popular">
-                    <div class="card-body pb-4">
-                        <h3 class="card-title">Most popular</h3>
+{{/* Parameters */}}
+{{/* .context   */}}
+{{/* Params     */}}
+{{/* .title     */}}
+{{/* .class     */}}
+{{/* .type      */}}
+{{/* .numposts  */}}
+{{/* .filename  */}}
+{{- $title         := .params.title | default "Most popular posts" -}}
+{{- $class         := .params.class | default "" -}}
+{{- $widget_format := .params.type | default "image" -}}
+{{- $numposts      := .params.numposts | default 3 -}}
+{{- $filepath      := path.Join "data" (.params.filename | default "popularposts.json") -}}
+{{- if os.FileExists $filepath -}}
+    {{- $data := getJSON $filepath -}}
+    {{- with $data -}}
+        <div class="col">
+            {{- if eq $widget_format "image" -}}
+                {{- with $title -}}
+                <div class="row mb-2">
+                    <div class="col"><h3 class="card-title">{{- . | safeHTML -}}</h3></div>
+                </div>
+                {{- end -}}
+                <div class="row {{ $class -}}">
+                    {{- range first $numposts (sort $data.posts "visit" "desc") -}}
+                        {{- $page := $.context.Site.GetPage .post -}}
+                        {{- with $page -}}
+                            <div class="col">
+                                <aside class="card h-100 widget widget-popular">
+                                    {{- if isset .Params "images" -}}
+                                    <a href="{{- .RelPermalink -}}" title="{{- .Title | plainify | htmlUnescape -}}"></a>
+                                        {{- partial "partials/image.html" (dict "context" . "Destination" .Params.images "Title" .Title "Text" .Title "class" "card-img-top") -}}
+                                    </a>
+                                    {{- end -}}
+                                    <div class="card-body">
+                                        <p class="card-text">{{- .Lastmod.Format ($.Site.Params.FormatDate | default "2-Jan-2006") -}}</p>
+                                        <h4 class="card-title"><a href="{{- .RelPermalink -}}" title="{{- .Title | plainify | htmlUnescape -}}">{{- .Title -}}</a></h4>
+                                    </div>
+                                </aside>
+                            </div><!-- col -->
+                        {{- end -}}
+                    {{- end -}}
+                </div><!-- row -->
+            {{- else -}}
+                <aside class="card h-100 widget widget-popular">
+                    <div class="card-body">
+                        {{- with $title -}}
+                            <h3 class="card-title">{{- . | safeHTML -}}</h3>
+                        {{- end -}}
                         <ul class="card-text">
-                            {{- range first $numposts (sort $data.posts "visit" "desc") -}}
-                                {{- $page := $.context.Site.GetPage .post -}}
-                                {{- with $page -}}
-                                    <li><a href="{{- .Permalink -}}" title="{{- .Title -}}">{{- .Title -}}</a></li>
-                                {{- end -}}
+                            {{- range . -}}
+                            <li><a href="{{- .RelPermalink -}}" title="{{- .Title | plainify | htmlUnescape -}}">{{- .Title -}}</a></li>
                             {{- end -}}
                         </ul>
                     </div><!-- card-body -->
                 </aside>
-            </div><!-- col -->
-        {{- end -}}
+            {{- end -}}
+        </div><!-- col -->
     {{- end -}}
 {{- end -}}
