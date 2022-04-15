@@ -1,5 +1,5 @@
 {{- define "main" -}}
-    {{- $cuttent_page := . -}}
+    {{- $current_page := . -}}
     {{- partial "partials/headline.html" . -}}
     <section id="page-content">
         <div class="container limit-width">
@@ -23,7 +23,7 @@
             <div class="row row-cols-1">
                 <div class="col">
                 {{- with .Site.Params.Single.metatop -}}
-                    {{- partial "partials/meta.html" (dict "context" $cuttent_page "kindctx" "page" "meta" . "class" "meta-top") -}}
+                    {{- partial "partials/meta.html" (dict "context" $current_page "kindctx" "page" "meta" . "class" "meta-top") -}}
                 {{- end -}}
                 </div>
                 <div class="page-content post-content col mb-6">
@@ -34,34 +34,27 @@
         </div><!-- container -->
     </section>
     {{- partial "partials/pagination-single.html" . -}}
-    <section class="page-bottomline page-bottomline-tags-share mb-5">
-        <div class="container limit-width">
-            <div class="row row-cols-1 row-cols-sm-2">
-                {{- partial "partials/widgets/post-tags.html" (dict "context" . "title" "Topics") -}}
-                {{- partial "partials/widgets/share-links.html" (dict "context" . ) -}}
-            </div>
-        </div>
-    </section>
-    <section class="page-bottomline page-bottomline-authors pt-4 mb-5">
-        <div class="container limit-width">
-            <div class="row">
-                {{- partialCached "partials/widgets/authors.html" (dict "context" . ) -}}
-            </div>
-        </div>
-    </section>
-    {{- $class := partialCached "class-columns.html" (.Site.Params.Single.relatedcolumns | default (dict "sm" 1 "md" 3 "lg" 3 "xl" 3)) "single" -}}
-    <section class="page-bottomline page-bottomline-posts pt-4 mb-5">
-        <div class="container">
-            <div class="row">
-                {{- partial "partials/widgets/related-posts.html" (dict "context" . "params" (dict "class" $class)) -}}
-            </div>
-        </div>
-    </section>
-    <section class="page-bottomline page-bottomline-posts pt-4 mb-5">
-        <div class="container">
-            <div class="row">
-                {{- partial "partials/widgets/most-popular.html" (dict "context" . "params" (dict "class" $class "filename" "popularposts.json")) -}}
-            </div>
-        </div>
-    </section>
+    
+    {{- range .Site.Params.Single.Rows -}}
+        <section class="page-bottomline page-bottomline-{{- .name}} mb-5">
+            {{- $limit := cond (.limitedWidth | default true) "limit-width" "" -}}
+            <div class="container {{ $limit -}}">
+                {{- $class := partialCached "class-columns.html" (.columns | default (dict "sm" 1 "md" 1 "lg" 1 "xl" 1)) (printf "%" .columns) -}}
+                <div class="row {{ $class -}}">
+                    {{- range .Widgets -}}
+                        {{- $partialPath := printf "partials/widgets/%s.html" .wtype -}}
+                        {{- if templates.Exists $partialPath -}}
+                            {{- if .cache | default false -}}
+                                {{- partialCached $partialPath (dict "context" $current_page "params" .params) (printf "%s-%s" .wtype (delimit .params "-")) -}}
+                            {{- else -}}
+                                {{- partial $partialPath (dict "context" $current_page "params" .params) -}}
+                            {{- end -}}
+                        {{- else -}}
+                            {{- partial "partials/widgets/default.html" (dict "context" $current_page "params" .wtype) -}}
+                        {{- end -}}
+                    {{- end -}}
+                </div><!-- row -->
+            </div><!-- container -->
+        </section>
+    {{- end -}}
 {{- end -}}
