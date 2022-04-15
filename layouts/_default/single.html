@@ -53,7 +53,14 @@
     <section class="page-bottomline page-bottomline-posts pt-4 mb-5">
         <div class="container">
             <div class="row">
-                {{- partial "partials/widgets/related-posts.html" (dict "context" . "class" $class) -}}
+                {{- partial "partials/widgets/related-posts.html" (dict "context" . "params" (dict "class" $class)) -}}
+            </div>
+        </div>
+    </section>
+    <section class="page-bottomline page-bottomline-posts pt-4 mb-5">
+        <div class="container">
+            <div class="row">
+                {{- partial "partials/widgets/most-popular.html" (dict "context" . "params" (dict "class" $class "filename" "popularposts.json")) -}}
             </div>
         </div>
     </section>
