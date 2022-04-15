@@ -26,7 +26,7 @@
                         {{- $page := $.context.Site.GetPage .post -}}
                         {{- with $page -}}
                             <div class="col">
-                                <aside class="card h-100 widget widget-popular">
+                                <aside class="card h-100 widget widget-popular widget-popular-images">
                                     {{- if isset .Params "images" -}}
                                     <a href="{{- .RelPermalink -}}" title="{{- .Title | plainify | htmlUnescape -}}"></a>
                                         {{- partial "partials/image.html" (dict "context" . "Destination" .Params.images "Title" .Title "Text" .Title "class" "card-img-top") -}}
@@ -42,7 +42,7 @@
                     {{- end -}}
                 </div><!-- row -->
             {{- else -}}
-                <aside class="card h-100 widget widget-popular">
+                <aside class="card h-100 widget widget-popular widget-popular-list">
                     <div class="card-body">
                         {{- with $title -}}
                             <h3 class="card-title">{{- . | safeHTML -}}</h3>
