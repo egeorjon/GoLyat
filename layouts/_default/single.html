@@ -34,8 +34,7 @@
         </div><!-- container -->
     </section>
     {{- partial "partials/pagination-single.html" . -}}
-
-    {{- $defaultBottomline := slice 
+    {{/*- $defaultBottomline := slice 
         (dict "name" "authors" "columns" (dict "sm" 1 "md" 1 "lg" 1 "xl" 1) "limitedWidth" true "Widgets" (slice 
                 (dict "wtype" "authors" "weight" 1 "cache" false "params" (dict  ))
             )
@@ -46,25 +45,26 @@
             )
         )
         (dict "name" "related" "columns" (dict "sm" 1 "md" 1 "lg" 1 "xl" 1) "limitedWidth" false "Widgets" (slice 
-                (dict "wtype" "related-posts" "weight" 1 "cache" false "params" (dict "numposts" 3 ))
+                (dict "wtype" "related-posts" "weight" 1 "cache" false "params" (dict "numposts" 4 "columns" (dict "sm" 1 "md" 2 "lg" 2 "xl" 2) ))
             )
         )
         (dict "name" "popular" "columns" (dict "sm" 1 "md" 1 "lg" 1 "xl" 1) "limitedWidth" false "Widgets" (slice 
-                (dict "wtype" "most-popular" "weight" 1 "cache" false "params" (dict  ))
+                (dict "wtype" "most-popular" "weight" 1 "cache" false "params" (dict "columns" (dict "sm" 1 "md" 2 "lg" 2 "xl" 2) ))
             )
         )
-     -}}
-    {{- range .Site.Params.Single.Rows | default $defaultBottomline -}}
+     -*/}}
+    
+    {{- range .Site.Params.Single.Rows | default .Site.Data.single_bottomline.rows -}}{{/* $defaultBottomline */}}
         <section class="page-bottomline page-bottomline-{{- .name}} mb-5">
             {{- $limit := cond (.limitedWidth | default true) "limit-width" "" -}}
             <div class="container {{ $limit -}}">
-                {{- $class := partialCached "class-columns.html" (.columns | default (dict "sm" 1 "md" 1 "lg" 1 "xl" 1)) (printf "%" .columns) -}}
+                {{- $class := partialCached "class-columns.html" (.columns | default (dict "sm" 1 "md" 1 "lg" 1 "xl" 1)) (printf "%s" .columns) -}}
                 <div class="row {{ $class -}}">
                     {{- range .Widgets -}}
                         {{- $partialPath := printf "partials/widgets/%s.html" .wtype -}}
                         {{- if templates.Exists $partialPath -}}
                             {{- if .cache | default false -}}
-                                {{- partialCached $partialPath (dict "context" $current_page "params" .params) (printf "%s-%s" .wtype (delimit .params "-")) -}}
+                                {{- partialCached $partialPath (dict "context" $current_page "params" .params) (printf "%s-%s" .wtype .params) -}}
                             {{- else -}}
                                 {{- partial $partialPath (dict "context" $current_page "params" .params) -}}
                             {{- end -}}
