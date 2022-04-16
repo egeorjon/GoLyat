@@ -8,7 +8,7 @@
 {{- $numposts      := .params.numposts | default "" -}}
 {{- $widget_format := .params.type | default "image" -}}
 {{- $related := site.RegularPages.Related .context | first ($numposts | default 3) -}}
-{{- $class := partialCached "class-columns.html" (.params.columns | default (dict "sm" 1 "md" 1 "lg" 1 "xl" 1)) (printf "%s" .columns) -}}
+{{- $class := partialCached "class-columns.html" (.params.columns | default (dict "def" 1 "sm" 1 "md" 1 "lg" 1 "xl" 1)) (printf "%s" .columns) -}}
 {{- with $related.ByPublishDate.Reverse -}}
     <div class="col">
         {{- if eq $widget_format "image" -}}

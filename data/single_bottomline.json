@@ -2,7 +2,7 @@
     "Rows": [
         {
           "name": "authors",
-          "columns": { "lg": 1, "md": 1, "sm": 1, "xl": 1 },
+          "columns": { "def": 1, "sm": 1, "md": 1, "lg": 1, "xl": 1 },
           "Widgets": [
             {
                 "wtype": "authors",
@@ -14,7 +14,7 @@
         },
         {
           "name": "tags-share",
-          "columns": { "lg": 2, "md": 2, "sm": 1, "xl": 2 },
+          "columns": { "def": 1, "sm": 1, "md": 2, "lg": 2, "xl": 2 },
           "Widgets": [
             {
                 "wtype": "post-tags",
@@ -33,7 +33,7 @@
         {
           "limitedWidth": false,
           "name": "related",
-          "columns": { "lg": 1, "md": 1, "sm": 1, "xl": 1 },
+          "columns": { "def": 1, "sm": 1, "md": 1, "lg": 1, "xl": 1 },
           "Widgets": [
             {
                 "wtype": "related-posts",
