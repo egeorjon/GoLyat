@@ -1,0 +1,54 @@
+{
+    "columns": {
+        "lg": 2,
+        "md": 2,
+        "sm": 1,
+        "xl": 2
+    },
+    "Groups": [
+        {
+            "columns": {
+                "lg": 1,
+                "md": 1,
+                "sm": 1,
+                "xl": 1
+            },
+            "Widgets": [
+                {
+                    "cache": true,
+                    "weight": 1,
+                    "wtype": "page",
+                    "params": {
+                        "page": "a-propos"
+                    }
+                }
+            ]
+        },
+        {
+            "columns": {
+                "lg": 1,
+                "md": 1,
+                "sm": 1,
+                "xl": 1
+            },
+            "Widgets": [
+                {
+                    "cache": true,
+                    "weight": 1,
+                    "wtype": "page",
+                    "params": {
+                        "page": "links"
+                    }
+                },
+                {
+                    "cache": true,
+                    "weight": 2,
+                    "wtype": "page",
+                    "params": {
+                        "page": "links"
+                    }
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,31 @@
+{
+    "Groups": [
+        {
+            "columns": {
+                "lg": 2,
+                "md": 2,
+                "sm": 2,
+                "xl": 2
+            },
+            "Widgets": [
+                {
+                    "wtype": "logo",
+                    "cache": true,
+                    "weight": 1,
+                    "params": {
+                        "height": 75,
+                        "image": "/assets/img/site-logo.png",
+                        "title": "Le blog d'Emmanuel GEORJON",
+                        "width": 75
+                    }
+                },
+                {
+                    "wtype": "follow-me",
+                    "cache": true,
+                    "weight": 2,
+                    "params": {}
+                }
+            ]
+        }
+    ]
+}
