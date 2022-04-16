@@ -2,15 +2,15 @@
 {{/* .context   */}}
 {{/* Params     */}}
 {{/* .title     */}}
-{{/* .class     */}}
+{{/* .columns   */}}
 {{/* .type      */}}
 {{/* .numposts  */}}
 {{/* .filename  */}}
 {{- $title         := .params.title | default "Most popular posts" -}}
-{{- $class         := .params.class | default "" -}}
 {{- $widget_format := .params.type | default "image" -}}
 {{- $numposts      := .params.numposts | default 3 -}}
 {{- $filepath      := path.Join "data" (.params.filename | default "popularposts.json") -}}
+{{- $class := partialCached "class-columns.html" (.params.columns | default (dict "sm" 1 "md" 1 "lg" 1 "xl" 1)) (printf "%s" .columns) -}}
 {{- if os.FileExists $filepath -}}
     {{- $data := getJSON $filepath -}}
     {{- with $data -}}
