@@ -1,13 +1,14 @@
 {{- $context := . -}}
-{{- $defaultFooterTop := dict "Groups" (slice 
+{{/*- $defaultFooterTop := dict "Groups" (slice 
             (dict "columns" (dict "sm" 2 "md" 2 "lg" 2 "xl" 2) "Widgets" (slice 
                 (dict "wtype" "logo" "weight" 1 "cache" true "params" (dict "image" "/assets/img/site-logo.png" "title" "Le blog d'Emmanuel GEORJON" "width" 75 "height" 75 ))
                 (dict "wtype" "follow-me" "weight" 2 "cache" true "params" (dict  ))
             )
         )
     )
- -}}
- {{- $defaultFooterMain := dict "columns" (dict "sm" 1 "md" 2 "lg" 2 "xl" 2) "Groups" (slice 
+ -*/}}
+
+ {{/*- $defaultFooterMain := dict "columns" (dict "sm" 1 "md" 2 "lg" 2 "xl" 2) "Groups" (slice 
         (dict "columns" (dict "sm" 1 "md" 1 "lg" 1 "xl" 1) "Widgets" (slice 
                 (dict "wtype" "page" "weight" 1 "cache" true "params" (dict "page" "a-propos" ) )
             )
@@ -18,16 +19,16 @@
             )
         )
     )
--}}
+-*/}}
 <footer id="page-footer">
     <section class="footer-top pt-4 pb-4">
         <div class="container">
-            {{- template "groups_list" (dict "context" $context "gl" (.Site.Params.Footer.Top | default $defaultFooterTop) ) -}}
+            {{- template "groups_list" (dict "context" $context "gl" (.Site.Params.Footer.Top | default .Site.Data.footer_top) ) -}}
         </div><!-- container -->
     </section>
     <section class="footer-main pt-4 pb-4">
         <div class="container">
-            {{- template "groups_list" (dict "context" $context "gl" (.Site.Params.Footer.Main | default $defaultFooterMain) ) -}}
+            {{- template "groups_list" (dict "context" $context "gl" (.Site.Params.Footer.Main | default .Site.Data.footer_main) ) -}}
         </div><!-- container -->
     </section>
     <section class="footer-bottom pt-3 pb-3">
@@ -73,7 +74,7 @@
         {{- $partialPath := printf "partials/widgets/%s.html" .wtype -}}
         {{- if templates.Exists $partialPath -}}
             {{- if .cache | default false -}}
-                {{- partialCached $partialPath (dict "context" $context "params" .params) (printf "%s-%s" .wtype (delimit .params "-")) -}}
+                {{- partialCached $partialPath (dict "context" $context "params" .params) (printf "%s-%s" .wtype .params) -}}
             {{- else -}}
                 {{- partial $partialPath (dict "context" $context "params" .params) -}}
             {{- end -}}
