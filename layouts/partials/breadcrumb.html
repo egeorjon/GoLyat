@@ -19,9 +19,9 @@
                 <i class="bi-house"></i><span class="visually-hidden" >{{- .p1.Title | safeHTML -}}</span>
             </a>
         </li>
-    {{- else if ne .p1 .p2 -}}
+    {{- else if or (ne .p1 .p2) (ne $pn "") -}}
         <li class="breadcrumb-item" >
-            <a href="{{- .p1.Permalink -}}" title="{{- .p1.Title -}}" >{{- .p1.Title | safeHTML -}}</a>
+            <a href="{{- .p1.Permalink -}}" title="{{- .p1.Title -}}" >{{- .p1.Title | safeHTML -}}</a>{{- $pn -}}
         </li>
     {{- else -}}
         <li class="breadcrumb-item active" aria-current="page">{{- .p1.Title | safeHTML -}}{{- $pn -}}</li>
