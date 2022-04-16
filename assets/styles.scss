@@ -22,6 +22,14 @@ $flame: #eb5e28ff;
 /* ----------------------------------------- */
 /* --- Common styles ----------------------- */
 /* ----------------------------------------- */
+
+/* ----- General ---------------------------- */
+@media (min-width: map-get($grid-breakpoints, "md")) {
+    .limit-width {
+        width: 960px!important;
+    }   
+}
+
 .inline-list {
 
     list-style-type: none;
