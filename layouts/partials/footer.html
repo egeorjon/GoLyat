@@ -1,13 +1,33 @@
 {{- $context := . -}}
+{{- $defaultFooterTop := dict "Groups" (slice 
+            (dict "columns" (dict "sm" 2 "md" 2 "lg" 2 "xl" 2) "Widgets" (slice 
+                (dict "wtype" "logo" "weight" 1 "cache" true "params" (dict "image" "/assets/img/site-logo.png" "title" "Le blog d'Emmanuel GEORJON" "width" 75 "height" 75 ))
+                (dict "wtype" "follow-me" "weight" 2 "cache" true "params" (dict  ))
+            )
+        )
+    )
+ -}}
+ {{- $defaultFooterMain := dict "columns" (dict "sm" 1 "md" 2 "lg" 2 "xl" 2) "Groups" (slice 
+        (dict "columns" (dict "sm" 1 "md" 1 "lg" 1 "xl" 1) "Widgets" (slice 
+                (dict "wtype" "page" "weight" 1 "cache" true "params" (dict "page" "a-propos" ) )
+            )
+        )
+        (dict "columns" (dict "sm" 1 "md" 1 "lg" 1 "xl" 1) "Widgets" (slice 
+                (dict "wtype" "page" "weight" 1 "cache" true "params" (dict "page" "links" ) )
+                (dict "wtype" "page" "weight" 1 "cache" true "params" (dict "page" "links" ) )
+            )
+        )
+    )
+-}}
 <footer id="page-footer">
     <section class="footer-top pt-4 pb-4">
         <div class="container">
-            {{- template "groups_list" (dict "context" $context "gl" .Site.Params.Footer.Top "cachecolumn" "top") -}}
+            {{- template "groups_list" (dict "context" $context "gl" (.Site.Params.Footer.Top | default $defaultFooterTop) ) -}}
         </div><!-- container -->
     </section>
     <section class="footer-main pt-4 pb-4">
         <div class="container">
-            {{- template "groups_list" (dict "context" $context "gl" .Site.Params.Footer.Main "cachecolumn" "main") -}}
+            {{- template "groups_list" (dict "context" $context "gl" (.Site.Params.Footer.Main | default $defaultFooterMain) ) -}}
         </div><!-- container -->
     </section>
     <section class="footer-bottom pt-3 pb-3">
