@@ -27,33 +27,13 @@
                 {{- end -}}
                 </div>
                 <div class="page-content post-content col mb-6">
-                    {{- .Content -}}
-                    {{/*- replace .Content .Summary "" | safeHTML -*/}}
+                    {{/*- .Content -*/}}
+                    {{- replace .Content .Summary "" | safeHTML -}}
                 </div><!-- col -->
             </div><!-- row -->
         </div><!-- container -->
     </section>
     {{- partial "partials/pagination-single.html" . -}}
-    {{/*- $defaultBottomline := slice 
-        (dict "name" "authors" "columns" (dict "sm" 1 "md" 1 "lg" 1 "xl" 1) "limitedWidth" true "Widgets" (slice 
-                (dict "wtype" "authors" "weight" 1 "cache" false "params" (dict  ))
-            )
-        )
-        (dict "name" "tags-share" "columns" (dict "sm" 1 "md" 2 "lg" 2 "xl" 2) "limitedWidth" true "Widgets" (slice 
-                (dict "wtype" "post-tags" "weight" 1 "cache" false "params" (dict  ))
-                (dict "wtype" "share-links" "weight" 2 "cache" false "params" (dict  ))
-            )
-        )
-        (dict "name" "related" "columns" (dict "sm" 1 "md" 1 "lg" 1 "xl" 1) "limitedWidth" false "Widgets" (slice 
-                (dict "wtype" "related-posts" "weight" 1 "cache" false "params" (dict "numposts" 4 "columns" (dict "sm" 1 "md" 2 "lg" 2 "xl" 2) ))
-            )
-        )
-        (dict "name" "popular" "columns" (dict "sm" 1 "md" 1 "lg" 1 "xl" 1) "limitedWidth" false "Widgets" (slice 
-                (dict "wtype" "most-popular" "weight" 1 "cache" false "params" (dict "columns" (dict "sm" 1 "md" 2 "lg" 2 "xl" 2) ))
-            )
-        )
-     -*/}}
-    
     {{- range .Site.Params.Single.Rows | default .Site.Data.single_bottomline.rows -}}{{/* $defaultBottomline */}}
         <section class="page-bottomline page-bottomline-{{- .name}} mb-5">
             {{- $limit := cond (.limitedWidth | default true) "limit-width" "" -}}
