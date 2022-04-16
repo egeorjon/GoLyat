@@ -2,14 +2,13 @@
 {{/* .context   */}}
 {{/* Params     */}}
 {{/* .title     */}}
-{{/* .class     */}}
 {{/* .type      */}}
 {{/* .numposts  */}}
 {{- $title         := .params.title | default "You may like the following posts also" -}}
-{{- $class         := .params.class | default "" -}}
 {{- $numposts      := .params.numposts | default "" -}}
 {{- $widget_format := .params.type | default "image" -}}
-{{- $related := .context.Site.RegularPages.Related .context | first ($numposts | default 3) -}}
+{{- $related := site.RegularPages.Related .context | first ($numposts | default 3) -}}
+{{- $class := partialCached "class-columns.html" (.params.columns | default (dict "sm" 1 "md" 1 "lg" 1 "xl" 1)) (printf "%s" .columns) -}}
 {{- with $related.ByPublishDate.Reverse -}}
     <div class="col">
         {{- if eq $widget_format "image" -}}
