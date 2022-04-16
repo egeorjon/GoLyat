@@ -23,11 +23,13 @@
 {{- define "groups_list" -}}
     {{- $context := .context -}}
     {{- if gt (len .gl.Groups) 1 -}}
-    {{- $class := partialCached "class-columns.html" (.gl.columns | default (dict "def" 1 "sm" 1 "md" 1 "lg" 2 "xl" 2)) (printf "%s-%s" .cachecolumn "prim") -}}
+        {{- $columns := .gl.columns | default (dict "def" 1 "sm" 1 "md" 1 "lg" 2 "xl" 2) -}}
+        {{- $class := partialCached "class-columns.html" $columns (printf "%x" $columns)  -}}
     <div class="{{- $class -}}">
         {{- range .gl.Groups -}}
             {{- if gt (len .Widgets) 1 -}}
-                {{- $class := partialCached "class-columns.html" (.columns | default (dict "def" 1 "sm" 1 "md" 1 "lg" 1 "xl" 1)) (printf "%s-%s" .cachecolumn "sec") -}}
+                {{- $columns := .columns | default (dict "def" 1 "sm" 1 "md" 1 "lg" 1 "xl" 1) -}}
+                {{- $class := partialCached "class-columns.html" $columns (printf "%x" $columns)  -}}
                 <div class="col">
                     <div class="{{- $class -}}">
             {{- end -}}
@@ -40,7 +42,8 @@
     </div><!-- row -->
     {{- else -}}
         {{- range .gl.Groups -}}
-            {{- $class := partialCached "class-columns.html" (.columns | default (dict "def" 1 "sm" 1 "md" 1 "lg" 1 "xl" 1))  (printf "%s-%s" .cachecolumn "prim")  -}}
+            {{- $columns := .columns | default (dict "def" 1 "sm" 1 "md" 1 "lg" 1 "xl" 1) -}}
+            {{- $class := partialCached "class-columns.html" $columns (printf "%x" $columns)  -}}
             <div class="{{- $class -}}">
                 {{- template "widgets_list" (dict "context" $context "group" .) -}}
             </div>
@@ -53,7 +56,7 @@
         {{- $partialPath := printf "partials/widgets/%s.html" .wtype -}}
         {{- if templates.Exists $partialPath -}}
             {{- if .cache | default false -}}
-                {{- partialCached $partialPath (dict "context" $context "params" .params) (printf "%s-%s" .wtype .params) -}}
+                {{- partialCached $partialPath (dict "context" $context "params" .params) (printf "%s-%x" .wtype .params) -}}
             {{- else -}}
                 {{- partial $partialPath (dict "context" $context "params" .params) -}}
             {{- end -}}
