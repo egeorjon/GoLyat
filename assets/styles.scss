@@ -38,11 +38,23 @@ $flame: #eb5e28ff;
     li {
         white-space: nowrap;
         display: inline-block;
-        margin-right: 3 * $spacer;
+        margin-right: $spacer;
     }
 
     li:last-child {
         margin-right: 0;
+    }
+}
+
+@media (min-width: map-get($grid-breakpoints, "md")) {
+    .inline-list li {
+        margin-right: $spacer;
+    }
+}
+
+@media (min-width: map-get($grid-breakpoints, "lg")) {
+    .inline-list li {
+        margin-right: 2 * $spacer;
     }
 }
 
@@ -85,7 +97,8 @@ $flame: #eb5e28ff;
 }
 
 .nav-item .active {
-    border-top: 1px solid $pale-silver;
+    border-top: 1px solid $secondary;
+    border-bottom: 2px solid $secondary;
 }
 
 /* ------------------------------------------ */
@@ -93,8 +106,7 @@ $flame: #eb5e28ff;
 /* ------------------------------------------ */
 
 #page-headline {
-    background-color: var($light);
-
+    background-color: $light;
 }
 
 
@@ -342,33 +354,12 @@ $gallery-caption-fontsize: $font-size-sm;
 }
 
 
-
 /* ------------------------------------------ */
 /* --- Bottom lines-------------------------- */
 /* ------------------------------------------ */
 
 .page-bottomline-authors {
     background-color: $light;
-}
-
-.author-picture {
-    float           : left;
-    border-radius   : 50%;
-    overflow        : hidden;
-    margin-bottom   : 1rem;
-}
-
-.author-description {
-    text-align: justify;
-}
-
-/* ------------------------------------------ */
-/* --- Related and popular posts ------------ */
-/* ------------------------------------------ */
-
-.page-bottomline-posts p {
-    font-size: $font-size-sm;
-    margin-bottom: 0;
 }
 
 /* ------------------------------------------ */
@@ -403,3 +394,50 @@ $gallery-caption-fontsize: $font-size-sm;
 .footer-main {
     background-color: $medium;
 }
+
+
+/* ------------------------------------------ */
+/* --- Style for the style guide page ------- */
+/* ------------------------------------------ */
+
+.palette {
+    div {
+        height: 80px;
+        text-align: center;
+        vertical-align: middle;
+    }
+}
+
+/* ------------------------------------------ */
+/* --- Widgets ------------------------------ */
+/* ------------------------------------------ */
+
+.widget-follow {
+    p, ul {
+        display: inline;
+    }
+
+    li {
+        font-size: 1.5rem;
+    }
+
+    p {
+        margin-right: 0.5 * $spacer;
+    }
+}
+
+.author-picture {
+    float           : left;
+    border-radius   : 50%;
+    overflow        : hidden;
+    margin-bottom   : 1rem;
+}
+
+.author-description {
+    text-align: justify;
+}
+
+/* ------------------------------------------ */
+/* --- Search page -------------------------- */
+/* ------------------------------------------ */
+
