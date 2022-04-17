@@ -15,8 +15,9 @@
                     
                 {{- end -}}
             {{- end -}}
-            <form class="search-form input-group d-none d-md-flex">
-                <input class="form-control pe-5" type="text" placeholder="Search for products" />
+            {{- $search_page := .Site.GetPage "search" -}}
+            <form class="search-form input-group d-none d-md-flex" action="{{- $search_page.Permalink -}}" method="GET">
+                <input class="form-control pe-5" type="text" name="s" placeholder="Search for products" />
                 <i class="bi-search me-3"> </i>
             </form>
             <div class="d-flex flex-shrink-0"><!-- align-items-center -->
