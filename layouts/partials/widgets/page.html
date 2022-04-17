@@ -2,12 +2,12 @@
     {{- with .context.Site.GetPage .params.page -}}
     <aside class="card widget widget-page">
         <div class="card-body widget-inner">
-            <h3 class="card-title">{{ .Title }}</h3>
-            <p class="card-text">{{ .Content | safeHTML }}</p>
+            <h3 class="card-title">{{- .Title -}}</h3>
+            <p class="card-text">{{- .Content  -}}</p>
         </div>
     </aside>
     {{- else -}}
-    <p>Error: widget not found</p>
+    <p>{{- i18n "error-widget-not-found" -}}</p>
     {{- end -}}
 </div>
 
