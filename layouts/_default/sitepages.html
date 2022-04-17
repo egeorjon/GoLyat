@@ -1,6 +1,4 @@
 {{- define "main" -}}
-    {{- $current_page := . -}}
-    {{- partial "partials/headline.html" . -}}
     {{- $display_image  := and (isset .Params "images") (.Site.Params.Single.displayimage | default false) -}}
     {{- if $display_image -}}
         <div class="container">
@@ -18,5 +16,4 @@
                 </div><!-- col -->
             </div><!-- row -->
         </div><!-- container -->
-    </section>
 {{- end -}}
