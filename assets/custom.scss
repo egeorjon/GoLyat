@@ -185,7 +185,7 @@ $border-widths: map-remove($border-widths,
   4,
   5
 );
-/*
+
 $display-font-sizes: map-remove($display-font-sizes,
   1,
   2,
@@ -193,7 +193,7 @@ $display-font-sizes: map-remove($display-font-sizes,
   4,
   5
 );
-*/
+
 $table-variants: map-remove( $table-variants, 
   "secondary",
   "success",
@@ -201,7 +201,6 @@ $table-variants: map-remove( $table-variants,
   "warning",
   "danger"
 );
-
 
 @import "bootstrap-5.1.3/scss/mixins";
 @import "bootstrap-5.1.3/scss/root";
@@ -312,7 +311,7 @@ $utilities: map-remove($utilities,
     @import "bootstrap-5.1.3/scss/forms/input-group";
     @import "bootstrap-5.1.3/scss/forms/labels";
 //    @import "bootstrap-5.1.3/scss/forms/validation";
-// @import "bootstrap-5.1.3/scss/buttons";
+@import "bootstrap-5.1.3/scss/buttons";
 @import "bootstrap-5.1.3/scss/transitions";
 // @import "bootstrap-5.1.3/scss/dropdown";
 // @import "bootstrap-5.1.3/scss/button-group";
