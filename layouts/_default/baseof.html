@@ -6,7 +6,11 @@
     <body>
         {{- partial "header.html" . -}}
         <main role="main" id="page-main">
-            {{- block "main" . }}{{- end }}
+            {{- partial "partials/headline.html" . -}}
+            <section id="page-content type-{{- .Type -}}">
+                {{- block "main" . }}{{- end }}
+            </section>
+            {{- block "bottomline" . }}{{- end }}
         </main>
         {{- partial "footer.html" . -}}
         {{- partialCached "js.html" . -}}

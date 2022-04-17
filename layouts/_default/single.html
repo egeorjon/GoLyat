@@ -1,40 +1,40 @@
 {{- define "main" -}}
     {{- $current_page := . -}}
-    {{- partial "partials/headline.html" . -}}
-    <section id="page-content">
-        <div class="container limit-width">
-            <div class="row">
-                <div class="col post-summary mb-4">
-                    {{- .Summary -}}
-                </div><!-- col -->
-            </div><!-- row -->
-        </div><!-- container -->
-    {{- $display_image  := and (isset .Params "images") (.Site.Params.Single.displayimage | default false) -}}
-    {{- if $display_image -}}
-        <div class="container">
-            <div class="row">
-                <div class="col mb-5 text-center">
-                    {{- partial "partials/image.html" (dict "context" . "Destination" .Params.images "Title" .Title "Text" .Title) -}}
-                </div><!-- col -->
-            </div><!-- row -->
-        </div><!-- container -->
-    {{- end -}}
-        <div class="container limit-width">
-            <div class="row row-cols-1">
-                <div class="col">
-                {{- with .Site.Params.Single.metatop -}}
-                    {{- partial "partials/meta.html" (dict "context" $current_page "kindctx" "page" "meta" . "class" "meta-top") -}}
-                {{- end -}}
-                </div>
-                <div class="page-content post-content col mb-6">
-                    {{/*- .Content -*/}}
-                    {{- replace .Content .Summary "" | safeHTML -}}
-                </div><!-- col -->
-            </div><!-- row -->
-        </div><!-- container -->
-    </section>
+    <div class="container limit-width">
+        <div class="row">
+            <div class="col post-summary mb-4">
+                {{- .Summary -}}
+            </div><!-- col -->
+        </div><!-- row -->
+    </div><!-- container -->
+{{- $display_image  := and (isset .Params "images") (.Site.Params.Single.displayimage | default false) -}}
+{{- if $display_image -}}
+    <div class="container">
+        <div class="row">
+            <div class="col mb-5 text-center">
+                {{- partial "partials/image.html" (dict "context" . "Destination" .Params.images "Title" .Title "Text" .Title) -}}
+            </div><!-- col -->
+        </div><!-- row -->
+    </div><!-- container -->
+{{- end -}}
+    <div class="container limit-width">
+        <div class="row row-cols-1">
+            <div class="col">
+            {{- with .Site.Params.Single.metatop -}}
+                {{- partial "partials/meta.html" (dict "context" $current_page "kindctx" "page" "meta" . "class" "meta-top") -}}
+            {{- end -}}
+            </div>
+            <div class="page-content post-content col mb-6">
+                {{/*- .Content -*/}}
+                {{- replace .Content .Summary "" | safeHTML -}}
+            </div><!-- col -->
+        </div><!-- row -->
+    </div><!-- container -->
+{{- end -}}
+{{- define "bottomline" -}}
+    {{- $current_page := . -}}
     {{- partial "partials/pagination-single.html" . -}}
-    {{- range .Site.Params.Single.Rows | default .Site.Data.single_bottomline.rows -}}{{/* $defaultBottomline */}}
+    {{- range .Site.Params.Single.Rows | default .Site.Data.single_bottomline.Rows -}}{{/* $defaultBottomline */}}
         <section class="page-bottomline page-bottomline-{{- .name}} mb-5">
             {{- $limit := cond (.limitedWidth | default true) "limit-width" "" -}}
             <div class="container {{ $limit -}}">

@@ -1,26 +1,25 @@
 {{- define "main" -}}
-    {{- partial "partials/headline.html" . -}}
-    <section id="page-content">
-        <div class="container limit-width">
-            <div class="row">
-                {{- $string := .Summary -}}
-                {{- with .Description -}}{{- $string = . -}}{{- end -}}
-                {{- with $string -}}
-                    <div class="page-summary col mb-6">
-                        <p>{{- . | markdownify -}}</p>
-                    </div><!-- col -->
-                {{- end -}}
-            </div>
-            {{- $class := partialCached "class-columns.html" (.Site.Params.PostList.ListColumns | default (dict "def" 1 "sm" 1 "md" 1 "lg" 1 "xl" 1)) "list" -}}
-            <div class="post-list {{ $class -}}">
-                {{- range .Paginator.Pages -}}
-                <div class="col mb-6">
-                    {{- partial "partials/post-list.html" (dict "context" . "kindctx" $.Kind) -}}
+    <div class="container limit-width">
+        <div class="row">
+            {{- $string := .Summary -}}
+            {{- with .Description -}}{{- $string = . -}}{{- end -}}
+            {{- with $string -}}
+                <div class="page-summary col mb-6">
+                    <p>{{- . | markdownify -}}</p>
                 </div><!-- col -->
-                {{- end -}}
-            </div><!-- row -->
-        </div><!-- container -->
-    </section>
+            {{- end -}}
+        </div>
+        {{- $class := partialCached "class-columns.html" (.Site.Params.PostList.ListColumns | default (dict "def" 1 "sm" 1 "md" 1 "lg" 1 "xl" 1)) "list" -}}
+        <div class="post-list {{ $class -}}">
+            {{- range .Paginator.Pages -}}
+            <div class="col mb-6">
+                {{- partial "partials/post-list.html" (dict "context" . "kindctx" $.Kind) -}}
+            </div><!-- col -->
+            {{- end -}}
+        </div><!-- row -->
+    </div><!-- container -->
+{{- end -}}
+{{- define "bottomline" -}}
     <section id="page-bottomline" class="page-bottomline-pagination pb-4 pt-4 mb-5">
         <div class="container">
             {{- partial "partials/pagination-list.html" . -}}

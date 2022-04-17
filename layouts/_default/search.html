@@ -1,0 +1,33 @@
+{{- define "main" -}}
+    {{- $current_page := . -}}
+    {{- $display_image  := and (isset .Params "images") (.Site.Params.Single.displayimage | default false) -}}
+    {{- if $display_image -}}
+        <div class="container">
+            <div class="row">
+                <div class="col mb-5 text-center">
+                    {{- partial "partials/image.html" (dict "context" . "Destination" .Params.images "Title" .Title "Text" .Title) -}}
+                </div><!-- col -->
+            </div><!-- row -->
+        </div><!-- container -->
+    {{- end -}}
+    <div id="search-form" class="mb-5">
+        <div class="container limit-width">
+            <div class="row">
+                <h2 class="col mb-5">{{- i18n "search-form" -}}</h2>
+            </div>
+            <form action="{{ .Permalink }}" method="GET" class="row justify-content-center">
+                <label for="search-query" class="col-form-label col-auto"><span class="visually-hidden">{{- i18n "search-please-enter" -}}</span></label>
+                <div class="col-auto">
+                    <input type="text" class="form-control" id="search-query" aria-describedby="searchHelp" name="s" placeholder="{{- i18n "what-you-looking-for" -}}" />
+                    <div id="searchHelp" class="form-text visually-hidden">{{- i18n "search-help" -}}</div>
+                </div>
+                <div class="col-auto">
+                    <button type="submit" class="btn btn-dark">
+                        <i class="bi-search" aria-hidden="true"></i>
+                        <span class="visually-hidden">{{- i18n "search" -}}</span>
+                    </button>
+                </div><!-- col -->
+            </form>
+        </div><!-- container -->
+    </div><!-- search-form -->
+{{- end -}}
