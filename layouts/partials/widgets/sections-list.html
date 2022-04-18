@@ -5,10 +5,10 @@
 {{/* .type      */}}
 {{/* .numposts  */}}
 {{/* .columns   */}}
-{{- $title         := .params.title | default "You may like the following posts also" -}}
+{{- $title         := .params.title | default "This is our blog's sections" -}}
 {{- $widget_format := .params.type | default "image" -}}
-{{- $class := partialCached "class-columns.html" (.params.columns | default (dict "def" 1 "sm" 1 "md" 2 "lg" 2 "xl" 2)) (printf "%s" .columns) -}}
-{{- with .context.Params.mainSections -}}
+{{- $class := partialCached "class-columns.html" (.params.columns | default (dict "def" 1 "sm" 1 "md" 2 "lg" 2 "xl" 2)) (printf "%s" .params.columns) -}}
+{{- with .context.Site.Params.mainSections -}}
     <div class="col">
         {{- if eq $widget_format "image" -}}
             {{- with $title -}}
@@ -18,7 +18,8 @@
             {{- end -}}
             <div class="row {{ $class -}}">
                 {{- range . -}}
-                <div class="col">
+                    {{- with $.context.Site.GetPage . -}}                
+                <div class="col mb-5">
                     <aside class="card h-100 widget widget-related widget-related-images">
                         {{- if isset .Params "images" -}}
                         <a href="{{- .RelPermalink -}}" title="{{- .Title | plainify | htmlUnescape -}}"></a>
@@ -27,10 +28,11 @@
                         {{- end -}}
                         <div class="card-body">
                             <h4 class="card-title"><a href="{{- .RelPermalink -}}" title="{{- .Title | plainify | htmlUnescape -}}">{{- .Title -}}</a></h4>
-                            {{- with .Params.Descrition -}}<p class="card-text">{{- . | plainify | htmlUnescape -}}</p>{{- end -}}
+                            {{- with .Params.Description -}}<p class="card-text">{{- . | plainify | htmlUnescape -}}</p>{{- end -}}
                         </div>
                     </aside>
                 </div><!-- col -->
+                    {{- end -}}
                 {{- end -}}
             </div><!-- row -->
         {{- else -}}
