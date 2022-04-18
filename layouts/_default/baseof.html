@@ -13,6 +13,6 @@
             {{- block "bottomline" . }}{{- end }}
         </main>
         {{- partial "footer.html" . -}}
-        {{- partialCached "js.html" . -}}
+        {{- partialCached "js.html" . (printf "%s-%s" .Type .Slug) -}}
     </body>
 </html>
