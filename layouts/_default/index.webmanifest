@@ -1,0 +1,37 @@
+{
+    "name":         "{{- .Site.Params.Manifest.name         | default .Site.Title   -}}",
+    "short_name":   "{{- .Site.Params.Manifest.shortName    | default .Site.Title   -}}",
+    "lang":         "{{- .Site.Params.Manifest.languageCode | default .Site.Params.languageCode | default "en-US" -}}",
+    "display":      "{{- .Site.Params.Manifest.display      | default "browser"     -}}",
+    "start_url":    "{{- .Site.Params.Manifest.startUrl     | default .Site.BaseURL -}}",
+    "theme_color":  "{{- .Site.Params.Manifest.themeColor   | default .Site.Params.ThemeColor | default "#fff" -}}",
+    {{- with .Site.Params.Manifest.backgroundColor -}}
+    "background_color": "{{- . -}}",
+    {{- end -}}
+    {{- with (.Site.Params.Manifest.description | default .Site.Params.Description) -}}
+    "description": "{{- . | plainify | htmlUnescape -}}",
+    {{- end -}}
+    {{- with (.Site.Params.Manifest.orientation | default "portrait") }}
+    "orientation": "{{- . -}}",
+    {{- end }}
+    {{- with (.Site.Params.Manifest.scope | default "/") }}
+    "scope": "{{- . -}}",
+    {{- end }}
+    {{- $fav_path := .Site.Params.Manifest.favicons | default "assets/favicons" -}}
+    {{- $base_path := path.Join "/static" $fav_path -}}
+    {{- if fileExists $base_path -}}
+        {{ $icon_list := slice -}}
+        {{- range (readDir $base_path) -}}
+            {{- $url := (path.Join $fav_path .Name) | relURL -}}
+            {{- if eq (substr .Name 0 7) "android" -}}
+                {{- with imageConfig (path.Join $base_path .Name) -}}
+                    {{- $icon_list = $icon_list | append (dict "src" $url "sizes" (printf "%dx%d" .Width .Height) "type" "image/png") -}}
+                {{- end -}}
+            {{- end -}}
+        {{- end -}}
+        {{- if gt (len $icon_list) 0 -}}
+        "icons":
+        {{ $icon_list | jsonify (dict "indent" "  ") }}
+        {{- end -}}
+    {{- end -}}
+  }
