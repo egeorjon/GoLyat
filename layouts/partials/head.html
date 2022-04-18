@@ -80,7 +80,7 @@
         <link rel="index" href="{{- .Permalink -}}">
     {{- end -}}
 {{- else -}}
-        <link rel="index" href="/index.html">
+        <link rel="index" href="{{- $.Site.BaseURL -}}">
 {{- end -}}
 
 {{- if eq .Kind "page" -}}
@@ -91,12 +91,27 @@
     {{- end -}}
 {{- end -}}
 
-{{- with .GetPage "copyright" -}}
+{{- with .GetPage "licences" -}}
     <link rel="license" href="{{- .Permalink -}}">
 {{- end -}}
 
 {{- with .OutputFormats.Get "rss" -}}
     {{- printf `<link rel="%s" type="%s" href="%s" title="%s" />` .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML -}}
 {{- end -}}
+{{- if .Site.Params.mainSections -}}
+    {{- range .Site.Params.mainSections -}}
+        {{ with $.Site.GetPage . -}}
+            {{- $title := .Title -}}
+            {{- with .OutputFormats.Get "rss" -}}
+                {{- printf `<link rel="%s" type="%s" href="%s" title="%s" />` .Rel .MediaType.Type .Permalink $title | safeHTML -}}
+            {{- end -}}
+        {{- end -}}
+    {{- end -}}
+{{- end -}}
 
+{{- with .Site -}}
+    {{- with ((.GetPage "home").OutputFormats.Get "webmanifest") }}
+        {{- printf `<link rel="%s" type="%s" href="%s" />` .Rel .MediaType.Type .RelPermalink | safeHTML -}}
+    {{- end -}}
+{{- end -}}
 {{- partial "partials/styles.html" . -}}
