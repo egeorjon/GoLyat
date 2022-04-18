@@ -48,7 +48,7 @@
                     "weight": 2,
                     "wtype": "page",
                     "params": {
-                        "page": "links"
+                        "page": "site-theme"
                     }
                 }
             ]
