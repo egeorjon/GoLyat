@@ -7,12 +7,14 @@
                 {{- $abs_path := path.Join "/static" . -}}
                 {{- if fileExists $abs_path -}}
                     {{- with imageConfig $abs_path -}}
-                        <a class="navbar-brand me-auto" href="index.html" title="{{- $title -}}">
+                        <a class="navbar-brand me-auto" href="{{- $.Site.BaseURL -}}" title="{{- $title -}}">
                             <img id="logo" class="site-brand-logo" src="{{- $.Site.Params.BrandLogo | relURL -}}" width="{{- .Width -}}" height="{{- .Height -}}" alt="{{- $title -}}" />
                         </a>
                     {{- end -}}
                 {{- else -}}
-                    
+                    <a class="navbar-brand me-auto" href="{{- $.Site.BaseURL -}}" title="{{- $title -}}">
+                        {{- $title -}}
+                    </a>                    
                 {{- end -}}
             {{- end -}}
             {{- $search_page := .Site.GetPage "search" -}}
