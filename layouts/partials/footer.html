@@ -53,15 +53,15 @@
 {{- define "widgets_list" -}}
     {{- $context := .context -}}
     {{- range .group.Widgets -}}
-        {{- $partialPath := printf "partials/widgets/%s.html" .wtype -}}
+        {{- $partialPath := printf "partials/widgets/%s.html" .widget -}}
         {{- if templates.Exists $partialPath -}}
             {{- if .cache | default false -}}
-                {{- partialCached $partialPath (dict "context" $context "params" .params) (printf "%s-%x" .wtype .params) -}}
+                {{- partialCached $partialPath (dict "context" $context "params" .params) (printf "%s-%x" .widget .params) -}}
             {{- else -}}
                 {{- partial $partialPath (dict "context" $context "params" .params) -}}
             {{- end -}}
         {{- else -}}
-            {{- partial "partials/widgets/default.html" (dict "context" $context "params" .wtype) -}}
+            {{- partial "partials/widgets/default.html" (dict "context" $context "params" .widget) -}}
         {{- end -}}
     {{- end -}}
 {{- end -}}

@@ -10,7 +10,7 @@
             },
             "Widgets": [
                 {
-                    "wtype": "logo",
+                    "widget": "logo",
                     "cache": true,
                     "weight": 1,
                     "params": {
@@ -21,7 +21,7 @@
                     }
                 },
                 {
-                    "wtype": "follow-me",
+                    "widget": "follow-me",
                     "cache": true,
                     "weight": 2,
                     "params": {}

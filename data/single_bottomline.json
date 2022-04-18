@@ -5,7 +5,7 @@
           "columns": { "def": 1, "sm": 1, "md": 1, "lg": 1, "xl": 1 },
           "Widgets": [
             {
-                "wtype": "authors",
+                "widget": "authors",
                 "cache": false,
                   "weight": 1,
                   "params": {}
@@ -17,13 +17,13 @@
           "columns": { "def": 1, "sm": 1, "md": 2, "lg": 2, "xl": 2 },
           "Widgets": [
             {
-                "wtype": "post-tags",
+                "widget": "post-tags",
                 "cache": false,
                 "weight": 1,
                 "params": {}
             },
             {
-                "wtype": "share-links",
+                "widget": "share-links",
                 "cache": false,
                 "weight": 2,
                 "params": {}
@@ -36,7 +36,7 @@
           "columns": { "def": 1, "sm": 1, "md": 1, "lg": 1, "xl": 1 },
           "Widgets": [
             {
-                "wtype": "related-posts",
+                "widget": "related-posts",
                 "cache": false,
                 "weight": 1,
                 "params": {}

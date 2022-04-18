@@ -19,7 +19,7 @@
                 {
                     "cache": true,
                     "weight": 1,
-                    "wtype": "page",
+                    "widget": "page",
                     "params": {
                         "page": "a-propos"
                     }
@@ -38,7 +38,7 @@
                 {
                     "cache": true,
                     "weight": 1,
-                    "wtype": "page",
+                    "widget": "page",
                     "params": {
                         "page": "links"
                     }
@@ -46,7 +46,7 @@
                 {
                     "cache": true,
                     "weight": 2,
-                    "wtype": "page",
+                    "widget": "page",
                     "params": {
                         "page": "site-theme"
                     }
