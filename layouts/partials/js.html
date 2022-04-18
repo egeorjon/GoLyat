@@ -5,46 +5,6 @@
 <script src="/assets/js/search.js" type="text/javascript"></script>
 {{- end -}}
 <script>
-    /* -----------------------------------------------
-    --- Reduce the size of the logo when scrolling ---
-    -------------------------------------------------- */
-/*    window.onscroll = function() {
-        navbarScroll()
-    };
-
-    function navbarScroll() {
-        var y  = window.scrollY;
-        var id = document.getElementById("page-header");
-        if (y > 200) {
-          id.classList.add('small');
-        } else if (y < 200) {
-          id.classList.remove('small');
-        }
-      }
-*/
-
-/*
-    var matches = document.querySelectorAll("blockquote");
-    matches.forEach(
-        bq => {
-            bq.classList.add("blockquote");
-            bqcontent = bq.innerHTML;
-            let [bqtext, bqcite] = bqcontent.split(' - ');
-
-            var wrapper = document.createElement('figure');
-            bq.parentNode.insertBefore(wrapper, bq);
-            wrapper.appendChild(bq);
-
-            var insider = document.createElement("figcaption");
-            insider.classList.add("blockquote-footer");
-            insider.innerHTML = bqcite;
-            bq.innerHTML = bqtext;
-            wrapper.appendChild(insider)
-
-        }
-    )
-/*
-
     /* --------------------------------------------
     --- Initiate the image galleries            ---
     ----------------------------------------------- */
