@@ -1,0 +1,51 @@
+{{/* Parameters */}}
+{{/* .context   */}}
+{{/* Params     */}}
+{{/* .title     */}}
+{{/* .type      */}}
+{{/* .numposts  */}}
+{{/* .columns   */}}
+{{- $title         := .params.title | default "You may like the following posts also" -}}
+{{- $widget_format := .params.type | default "image" -}}
+{{- $class := partialCached "class-columns.html" (.params.columns | default (dict "def" 1 "sm" 1 "md" 2 "lg" 2 "xl" 2)) (printf "%s" .columns) -}}
+{{- with .context.Params.mainSections -}}
+    <div class="col">
+        {{- if eq $widget_format "image" -}}
+            {{- with $title -}}
+            <div class="row mb-2">
+                <div class="col"><h3 class="card-title">{{- . | safeHTML -}}</h3></div>
+            </div>
+            {{- end -}}
+            <div class="row {{ $class -}}">
+                {{- range . -}}
+                <div class="col">
+                    <aside class="card h-100 widget widget-related widget-related-images">
+                        {{- if isset .Params "images" -}}
+                        <a href="{{- .RelPermalink -}}" title="{{- .Title | plainify | htmlUnescape -}}"></a>
+                            {{- partial "partials/image.html" (dict "context" . "Destination" .Params.images "Title" .Title "Text" .Title "class" "card-img-top") -}}
+                        </a>
+                        {{- end -}}
+                        <div class="card-body">
+                            <h4 class="card-title"><a href="{{- .RelPermalink -}}" title="{{- .Title | plainify | htmlUnescape -}}">{{- .Title -}}</a></h4>
+                            {{- with .Params.Descrition -}}<p class="card-text">{{- . | plainify | htmlUnescape -}}</p>{{- end -}}
+                        </div>
+                    </aside>
+                </div><!-- col -->
+                {{- end -}}
+            </div><!-- row -->
+        {{- else -}}
+            <aside class="card h-100 widget widget-related widget-related-list">
+                <div class="card-body">
+                    {{- with $title -}}
+                        <h3 class="card-title">{{- . | safeHTML -}}</h3>
+                    {{- end -}}
+                    <ul class="card-text">
+                        {{- range . -}}
+                        <li><a href="{{- .RelPermalink -}}" title="{{- .Title | plainify | htmlUnescape -}}">{{- .Title -}}</a></li>
+                        {{- end -}}
+                    </ul>
+                </div><!-- card-body -->
+            </aside>
+        {{- end -}}
+    </div><!-- col -->
+{{- end -}}
