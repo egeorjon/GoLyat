@@ -10,7 +10,7 @@
 {{- $widget_format := .params.type | default "image" -}}
 {{- $numposts      := .params.numposts | default 3 -}}
 {{- $filepath      := path.Join "data" (.params.filename | default "popularposts.json") -}}
-{{- $class := partialCached "class-columns.html" (.params.columns | default (dict "sm" 1 "md" 3 "lg" 3 "xl" 3)) (printf "%s" .columns) -}}
+{{- $class := partialCached "class-columns.html" (.params.columns | default (dict "sm" 1 "md" 3 "lg" 3 "xl" 3)) (printf "%s" .params.columns) -}}
 {{- if os.FileExists $filepath -}}
     {{- $data := getJSON $filepath -}}
     {{- with $data -}}
