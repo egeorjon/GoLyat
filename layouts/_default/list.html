@@ -1,4 +1,6 @@
 {{- define "main" -}}
+    {{- $post_format  := .Site.Params.PostList.PostFormat | default "image-left" -}}
+    {{- $partial_path := path.Join "partials/posts-format" (printf "%s%s%s" "posts-list-" $post_format ".html") -}}
     <div class="container limit-width">
         <div class="row">
             {{- $string := .Summary -}}
@@ -9,11 +11,11 @@
                 </div><!-- col -->
             {{- end -}}
         </div>
-        {{- $class := partialCached "class-columns.html" (.Site.Params.PostList.ListColumns | default (dict "def" 1 "sm" 1 "md" 1 "lg" 1 "xl" 1)) "list" -}}
+        {{- $class := partialCached "class-columns.html" (.Site.Params.PostList.Columns | default (dict "def" 1 "sm" 1 "md" 1 "lg" 1 "xl" 1)) (printf "%s" .Site.Params.PostList.Columns) -}}
         <div class="post-list {{ $class -}}">
             {{- range .Paginator.Pages -}}
             <div class="col mb-6">
-                {{- partial "partials/post-list.html" (dict "context" . "kindctx" $.Kind) -}}
+                {{- partial $partial_path (dict "context" . "kindctx" $.Kind) -}}
             </div><!-- col -->
             {{- end -}}
         </div><!-- row -->
@@ -22,7 +24,7 @@
 {{- define "bottomline" -}}
     <section id="page-bottomline" class="page-bottomline-pagination pb-4 pt-4 mb-5">
         <div class="container">
-            {{- partial "partials/pagination-list.html" . -}}
+            {{- partialCached "partials/pagination-list.html" . .Paginator.PageNumber -}}
         </div>
     </section>
 {{- end -}}
