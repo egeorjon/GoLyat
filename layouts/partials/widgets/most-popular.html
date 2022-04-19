@@ -15,11 +15,16 @@
     {{- with $data -}}
         {{- $posts := slice -}}
         {{- range first $numposts (sort $data.posts "visit" "desc") -}}
-            {{- $posts := $posts | append ($context.Site.GetPage .post) -}}
+        ---{{- printf "%s" .post -}}---<br/>
+            {{- $p := $context.Site.GetPage .post -}}
+            {{- with $p -}}
+                ---{{- printf "%#v" $p -}}---<br/>
+                {{- $posts = $posts | append (slice .) -}}
+            {{- end -}}
         {{- end -}}
         {{- with $posts -}}
-            {{- partial "partials/widgets/posts-widget.html" (dict "context" $context "params" $params "title" ($params.title | default "Most popular posts") "posts" .) -}}
+            {{- printf "%#v" $posts -}}
+            {{/*- partial "partials/widgets/posts-widget.html" (dict "context" $context "params" $params "title" ($params.title | default "Most popular posts") "posts" .) -*/}}
         {{- end -}}
     {{- end -}}
 {{- end -}}
-
