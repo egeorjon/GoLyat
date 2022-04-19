@@ -1,0 +1,313 @@
+theme                  = "golyat"
+title                  = "Le blog d'Emmanuel GEORJON"
+baseURL                = ""   # baseURL set during builds
+DefaultContentLanguage = "fr"
+LanguageCode           = "fr-fr"
+Paginate               = 6
+timeout                = 100000
+copyright              = "2008-2022 (c) Emmanuel Georjon"  # Use in the RSS Internal template
+
+[params]
+  LicenceText         = "Contenu sous license Creative Commons: Attribution - Pas d Utilisation Commerciale 4.0 International [BY-NC 4.0]"
+  LicenceURLx          = "http://creativecommons.org/licenses/by-nc/4.0/"
+  LicenceShortText    = "<a href=\"/static/assets/img/creative_commons.png\" title=\"Contenu sous license Creative Commons: Attribution - Pas d Utilisation Commerciale 4.0 International [BY-NC 4.0]\" />"
+  formatdate          = ":date_medium"
+  opengraph           = "theme"      # Internal (default Hugo template), theme (the theme's template), or none
+  twitterCards        = "theme"      # Internal (default Hugo template), theme (the theme's template), or none
+  schema              = "theme"      # Internal (default Hugo template), theme (the theme's template), or none
+#   description       = "A travers ce blog, je tente de partager avec vous, connaissances, opinions, avis, humeurs... sur les technologies web, et la photographie. Les articles présentés sont le résultat de mes découvertes dans ces deux domaines."
+#   keywords          = [ "Project Management", "Architecture IT", "Photo", "gestion de projet", "urbanisation" ]
+  mainSections        = [ "blog", "architecture", "project", "photo" ]
+  themecolor          = "#eb5e28"
+  brandlogo           = "/assets/img/site-logo.png"
+  brandtitle          = "Le blog d'Emmanuel"
+#   DisplayBrandTitle = false
+# lightbox            = true
+
+# [params.services]
+#   eTracker        = ""
+#   TestTAC           = false
+#   utteranc_repo     = "egeorjon/EG-Blog-Comments"
+#   utteranc_term     = "title"
+#   piwikpro        = "a3f55ec7-680f-4d58-9d73-bcdc0d7462d2"
+#   googleAnalytics = ""
+#   adclient       = "ca-pub-8980505905466731"
+#   adListBottom   = ""
+#   adSingleBottom = ""
+#   adTest         = false
+#   adHomePage     = ""
+
+# [Config.Services.RSS]
+#  Limit = 5
+
+[author] # Used in RSS internal template
+  name  = "Emmanuel GEORJON"
+  email = "blog@emmanuelgeorjon.com"
+
+[markup]
+#   defaultMarkdownHandler = 'goldmark'
+#   [markup.asciidocExt]
+#     backend              = 'html5'
+#     extensions           = []
+#     failureLevel         = 'fatal'
+#     noHeaderOrFooter     = true
+#     preserveTOC          = false
+#     safeMode             = 'unsafe'
+#     sectionNumbers       = false
+#     trace                = false
+#     verbose              = false
+#     workingFolderCurrent = false
+#     [markup.asciidocExt.attributes]
+   [markup.goldmark]
+#     [markup.goldmark.extensions]
+#       definitionList    = true
+#       footnote          = true
+#       linkify           = true
+#       linkifyProtocol   = 'https'
+#       strikethrough     = true
+#       table             = true
+#       taskList          = true
+#       typographer       = true
+    [markup.goldmark.parser]
+#       autoHeadingID     = true
+#       autoHeadingIDType = 'github'
+      [markup.goldmark.parser.attribute]
+        block     = true
+#         title   = true
+      [markup.goldmark.renderer]
+#       hardWraps = false
+        unsafe    = true
+#       xhtml     = false
+   [markup.highlight]
+#     anchorLineNos = false
+#     codeFences    = true
+#     guessSyntax   = false
+#     hl_Lines      = ''
+#     lineAnchors   = ''
+#     lineNoStart   = 1
+#     lineNos       = true
+#     lineNumbersInTable = true
+#     noClasses     = true
+#     noHl          = false
+    style         = 'monokai'  # => manni in Minimal-Blank
+#     tabWidth      = 4
+#   [markup.tableOfContents]
+#     endLevel      = 3
+#     ordered       = false
+#     startLevel    = 2
+
+[mediaTypes]
+  [mediaTypes."application/manifest+json"]
+    suffixes = [ "webmanifest" ]
+
+[outputFormats]
+  [outputFormats.webmanifest]
+    baseName    = 'site'
+    isPlainText = true
+    mediaType   = 'application/manifest+json'
+    rel         = "manifest"
+
+[outputs]
+  home    = [ "HTML", "RSS", "JSON", "webmanifest" ]
+  section = [ "HTML", "RSS" ]
+
+#[minify]
+#disableJSON = true
+
+[Permalinks]
+  posts = "/:section/:filename/"
+#   # posts = "/:year/:month/:filename"
+
+[taxonomies]
+  serie  = "series"
+  tag    = "tags"
+  author = "authors"
+
+# [sitemap]
+#   changefreq = "weekly"
+#   filename = "sitemap.xml"
+#   priority = 0.5
+
+ [[menu.main]]
+   identifier = "blog"
+   name       = "Blog"
+   pageref    = "/blog/"
+   weight     = 10
+
+ [[menu.main]]
+   identifier = "architecture"
+   name       = "Architecture IT"
+   pageref    = "/architecture/"
+   weight     = 20
+
+ [[menu.main]]
+   identifier = "project"
+   name       = "Gestion de projet"
+   pageref    = "/project/"
+   weight     = 30
+
+ [[menu.main]]
+   identifier = "photo"
+   name       = "Photographie"
+   pageref    = "/photo/"
+   weight     = 40
+
+[params.manifest]
+#  name            = ""    # Default: Site title
+  shortName       = "EG-Blog"    # no default
+#  lang            = ""    # Default: languageCode
+#  display         = ""    # Default: browser
+#  start_url       = ""    # Default: .Site.BaseURL
+#  theme_color     = ""    # Default: themecolor field in [Params] or #fff
+#  backgroundColor = ""    # Default: #fff
+#  description     = ""    # Default: Description field in [Params]
+#  orientation     = ""    # Default: Portrait
+#  scope           = ""    # Default: Scope
+#  favicons        = ""    # Default: /assets/favicons
+
+[params.Homepage]
+
+  [[params.Homepage.Rows]]
+    name    = "section"
+    columns = { "sm" = 1, "md" = 1, "lg" = 1, "xl" = 1 }
+    weight  = 2
+
+    [[params.Homepage.Rows.Widgets]]
+      widget = "sections-list"
+      cache  = true
+      params = { "title" = "What this blog is speaking about ?", "numposts" = 4, "columns" = { "def" = 1, "sm" = 1, "md" = 2, "lg" = 2, "xl" = 2 } }
+      weight = 1
+
+  [[params.Homepage.Rows]]
+    name    = "last-posts"
+    columns = { "sm" = 1, "md" = 1, "lg" = 1, "xl" = 1 }
+    weight  = 1
+
+    [[params.Homepage.Rows.Widgets]]
+      widget = "last-posts"
+      cache  = true
+      params = { "title" = "", "numposts" = 6, "columns" = { "def" = 1, "sm" = 1, "md" = 3, "lg" = 3, "xl" = 3 } }
+      weight = 1
+
+  [[params.Homepage.Rows]]
+    name    = "post-popular"
+    columns = { "sm" = 1, "md" = 1, "lg" = 1, "xl" = 1 }
+    weight  = 3
+
+    [[params.Homepage.Rows.Widgets]]
+      widget = "most-popular"
+      cache  = true
+      params = { "title" = "", "numposts" = 6, "columns" = { "def" = 1, "sm" = 1, "md" = 3, "lg" = 3, "xl" = 3 } }
+      weight = 1
+
+[params.PostList]
+  Listcolumns  = { "def" = 1, "sm" = 1, "md" = 1, "lg" = 1, "xl" = 1 }
+  Postcolumns  = 2
+  displayimage = true
+  metatop      = false
+  metabottom   = { 1 = "section", 2 = "date", 3 = "reading" }
+
+[params.Single]
+  displayimage   = true
+  metatop        = { 1 = "fulldate",    2 = "reading" }
+  relatedposts   = 3
+  relatedcolumns = { "def" = 1, "sm" = 1, "md" = 3, "lg" = 3, "xl" = 3, "xxl" = 4 }
+#  metabottom      = { 1 = "section", 2 = "tags"    }
+#  bottomcolumns   = { "sm" = 1, "md" = 1, "lg" = 2, "xl" = 2, "xxl" = 3 }
+#  TableOfContents = false
+
+[params.followlinks]
+
+  [[params.followlinks.socials]]
+      id      = "rss"
+      name    = "RSS Feeds"
+      account = ""
+      weight  = 1
+  [[params.followlinks.socials]]
+      id      = "linkedin"
+      name    = "LinkedIn"
+      account = "emmanuelgeorjon"
+      weight  = 2
+  [[params.followlinks.socials]]
+    id      = "twitter"
+    name    = "Twitter"
+    account = "emmanuelgeorjon"
+    weight  = 3
+  [[params.followlinks.socials]]
+    id      = "github"
+    name    = "GitHub"
+    account = "egeorjon"
+    weight  = 4
+  [[params.followlinks.socials]]
+    id      = "facebook"
+    name    = "Facebook"
+    account = ""
+    weight  = 5
+  [[params.followlinks.socials]]
+    id      = "pinterest"
+    name    = "Pinterest"
+    account = ""
+    weight  = 6
+  [[params.followlinks.socials]]
+    id      = "Flickr"
+    name    = "Flickr"
+    account = ""
+    weight  = 7
+  [[params.followlinks.socials]]
+    id      = "Instagram"
+    name    = "Instagram"
+    account = ""
+    weight  = 8
+
+[params.sharelinks]
+  [params.sharelinks.twitter]
+    id      = "twitter"
+    account = "emmanuelgeorjon"
+    weight  = 1
+  [params.sharelinks.linkedin]
+    id      = "linkedin"
+    weight  = 2
+  [params.sharelinks.email]
+    id      = "email"
+    weight  = 3
+  [params.sharelinks.facebook]
+    id    = "facebook"
+    media = "Facebook"
+    weight = 4
+  [params.sharelinks.pinterest]
+    id    = "pinterest"
+    media = "Pinterest"
+    weight = 5
+#      [params.sharelinks.media5]
+#        id    = "whatsapp"
+#        media = "WhatsApp"
+#        weight = 5
+#      [params.sharelinks.media6]
+#        id    = "digg"
+#        media = "Digg"
+#        weight = 6
+#      [params.sharelinks.media7]
+#        id    = "tumblr"
+#        media = "Tumblr"
+#        weight = 7
+#      [params.sharelinks.media8]
+#        id    = "reddit"
+#        media = "Reddit"
+#        weight = 8
+#      [params.sharelinks.media9]
+#        id    = "mix"
+#        media = "Mix"
+#        weight = 9
+
+[related]
+  includeNewer = true
+  threshold    = 75
+  toLower      = false
+
+  [[related.indices]]
+    name = "tags"
+    weight = 100
+
+  [[related.indices]]
+    name = "date"
+    weight = 10
