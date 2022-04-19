@@ -4,13 +4,6 @@
 
 @import "bootstrap-5.1.3/scss/functions";
 
-/* --- Variable customization ------------- */
-$primary:       $flame;
-$secondary:     $pale-silver;
-$light:         $floral-white;
-$medium:        $black-olive;
-$dark:          $eerie-black;
-
 // $body-bg:                  $white !default;
 $body-color:                  $dark; // $gray-900 !default;
 // $body-text-align:          null !default;
@@ -340,7 +333,7 @@ $utilities: map-remove($utilities,
     @import "bootstrap-5.1.3/scss/helpers/clearfix";
 //    @import "bootstrap-5.1.3/scss/helpers/colored-links";
     @import "bootstrap-5.1.3/scss/helpers/position";
-//    @import "bootstrap-5.1.3/scss/helpers/ratio";
+    @import "bootstrap-5.1.3/scss/helpers/ratio";
 //    @import "bootstrap-5.1.3/scss/helpers/stacks";
 //    @import "bootstrap-5.1.3/scss/helpers/stretched-link";
 //    @import "bootstrap-5.1.3/scss/helpers/text-truncation";
