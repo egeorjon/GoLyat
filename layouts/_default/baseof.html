@@ -7,7 +7,7 @@
         {{- partial "header.html" . -}}
         <main role="main" id="page-main">
             {{- partial "partials/headline.html" . -}}
-            <section id="page-content type-{{- .Type -}}">
+            <section id="page-content page-type-{{- .Type }} page-{{- .Kind -}}">
                 {{- block "main" . }}{{- end }}
             </section>
             {{- block "bottomline" . }}{{- end }}
