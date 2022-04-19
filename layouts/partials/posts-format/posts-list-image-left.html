@@ -1,0 +1,29 @@
+{{- $context        := .context                        -}}
+{{- $kindctx        := .kindctx                        -}}
+{{- $default_bottom := (dict "1" "date" "2" "reading") -}}
+{{- $display_image  := isset .context.Params "images"  -}}
+<article class="card">
+    <div class="row">
+        {{- if $display_image -}}
+        <div class="col-12 col-md-5">
+            {{- partial "image.html" (dict "context" $context "Destination" $context.Params.images "Title" $context.Title "Text" $context.Title "Class" "pt-1" "Link" $context.RelPermalink) -}}
+        </div><!-- col -->
+        {{- end -}}
+        <div class="col-12 {{ if $display_image -}}col-md-7{{- end -}}">
+            <div class="card-body">
+                <h3 class="card-title post-title"><a href="{{- $context.RelPermalink -}}">{{- $context.Title -}}</a></h3>
+                {{- with $context.Site.Params.PostList.metatop -}}
+                    {{- partial "partials/meta.html" (dict "context" $context "kindctx" $kindctx "meta" . "class" "meta-top") -}}
+                {{- end -}}
+                {{- with $context.Summary -}}
+                    <p class="post-summary card-text">
+                    {{- . | replaceRE "<p>(.*|\n)</p>"  "$1" | safeHTML -}}
+                    </p>
+                {{- end -}}
+                {{- with $context.Site.Params.PostList.metabottom | default $default_bottom -}}
+                   {{- partial "partials/meta.html" (dict "context" $context "kindctx" $kindctx "meta" . "class" "meta-bottom") -}}
+                {{- end -}}
+            </div><!-- card-body -->
+        </div><!-- col -->
+    </div><!-- row -->
+</article>
