@@ -1,25 +1,25 @@
 {{- define "main" -}}
     {{- $current_page := . -}}
-    {{- range .Site.Params.Homepage.Rows -}}{{/* $defaultBottomline */}}
-    <section class="homepage homepage-{{- .name | default "default" }} mb-5">
+    {{- range sort .Site.Params.Homepage.Rows "weight" -}}
+    <div class="home-{{- .name -}}">
         {{- $limit := cond (.limitedWidth | default true) "limit-width" "" -}}
         <div class="container {{ $limit -}}">
             {{- $class := partialCached "class-columns.html" (.columns | default (dict "def" 1 "sm" 1 "md" 1 "lg" 1 "xl" 1)) (printf "%s" .columns) -}}
             <div class="row {{ $class -}}">
-                {{- range .Widgets -}}
-                    {{- $partialPath := printf "partials/widgets/%s.html" .widget -}}
-                    {{- if templates.Exists $partialPath -}}
-                        {{- if .cache | default false -}}
-                            {{- partialCached $partialPath (dict "context" $current_page "params" .params) (printf "%s-%s" .widget .params) -}}
-                        {{- else -}}
-                            {{- partial $partialPath (dict "context" $current_page "params" .params) -}}
-                        {{- end -}}
+            {{- range sort .Widgets "weight" -}}
+                {{- $partialPath := printf "partials/widgets/%s.html" .widget -}}
+                {{- if templates.Exists $partialPath -}}
+                    {{- if .cache | default false -}}
+                        {{- partialCached $partialPath (dict "context" $current_page "params" .params) (printf "%s-%s" .widget .params) -}}
                     {{- else -}}
-                        {{- partial "partials/widgets/default.html" (dict "context" $current_page "params" .widget) -}}
+                        {{- partial $partialPath (dict "context" $current_page "params" .params) -}}
                     {{- end -}}
+                {{- else -}}
+                    {{- partial "partials/widgets/default.html" (dict "context" $current_page "params" .widget) -}}
                 {{- end -}}
+            {{- end -}}<!-- range -->
             </div><!-- row -->
         </div><!-- container -->
-    </section>
-    {{- end -}}
+    </div><!-- Home- ... -->
+    {{- end -}}<!-- range -->
 {{- end -}}
