@@ -6,6 +6,13 @@ $black-olive: #403d39ff;
 $eerie-black: #252422ff;
 $flame: #eb5e28ff;
 
+/* --- Variable customization ------------- */
+$primary:       $flame;
+$secondary:     $pale-silver;
+$light:         $floral-white;
+$medium:        $black-olive;
+$dark:          $eerie-black;
+
 // Boostrap customization
 @import "custom";
 
