@@ -6,19 +6,23 @@
 <!-- PlainText                                  -->
 {{- $alt_caption := .Text  | default "" -}}
 {{- $title       := .Title | default "" -}}
-{{- $imgtype     := 0 -}}{{/* 0: image not self-hosted, 1: image self hosted, but format not supported, 2: Image hosted, and supported format */}}
+{{- $imgtype     := 0 -}}{{/* 0: not found, 1: external, 2: found but not manageable, 3: found and manageable */}}
 {{- $image       := "" -}}
 {{- $exts        := (slice ".jpg" ".jpeg" ".gif" ".tif" ".png" ".webp") -}}
-{{- if not (strings.HasPrefix .Destination "http") -}}
+{{- if strings.HasPrefix .Destination "http" -}}
+    {{- $imgtype = 1 -}}
+{{- else -}}
     {{- $image = .Page.Resources.GetMatch .Destination -}}
     {{- with $image -}}
-        {{- $imgtype = 1 -}}
+        {{- $imgtype = 2 -}}
         {{- if in $exts (path.Ext $.Destination) -}}
-            {{- $imgtype = 2 -}}
+            {{- $imgtype = 3 -}}
         {{- end -}}
     {{- end -}}
 {{- end -}}
-{{- if lt $imgtype 2 -}}
+{{- if eq $imgtype 0 -}}
+    <div class="ratio ratio-57x20"><div>Image not found</div></div>
+{{- else if lt $imgtype 3 -}}
 <figure class="figure figure-center">
     <img class="img-fluid" src="{{- .Destination | safeURL -}}" {{ with $alt_caption -}}alt="{{- . | safeHTML -}}"{{- end }} />
     {{- with $alt_caption -}}<figcaption class="figure-caption">{{ . | safeHTML -}}</figcaption>{{- end -}}
