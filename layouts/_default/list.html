@@ -24,7 +24,7 @@
 {{- define "bottomline" -}}
     <section id="page-bottomline" class="page-bottomline-pagination pb-4 pt-4 mb-5">
         <div class="container">
-            {{- partialCached "partials/pagination-list.html" . .Paginator.PageNumber -}}
+            {{- partial "partials/pagination-list.html" . -}}
         </div>
     </section>
 {{- end -}}
