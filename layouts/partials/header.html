@@ -19,7 +19,7 @@
             {{- end -}}
             {{- $search_page := .Site.GetPage "search" -}}
             <form class="search-form input-group d-none d-md-flex" action="{{- $search_page.Permalink -}}" method="GET">
-                <input class="form-control pe-5" type="text" name="s" placeholder="Search for products" />
+                <input class="form-control pe-5" type="text" name="s" placeholder="{{- i18n "search-please-enter" -}}" />
                 <i class="bi-search me-3"> </i>
             </form>
             <div class="d-flex flex-shrink-0"><!-- align-items-center -->
@@ -34,7 +34,7 @@
             <div class="navbar-collapse collapse justify-content-center" id="navbarCollapse">
                 <form class="search-form input-group d-md-none my-3">
                     <i class="bi-search"> </i>
-                    <input class="form-control" type="text" placeholder="Search for products">
+                    <input class="form-control" type="text" placeholder="{{- i18n "search-please-enter" -}}">
                 </form>
                 <ul class="navbar-nav">
                     {{- $currentPage := .CurrentSection -}}
@@ -43,7 +43,7 @@
                         {{- $link   := .Name -}}
                         {{- if or ($currentPage.IsMenuCurrent "main" . ) ($currentPage.HasMenuCurrent "main" .) -}}
                             {{- $active = " active" -}}
-                            {{- $link   = printf "%s<span class=\"visually-hidden\"> (current)</span>" .Name -}}
+                            {{- $link   = printf "%s<span class=\"visually-hidden\"> (%s)</span>" .Name (i18n "current") -}}
                         {{- end }}
                         <li class="nav-item">
                             <a class="nav-link {{- $active -}}" href="{{- .URL | absURL -}}" id="{{- .Identifier -}}" title="{{- .Name -}}">{{- safeHTML $link -}}</a>

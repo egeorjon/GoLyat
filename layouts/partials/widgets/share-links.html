@@ -34,17 +34,18 @@
                             {{- if .share -}}
                                 {{- $link_title := printf (i18n "share-link-with") .name -}}
                                 {{- $share_url := partial "share_regex" (dict "pattern" "%%URL%%"      "param" "%s"              "value" $url          "string" .share)     -}}
-                                {{- $share_url = partial "share_regex" (dict  "pattern" "%%HOME%%"     "param" "%s"              "value" $home         "string" $share_url) -}}
-                                {{- $share_url = partial "share_regex" (dict  "pattern" "%%TITLE%%"    "param" "%s"              "value" $title        "string" $share_url) -}}
-                                {{- $share_url = partial "share_regex" (dict  "pattern" "%%VIA%%"      "param" "&via=%s"         "value" $via          "string" $share_url) -}}
-                                {{- $share_url = partial "share_regex" (dict  "pattern" "%%HASHTAGS%%" "param" "&hashtags=%s"    "value" $tags         "string" $share_url) -}}
-                                {{- $share_url = partial "share_regex" (dict  "pattern" "%%MEDIA%%"    "param" "&media=%s"       "value" $image        "string" $share_url) -}}
-                                {{- $share_url = partial "share_regex" (dict  "pattern" "%%DESC%%"     "param" "%s"              "value" $description  "string" $share_url) -}}
-                                {{- $share_url = partial "share_regex" (dict  "pattern" "%%BODY%%"     "param" "%s"              "value" $url          "string" $share_url) -}}
+                                {{- $share_url  = partial "share_regex" (dict "pattern" "%%HOME%%"     "param" "%s"              "value" $home         "string" $share_url) -}}
+                                {{- $share_url  = partial "share_regex" (dict "pattern" "%%TITLE%%"    "param" "%s"              "value" $title        "string" $share_url) -}}
+                                {{- $share_url  = partial "share_regex" (dict "pattern" "%%VIA%%"      "param" "&via=%s"         "value" $via          "string" $share_url) -}}
+                                {{- $share_url  = partial "share_regex" (dict "pattern" "%%HASHTAGS%%" "param" "&hashtags=%s"    "value" $tags         "string" $share_url) -}}
+                                {{- $share_url  = partial "share_regex" (dict "pattern" "%%MEDIA%%"    "param" "&media=%s"       "value" $image        "string" $share_url) -}}
+                                {{- $share_url  = partial "share_regex" (dict "pattern" "%%DESC%%"     "param" "%s"              "value" $description  "string" $share_url) -}}
+                                {{- $share_url  = partial "share_regex" (dict "pattern" "%%BODY%%"     "param" "%s"              "value" $url          "string" $share_url) -}}
                                 {{/*- $share_url = partial "share_regex" (dict  "pattern" "%%SUBJECT%%"  "param" "&subject=%s"     "value" $title        "string" $share_url) -*/}}
                                 {{/*- $share_url = partial "share_regex" (dict  "pattern" "%%TEXT%%"     "param" "%s"              "value" $title       "string" $share_url) -*/}}
                                 <li>
-                                    <a href="{{- $share_url -}}" class="share-link share-{{- $share.id -}}" title="{{- .name -}}" aria-label="{{- .arialabel -}}" rel="noopener noreferrer" target="_blank">
+                                    {{- $text := printf (i18n .sharetext) .name -}}
+                                    <a href="{{- $share_url -}}" class="share-link share-{{- $share.id -}}" title="{{- $text -}}" aria-label="{{- $text -}}" rel="noopener noreferrer" target="_blank">
                                         <i class="{{- .icon -}}" style="font-size: 1.5rem;"></i><span class="visually-hidden" aria-hidden="true">{{- .name -}}</span></a>
                                 </li>
                             {{- end -}}

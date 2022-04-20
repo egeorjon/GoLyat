@@ -1,0 +1,29 @@
+{{/* .context */}}
+{{/* .method : field or tag. Default field */}}
+{{/* .value  : name of the field, or name of the tag */}}
+{{/* .title  : */}}
+{{- $method := .params.method | default "field" -}}
+{{- $value  := .params.value  | default "edito" -}}
+{{- $title  := .params.value  | default ""      -}}
+{{- $heading_level := int (.params.heading | default 3) -}}
+{{- $heading_title := printf "h%d" $heading_level -}}
+{{- $post := "" -}}
+{{- if eq $method "field" -}}
+    {{- $post = first 1 (where .context.Site.Pages (printf "Params.%s" $value) true) -}}
+{{- else -}}
+    {{- $post = first 1 (where .context.Site.Pages $value "in" .Params.tags ) -}}
+{{- end -}}
+<div class="col">
+    {{- range $post -}}
+    <aside class="card widget widget-page">
+        <div class="card-body widget-inner">
+            {{- (printf "<%s class=\"card-title\">%s</%s>" $heading_title .Title $heading_title) | safeHTML -}}
+            <p class="card-text">{{- .Content -}}</p>
+        </div>
+    </aside>
+    {{- else -}}
+    <p>{{- i18n "error-post-not-found" -}}</p>
+    {{- end -}}
+</div>
+
+

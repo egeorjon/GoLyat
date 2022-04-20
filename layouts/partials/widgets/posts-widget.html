@@ -10,6 +10,9 @@
 {{/* .title       */}}
 {{- $title         := .title -}}
 {{- $widget_format := .params.type | default "image" -}}
+{{- $heading_level := int (.params.heading | default 3) -}}
+{{- $heading_title := printf "h%d" $heading_level -}}
+{{- $heading_subtitle := printf "h%d" (add $heading_level 1) -}}
 {{- $class         := partialCached "class-columns.html" (.params.columns | default (dict "def" 1 "sm" 1 "md" 3 "lg" 3 "xl" 3)) (printf "%s" .params.columns) -}}
 {{- with .posts -}}
     <div class="col">
@@ -17,7 +20,7 @@
             {{- with $title -}}
             <div class="row mb-4">
                 <div class="col">
-                    <h3>{{- . | safeHTML -}}</h3>
+                    {{- (printf "<%s>%s</%s>" $heading_title . $heading_title) | safeHTML -}}
                 </div>
             </div>
             {{- end -}}
@@ -31,7 +34,7 @@
                         </a>
                         {{- end -}}
                         <div class="card-body">
-                            <h4 class="card-title"><a href="{{- .RelPermalink -}}" title="{{- .Title | plainify | htmlUnescape -}}">{{- .Title -}}</a></h4>
+                            {{- (printf "<%s class=\"card-title\"><a href=\"%s\" title=\"%s\">%s</a></%s>" $heading_subtitle .RelPermalink (.Title | plainify | htmlUnescape) .Title $heading_subtitle) | safeHTML -}}
                             <span><i class="bi-calendar3"></i> {{ .Lastmod | time.Format ($.Site.Params.FormatDate | default "2-Jan-2006") -}}</span>
                             {{- with .Params.Description -}}<p class="card-text">{{- . | truncate 100 -}}</p>{{- end -}}
                         </div>
