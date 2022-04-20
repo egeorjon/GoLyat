@@ -12,27 +12,32 @@ Why Goliath (why this name)?
 ## Table of Contents
 
 - [Goliath](#goliath)
-  - [Table of Contents](#table-of-contents)
   - [Features](#features)
   - [Tools and libraries](#tools-and-libraries)
-  - [Installation](#installation)
+  - [Installation](#Installation)
   - [Usage](#usage)
   - [Markups](#markups)
   - [Shortcodes](#shortcodes)
-  - [Configuration](#configuration)
-    - [Tests and production](#tests-and-production)
+    - [Attachments](#attachments)
+    - [imggallery ](#imggallery )
     - [Language](#language)
     - [Date format](#date-format)
-    - [Site title / brand](#site-title--brand)
-    - [Navigation](#navigation)
     - [Pagination](#pagination)
-    - [The lists](#the-lists)
-    - [The posts](#the-posts)
-    - [Footer (top)](#footer-top)
-    - [Footer (bottom)](#footer-bottom)
+    - [Site title / brand](#site-title--brand)
+    - [Navigation](#Navigation)
+    - [Search configuration](#search-configuration)
+  - [SEO and other configurations](#seo-and-other-configurations)
+    - [SEO configuration](#SEO configuration)
+    - [RSS configuration](#rss-configuration)
+    - [File site.manifest](#file-sitemanifest)
+  - [Content configuration](#content-configuration)
+    - [Meta information](#meta-information)
+    - [Widgets](#widgets)
+    - [Footer](#footer)
+  - [Design configuration](#design-configuration)
+  - [Configuration of the social media](#configuration-of-the-social-media)
     - [SEO features](#seo-features)
     - [Favicons](#favicons)
-    - [Google Analytics](#google-analytics)
     - [RSS feeds](#rss-feeds)
     - [Sitemap](#sitemap)
   - [Advanced configuration](#advanced-configuration)
@@ -152,10 +157,10 @@ The theme provides some shortcodes
 
 | Shortcodes   | Description    |
 |--------------|----------------|
-| attachmennts | Display the list of documents attached to the current post |
+| attachments | Display the list of documents attached to the current post |
 | imggallery   | Display a photo gallery |
 
-### Attachements
+### Attachments
 
 Parameters: 
 
@@ -309,7 +314,7 @@ will display Apr 19, 2022.
 You can define the number of posts listed in each page of the lists. In the configuration file `config.toml`
 
 ```toml
-paginate = <the number of posts>
+paginate = "<the number of posts>"
 ```
 
 ### Site title / brand
@@ -344,9 +349,9 @@ Examples:
 theme="goliath"
 title=< title of the blog >
 [params]
-    ...
-    brandlogo is not specified, nor brandtitle
-    ...
+#    ...
+#    brandlogo is not specified, nor brandtitle
+#    ...
 ```
 In this case, the theme will display the title of the blog as a brand title.
 
@@ -372,10 +377,10 @@ weight = 10
 [[menu.main]]
 identifier = "id of the item 2"
 name = "Item 2"
-pre  = "html code to be addedd before the name"
+pre  = "html code to be added before the name"
 url = "/<url of the item 2>"
 weight = 20
-...
+# ...
 ```
 The `weight` field define the order of the item in the list (smaller weights are displayed first).
 
@@ -384,7 +389,7 @@ Example:
 [[menu.main]] 
   identifier = "photo"
   name       = "Photography"
-  pre        = "<i class="bi-camera"></i>"
+  pre        = "<i class='bi-camera'></i>"
   url        = "/photo/"
   weight     = 20
 ```
@@ -502,7 +507,7 @@ In the following example, the RSS files will be generate for the home page, and 
     rel         = "manifest"
 
 [outputs]
-  home    = [ "HTML", ... ..., "webmanifest" ]
+  home    = [ "HTML", "... ...", "webmanifest" ]
 ```
 
 With this configuration, Hugo will generate a file `site.webmanifest`, in the root of the site. 
@@ -730,7 +735,7 @@ You can configure the S.E.O features with the following parameters:
 ```toml
 [params]
   description   = "short description of the blog" # Short description for the meta description
-  keywords      = [ "keyword 1", "keyword 2", ... ..., "keyword n" ] # List of tags for the meta keywords
+  keywords      = [ "keyword 1", "keyword 2", "... ...", "keyword n" ] # List of tags for the meta keywords
   opengraph     = true # Enable OpenGraph if true
   schema        = true # Enable Schema JSON file
   twitter_cards = true # Enable Twitter Cards if true
