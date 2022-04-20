@@ -6,7 +6,7 @@
 {{/* .type      */}}
 {{/* .numposts  */}}
 {{/* .filename  */}}
-{{- $context       := . -}}
+{{- $context       := .context -}}
 {{- $params        := .params -}}
 {{- $numposts      := .params.numposts | default 3 -}}
 {{- $filepath      := path.Join "data" (.params.filename | default "popularposts.json") -}}
@@ -15,16 +15,13 @@
     {{- with $data -}}
         {{- $posts := slice -}}
         {{- range first $numposts (sort $data.posts "visit" "desc") -}}
-        ---{{- printf "%s" .post -}}---<br/>
             {{- $p := $context.Site.GetPage .post -}}
             {{- with $p -}}
-                ---{{- printf "%#v" $p -}}---<br/>
                 {{- $posts = $posts | append (slice .) -}}
             {{- end -}}
         {{- end -}}
         {{- with $posts -}}
-            {{- printf "%#v" $posts -}}
-            {{/*- partial "partials/widgets/posts-widget.html" (dict "context" $context "params" $params "title" ($params.title | default "Most popular posts") "posts" .) -*/}}
+            {{- partial "partials/widgets/posts-widget.html" (dict "context" $context "params" $params "title" ($params.title | default "Most popular posts") "posts" .) -}}
         {{- end -}}
     {{- end -}}
 {{- end -}}
