@@ -56,13 +56,6 @@
         share       = "http://www.linkedin.com/shareArticle?mini=true&url=%%URL%%&title=%%TITLE%%&summary=%%DESC%%&source=%%HOME%%"
         sharetext   = "share-on"
         mobile      = false
-    [config.flickr]
-        name        = "Flickr"
-        follow      = "https://flickr.com/photos/%s"
-        icon        = "bi-flickr"
-        share       = ""
-        sharetext   = ""
-        mobile      = false
     [config.whatsapp]
         name        = "Whatsapp"
         follow      = ""
