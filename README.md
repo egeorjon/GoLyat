@@ -158,6 +158,7 @@ The theme provides some shortcodes
 ### Attachements
 
 Parameters: 
+
 | Parameter | type   | Purpose | Mandatory | Default | Possible values |
 |-----------|--------|-----------|---------|-----------------|
 | files     | string | relative path to the attachments | Yes |  | |
