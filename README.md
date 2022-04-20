@@ -184,6 +184,7 @@ and the result will be
 ### imggallery 
 
 Parameters: 
+
 | Parameter | type    | Purpose | Mandatory | Default | Possible values |
 |-----------|---------|-----------|---------|-----------------|
 | files     | string  | relative path to the images | Yes | | |
@@ -382,7 +383,7 @@ Example:
 [[menu.main]] 
   identifier = "photo"
   name       = "Photography"
-  pre        = "<i class="bi-camera"></i>
+  pre        = "<i class="bi-camera"></i>"
   url        = "/photo/"
   weight     = 20
 ```
@@ -623,10 +624,10 @@ The parameters are grouped into the `[Params.copyright]` section.
 
 ```toml
 [params.copyright]
-  FirstDate     = "<first date of the publication"
-  Attribution   = "<Name of the blog's owner >"
-  SentenceSmall = "<reduced copyright sentence>"
-  SentenceFull  = "<the full copyright sentence, with all details>"
+  FirstDate     = "first date of the publication"
+  Attribution   = "Name of the blog's owner"
+  SentenceSmall = "reduced copyright sentence"
+  SentenceFull  = "the full copyright sentence, with all details"
 ```
 
 Example:
@@ -651,18 +652,18 @@ The design of the site can be updated in several manners
 
 For changing colors, you can edit the file `themes/goliath/assets/styles.scss`, and change the following lines
 
-```sass
-    $primary:       <color 1>;
-    $secondary:     <color 2>;
-    $light:         <color 3>;
-    $medium:        <color 4>;
-    $dark:          <color 5>;
+```scss
+    $primary:       "color 1";
+    $secondary:     "color 2";
+    $light:         "color 3";
+    $medium:        "color 4";
+    $dark:          "color 5";
 ```
 
 **Change the site's layout according the device width**
 
 **Goliath** is based on the [BootStrap](https://getbootstrap.com/) framework. This framework use a set of breakpoints to adjust the site layout according the device with
-```sass
+```scss
     $grid-breakpoints: (
     xs: 0,          # eXtra Small
     sm: 576px,      # SMall
