@@ -6,19 +6,23 @@
 {{/*  class       : CSS Class to be added         */}}
 
 {{- $imgpath := index .Destination 0 -}}
-{{- $imgtype := 0 -}}
+{{- $imgtype := 0  -}}{{/* 0: not found, 1: external, 2: found but not manageable, 3: found and manageable */}}
 {{- $image   := "" -}}
 {{- $exts    := (slice ".jpg" ".jpeg" ".gif" ".tif" ".png" ".webp") -}}
-{{- if not (strings.HasPrefix $imgpath "http") -}}
+{{- if strings.HasPrefix $imgpath "http" -}}
+    {{- $imgtype = 1 -}}
+{{- else -}}
     {{- $image = .context.Resources.GetMatch $imgpath -}}
     {{- with $image -}}
-        {{- $imgtype = 1 -}}
+        {{- $imgtype = 2 -}}
         {{- if in $exts (path.Ext $imgpath) -}}
-            {{- $imgtype = 2 -}}
+            {{- $imgtype = 3 -}}
         {{- end -}}
     {{- end -}}
 {{- end -}}
-{{- if lt $imgtype 2 -}}
+{{- if eq $imgtype 0 -}}
+<div class="ratio ratio-57x20"><div>Image not found</div></div>
+{{- else if lt $imgtype 3 -}}
     <img class="img-fluid" src="{{- $imgpath | safeURL -}}" alt="{{- .Text | safeHTML -}}" {{- with .Title -}}title="{{- . | safeHTML -}}"{{- end -}} />
 {{- else -}}
     {{- $sizes     := slice -}}
