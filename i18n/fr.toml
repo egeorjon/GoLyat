@@ -1,0 +1,121 @@
+[search-form]
+    other = "Formulaire de recherche"
+
+[search-please-enter]
+    other = "Que recherchez-vous ?"
+
+[what-you-looking-for]
+    other = "Mots recherchés"
+
+[search-help]
+    other = "Merci de saisir les mots ou la phrase que vous recherchez"
+
+[search]
+    other = "Recherche"
+
+[search-results]
+    other = "Résultat de la recherche"
+
+[in]
+    other = "dans"
+
+[posted-on]
+    other = "publié le"
+
+[tags]
+    one   = "Mot-clé"
+    other = "Mots-clés"
+
+[image-not-found]
+    other = "Image non trouvée"
+
+[current]
+    other = "courant"
+
+[reading-label]
+    other = "Temps de lecture"
+
+[reading-time]
+    one   = "Une minute de lecture"
+    other = "{{ .Count }} minutes de lecture"
+
+[post_category]
+    other = "Article de la catégorie {{ .Name }}"
+
+[first-post]
+    one   = "Premier article"
+    other = "Premiers articles"
+
+[last-post]
+    one   = "Dernier article"
+    other = "Derniers articles"
+
+[previous-post]
+    one   = "Article précédent"
+    other = "Articles précédents"
+
+[previous-post-post]
+    other = "Article précédent : {{ .Title }}"
+
+[next-post]
+    one   = "Article suivant"
+    other = "Articles suivants"
+
+[next-post-post]
+    other = "Article suivant : {{ .Title }}"
+
+[home]
+    other = "Accueil"
+
+[back-home]
+    other = "Retourner à l'accueil"
+
+[all-posts-from]
+    other = "Tous les articles de {{ .Title }}"
+
+[author]
+    one   = "Auteur"
+    other = "Auteurs"
+
+[error-post-not-found]
+    other = "Erreur: Page non trouvée"
+
+[error-post-x-not-found]
+    other = "Erreur: La page <strong>{{ .page }}</strong> n'existe pas"
+
+[error-widget-not-found]
+    other = "Erreur: Widget non trouvé"
+
+[error-widget-not-exist]
+    other = "Erreur: Le widget <strong>{{ .params }}</strong> n'existe pas."
+
+[share-by-mail]
+    other = "Envoyez cet article par messagerie"
+
+[share-on]
+    other = "Partagez cet article sur %s"
+
+[follow-me-on]
+    other = "Suivez moi sur {{ .name }}"
+
+[see-my-work-on]
+    other = "Explorez mon travail sur {{ .name }}"
+
+[last-posts-published]
+    one   = "Dernier article publié"
+    other = "Derniers articles publiés"
+
+[most-popular-post]
+    one   = "L'article le plus consulté"
+    other = "Les articles les plus consultés"
+
+[related-posts]
+    one   = "L'article suivant pourrait également vous intéresser :"
+    other = "Les articles suivants pourraient également vous intéresser :"
+
+[blog-sections]
+    one   = "La rubrique de ce blog"
+    other = "Les rubriques de ce blog"
+
+
+

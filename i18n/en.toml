@@ -1,0 +1,115 @@
+[search-form]
+    other = "Search form"
+
+[search-please-enter]
+    other = "What are you looking for?"
+
+[what-you-looking-for]
+    other = "Searched sentence"
+
+[search-help]
+    other = "Thanks to enter the words, or the sentence you are looking for"
+
+[search]
+    other = "Search"
+
+[search-results]
+    other = "Search result"
+
+[In]
+    other = "in"
+
+[posted-on]
+    other = "posted on"
+
+[tags]
+    one   = "Tag"
+    other = "Tags"
+
+[image-not-found]
+    other = "Image not found"
+
+[current]
+    other = "current"
+
+[reading-label]
+    other = "Reading time"
+
+[reading-time]
+    one   = "One minute to read"
+    other = "{{ .Count }} minutes to read"
+
+[post-category]
+    other = "Post of the category {{ .Name }}"
+
+[first-post]
+    one   = "First post"
+    other = "First posts"
+
+[last-post]
+    one   = "Last post"
+    other = "Last posts"
+
+[previous-post]
+    one   = "Previous post"
+    other = "Previous posts"
+
+[previous-post-post]
+    other = "Previous post: {{ .Title }}"
+
+[next-post]
+    one   = "Next post"
+    other = "Next posts"
+
+[next-post-post]
+    other = "Next post: {{ .Title }}"
+
+[home]
+    other = "Home"
+
+[back-home]
+    other = "Go back to home"
+
+[all-posts-from]
+    other = "All posts from {{ .Title }}"
+
+[author]
+    one   = "Author"
+    other = "Authors"
+
+[error-post-not-found]
+    other = "Error: The post <strong>{{ .page }}</strong> doesn't exist."
+
+[error-widget-not-found]
+    other = "Error: Widget not found"
+
+[error-widget-not-exist]
+    other = "Error: The widget <strong>{{ .params }}</strong> doesn't exist."
+
+[share-by-mail]
+    other = "Share this post by mail"
+
+[share-on]
+    other = "Share this post on {{ .name }}"
+
+[follow-me-on]
+    other = "Follow me on {{ .name }}"
+
+[see-my-work-on]
+    other = "See my work on {{ .name }}"
+
+[last-posts-published]
+    one   = "Last post published"
+    other = "Last posts published"
+
+[most-popular-post]
+    one   = "The most popular post"
+    other = "The most popular posts"
+
+[related-post]
+    one   = "You may like the following post"
+    other = "You may like the following posts"
+
+[blog-sections]
+    one   = "La rubrique de ce blog"
+    other = "Les rubriques de ce blog"
