@@ -197,7 +197,7 @@ $table-variants: map-remove( $table-variants,
 
 
 $aspect-ratios: map-merge($aspect-ratios, (
-        "57x20": calc(10 / 57 * 100%)
+        "57x20": calc(20 / 57 * 100%)
     )
 );
 
