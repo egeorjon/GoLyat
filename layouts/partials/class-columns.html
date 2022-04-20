@@ -1,9 +1,7 @@
 {{- $columns     := . -}}
----Columns: {{ .columns }}---
 {{- $colnum      := 1 -}}
 {{- $colnum       = (index $columns "def" ) -}}
 {{- $class       := printf "row row-cols-%d" (int $colnum) -}}
----class: {{ $class }}---
 {{- $breakpoints := slice "sm" "md" "lg" "xl" -}}
 {{- range $brk := $breakpoints -}}
     {{- $cn := (index $columns $brk ) -}}
@@ -12,5 +10,4 @@
         {{- $colnum = $cn -}}
     {{- end -}}
 {{- end -}}
----class: {{ $class }}---
 {{- return $class -}}
