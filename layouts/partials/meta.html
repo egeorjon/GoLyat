@@ -9,14 +9,14 @@
     {{- range $order, $meta := .meta -}}
         {{- if eq $meta "date" -}}
         <li class="post-date">
-            <i class="bi-calendar3"></i><span class="visually-hidden">Posted on</span>
+            <i class="bi-calendar3"></i><span class="visually-hidden">{{- i18n "posted-on" -}}</span>
             <time class="entry-date published" datetime="{{- index (split $context.Lastmod " ") 0 -}}">
                 {{- $context.Lastmod | time.Format ($context.Site.Params.FormatDate | default "2-Jan-2006") -}}
             </time>
         </li>
         {{- else if eq $meta "fulldate" -}}
         <li class="post-date">
-            <i class="bi-calendar3"></i><span class="visually-hidden">Posted on</span>
+            <i class="bi-calendar3"></i><span class="visually-hidden">{{- i18n "posted-on" -}}</span>
             <time class="entry-date published" datetime="{{- index (split $context.Lastmod " ") 0 -}}">
                 {{- $context.Date | time.Format ($context.Site.Params.FormatDate | default "2-Jan-2006") -}}
                 {{- if ne $context.Date $context.Lastmod }} (updated on {{ $context.Lastmod | time.Format ($context.Site.Params.FormatDate | default "2-Jan-2006") }} ){{- end -}}
@@ -26,7 +26,7 @@
             <li class="post-read">
                 <i class="bi-clock" aria-hidden="true"></i> 
                 <span class="visually-hidden" aria-label="hidden">{{- i18n "reading-label" -}}</span>
-                {{- $context.ReadingTime }} minutes of reading
+                {{- i18n "reading-time" $context.ReadingTime -}}
             </li>
         {{- else if eq $meta "tags" -}}
             {{- $sl := slice -}}
@@ -37,14 +37,14 @@
             {{- end -}}
             <li class="post-tags">
                 <i class="bi-tags"></i>
-                <span class="visually-hidden" aria-label="hidden">Tags {{ (len $sl) -}}:</span>
+                <span class="visually-hidden" aria-label="hidden">{{- i18n "tags" (len $sl) }} {{ (len $sl) -}}:</span>
                 {{- delimit $sl ", " -}} 
             </li>
         {{- else if eq $meta "section" -}}
             {{- if ne $kindctx "section" -}}
                 {{- with $context.Parent }}
                     <li class="post-section">
-                        <i class="bi-folder2-open"></i><span class="visually-hidden">In </span> 
+                        <i class="bi-folder2-open"></i><span class="visually-hidden">{{- i18n "in" -}}</span> 
                         <span class="in-category"><a href="{{- .Permalink -}}" title="{{- i18n "post_category" .Name  -}}">{{- .Name -}}</a></span>
                     </li><!-- class="visually-hidden" -->
                 {{- end -}}
@@ -56,7 +56,7 @@
             {{- end -}}
             {{- if gt (len $list) 0 -}}
                 <li class="post-category">
-                    <i class="bi-folder"></i><span class="visually-hidden" aria-label="hidden">{{- i18n "In" -}}</span> 
+                    <i class="bi-folder"></i><span class="visually-hidden" aria-label="hidden">{{- i18n "in" -}}</span> 
                     <span class="in-category">{{- delimit $list ", " -}} </span>
                 </li>
             {{- end -}}

@@ -3,30 +3,30 @@
         <div class="row">
             <div class="col-6 col-md-4">
                 {{- with .PrevInSection -}}
-                    <a href="{{- .RelPermalink -}}" title="Previous post: {{- .Title | safeHTML -}}">
-                        <p><i class="bi-chevron-compact-left"></i><span class="d-none d-sm-inline">Previous Post</span></p>
+                    <a href="{{- .RelPermalink -}}" title="{{- i18n "previous-post-post" . -}}">
+                        <p><i class="bi-chevron-compact-left"></i><span class="d-none d-sm-inline">{{- i18n "previous-post" -}}</span></p>
                         <p class="d-none d-md-inline">{{- .Title | safeHTML -}}</p>
                     </a>
                 {{- else -}}
-                    <p class="disabled"><i class="bi-chevron-compact-left"></i><span class="d-none d-sm-inline">Previous Post</span></p>
+                    <p class="disabled"><i class="bi-chevron-compact-left"></i><span class="d-none d-sm-inline">{{- i18n "previous-post" -}}</span></p>
                 {{- end -}}
             </div><!-- col -->
             <div class="col-4 d-none d-md-block text-center">
                 <ul>
-                    <li><a href="{{- "/" | absURL -}}" title="Go back to home">Home</a></li>
+                    <li><a href="{{- "/" | absURL -}}" title="{{- i18n "back-home" -}}">{{- i18n "home" -}}</a></li>
                     {{- with .Parent -}}
-                        <li><a href="{{- .RelPermalink -}}" title="All post from {{ .Title -}}">{{- .Title | safeHTML -}}</a></li>
+                        <li><a href="{{- .RelPermalink -}}" title="{{- i18n "all-posts-from" . -}}">{{- .Title | safeHTML -}}</a></li>
                     {{- end -}}
                 </ul>
             </div>
             <div class="col-6 col-md-4 text-end">
                 {{- with .NextInSection -}}
-                    <a href="{{- .RelPermalink -}}" title="Next post: {{- .Title | safeHTML -}}">
-                        <p><span class="d-none d-sm-inline">Next Post</span><i class="bi-chevron-compact-right"></i></p>
+                    <a href="{{- .RelPermalink -}}" title="{{- i18n "next-post-post" . -}}">
+                        <p><span class="d-none d-sm-inline">{{- i18n "next-post" -}}</span><i class="bi-chevron-compact-right"></i></p>
                         <p class="d-none d-md-inline">{{- .Title | safeHTML -}}</p>
                     </a>
                 {{- else -}}
-                    <p class="disabled"><span class="d-none d-sm-inline">Next Post</span><i class="bi-chevron-compact-right"></i></p>
+                    <p class="disabled"><span class="d-none d-sm-inline">{{- i18n "next-post" -}}</span><i class="bi-chevron-compact-right"></i></p>
                 {{- end -}}
             </div><!-- col -->
         </div><!-- row -->
