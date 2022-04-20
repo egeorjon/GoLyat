@@ -12,6 +12,7 @@
 {{- if strings.HasPrefix $imgpath "http" -}}
     {{- $imgtype = 1 -}}
 {{- else -}}
+    {{/*- $imgpath = path.Join (path.Base .context.File.Dir) (index .Destination 0) -*/}}
     {{- $image = .context.Resources.GetMatch $imgpath -}}
     {{- with $image -}}
         {{- $imgtype = 2 -}}
@@ -21,7 +22,7 @@
     {{- end -}}
 {{- end -}}
 {{- if eq $imgtype 0 -}}
-<div class="ratio ratio-57x20"><div>Image not found</div></div>
+    <div class="ratio ratio-57x20"><div>Image not found</div></div>
 {{- else if lt $imgtype 3 -}}
     <img class="img-fluid" src="{{- $imgpath | safeURL -}}" alt="{{- .Text | safeHTML -}}" {{- with .Title -}}title="{{- . | safeHTML -}}"{{- end -}} />
 {{- else -}}
