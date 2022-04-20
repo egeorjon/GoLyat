@@ -126,7 +126,7 @@ $pagination-hover-border-color:     $secondary; //$gray-300 !default;
 // $card-spacer-y:                     $spacer !default;
 // $card-spacer-x:                     $spacer !default;
 // $card-title-spacer-y:               $spacer * .5 !default;
-$card-border-width:                 0; // $border-width !default;
+// $card-border-width:                 0; // $border-width !default;
 // $card-border-color:                 rgba($black, .125) !default;
 // $card-border-radius:                $border-radius !default;
 // $card-box-shadow:                   null !default;
@@ -231,7 +231,7 @@ $utilities: map-remove($utilities,
     "max-width",
     "viewport-width",
     "min-viewport-width",
-    "height",
+/*  "height", */
     "max-height",
     "viewport-height",
     "min-viewport-height",
