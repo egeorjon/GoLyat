@@ -1,0 +1,25 @@
+{{/* .method : field or tag. Default field */}}
+{{/* .value  : name of the field, or name of the tag */}}
+{{/* .title  : */}}
+{{- $method := .params.method | default "field" -}}
+{{- $value  := .params.value  | default "edito" -}}
+{{- $title  := .params.value  | default ""      -}}
+{{- $post := "" -}}
+{{- if eq $method "field" -}}
+    {{- $post := first 1 (where .Site.Pages (printf "%s.%s" ".params" $value) true) -}}
+{{- else -}}
+    {{- $post = first 1 (where (printf "%s%s" ".Site.Taxonomies.Tags." $value ).Pages) -}}
+{{- end -}}
+<div class="col">
+    {{- with .context.Site.GetPage .params.page -}}
+    <aside class="card widget widget-page">
+        <div class="card-body widget-inner">
+            <h3 class="card-title">{{- .Title -}}</h3>
+            <p class="card-text">{{- .Content  -}}</p>
+        </div>
+    </aside>
+    {{- else -}}
+    <p>{{- i18n "error-widget-not-found" -}}</p>
+    {{- end -}}
+</div>
+
