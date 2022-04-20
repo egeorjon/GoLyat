@@ -1,13 +1,19 @@
+{{/* .context */}}
+{{/* .params  */}}
+{{/*    .page  : page to be displayed */}}
+{{- $title  := .params.value  | default ""      -}}
+{{- $heading_level := int (.params.heading | default 3) -}}
+{{- $heading_title := printf "h%d" $heading_level -}}
 <div class="col">
     {{- with .context.Site.GetPage .params.page -}}
     <aside class="card widget widget-page">
         <div class="card-body widget-inner">
-            <h3 class="card-title">{{- .Title -}}</h3>
+            {{- (printf "<%s class=\"card-title\">%s</%s>" $heading_title .Title $heading_title) | safeHTML -}}
             <p class="card-text">{{- .Content  -}}</p>
         </div>
     </aside>
     {{- else -}}
-    <p>{{- i18n "error-widget-not-found" -}}</p>
+    <p>{{- i18n "error-post-x-not-found" .params | safeHTML -}}</p>
     {{- end -}}
 </div>
 
