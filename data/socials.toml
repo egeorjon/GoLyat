@@ -6,7 +6,7 @@
         followtext  = ""
         icon        = "bi-envelope"
         share       = "mailto:?subject=%%TITLE%%&body=%%BODY%%"
-        arialabel   = "share-by-mail"
+        sharetext   = "share-by-mail"
         mobile      = false
     [config.facebook]
         name        = "Facebook"
@@ -14,7 +14,7 @@
         followtext  = "follow-me-on"
         icon        = "bi-facebook"
         share       = "https://www.facebook.com/sharer.php?u=%%URL%%"
-        arialabel   = "Share on Facebook"
+        sharetext   = "share-on"
         mobile      = false
     [config.twitter]
         name        = "Twitter"
@@ -22,7 +22,7 @@
         followtext  = "follow-me-on"
         icon        = "bi-twitter"
         share       = "https://twitter.com/share?url=%%URL%%&text=%%TITLE%%%%HASHTAGS%%%%VIA%%"
-        arialabel   = "Share on Twitter"
+        sharetext   = "share-on"
         mobile      = false
     [config.github]
         name        = "GitHub"
@@ -30,7 +30,7 @@
         followtext  = "see-my-work-on"
         icon        = "bi-github"
         share       = ""
-        arialabel   = ""
+        sharetext   = ""
         mobile      = false
     [config.instagram]
         name        = "Instagram"
@@ -38,7 +38,7 @@
         followtext  = "see-my-work-on"
         icon        = "bi-instagram"    
         share       = ""
-        arialabel   = ""
+        sharetext   = ""
         mobile      = true
     [config.pinterest]
         name        = "Pinterest"
@@ -46,7 +46,7 @@
         followtext  = "follow-me-on"
         icon        = "bi-pinterest"
         share       = "https://pinterest.com/pin/create/bookmarklet/?url=%%URL%%%%MEDIA%%&desc=%%TITLE%%"
-        arialabel   = "share-on"
+        sharetext   = "share-on"
         mobile      = false
     [config.linkedin]
         name        = "LinkedIn"
@@ -54,14 +54,14 @@
         followtext  = "follow-me-on"
         icon        = "bi-linkedin"
         share       = "http://www.linkedin.com/shareArticle?mini=true&url=%%URL%%&title=%%TITLE%%&summary=%%DESC%%&source=%%HOME%%"
-        arialabel   = "share-on"
+        sharetext   = "share-on"
         mobile      = false
     [config.flickr]
         name        = "Flickr"
         follow      = "https://flickr.com/photos/%s"
         icon        = "bi-flickr"
         share       = ""
-        arialabel   = ""
+        sharetext   = ""
         mobile      = false
     [config.whatsapp]
         name        = "Whatsapp"
@@ -69,5 +69,5 @@
         followtext  = ""
         icon        = "bi-whatsapp"
         share       = "https://wa.me/?text=%%URL%%"
-        arialabel   = "share-on"
+        sharetext   = "share-on"
         mobile      = true
