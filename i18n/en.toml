@@ -87,7 +87,7 @@
     other = "Error: The widget <strong>{{ .params }}</strong> doesn't exist."
 
 [share-by-mail]
-    other = "Share this post by mail"
+    other = "Share this post by %s"
 
 [share-on]
     other = "Share this post on {{ .name }}"
@@ -113,3 +113,6 @@
 [blog-sections]
     one   = "La rubrique de ce blog"
     other = "Les rubriques de ce blog"
+
+[rss-feeds]
+    other = "RSS feeds"

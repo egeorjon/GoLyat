@@ -39,7 +39,7 @@
     one   = "Une minute de lecture"
     other = "{{ .Count }} minutes de lecture"
 
-[post_category]
+[post-category]
     other = "Article de la catégorie {{ .Name }}"
 
 [first-post]
@@ -90,7 +90,7 @@
     other = "Erreur: Le widget <strong>{{ .params }}</strong> n'existe pas."
 
 [share-by-mail]
-    other = "Envoyez cet article par messagerie"
+    other = "Envoyez cet article par %s"
 
 [share-on]
     other = "Partagez cet article sur %s"
@@ -117,5 +117,5 @@
     one   = "La rubrique de ce blog"
     other = "Les rubriques de ce blog"
 
-
-
+[rss-feeds]
+    other = "Flux RSS"
