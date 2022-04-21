@@ -11,7 +11,9 @@
 {{- if eq $method "field" -}}
     {{- $post = first 1 (where .context.Site.Pages (printf "Params.%s" $value) true) -}}
 {{- else -}}
-    {{- $post = first 1 (where .context.Site.Pages $value "in" .Params.tags ) -}}
+    {{ with .context.Site.GetPage $value -}}
+        {{- $post = first 1 .Pages -}}
+    {{- end }}
 {{- end -}}
 <div class="col">
     {{- range $post -}}
