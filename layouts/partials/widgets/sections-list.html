@@ -17,7 +17,7 @@
             {{- with $title -}}
             <div class="row mb-2">
                 <div class="col">
-                    {{- (printf "<%s class=\"card-title\">%s</%s>" $heading_title . $heading_title) | safeHTML -}}
+                    {{- (printf "<%s>%s</%s>" $heading_title . $heading_title) | safeHTML -}}
                 </div>
             </div>
             {{- end -}}
