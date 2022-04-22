@@ -1,16 +1,16 @@
 {{- $context := . -}}
 <footer id="page-footer">
-    <section class="footer-top pt-4 pb-4">
+    <section class="footer-top">
         <div class="container">
             {{- template "groups_list" (dict "context" $context "gl" (.Site.Params.Footer.Top | default .Site.Data.footer_top) ) -}}
         </div><!-- container -->
     </section>
-    <section class="footer-main pt-4 pb-4">
+    <section class="footer-main">
         <div class="container">
             {{- template "groups_list" (dict "context" $context "gl" (.Site.Params.Footer.Main | default .Site.Data.footer_main) ) -}}
         </div><!-- container -->
     </section>
-    <section class="footer-bottom pt-3 pb-3">
+    <section class="footer-bottom pt-3 pb-2">
         <div class="container">
             <div class="row">
                 <div class="col text-center">
