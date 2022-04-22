@@ -119,3 +119,6 @@
 
 [rss-feeds]
     other = "Flux RSS"
+
+[see-more]
+    other = "Plus d'articles"

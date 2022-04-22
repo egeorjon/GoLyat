@@ -116,3 +116,6 @@
 
 [rss-feeds]
     other = "RSS feeds"
+
+[see-more]
+    other = "Read more posts"
