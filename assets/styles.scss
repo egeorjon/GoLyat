@@ -72,6 +72,27 @@ $dark:          $eerie-black;
     vertical-align: middle;
 }
 
+h2 {
+    line-height: 1.5;
+    margin-top: 2.25em;
+    margin-bottom: 1.5em;
+    color: $primary;
+}
+
+h3 {
+    line-height: 1;
+    margin-top: 2em;
+    margin-bottom: 1em;
+    color: $dark;
+}
+
+h4 {
+    line-height: 1.2273;
+    margin-top: 2,4546em;
+    margin-bottom: 1,2273em;
+    color: $dark;
+}
+
 /* ----------------------------------------- */
 /* --- Header ------------------------------ */
 /* ----------------------------------------- */
@@ -149,18 +170,7 @@ $dark:          $eerie-black;
 /* ------------------------------------------ */
 .post-content {
     text-align: justify;
-
-    h2 {
-        margin-top: 3rem;
-        margin-bottom: 2rem;
-        color: $primary;
-    }
-
-    h3,h4,h5 {
-        margin-top: 2rem;
-    }
 }
-
 
 
 /* ------------------------------------------ */
@@ -451,6 +461,30 @@ $gallery-caption-fontsize: $font-size-sm;
 }
 
 /* ------------------------------------------ */
-/* --- Search page -------------------------- */
+/* --- homepage ----------------------------- */
 /* ------------------------------------------ */
 
+.homepage {
+    margin-bottom: 3 * $spacer;
+
+    h2 {
+        margin-top: 0;
+        margin-bottom: 1.125em;
+        color: $primary;
+    }
+
+    h3 {
+        margin-top: 0;
+        margin-bottom: 1em;
+    }
+
+    h3 a {
+        text-decoration: none;
+        color: $dark;
+
+        &:hover {
+            text-decoration: underline;
+            color: $primary;
+        }
+    }
+}
