@@ -1,7 +1,6 @@
 {{- $columns     := . -}}
-{{- $colnum      := 1 -}}
-{{- $colnum       = (index $columns "def" ) -}}
-{{- $class       := printf "row row-cols-%d" (int $colnum) -}}
+{{- $colnum      := int (math.Max 1 (int (index $columns "xs" ))) -}}
+{{- $class       := printf "row row-cols-%d" $colnum -}}
 {{- $breakpoints := slice "sm" "md" "lg" "xl" -}}
 {{- range $brk := $breakpoints -}}
     {{- $cn := (index $columns $brk ) -}}
@@ -11,3 +10,4 @@
     {{- end -}}
 {{- end -}}
 {{- return $class -}}
+.
