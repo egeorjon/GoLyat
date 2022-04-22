@@ -36,18 +36,20 @@
                         {{- end -}}
                         <div class="card-body">
                             {{- (printf "<%s class=\"card-title\"><a href=\"%s\" title=\"%s\">%s</a></%s>" $heading_subtitle .RelPermalink (.Title | plainify | htmlUnescape) .Title $heading_subtitle) | safeHTML -}}
-                            <span><i class="bi-calendar3"></i> {{ .Lastmod | time.Format ($.Site.Params.FormatDate | default "2-Jan-2006") -}}</span>
                             {{- with .Params.Description -}}<p class="card-text">{{- . | truncate 100 -}}</p>{{- end -}}
+                            {{- partial "partials/meta.html" (dict "context" . "meta" (dict "1" "section" "2" "date")) -}}
                         </div>
                     </aside>
                 </div><!-- col -->
                 {{- end -}}
             </div><!-- row -->
+            {{- with $more -}}
             <div class="row">
                 <div class="col">
-                    <p><a href="#">{{- i18n "" -}}</a></p>
+                    <p><a href="{{- . -}}">{{- i18n "see-more" -}}</a></p>
                 </div>
             </div>
+            {{- end -}}
         {{- else -}}
             <aside class="card h-100 widget widget-related widget-related-list">
                 <div class="card-body">
