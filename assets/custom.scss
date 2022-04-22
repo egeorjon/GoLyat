@@ -20,19 +20,24 @@ $font-size-base:              1.125rem; // 1rem = 16px
 $font-size-sm:                1rem;     // $font-size-base * .875;
 $font-size-lg:                1.111111111 * $font-size-base; // * 1.25;
 
+// $line-height-base:            1.5 !default;
+$line-height-sm:              1.6875;
+$line-height-lg:              1.35;
+
 $h1-font-size:                2.5 *  $font-size-base;  // 2.5 !default;
 $h2-font-size:                2   *  $font-size-base;  // 2
-$h3-font-size:                1.666666667 *  $font-size-base;  // 1.75
-$h4-font-size:                1.333333333 *  $font-size-base;  // 1.5
-$h5-font-size:                1.111111111 *  $font-size-base;  // 1.25
+$h3-font-size:                1.5 *  $font-size-base;  // 1.75
+$h4-font-size:                1.2222 *  $font-size-base;  // 1.5
+$h5-font-size:                1.1111 *  $font-size-base;  // 1.25
 $h6-font-size:                1 *  $font-size-base;  // 1
 
-$spacer:                      1rem;
-$headings-margin-bottom:      $spacer; // * .5 !default;
+$spacer: $font-size-base * 1.5;
+
+// $headings-margin-bottom:      $spacer; // * .5 !default;
 // $headings-font-family:     null !default;
 // $headings-font-style:      null !default;
 // $headings-font-weight:     500 !default;
-$headings-line-height:        1; //   1.2 !default;
+// $headings-line-height:        1.2 !default;
 // $headings-color:           null !default;
 
 // ---------------- Missing tables colors ----------------
@@ -123,10 +128,10 @@ $pagination-hover-border-color:     $secondary; //$gray-300 !default;
 // $pagination-border-radius-sm:       $border-radius-sm !default;
 // $pagination-border-radius-lg:       $border-radius-lg !default;
 
-// $card-spacer-y:                     $spacer !default;
-// $card-spacer-x:                     $spacer !default;
+// $card-spacer-y:                     $spacer;
+$card-spacer-x:                     0 * $spacer;
 // $card-title-spacer-y:               $spacer * .5 !default;
-// $card-border-width:                 0; // $border-width !default;
+$card-border-width:                 0; // $border-width !default;
 // $card-border-color:                 rgba($black, .125) !default;
 // $card-border-radius:                $border-radius !default;
 // $card-box-shadow:                   null !default;
