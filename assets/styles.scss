@@ -45,7 +45,7 @@ $dark:          $eerie-black;
     li {
         white-space: nowrap;
         display: inline-block;
-        margin-right: $spacer;
+        margin-right: 0.5 * $spacer;
     }
 
     li:last-child {
@@ -61,7 +61,7 @@ $dark:          $eerie-black;
 
 @media (min-width: map-get($grid-breakpoints, "lg")) {
     .inline-list li {
-        margin-right: 2 * $spacer;
+        margin-right: 1.5 * $spacer;
     }
 }
 
@@ -74,22 +74,16 @@ $dark:          $eerie-black;
 
 h2 {
     line-height: 1.5;
-    margin-top: 2.25em;
-    margin-bottom: 1.5em;
     color: $primary;
 }
 
 h3 {
     line-height: 1;
-    margin-top: 2em;
-    margin-bottom: 1em;
     color: $dark;
 }
 
 h4 {
     line-height: 1.2273;
-    margin-top: 2,4546em;
-    margin-bottom: 1,2273em;
     color: $dark;
 }
 
@@ -170,6 +164,26 @@ h4 {
 /* ------------------------------------------ */
 .post-content {
     text-align: justify;
+
+    h2 {
+        margin-top: 2.25em;
+        margin-bottom: 1.5em;
+    }
+    
+    h3 {
+        margin-top: 2em;
+        margin-bottom: 1em;
+    }
+    
+    h4 {
+        margin-top: 2,4546em;
+        margin-bottom: 1,2273em;
+    }
+}
+
+.post-meta {
+    font-size: 1rem;
+    line-height: 1,6875;
 }
 
 
@@ -339,8 +353,8 @@ $gallery-caption-fontsize: $font-size-sm;
 /* --- Pagination --------------------------- */
 /* ------------------------------------------ */
 
-.page-bottomline-prev-next,
-.page-bottomline-pagination {
+.page-bottomline-prev-next/*,
+.page-bottomline-pagination */{
     border-top: 1px solid $pagination-border-color;
     border-bottom: 1px solid $pagination-border-color;
 }
@@ -465,17 +479,28 @@ $gallery-caption-fontsize: $font-size-sm;
 /* ------------------------------------------ */
 
 .homepage {
-    margin-bottom: 3 * $spacer;
+    margin-bottom: $spacer;
 
     h2 {
         margin-top: 0;
         margin-bottom: 1.125em;
+        padding-bottom: 0.2em;
         color: $primary;
+        position: relative;
+
+        &:after {
+            content: "";
+            bottom: 0;
+            left: 0;
+            position: absolute;
+            width: 20%;
+            border-bottom: 3px solid $primary;
+        }
     }
 
     h3 {
         margin-top: 0;
-        margin-bottom: 1em;
+        /*margin-bottom: 1em;*/
     }
 
     h3 a {
@@ -486,5 +511,12 @@ $gallery-caption-fontsize: $font-size-sm;
             text-decoration: underline;
             color: $primary;
         }
+    }
+}
+
+@media (min-width: map-get($grid-breakpoints, "md")) {
+    
+    .homepage {
+        margin-bottom: 3 * $spacer;
     }
 }
