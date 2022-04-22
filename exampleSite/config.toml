@@ -175,7 +175,7 @@ copyright              = "2008-2022 (c) Emmanuel Georjon"  # Use in the RSS Inte
     [[params.Homepage.Rows.Widgets]]
       widget = "sections-list"
       cache  = true
-      params = { "title" = "What this blog is speaking about ?", "numposts" = 4, "columns" = { "def" = 1, "sm" = 1, "md" = 2, "lg" = 2, "xl" = 2 } }
+      params = { "title" = "What this blog is speaking about ?", "numposts" = 4, "columns" = { "xs" = 1, "sm" = 1, "md" = 2, "lg" = 2, "xl" = 2 } }
       weight = 1
 
   [[params.Homepage.Rows]]
@@ -186,7 +186,7 @@ copyright              = "2008-2022 (c) Emmanuel Georjon"  # Use in the RSS Inte
     [[params.Homepage.Rows.Widgets]]
       widget = "last-posts"
       cache  = true
-      params = { "title" = "", "numposts" = 6, "columns" = { "def" = 1, "sm" = 1, "md" = 3, "lg" = 3, "xl" = 3 } }
+      params = { "title" = "", "numposts" = 6, "columns" = { "xs" = 1, "sm" = 1, "md" = 3, "lg" = 3, "xl" = 3 } }
       weight = 1
 
   [[params.Homepage.Rows]]
@@ -197,11 +197,11 @@ copyright              = "2008-2022 (c) Emmanuel Georjon"  # Use in the RSS Inte
     [[params.Homepage.Rows.Widgets]]
       widget = "most-popular"
       cache  = true
-      params = { "title" = "", "numposts" = 6, "columns" = { "def" = 1, "sm" = 1, "md" = 3, "lg" = 3, "xl" = 3 } }
+      params = { "title" = "", "numposts" = 6, "columns" = { "xs" = 1, "sm" = 1, "md" = 3, "lg" = 3, "xl" = 3 } }
       weight = 1
 
 [params.PostList]
-  Listcolumns  = { "def" = 1, "sm" = 1, "md" = 1, "lg" = 1, "xl" = 1 }
+  Listcolumns  = { "xs" = 1, "sm" = 1, "md" = 1, "lg" = 1, "xl" = 1 }
   Postcolumns  = 2
   displayimage = true
   metatop      = false
@@ -211,7 +211,7 @@ copyright              = "2008-2022 (c) Emmanuel Georjon"  # Use in the RSS Inte
   displayimage   = true
   metatop        = { 1 = "fulldate",    2 = "reading" }
   relatedposts   = 3
-  relatedcolumns = { "def" = 1, "sm" = 1, "md" = 3, "lg" = 3, "xl" = 3, "xxl" = 4 }
+  relatedcolumns = { "xs" = 1, "sm" = 1, "md" = 3, "lg" = 3, "xl" = 3, "xxl" = 4 }
 #  metabottom      = { 1 = "section", 2 = "tags"    }
 #  bottomcolumns   = { "sm" = 1, "md" = 1, "lg" = 2, "xl" = 2, "xxl" = 3 }
 #  TableOfContents = false
