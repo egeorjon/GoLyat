@@ -7,4 +7,5 @@
 {{/* .columns   */}}
 {{- $numposts := .params.numposts | default 3 -}}
 {{- $posts    := site.RegularPages | first $numposts -}}
-{{- partial "partials/widgets/posts-widget.html" (dict "context" .context "params" .params "title" (.params.title | default "Last posts published") "posts" $posts) -}}
+{{- $params   := merge .params (dict "more" "/") -}}
+{{- partial "partials/widgets/posts-widget.html" (dict "context" .context "params" $params "title" (.params.title | default "Last posts published") "posts" $posts) -}}
