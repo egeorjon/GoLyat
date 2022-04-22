@@ -1,11 +1,11 @@
 {{- define "main" -}}
     {{- $current_page := . -}}
     {{- range sort .Site.Params.Homepage.Rows "weight" -}}
-    <div class="home-{{- .name -}}">
+    <div class="homepage" id="home-{{- .name -}}">
         {{- $limit := cond (.limitedWidth | default true) "limit-width" "" -}}
         <div class="container {{ $limit -}}">
-            {{- $class := partialCached "class-columns.html" (.columns | default (dict "def" 1 "sm" 1 "md" 1 "lg" 1 "xl" 1)) (printf "%s" .columns) -}}
-            <div class="row {{ $class -}}">
+            {{- $class := partialCached "partials/class-columns.html" (.columns | default (dict "xs" 1 "sm" 1 "md" 1 "lg" 1 "xl" 1)) (printf "%s" .columns) -}}
+            <div class="{{ $class -}}">
             {{- range sort .Widgets "weight" -}}
                 {{- $partialPath := printf "partials/widgets/%s.html" .widget -}}
                 {{- if templates.Exists $partialPath -}}

@@ -9,11 +9,12 @@
 {{/* .posts       */}}
 {{/* .title       */}}
 {{- $title         := .title -}}
+{{- $more          := .params.more | default false -}}
 {{- $widget_format := .params.type | default "image" -}}
 {{- $heading_level := int (.params.heading | default 3) -}}
 {{- $heading_title := printf "h%d" $heading_level -}}
 {{- $heading_subtitle := printf "h%d" (add $heading_level 1) -}}
-{{- $class         := partialCached "class-columns.html" (.params.columns | default (dict "def" 1 "sm" 1 "md" 3 "lg" 3 "xl" 3)) (printf "%s" .params.columns) -}}
+{{- $class         := partialCached "partials/class-columns.html" (.params.columns | default (dict "xs" 1 "sm" 1 "md" 3 "lg" 3 "xl" 3)) (printf "%s" .params.columns) -}}
 {{- with .posts -}}
     <div class="col">
         {{- if eq $widget_format "image" -}}
@@ -24,7 +25,7 @@
                 </div>
             </div>
             {{- end -}}
-            <div class="row {{ $class -}}">
+            <div class="{{ $class -}}">
                 {{- range . -}}
                 <div class="col mb-4">
                     <aside class="card h-100 widget widget-related widget-related-images">
@@ -42,6 +43,11 @@
                 </div><!-- col -->
                 {{- end -}}
             </div><!-- row -->
+            <div class="row">
+                <div class="col">
+                    <p><a href="#">{{- i18n "" -}}</a></p>
+                </div>
+            </div>
         {{- else -}}
             <aside class="card h-100 widget widget-related widget-related-list">
                 <div class="card-body">

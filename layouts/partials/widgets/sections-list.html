@@ -10,18 +10,18 @@
 {{- $heading_level := int (.params.heading | default 3) -}}
 {{- $heading_title := printf "h%d" $heading_level -}}
 {{- $heading_subtitle := printf "h%d" (add $heading_level 1) -}}
-{{- $class := partialCached "class-columns.html" (.params.columns | default (dict "def" 1 "sm" 1 "md" 2 "lg" 2 "xl" 2)) (printf "%s" .params.columns) -}}
+{{- $class := partialCached "partials/class-columns.html" (.params.columns | default (dict "xs" 1 "sm" 1 "md" 2 "lg" 2 "xl" 2)) (printf "%s" .params.columns) -}}
 {{- with .context.Site.Params.mainSections -}}
     <div class="col">
         {{- if eq $widget_format "image" -}}
             {{- with $title -}}
-            <div class="row mb-2">
+            <div class="row">
                 <div class="col">
                     {{- (printf "<%s>%s</%s>" $heading_title . $heading_title) | safeHTML -}}
                 </div>
             </div>
             {{- end -}}
-            <div class="row {{ $class -}}">
+            <div class="{{ $class -}}">
                 {{- range . -}}
                     {{- with $.context.Site.GetPage . -}}                
                 <div class="col mb-5">

@@ -11,7 +11,7 @@
                 </div><!-- col -->
             {{- end -}}
         </div>
-        {{- $class := partialCached "class-columns.html" (.Site.Params.PostList.Columns | default (dict "def" 1 "sm" 1 "md" 1 "lg" 1 "xl" 1)) (printf "%s" .Site.Params.PostList.Columns) -}}
+        {{- $class := partialCached "partials/class-columns.html" (.Site.Params.PostList.Columns | default (dict "xs" 1 "sm" 1 "md" 1 "lg" 1 "xl" 1)) (printf "%s" .Site.Params.PostList.Columns) -}}
         <div class="post-list {{ $class -}}">
             {{- range .Paginator.Pages -}}
             <div class="col mb-6">

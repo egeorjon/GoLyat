@@ -23,13 +23,13 @@
 {{- define "groups_list" -}}
     {{- $context := .context -}}
     {{- if gt (len .gl.Groups) 1 -}}
-        {{- $columns := .gl.columns | default (dict "def" 1 "sm" 1 "md" 1 "lg" 2 "xl" 2) -}}
-        {{- $class := partialCached "class-columns.html" $columns (printf "%x" $columns)  -}}
+        {{- $columns := .gl.columns | default (dict "xs" 1 "sm" 1 "md" 1 "lg" 2 "xl" 2) -}}
+        {{- $class := partialCached "partials/class-columns.html" $columns (printf "%x" $columns)  -}}
     <div class="{{- $class -}}">
         {{- range .gl.Groups -}}
             {{- if gt (len .Widgets) 1 -}}
-                {{- $columns := .columns | default (dict "def" 1 "sm" 1 "md" 1 "lg" 1 "xl" 1) -}}
-                {{- $class := partialCached "class-columns.html" $columns (printf "%x" $columns)  -}}
+                {{- $columns := .columns | default (dict "xs" 1 "sm" 1 "md" 1 "lg" 1 "xl" 1) -}}
+                {{- $class := partialCached "partials/class-columns.html" $columns (printf "%x" $columns)  -}}
                 <div class="col">
                     <div class="{{- $class -}}">
             {{- end -}}
@@ -42,8 +42,8 @@
     </div><!-- row -->
     {{- else -}}
         {{- range .gl.Groups -}}
-            {{- $columns := .columns | default (dict "def" 1 "sm" 1 "md" 1 "lg" 1 "xl" 1) -}}
-            {{- $class := partialCached "class-columns.html" $columns (printf "%x" $columns)  -}}
+            {{- $columns := .columns | default (dict "xs" 1 "sm" 1 "md" 1 "lg" 1 "xl" 1) -}}
+            {{- $class := partialCached "partials/class-columns.html" $columns (printf "%x" $columns)  -}}
             <div class="{{- $class -}}">
                 {{- template "widgets_list" (dict "context" $context "group" .) -}}
             </div>

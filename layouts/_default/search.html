@@ -35,7 +35,7 @@
             <div class="row">
                 <h2 class="col" id="search-results-title">{{- "search-results" -}}</h2>
             </div>
-            {{- $class := partialCached "class-columns.html" (.Site.Params.PostList.ListColumns | default (dict "def" 1 "sm" 1 "md" 1 "lg" 1 "xl" 1)) "search" -}}
+            {{- $class := partialCached "partials/class-columns.html" (.Site.Params.PostList.ListColumns | default (dict "xs" 1 "sm" 1 "md" 1 "lg" 1 "xl" 1)) "search" -}}
             <div id="search-results-items" class="post-list {{ $class -}}">
 
             </div><!-- search-results-items -->
