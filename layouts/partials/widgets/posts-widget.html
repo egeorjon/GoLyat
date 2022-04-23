@@ -14,7 +14,8 @@
 {{- $heading_level := int (.params.heading | default 3) -}}
 {{- $heading_title := printf "h%d" $heading_level -}}
 {{- $heading_subtitle := printf "h%d" (add $heading_level 1) -}}
-{{- $class         := partialCached "partials/class-columns.html" (.params.columns | default (dict "xs" 1 "sm" 1 "md" 3 "lg" 3 "xl" 3)) (printf "%s" .params.columns) -}}
+{{- $columns       := .params.columns | default (dict "xs" 1 "sm" 1 "md" 2 "lg" 2 "xl" 2) -}}
+{{- $class         := partialCached "partials/class-columns.html" $columns (delimit $columns "-") -}}
 {{- with .posts -}}
     <div class="col">
         {{- if eq $widget_format "image" -}}
