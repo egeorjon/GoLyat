@@ -38,7 +38,8 @@
         <section class="page-bottomline page-bottomline-{{- .name}} mb-5">
             {{- $limit := cond (.limitedWidth | default true) "limit-width" "" -}}
             <div class="container {{ $limit -}}">
-                {{- $class := partialCached "partials/class-columns.html" (.columns | default (dict "xs" 1 "sm" 1 "md" 1 "lg" 1 "xl" 1)) (printf "%s" .columns) -}}
+                {{- $columns := .columns | default (dict "xs" 1 "sm" 1 "md" 1 "lg" 1 "xl" 1) -}}
+                {{- $class   := partialCached "partials/class-columns.html" $columns (delimit $columns "-") -}}
                 <div class="{{ $class -}}">
                     {{- range .Widgets -}}
                         {{- $partialPath := printf "partials/widgets/%s.html" .widget -}}
