@@ -15,19 +15,7 @@
             <div class="row">
                 <h2 class="col mb-5">{{- i18n "search-form" -}}</h2>
             </div>
-            <form action="{{ .Permalink }}" method="GET" class="row justify-content-center">
-                <label for="search-query" class="col-form-label col-auto"><span class="visually-hidden">{{- i18n "search-please-enter" -}}</span></label>
-                <div class="col-auto">
-                    <input type="text" class="form-control" id="search-query" aria-describedby="searchHelp" name="s" placeholder="{{- i18n "search-please-enter" -}}" />
-                    <div id="searchHelp" class="form-text visually-hidden">{{- i18n "search-help" -}}</div>
-                </div>
-                <div class="col-auto">
-                    <button type="submit" class="btn btn-dark">
-                        <i class="bi-search" aria-hidden="true"></i>
-                        <span class="visually-hidden">{{- "search" -}}</span>
-                    </button>
-                </div><!-- col -->
-            </form>
+            {{- partialCached "partials/search-form.html" . -}}
         </div><!-- container -->
     </div><!-- search-form -->
     <div id="search-results" class="d-none">
