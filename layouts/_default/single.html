@@ -24,7 +24,7 @@
                 {{- partial "partials/meta.html" (dict "context" $current_page "kindctx" "page" "meta" . "class" "meta-top") -}}
             {{- end -}}
             </div>
-            <div class="page-content post-content col mb-6">
+            <div class="page-content post-content col mb-5">
                 {{/*- .Content -*/}}
                 {{- replace .Content .Summary "" | safeHTML -}}
             </div><!-- col -->
