@@ -5,7 +5,7 @@
 {{/* .type      */}}
 {{/* .numposts  */}}
 {{/* .columns   */}}
-{{- $title         := .params.title | default "This is our blog's sections" -}}
+{{- $title         := .params.title | default (i18n "sections-list") -}}
 {{- $widget_format := .params.type | default "image" -}}
 {{- $heading_level := int (.params.heading | default 3) -}}
 {{- $heading_title := printf "h%d" $heading_level -}}

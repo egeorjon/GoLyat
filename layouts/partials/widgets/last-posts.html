@@ -8,4 +8,4 @@
 {{- $numposts := .params.numposts | default 3 -}}
 {{- $posts    := site.RegularPages | first $numposts -}}
 {{- $params   := merge .params (dict "more" "/") -}}
-{{- partial "partials/widgets/posts-widget.html" (dict "context" .context "params" $params "title" (.params.title | default "Last posts published") "posts" $posts) -}}
+{{- partial "partials/widgets/posts-widget.html" (dict "context" .context "params" $params "title" (.params.title | default (i18n "last-posts-published")) "posts" $posts) -}}

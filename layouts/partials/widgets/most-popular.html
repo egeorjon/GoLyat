@@ -21,7 +21,7 @@
             {{- end -}}
         {{- end -}}
         {{- with $posts -}}
-            {{- partial "partials/widgets/posts-widget.html" (dict "context" $context "params" $params "title" ($params.title | default "Most popular posts") "posts" .) -}}
+            {{- partial "partials/widgets/posts-widget.html" (dict "context" $context "params" $params "title" ($params.title | default (i18n "most-popular-posts" 2)) "posts" .) -}}
         {{- end -}}
     {{- end -}}
 {{- end -}}
