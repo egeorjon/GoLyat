@@ -9,14 +9,16 @@
 {{- end -}}
 <title>{{- delimit ($title | append (slice (.Site.Title  | markdownify | plainify))) " &dash; " -}}</title>
 
-{{- $description := .Params.description | default .Site.Params.Description |default "" -}}
-{{- with $description -}}
-    <meta name="description" content="{{- . | markdownify | plainify | htmlUnescape -}}" />
-{{- end -}}
+{{- if ne .Kind "404" -}}
+    {{- $description := .Params.description | default .Site.Params.Description |default "" -}}
+    {{- with $description -}}
+        <meta name="description" content="{{- . | markdownify | plainify | htmlUnescape -}}" />
+    {{- end -}}
 
-{{- $keywords := .Params.tags | default .Site.Params.Keywords |default "" -}}
-{{- with $keywords -}}
-    <meta name="keywords" content="{{- delimit . "," | plainify | htmlUnescape -}}" />
+    {{- $keywords := .Params.tags | default .Site.Params.Keywords |default "" -}}
+    {{- with $keywords -}}
+        <meta name="keywords" content="{{- delimit . "," | plainify | htmlUnescape -}}" />
+    {{- end -}}
 {{- end -}}
 
 {{- with .Authors.name -}}
@@ -35,26 +37,28 @@
 
 {{- hugo.Generator -}}
 
-{{- $opengraph := .Site.Params.opengraph | default "internal" -}}
-{{- if eq $opengraph "internal" -}}
-	{{- template "_internal/opengraph.html" . -}}
-{{- else if eq $opengraph "theme" -}}
-    {{- partial "partials/opengraph.html" . -}}
-{{- end -}}
+{{- if ne .Kind "404" -}}
+    {{- $opengraph := .Site.Params.opengraph | default "internal" -}}
+    {{- if eq $opengraph "internal" -}}
+        {{- template "_internal/opengraph.html" . -}}
+    {{- else if eq $opengraph "theme" -}}
+        {{- partial "partials/opengraph.html" . -}}
+    {{- end -}}
 
-{{- $twitter := .Site.Params.twitterCards | default "internal" -}}
-{{- if eq $twitter "internal" -}}
-	{{- template "_internal/twitter_cards.html" . -}}
-{{- else if eq $twitter "theme" -}}
-    {{- partial "partials/twitter.html" . -}}
-{{- end -}}
+    {{- $twitter := .Site.Params.twitterCards | default "internal" -}}
+    {{- if eq $twitter "internal" -}}
+        {{- template "_internal/twitter_cards.html" . -}}
+    {{- else if eq $twitter "theme" -}}
+        {{- partial "partials/twitter.html" . -}}
+    {{- end -}}
 
-{{- $schema := .Site.Params.schema | default "internal" -}}
-{{- if eq $schema "internal" -}}
-	{{- template "_internal/schema.html" . -}}
-{{- else if eq $schema "theme" -}}
-    {{- $param := anchorize (print "%s-%s" .Kind .Title) -}}
-    {{- partial "partials/schema.html" . $param -}}
+    {{- $schema := .Site.Params.schema | default "internal" -}}
+    {{- if eq $schema "internal" -}}
+        {{- template "_internal/schema.html" . -}}
+    {{- else if eq $schema "theme" -}}
+        {{- $param := anchorize (print "%s-%s" .Kind .Title) -}}
+        {{- partial "partials/schema.html" . $param -}}
+    {{- end -}}
 {{- end -}}
 
 {{- if .Site.Params.ThemeColor -}}
