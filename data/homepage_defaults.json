@@ -1,0 +1,74 @@
+{
+    "columns": { "xs": 1, "sm": 1, "md": 1, "lg": 1, "xl": 1 },
+    "Rows": [
+        {
+            "name": "edito",
+            "weight": 1,
+            "columns": { "xs": 1, "sm": 1, "md": 1, "lg": 1, "xl": 1 },
+            "widgets": [
+                {
+                    "cache": true,
+                    "weight": 1,
+                    "widget": "post",
+                    "params": {
+                        "method": "field",
+                        "value": "edito",
+                        "heading": 2
+                    }
+                }
+            ]
+        },
+        {
+            "name": "sections",
+            "weight": 3,
+            "columns": { "xs": 1, "sm": 1, "md": 1, "lg": 1, "xl": 1 },
+            "widgets": [
+                {
+                    "cache": true,
+                    "weight": 1,
+                    "widget": "sections-list",
+                    "params": {
+                        "title": "What this blog is speaking about ?",
+                        "numposts": 4,
+                        "columns": { "xs": 1, "sm": 1, "md": 2, "lg": 2, "xl": 2 },
+                        "heading": 2
+                    }
+                }
+            ]
+        },
+        {
+            "name": "last-posts",
+            "weight": 2,
+            "columns": { "xs": 1, "sm": 1, "md": 1, "lg": 1, "xl": 1 },
+            "widgets": [
+                {
+                    "cache": true,
+                    "weight": 1,
+                    "widget": "last-posts",
+                    "params": {
+                        "numposts": 6,
+                        "columns": { "xs": 1, "sm": 1, "md": 3, "lg": 3, "xl": 3 },
+                        "heading": 2
+                    }
+                }
+            ]
+        },
+        {
+            "name": "popular-posts",
+            "weight": 4,
+            "columns": { "xs": 1, "sm": 1, "md": 1, "lg": 1, "xl": 1 },
+            "widgets": [
+                {
+                    "cache": true,
+                    "weight": 1,
+                    "widget": "last-posts",
+                    "params": {
+                        "numposts": 6,
+                        "columns": { "xs": 1, "sm": 1, "md": 3, "lg": 3, "xl": 3 },
+                        "heading": 2
+                    }
+                }
+            ]
+        }
+    ]
+}
