@@ -13,13 +13,13 @@
     <div id="search-form" class="mb-5">
         <div class="container limit-width">
             <div class="row">
-                <h2 class="col mb-5">{{- "search-form" -}}</h2>
+                <h2 class="col mb-5">{{- i18n "search-form" -}}</h2>
             </div>
             <form action="{{ .Permalink }}" method="GET" class="row justify-content-center">
-                <label for="search-query" class="col-form-label col-auto"><span class="visually-hidden">{{- "search-please-enter" -}}</span></label>
+                <label for="search-query" class="col-form-label col-auto"><span class="visually-hidden">{{- i18n "search-please-enter" -}}</span></label>
                 <div class="col-auto">
-                    <input type="text" class="form-control" id="search-query" aria-describedby="searchHelp" name="s" placeholder="{{- "what-you-looking-for" -}}" />
-                    <div id="searchHelp" class="form-text visually-hidden">{{- "search-help" -}}</div>
+                    <input type="text" class="form-control" id="search-query" aria-describedby="searchHelp" name="s" placeholder="{{- i18n "search-please-enter" -}}" />
+                    <div id="searchHelp" class="form-text visually-hidden">{{- i18n "search-help" -}}</div>
                 </div>
                 <div class="col-auto">
                     <button type="submit" class="btn btn-dark">
@@ -33,7 +33,7 @@
     <div id="search-results" class="d-none">
         <div class="container limit-width">
             <div class="row">
-                <h2 class="col" id="search-results-title">{{- "search-results" -}}</h2>
+                <h2 class="col" id="search-results-title">{{- i18n "search-results" -}}</h2>
             </div>
             {{- $class := partialCached "partials/class-columns.html" (.Site.Params.PostList.ListColumns | default (dict "xs" 1 "sm" 1 "md" 1 "lg" 1 "xl" 1)) "search" -}}
             <div id="search-results-items" class="post-list {{ $class -}}">
@@ -49,7 +49,7 @@
                 <ul class="post-meta inline-list">
                     ${ isset section }<li class="post-section"><i class="bi-folder2-open"></i> <span class="visually-hidden">{{- "In" -}}</span><span class="in-category">${section}</span></li>${end}
                     ${ isset publish }<li class="post-date"><i class="bi-calendar3"></i> <span class="visually-hidden">{{- "posted-on" -}}</span><time class="entry-date published" datetime="${publish}">${publish}</time></li>${end}
-                    ${ isset tags }<li class="post-tags"><i class="bi-tags"></i> <span class="visually-hidden" aria-label="hidden">{{- "tags" -}}:</span>${tags}</li>${end}
+                    ${ isset tags }<li class="post-tags"><i class="bi-tags"></i> <span class="visually-hidden" aria-label="hidden">{{- i18n "tags" -}}:</span>${tags}</li>${end}
                 </ul>                
                 <p class="post-summary card-text">${summary}</p>
                 <p><i class="bi-reception-4"></i> ${score}</p>
