@@ -1,36 +1,37 @@
 {{/* Parameters        */}}
-{{/* .context   Page   */}}
+{{/* $context   Page   */}}
 {{/* .title     String */}}
-{{- $title := .title | default "Share this post" -}}
-{{- if .context.Site.Params.sharelinks -}}
+{{- $context := .context -}}
+{{- $title   := .title | default "Share this post" -}}
+{{- if $context.Site.Params.sharelinks -}}
 <div class="col">
     <aside class="card h-100 widget widget-share-links">
         <div class="card-body">
             {{- with $title -}}<h3 class="card-title">{{- . | safeHTML -}}</h3>{{- end -}}
             <ul class="class-text inline-list">
                 {{- $home  := "/" | absURL -}}
-                {{- $url   := .context.Permalink | absURL | safeURL -}}
-                {{- $title := .context.Title | safeHTML -}}
+                {{- $url   := $context.Permalink | absURL | safeURL -}}
+                {{- $title := $context.Title | safeHTML -}}
                 {{- $description := "" -}}
-                {{- with .context.Params.Description -}}
+                {{- with $context.Params.Description -}}
                     {{- $description = . | safeHTML -}}
                 {{- else -}}
-                    {{- $description = ( .context.Summary | truncate 200 ) -}}
+                    {{- $description = ( $context.Summary | truncate 200 ) -}}
                 {{- end -}}
                 {{- $image := "" -}}
-                {{- if isset .context.Params "images" -}}
-                    {{- $image = index .context.Params.images 0 | absURL -}}
+                {{- if isset $context.Params "images" -}}
+                    {{- $image = index $context.Params.images 0 | absURL -}}
                 {{- end -}}
                 {{- $tags := "" -}}
-                {{- if isset .context.Params "tags" -}}
-                    {{- $tags = (delimit .context.Params.tags ",") | safeURL -}}
+                {{- if isset $context.Params "tags" -}}
+                    {{- $tags = (delimit $context.Params.tags ",") | safeURL -}}
                 {{- end -}}
-                {{- range sort .context.Site.Params.sharelinks "weight" -}}
+                {{- range sort $context.Site.Params.sharelinks "weight" -}}
                     {{- $share := . -}}
                     {{- $via   := "" -}}
                     {{- with .account -}}{{- $via = . -}}{{- end -}}
-                    {{- if and (ne $.context.Site.Data.socials.config nil) (ne .id nil) -}}
-                        {{- with (index $.context.Site.Data.socials.config .id) }}
+                    {{- if and (ne $context.Site.Data.socials.config nil) (ne .id nil) -}}
+                        {{- with (index $context.Site.Data.socials.config .id) }}
                             {{- if .share -}}
                                 {{- $share_url := partial "share_regex" (dict "pattern" "%%URL%%"      "param" "%s"              "value" $url          "string" .share)     -}}
                                 {{- $share_url  = partial "share_regex" (dict "pattern" "%%HOME%%"     "param" "%s"              "value" $home         "string" $share_url) -}}
@@ -38,8 +39,10 @@
                                 {{- $share_url  = partial "share_regex" (dict "pattern" "%%VIA%%"      "param" "&via=%s"         "value" $via          "string" $share_url) -}}
                                 {{- $share_url  = partial "share_regex" (dict "pattern" "%%HASHTAGS%%" "param" "&hashtags=%s"    "value" $tags         "string" $share_url) -}}
                                 {{- $share_url  = partial "share_regex" (dict "pattern" "%%MEDIA%%"    "param" "&media=%s"       "value" $image        "string" $share_url) -}}
+                                {{- $share_url  = partial "share_regex" (dict "pattern" "%%PICTURE%%"  "param" "&picture=%s"     "value" $image        "string" $share_url) -}}
                                 {{- $share_url  = partial "share_regex" (dict "pattern" "%%DESC%%"     "param" "%s"              "value" $description  "string" $share_url) -}}
                                 {{- $share_url  = partial "share_regex" (dict "pattern" "%%BODY%%"     "param" "%s"              "value" $url          "string" $share_url) -}}
+                                {{- $share_url  = partial "share_regex" (dict "pattern" "%%SITE%%"     "param" "%s"              "value" $context.Site.Title   "string" $share_url) -}}
                                 {{/*- $share_url = partial "share_regex" (dict  "pattern" "%%SUBJECT%%"  "param" "&subject=%s"     "value" $title        "string" $share_url) -*/}}
                                 {{/*- $share_url = partial "share_regex" (dict  "pattern" "%%TEXT%%"     "param" "%s"              "value" $title       "string" $share_url) -*/}}
                                 <li>
