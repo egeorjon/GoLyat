@@ -105,7 +105,7 @@
     one   = "Dernier article publié"
     other = "Derniers articles publiés"
 
-[most-popular-post]
+[most-popular-posts]
     one   = "L'article le plus consulté"
     other = "Les articles les plus consultés"
 
@@ -122,3 +122,6 @@
 
 [see-more]
     other = "Plus d'articles"
+
+[sections-list]
+    other = "Les rubriques de ce blog"

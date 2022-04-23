@@ -102,7 +102,7 @@
     one   = "Last post published"
     other = "Last posts published"
 
-[most-popular-post]
+[most-popular-posts]
     one   = "The most popular post"
     other = "The most popular posts"
 
@@ -119,3 +119,6 @@
 
 [see-more]
     other = "Read more posts"
+
+[sections-list]
+    other = "The sections of this blog"
