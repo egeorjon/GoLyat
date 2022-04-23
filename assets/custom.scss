@@ -193,7 +193,6 @@ $display-font-sizes: map-remove($display-font-sizes,
 );
 
 $table-variants: map-remove( $table-variants, 
-  "secondary",
   "success",
   "info",
   "warning",
@@ -202,13 +201,12 @@ $table-variants: map-remove( $table-variants,
 
 
 $aspect-ratios: map-merge($aspect-ratios, (
-        "57x20": calc(20 / 57 * 100%)
+        "47x20": calc(20 / 47 * 100%)
     )
 );
 
 @import "bootstrap-5.1.3/scss/mixins";
 @import "bootstrap-5.1.3/scss/root";
-
 @import "bootstrap-5.1.3/scss/utilities";
 
 /* --- Utilities customization ------------- */
