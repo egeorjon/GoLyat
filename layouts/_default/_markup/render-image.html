@@ -21,7 +21,7 @@
     {{- end -}}
 {{- end -}}
 {{- if eq $imgtype 0 -}}
-    <div class="ratio ratio-57x20"><div>{{- i18n "image-not-found" -}}</div></div>
+    <div class="ratio ratio-47x20"><div>{{- i18n "image-not-found" -}}</div></div>
 {{- else if lt $imgtype 3 -}}
 <figure class="figure figure-center">
     <img class="img-fluid" src="{{- .Destination | safeURL -}}" {{ with $alt_caption -}}alt="{{- . | safeHTML -}}"{{- end }} />
