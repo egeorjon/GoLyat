@@ -122,3 +122,60 @@
 
 [sections-list]
     other = "The sections of this blog"
+
+[message-recorded]
+	other="Message sent"
+
+[your-name]
+	other="Your name"
+
+[placeholder-name]
+	other="Please enter your name"
+
+[email-address]
+	other="Your e-mail address"
+
+[placeholder-email]
+	other="Pleas enter your e-mail address"
+
+[subject]
+	other="The subject of your message"
+
+[placeholder-subject]
+	other="Please enter the subject here"
+
+[your-message]
+	other="Your message"
+
+[placeholder-message]
+	other="Please enter your message here"
+
+[submit]
+	other="Send the message"
+
+[404-Page-not-found]
+    other = "404 Page not found"
+
+[404-error-desc]
+    other = "It is a 404 error. You are looking for a page that doesn't exist"
+
+[content-not-found]
+    other = "Unfortunately, we cannot find the content you are looking for."
+
+[you-can]
+    other = "But, you can"
+
+[use-search]
+    other = "Use the search tool"
+
+[go-search-form]
+    other = "Use the search form in the bottom of the page."
+
+[navigate-categories]
+    other = "Navigate through the categories"
+
+[navigate-tags]
+    other = "Navigate through the tags"
+
+[navigate-series]
+    other = "Use the series"

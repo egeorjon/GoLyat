@@ -125,3 +125,63 @@
 
 [sections-list]
     other = "Les rubriques de ce blog"
+
+[message-recorded]
+	other = "Message envoyé"
+
+[your-name]
+	other = "Votre nom"
+
+[placeholder-name]
+	other = "Merci de saisir votre nom"
+
+[email-address]
+	other = "Votre adresse de messagerie"
+
+[placeholder-email]
+	other = "Merci de saisir votre adresse mail"
+
+[subject]
+	other = "Le sujet de votre message"
+
+[placeholder-subject]
+	other = "Merci de saisir le sujet"
+
+[your-message]
+	other = "Votre message"
+
+[placeholder-message]
+	other = "Merci de saisir votre message"
+
+[submit]
+	other = "Envoyer le message"
+
+[404-Page-not-found]
+    other = "Page non trouvée (erreur 404)"
+
+[404-error-desc]
+    other = "Il s'agit d'une erreur 404. La page que vous recherchez n'existe pas !"
+
+[content-not-found]
+    other = "Malheureusement, nous ne pouvons pas trouver le contenu que vous recherchez."
+
+[you-can]
+    other = "Mais, vous pouvez"
+
+[use-search]
+    other = "Utilisez l'outil de recherche"
+
+[go-search-form]
+    other = "Utilisez le formulaire de bas de page."
+
+[navigate-sections]
+    other = "Naviger à travers les rubriques de ce blog"
+
+[navigate-categories]
+    other = "Naviger à travers les catégories"
+
+[navigate-tags]
+    other = "Utiliser les mots-clés"
+
+[navigate-series]
+    other = "Consulter les dossiers"
