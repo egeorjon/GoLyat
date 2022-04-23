@@ -13,7 +13,7 @@
         follow      = "https://www.facebook.com/%s"
         followtext  = "follow-me-on"
         icon        = "bi-facebook"
-        share       = "https://www.facebook.com/sharer.php?u=%%URL%%"
+        share       = "https://www.facebook.com/sharer.php?u=%%URL%%%%PICTURE%%&title=%%TITLE%%&description=%%DESC%%&caption=%%SITE%%"
         sharetext   = "share-on"
         mobile      = false
     [config.twitter]
