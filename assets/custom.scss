@@ -138,7 +138,7 @@ $card-border-width:                 0; // $border-width !default;
 // $card-inner-border-radius:          subtract($card-border-radius, $card-border-width) !default;
 // $card-cap-padding-y:                $card-spacer-y * .5 !default;
 // $card-cap-padding-x:                $card-spacer-x !default;
-// $card-cap-bg:                       rgba($black, .03) !default;
+ $card-cap-bg:                       transparent; // rgba($black, .03) !default;
 // $card-cap-color:                    null !default;
 // $card-height:                       null !default;
 // $card-color:                        null !default;
