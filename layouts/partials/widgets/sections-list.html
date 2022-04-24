@@ -26,7 +26,7 @@
                 {{- range . -}}
                     {{- with $.context.Site.GetPage . -}}                
                 <div class="col mb-5">
-                    <aside class="card h-100 widget widget-related widget-related-images">
+                    <aside class="card h-100 widget widget-sections widget-sections-images">
                         {{- if isset .Params "images" -}}
                         <a href="{{- .RelPermalink -}}" title="{{- .Title | plainify | htmlUnescape -}}"></a>
                             {{- partial "partials/image.html" (dict "context" . "Destination" .Params.images "Title" .Title "Text" .Title "class" "card-img-top") -}}
