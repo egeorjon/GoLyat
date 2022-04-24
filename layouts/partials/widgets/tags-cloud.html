@@ -9,7 +9,7 @@
     {{- $nb_tags := len .context.Site.Taxonomies.tags -}}
     {{- $title   := .params.title | default (i18n "Tags" $nb_tags) -}}
     {{- with .context.Site.Taxonomies.tags }}
-<div class="col">
+<div class="col mb-5">
     <aside class="card h-100 widget widget-tags-cloud">
         <div class="card-body">
             {{- with $title -}}{{- (printf "<%s class=\"card-title\">%s</%s>" $heading_title . $heading_title) | safeHTML -}}{{- end -}}
