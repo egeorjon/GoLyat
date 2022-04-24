@@ -185,3 +185,15 @@
 
 [navigate-series]
     other = "Consulter les dossiers"
+
+[posts-of]
+    other = "Article de la rubrique"
+
+[posts-of-section]
+    other = "Articles de la rubrique {{ .Title }}"
+
+[series-posts]
+    other = "Les articles du dossier :"
+
+[no-post-yet]
+    other = "Le dossier est vide pour l'instant"

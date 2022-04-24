@@ -179,3 +179,15 @@
 
 [navigate-series]
     other = "Use the series"
+
+[posts-of]
+    other = "Posts of the section"
+
+[posts-of-section]
+    other = "Posts of the section {{ .Title }}"
+
+[series-posts]
+    other = "The post of this serie:"
+
+[no-post-yet]
+    other = "This serie is still empty"
