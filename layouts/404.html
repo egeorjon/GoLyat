@@ -17,7 +17,7 @@
 
     <div class="container limit-width">
         <div class="row row-cols-1">
-            <div class="post-content col mb-5">
+            <div class="post-content col">
                 <p>{{- i18n "content-not-found" -}}</p>
                 <h2>{{- i18n "you-can" -}}</h2>
             </div>
@@ -26,8 +26,8 @@
                 {{- partialCached "partials/search-form.html" . -}}
             </div>
             {{- partialCached "partials/widgets/sections-list.html" (dict "context" . "params" (dict "title" (i18n "navigate-sections"))) -}}
-
-
+            {{- partialCached "partials/widgets/tags-cloud.html" (dict "context" . "params" (dict "title" (i18n "navigate-tags")))        -}}
+            {{- partialCached "partials/widgets/series-list.html" (dict "context" . "params" (dict "title" (i18n "navigate-series")))     -}}
         </div><!-- row -->
     </div><!-- container -->
 {{- end -}}
