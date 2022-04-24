@@ -5,6 +5,7 @@
 {{/* .class       CSS class to be added   */}}
 {{- $context := .context -}}
 {{- $kindctx := .kindctx -}}
+{{- $typectx := .typectx -}}
 <ul class="post-meta inline-list {{ with .class -}}{{- . | safeHTML -}}{{- end -}}">
     {{- range $order, $meta := .meta -}}
         {{- if eq $meta "date" -}}
@@ -60,6 +61,18 @@
                     <span class="in-category">{{- delimit $list ", " -}} </span>
                 </li>
             {{- end -}}
-        {{- end -}}
-    {{- end -}}
+        {{- else if eq $meta "linkedsection" -}}
+            {{- if and (eq $kindctx "taxonomy") (eq $typectx "series") -}}
+                {{- $section := $context.Params.linkedsection | default nil -}}
+                {{- if $section }}
+                    {{- with $context.Site.GetPage $section -}}
+                    <li class="post-linked">
+                        <i class="bi-folder-symlink"></i><span class="visually-hidden">{{- i18n "linked-to" -}}</span> 
+                        <span class="linked-to">{{- i18n "posts-of" -}}<a href="{{- .Permalink -}}" title="{{- i18n "posts-of-section" . -}}"> {{ .Title -}}</a></span>
+                    </li><!-- class="visually-hidden" -->
+                    {{- end -}}<!-- with -->
+                {{- end -}}<!-- if section -->
+            {{- end }}<!-- if series -->
+        {{- end -}}<!-- if $meta -->
+    {{- end -}}<!-- range -->
  </ul>
