@@ -1,7 +1,11 @@
 {{- $context        := .context                        -}}
 {{- $kindctx        := .kindctx                        -}}
-{{- $default_bottom := (dict "1" "date" "2" "reading") -}}
+{{- $typectx        := .typectx                        -}}
 {{- $display_image  := isset .context.Params "images"  -}}
+{{- $meta_bottom    := $context.Site.Params.PostList.metabottom | default (dict "1" "date" "2" "reading") -}}
+{{- if and (eq $kindctx "taxonomy") (eq $typectx "series") -}}
+    {{- $meta_bottom = $context.Site.Params.SeriesList.metabottom | default (dict "1" "linkedsection") -}}
+{{- end -}}
 <article class="card h-100">
     <div class="row">
         {{- if $display_image -}}
@@ -20,10 +24,28 @@
                     {{- . | replaceRE "<p>(.*|\n)</p>"  "$1" | safeHTML -}}
                     </p>
                 {{- end -}}
-                {{- with $context.Site.Params.PostList.metabottom | default $default_bottom -}}
-                   {{- partial "partials/meta.html" (dict "context" $context "kindctx" $kindctx "meta" . "class" "meta-bottom") -}}
+                {{- with $meta_bottom -}}
+                   {{- partial "partials/meta.html" (dict "context" $context "kindctx" $kindctx "typectx" $typectx "meta" . "class" "meta-bottom") -}}
                 {{- end -}}
             </div><!-- card-body -->
+            {{- if and (eq $kindctx "taxonomy") (eq $typectx "series") -}}
+                <div class="card-footer">
+                {{- if $context.Pages }}
+                    <p>{{- i18n "series-posts" -}}</p>
+                    <ol>
+                    {{- range $context.Pages.ByPublishDate }}
+                        <li>
+                            <a href="{{- .RelPermalink -}}" rel="bookmark">
+                                {{- .Title }} ({{- .Date | time.Format (.Site.Params.FormatDate | default "2-Jan-2006")  -}})
+                            </a>
+                        </li>
+                    {{- end }}
+                    </ol>
+                {{- else -}}
+                    {{- i18n "no-post-yet" -}}
+                {{- end }}
+                </div><!-- card-footer -->
+            {{- end -}}
         </div><!-- col -->
     </div><!-- row -->
 </article>

@@ -1,5 +1,10 @@
 {{- define "main" -}}
-    {{- $post_format  := .Site.Params.PostList.PostFormat | default "image-left" -}}
+    {{- $columns := .Site.Params.PostList.Columns | default (dict "xs" 1 "sm" 1 "md" 1 "lg" 1 "xl" 1) -}}
+    {{- $post_format := .Site.Params.PostList.PostFormat | default "image-left" -}}
+    {{- if and (eq .Kind "taxonomy") (eq .Type "series") -}}
+        {{- $columns = .Site.Params.SeriesList.Columns | default (dict "xs" 1 "sm" 1 "md" 2 "lg" 2 "xl" 2) -}}
+        {{- $post_format = .Site.Params.SeriesList.PostFormat | default "image-top" -}}
+    {{- end -}}
     {{- $partial_path := path.Join "partials/posts-format" (printf "%s%s%s" "posts-list-" $post_format ".html") -}}
     <div class="container limit-width">
         <div class="row">
@@ -11,12 +16,11 @@
                 </div><!-- col -->
             {{- end -}}
         </div>
-        {{- $columns := .Site.Params.PostList.Columns | default (dict "xs" 1 "sm" 1 "md" 1 "lg" 1 "xl" 1) -}}
-        {{- $class   := partialCached "partials/class-columns.html" $columns (delimit $columns "-") -}}
+        {{- $class := partialCached "partials/class-columns.html" $columns (delimit $columns "-") -}}
         <div class="post-list {{ $class -}}">
             {{- range .Paginator.Pages -}}
             <div class="col mb-4">
-                {{- partial $partial_path (dict "context" . "kindctx" $.Kind) -}}
+                {{- partial $partial_path (dict "context" . "kindctx" $.Kind "typectx" $.Type) -}}
             </div><!-- col -->
             {{- end -}}
         </div><!-- row -->
