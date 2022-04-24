@@ -474,6 +474,16 @@ $gallery-caption-fontsize: $font-size-sm;
     text-align: justify;
 }
 
+.widget-tags-cloud a {
+    text-decoration: none;
+    margin-right: 1rem;
+    white-space: nowrap;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
 /* ------------------------------------------ */
 /* --- homepage ----------------------------- */
 /* ------------------------------------------ */
