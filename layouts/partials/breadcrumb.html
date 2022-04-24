@@ -9,7 +9,7 @@
     {{- end -}}
     {{- $pn := "" -}}
     {{with .pg -}}
-        {{- if gt .PageNumber 1 -}}
+        {{- if gt .TotalPages 1 -}}
             {{- $pn = printf " - Page %d/%d" .PageNumber .TotalPages -}}
         {{- end -}}
     {{- end -}}
@@ -21,9 +21,9 @@
         </li>
     {{- else if or (ne .p1 .p2) (ne $pn "") -}}
         <li class="breadcrumb-item" >
-            <a href="{{- .p1.Permalink -}}" title="{{- .p1.Title -}}" >{{- .p1.Title | safeHTML -}}</a>{{- $pn -}}
+            <a href="{{- .p1.Permalink -}}" title="{{- .p1.Title -}}" >{{- .p1.Title | safeHTML -}}</a>{{- if eq .p1 .p2 -}}{{- $pn -}}{{- end -}}
         </li>
     {{- else -}}
-        <li class="breadcrumb-item active" aria-current="page">{{- .p1.Title | safeHTML -}}{{- $pn -}}</li>
+            <li class="breadcrumb-item active" aria-current="page">{{- .p1.Title | safeHTML -}}{{- $pn -}}</li>
     {{- end -}}
 {{- end -}}
