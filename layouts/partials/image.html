@@ -35,9 +35,9 @@
         {{- $index = add $index 1 -}}
     {{- end -}}
     {{- $sizes = $sizes | append "100vw" -}}
-    {{- $srcsets   := slice -}}
-    {{- $imgsizes  := slice 480 660 880 1024 -}}
-    {{- $width     := $image.Width -}}
+    {{- $srcsets  := slice -}}
+    {{- $imgsizes := slice 480 660 880 1024 -}}
+    {{- $width    := $image.Width -}}
     {{- range $size := $imgsizes -}}
         {{- if gt $width $size -}}
             {{- $img    := $image.Resize (printf "%dx" $size) -}}
