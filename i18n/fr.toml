@@ -197,3 +197,7 @@
 
 [no-post-yet]
     other = "Le dossier est vide pour l'instant"
+
+[series]
+    one   = "Le dossier"
+    other = "Les dossiers"

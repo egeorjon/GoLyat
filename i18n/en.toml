@@ -191,3 +191,7 @@
 
 [no-post-yet]
     other = "This serie is still empty"
+
+[series]
+    one   = "The serie"
+    other = "The series"
