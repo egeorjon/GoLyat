@@ -67,7 +67,7 @@
                 {{- if $section }}
                     {{- with $context.Site.GetPage $section -}}
                     <li class="post-linked">
-                        <i class="bi-folder-symlink"></i><span class="visually-hidden">{{- i18n "linked-to" -}}</span> 
+                        <i class="bi-folder-symlink"></i><span class="visually-hidden">{{- i18n "posts-of" -}}</span> 
                         <span class="linked-to">{{- i18n "posts-of" -}}<a href="{{- .Permalink -}}" title="{{- i18n "posts-of-section" . -}}"> {{ .Title -}}</a></span>
                     </li><!-- class="visually-hidden" -->
                     {{- end -}}<!-- with -->
