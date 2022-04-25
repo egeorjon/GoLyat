@@ -65,7 +65,8 @@
     <meta name="theme-color" content="{{- .Site.Params.ThemeColor -}}" />
 {{- end -}}
 
-{{- if hugo.IsProduction -}}
+{{- $production := eq (getenv "HUGO_ENV") "production" | or hugo.IsProduction -}}
+{{- if $production -}}
     <meta name="robots" content="index,follow" />
 {{- else -}}
     <meta name="robots" content="noindex,nofollow" />
@@ -112,10 +113,17 @@
         {{- end -}}
     {{- end -}}
 {{- end -}}
-
 {{- with .Site -}}
     {{- with ((.GetPage "home").OutputFormats.Get "webmanifest") }}
         {{- printf `<link rel="%s" type="%s" href="%s" />` .Rel .MediaType.Type .RelPermalink | safeHTML -}}
     {{- end -}}
 {{- end -}}
-{{- partial "partials/styles.html" . -}}
+{{- partialCached "partials/styles.html" . -}}
+{{- with .Site.Params.Services.googleWMT | default false -}}
+<meta name="google-site-verification" content="{{- . -}}" />
+{{- end -}}
+{{- if or $production (.Site.Params.DebugMode | default false) -}}
+    {{- with .Site.Params.Services.piwikpro -}}
+        {{- partialCached "piwikpro.html" . -}}
+    {{- end -}}
+{{- end -}}
