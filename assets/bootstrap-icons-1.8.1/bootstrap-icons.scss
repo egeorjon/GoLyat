@@ -729,7 +729,7 @@ $bootstrap-icons-map: (
   "file-zip": "\f3bf",
 /*  "file": "\f3c0", */
 /*  "files-alt": "\f3c1", */
-/*  "files": "\f3c2", */
+  "files": "\f3c2",
 /*  "film": "\f3c3", */
 /*  "filter-circle-fill": "\f3c4", */
 /*  "filter-circle": "\f3c5", */
@@ -2414,7 +2414,7 @@ $bootstrap-icons-map: (
   .bi-file-zip::before { content: map-get($bootstrap-icons-map, "file-zip"); }
 /*  .bi-file::before { content: map-get($bootstrap-icons-map, "file"); } */
 /*  .bi-files-alt::before { content: map-get($bootstrap-icons-map, "files-alt"); } */
-/*  .bi-files::before { content: map-get($bootstrap-icons-map, "files"); } */
+  .bi-files::before { content: map-get($bootstrap-icons-map, "files"); }
 /*  .bi-film::before { content: map-get($bootstrap-icons-map, "film"); } */
 /*  .bi-filter-circle-fill::before { content: map-get($bootstrap-icons-map, "filter-circle-fill"); } */
 /*  .bi-filter-circle::before { content: map-get($bootstrap-icons-map, "filter-circle"); } */
