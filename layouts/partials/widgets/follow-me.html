@@ -1,16 +1,20 @@
 {{/* Parameters      */}}
 {{/* .context Page   */}}
+{{- $heading_level := 3 -}}
+{{- with .params.heading -}}{{- $heading_level = (. | int) -}}{{- end -}}
+{{- $heading_title    := printf "h%d" $heading_level         -}}
+{{- $heading_subtitle := printf "h%d" (add $heading_level 1) -}}
 <div class="col">
     <aside class="card widget widget-follow">
         <div class="card-body pb-4">
-            <p class="card-title">Follow-me: </p>
-            <ul class="card-text inline-list">
+            {{- printf "<%s class=\"card-title\">%s</%s>" $heading_title (i18n "follow-me") $heading_title | safeHTML -}}
+            <ul class="card-text">
             {{- range sort .context.Site.Params.FollowLinks.Socials "weight" -}}
                 {{- if eq .id "rss" -}}
                     {{- with (($.context.Site.GetPage "home").OutputFormats.Get "rss") -}}
                         <li>
                             <a href="{{- .Permalink -}}" title="{{- i18n "rss-feeds" -}}"><i class="bi-rss"></i>
-                                <span class="visually-hidden">{{- i18n "rss-feeds" -}}</span>
+                                <span class="visually-hidden">{{- i18n "rss-feeds" -}}</span> {{ i18n "rss-feeds" -}}
                             </a>
                         </li>
                     {{ end -}}
@@ -21,8 +25,7 @@
                             {{- with (index $.context.Site.Data.socials.config .id) }}
                             <li>
                                 <a href="{{- printf .follow $media.account -}}" target="_blank" rel="noopener noreferrer" title="{{- i18n .followtext . -}}">
-                                    <i class="{{- .icon }}"></i>
-                                    <span class="visually-hidden">{{- i18n .followtext . -}}</span>
+                                    <i class="{{- .icon }}"></i><span class="visually-hidden">{{- i18n .followtext . -}}</span> {{ .name -}}
                                 </a>
                             </li>
                             {{- end -}}
