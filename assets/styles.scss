@@ -183,9 +183,43 @@ h4 {
 
 .post-meta {
     font-size: 1rem;
-    line-height: 1,6875;
+    line-height: 1.6875;
+    list-style-type: none;
+    padding-left: 0;
+
+    li {
+        white-space: nowrap;
+        display: inline-block;
+        margin-right: 0.5 * $spacer;
+    }
+
+    li:last-child {
+        margin-right: 0;
+    }
 }
 
+@media (min-width: map-get($grid-breakpoints, "md")) {
+    .post-meta li {
+        margin-right: $spacer;
+    }
+}
+
+@media (min-width: map-get($grid-breakpoints, "lg")) {
+    .post-meta li {
+        margin-right: 1.5 * $spacer;
+    }
+}
+
+.post-format-meta-left {
+
+    li {
+        white-space: normal;
+        display: block;
+        text-align: right;
+        margin-right: 0;
+        margin-bottom: $spacer;
+    }
+}
 
 /* ------------------------------------------ */
 /* --- Figures / Images --------------------- */
