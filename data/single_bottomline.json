@@ -1,47 +1,47 @@
 {
-    "Rows": [
+"Rows": [
+    {
+      "name": "authors",
+      "columns": { "xs": 1, "sm": 1, "md": 1, "lg": 1, "xl": 1 },
+      "Widgets": [
         {
-          "name": "authors",
-          "columns": { "xs": 1, "sm": 1, "md": 1, "lg": 1, "xl": 1 },
-          "Widgets": [
-            {
-                "widget": "authors",
-                "cache": false,
-                  "weight": 1,
-                  "params": {}
-            }
-          ]
-        },
-        {
-          "name": "tags-share",
-          "columns": { "xs": 1, "sm": 1, "md": 2, "lg": 2, "xl": 2 },
-          "Widgets": [
-            {
-                "widget": "tags-post",
-                "cache": false,
-                "weight": 1,
-                "params": {}
-            },
-            {
-                "widget": "share-links",
-                "cache": false,
-                "weight": 2,
-                "params": {}
-            }
-          ]
-        },
-        {
-          "limitedWidth": false,
-          "name": "related",
-          "columns": { "xs": 1, "sm": 1, "md": 1, "lg": 1, "xl": 1 },
-          "Widgets": [
-            {
-                "widget": "related-posts",
-                "cache": false,
-                "weight": 1,
-                "params": {}
-            }
-          ]
+            "widget": "authors-list",
+            "cache": false,
+              "weight": 1,
+              "params": {}
         }
-    ]
+      ]
+    },
+    {
+      "name": "tags-share",
+      "columns": { "xs": 1, "sm": 1, "md": 2, "lg": 2, "xl": 2 },
+      "Widgets": [
+        {
+            "widget": "tags-post",
+            "cache": false,
+            "weight": 1,
+            "params": {}
+        },
+        {
+            "widget": "share-links",
+            "cache": false,
+            "weight": 2,
+            "params": {}
+        }
+      ]
+    },
+    {
+      "limitedWidth": false,
+      "name": "related",
+      "columns": { "xs": 1, "sm": 1, "md": 1, "lg": 1, "xl": 1 },
+      "Widgets": [
+        {
+            "widget": "related-posts",
+            "cache": false,
+            "weight": 1,
+            "params": {}
+        }
+      ]
+    }
+  ]
 }
