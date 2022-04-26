@@ -1,8 +1,9 @@
 {{/* Parameters      */}}
 {{/* .context Page   */}}
 {{/* .params  widget  */}}
-{{- $heading_level := int (.params.heading | default 3) -}}
-{{- $heading_title := printf "h%d" $heading_level -}}
+{{- $heading_level := 3 -}}
+{{- with .params.heading -}}{{- $heading_level = (. | int) -}}{{- end -}}
+{{- $heading_title    := printf "h%d" $heading_level         -}}
 {{- $heading_subtitle := printf "h%d" (add $heading_level 1) -}}
 <div class="col">
     <aside class="card widget widget-default">
