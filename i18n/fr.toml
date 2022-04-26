@@ -201,3 +201,17 @@
 [series]
     one   = "Le dossier"
     other = "Les dossiers"
+
+[num-publication]
+    one   = "%d article publié"
+    other = "%d articles publiés"
+
+[page-of-author]
+    other = "Posts of the author {{ .Params.Title }}"
+
+[list-published-posts]
+    one   = "Published post"
+    other = "Last published posts"
+
+[see-all-posts]
+    other = "All the posts"

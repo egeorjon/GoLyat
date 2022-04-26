@@ -195,3 +195,17 @@
 [series]
     one   = "The serie"
     other = "The series"
+
+[num-publication]
+    one   = "1 post published"
+    other = "%d posts published"
+
+[page-of-author]
+    other = "Author's posts {{ .Params.Title }}"
+
+[list-published-posts]
+    one   = "Article publié"
+    other = "Derniers articles publiés"
+
+[see-all-posts]
+    other = "Tous les articles"
