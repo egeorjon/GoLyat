@@ -26,6 +26,10 @@
     one   = "Mot-clé"
     other = "Mots-clés"
 
+[Tags]
+    one   = "Mot-clé"
+    other = "Mots-clés"
+
 [image-not-found]
     other = "Image non trouvée"
 
@@ -87,13 +91,19 @@
     other = "Erreur: Widget non trouvé"
 
 [error-widget-not-exist]
-    other = "Erreur: Le widget <strong>{{ .params }}</strong> n'existe pas."
+    other = "Erreur: Le widget <strong>{{ .params }}</strong> n'existe pas"
+
+[widget-not-found]
+    other = "Le widget n'existe pas"
 
 [share-by-mail]
     other = "Envoyez cet article par %s"
 
 [share-on]
     other = "Partagez cet article sur %s"
+
+[follow-me]
+    other = "Suivez-moi"
 
 [follow-me-on]
     other = "Suivez moi sur {{ .name }}"

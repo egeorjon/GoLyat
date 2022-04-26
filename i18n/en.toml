@@ -22,6 +22,10 @@
 [posted-on]
     other = "posted on"
 
+[Tags]
+    one   = "Tag"
+    other = "Tags"
+
 [tags]
     one   = "Tag"
     other = "Tags"
@@ -86,11 +90,18 @@
 [error-widget-not-exist]
     other = "Error: The widget <strong>{{ .params }}</strong> doesn't exist."
 
+[widget-not-found]
+    other = "The widget doesn't exist"
+
+
 [share-by-mail]
     other = "Share this post by %s"
 
 [share-on]
     other = "Share this post on {{ .name }}"
+
+[follow-me]
+    other = "Follow-me"
 
 [follow-me-on]
     other = "Follow me on {{ .name }}"
