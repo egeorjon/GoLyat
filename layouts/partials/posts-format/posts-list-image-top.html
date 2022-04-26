@@ -12,11 +12,11 @@
     {{- end -}}
     <div class="card-body">
         {{- with $meta.top -}}
-            {{- partial "partials/meta.html" (dict "context" $context "kindctx" $kindctx "meta" $meta.top "class" "meta-top") -}}
+            {{- partial "partials/meta.html" (dict "context" $context "kindctx" $kindctx "meta" $meta.top "class" "meta-top post-format-image-top") -}}
         {{- end -}}
         <h3 class="card-title post-title"><a href="{{- $context.RelPermalink -}}">{{- $context.Title -}}</a></h3>
         {{- with $meta.middle -}}
-            {{- partial "partials/meta.html" (dict "context" $context "kindctx" $kindctx "meta" $meta.middle "class" "meta-middle") -}}
+            {{- partial "partials/meta.html" (dict "context" $context "kindctx" $kindctx "meta" $meta.middle "class" "meta-middle post-format-image-top") -}}
         {{- end -}}
         {{- with $context.Summary -}}
             <p class="post-summary card-text">
@@ -24,7 +24,7 @@
             </p>
         {{- end -}}
         {{- with $meta.bottom -}}
-            {{- partial "partials/meta.html" (dict "context" $context "kindctx" $kindctx "typectx" $typectx "meta" $meta.bottom "class" "meta-bottom") -}}
+            {{- partial "partials/meta.html" (dict "context" $context "kindctx" $kindctx "typectx" $typectx "meta" $meta.bottom "class" "meta-bottom post-format-image-top") -}}
         {{- end -}}
     </div><!-- card-body -->
     {{- if and (eq $kindctx "taxonomy") (eq $typectx "series") -}}

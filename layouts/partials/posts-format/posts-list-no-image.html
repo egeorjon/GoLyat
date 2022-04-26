@@ -1,19 +1,23 @@
 {{- $context        := .context                        -}}
 {{- $kindctx        := .kindctx                        -}}
 {{- $default_bottom := (dict "1" "date" "2" "reading") -}}
-<article class="card">
+{{- $meta          := $context.Site.Params.PostList.meta | default (dict "top" (dict "1" "section") "bottom" (dict "1" "tags" "2" "series")) -}}
+<article class="card h-100">
     <div class="card-body">
+        {{- with $meta.top -}}
+            {{- partial "partials/meta.html" (dict "context" $context "kindctx" $kindctx "meta" . "class" "meta-top post-format-no-image") -}}
+        {{- end -}}
         <h3 class="card-title post-title"><a href="{{- $context.RelPermalink -}}">{{- $context.Title -}}</a></h3>
-        {{- with $context.Site.Params.PostList.metatop -}}
-            {{- partial "partials/meta.html" (dict "context" $context "kindctx" $kindctx "meta" . "class" "meta-top") -}}
+        {{- with $meta.middle -}}
+            {{- partial "partials/meta.html" (dict "context" $context "kindctx" $kindctx "meta" . "class" "meta-midle post-format-no-image") -}}
         {{- end -}}
         {{- with $context.Summary -}}
             <p class="post-summary card-text">
             {{- . | replaceRE "<p>(.*|\n)</p>"  "$1" | safeHTML -}}
             </p>
         {{- end -}}
-        {{- with $context.Site.Params.PostList.metabottom | default $default_bottom -}}
-            {{- partial "partials/meta.html" (dict "context" $context "kindctx" $kindctx "meta" . "class" "meta-bottom") -}}
+        {{- with $meta.bottom -}}
+            {{- partial "partials/meta.html" (dict "context" $context "kindctx" $kindctx "meta" . "class" "meta-bottom post-format-no-image") -}}
         {{- end -}}
     </div><!-- card-body -->
 </article>

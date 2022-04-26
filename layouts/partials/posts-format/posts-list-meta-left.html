@@ -1,0 +1,49 @@
+{{- $context        := .context                        -}}
+{{- $kindctx        := .kindctx                        -}}
+{{- $typectx        := .typectx                        -}}
+{{- $display_image  := isset .context.Params "images"  -}}
+{{- $meta           := $context.Site.Params.PostList.meta | default (dict "top" (dict "1" "section" "2" "date" "3" "tags" "4" "series" "5" "reading" )) -}}
+<article class="card h-100">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-12 col-md-8 offset-md-4 col-lg-9 offset-lg-3">
+                <h3 class="card-title post-title"><a href="{{- $context.RelPermalink -}}">{{- $context.Title -}}</a></h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 col-md-4 col-lg-3">
+            {{- with $meta.top -}}
+                {{- partial "partials/meta.html" (dict "context" $context "kindctx" $kindctx "meta" . "class" "meta-top post-format-meta-left") -}}
+            {{- end -}}
+            </div><!-- col -->
+            <div class="col-12 col-md-8 col-lg-9">
+                {{- with $context.Summary -}}
+                <p class="post-summary card-text">
+                {{- . | replaceRE "<p>(.*|\n)</p>"  "$1" | safeHTML -}}
+                </p>
+            {{- end -}}
+            {{- if $display_image -}}
+                {{- partial "image.html" (dict "context" $context "Destination" $context.Params.images "Title" $context.Title "Text" $context.Title "Class" "card-img-top pt-1") -}}<!-- "Link" $context.RelPermalink -->
+            {{- end -}}
+            </div><!-- col -->
+        </div><!-- row -->
+    </div><!-- card-body -->
+    {{- if and (eq $kindctx "taxonomy") (eq $typectx "series") -}}
+        {{- if $context.Pages }}
+            <div class="card-footer">
+                <p>{{- i18n "series-posts" -}}</p>
+                <ol>
+                {{- range $context.Pages.ByPublishDate }}
+                    <li>
+                        <a href="{{- .RelPermalink -}}" rel="bookmark">
+                            {{- .Title }} ({{- .Date | time.Format (.Site.Params.FormatDate | default "2-Jan-2006")  -}})
+                        </a>
+                    </li>
+                {{- end }}
+                </ol>
+            </div>
+        {{- else -}}
+            {{- i18n "no-post-yet" -}}
+        {{- end }}
+    {{- end }}
+</article>
