@@ -2,29 +2,33 @@
     "Groups": [
         {
             "columns": {
-                "xs": 2, 
-                "lg": 2,
-                "md": 2,
-                "sm": 2,
-                "xl": 2
+                "xs": 1, 
+                "lg": 3,
+                "md": 3,
+                "sm": 1,
+                "xl": 3
             },
             "Widgets": [
                 {
-                    "widget": "logo",
-                    "cache": true,
-                    "weight": 1,
-                    "params": {
-                        "height": 75,
-                        "image": "/assets/img/site-logo.png",
-                        "title": "Le blog d'Emmanuel GEORJON",
-                        "width": 75
+                    "widget" : "series-list",
+                    "cache"  : true,
+                    "weight" : 1,
+                    "params" : {
+                        "title": "",
+                        "type" : "list"
                     }
                 },
                 {
-                    "widget": "follow-me",
-                    "cache": true,
-                    "weight": 2,
-                    "params": {}
+                    "widget" : "logo",
+                    "cache"  : true,
+                    "weight" : 2,
+                    "params" : { "width": 75, "height": 75, "image": "/assets/img/site-logo.png", "title": "Le blog d'Emmanuel GEORJON" }
+                },
+                {
+                    "widget" : "follow-me",
+                    "cache"  : true,
+                    "weight" : 3,
+                    "params" : {}
                 }
             ]
         }
