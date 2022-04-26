@@ -6,12 +6,38 @@ $black-olive: #403d39ff;
 $eerie-black: #252422ff;
 $flame: #eb5e28ff;
 
+$bdazzled-blue: #3d5a80ff;
+$dark-sky-blue: #98c1d9ff;
+$light-cyan: #e0fbfcff;
+$burnt-sienna: #ee6c4dff;
+$gunmetal: #293241ff;
+
+$imperial-red: #e63946ff;
+$honeydew: #f1faeeff;
+$powder-blue: #a8dadcff;
+$celadon-blue: #457b9dff;
+$prussian-blue: #1d3557ff;
+
 /* --- Variable customization ------------- */
+/*
 $primary:       $flame;
 $secondary:     $pale-silver;
 $light:         $floral-white;
 $medium:        $black-olive;
 $dark:          $eerie-black;
+*/
+/*
+$primary:       $burnt-sienna;
+$secondary:     $dark-sky-blue;
+$light:         $light-cyan;
+$medium:        $bdazzled-blue;
+$dark:          $gunmetal;
+*/
+$primary:       $imperial-red;
+$secondary:     $powder-blue;
+$light:         $honeydew;
+$medium:        $celadon-blue;
+$dark:          $prussian-blue;
 
 // Boostrap customization
 @import "custom";
@@ -136,7 +162,6 @@ h4 {
 #page-headline {
     background-color: $light;
 }
-
 
 /* ------------------------------------------ */
 /* --- Post-list ---------------------------- */
@@ -460,12 +485,41 @@ $gallery-caption-fontsize: $font-size-sm;
             text-decoration: underline;
         }
     }
+
+    ul {
+        list-style-type: none;
+        padding-left: 0;
+    }
+
+    li { 
+        line-height: 3;
+        padding-left: 0.5 * $spacer;
+        width: 75%;
+    }
+
+    li:last-child {
+        border-bottom: 0;
+    }
 }
 
 .footer-main {
+    padding-top: 0.5 * $spacer;
     background-color: $medium;
+    li {
+        border-bottom: 1px solid tint-color($medium, 20%);
+    }
+
 }
 
+.footer-top {
+    padding-top: 0.5 * $spacer;
+    // padding-bottom: 2 * $spacer;
+
+    li {
+        border-bottom: 1px solid tint-color($dark, 20%);
+    }
+
+}
 
 /* ------------------------------------------ */
 /* --- Style for the style guide page ------- */
@@ -487,14 +541,18 @@ $gallery-caption-fontsize: $font-size-sm;
     p, ul {
         display: inline;
     }
-
-    li {
+/*
+    i {
         font-size: 1.5rem;
     }
-
+*/
     p {
         margin-right: 0.5 * $spacer;
     }
+}
+
+.widget-logo {
+    text-align: center;
 }
 
 .author-picture {
