@@ -41,6 +41,22 @@
                 <span class="visually-hidden" aria-label="hidden">{{- i18n "tags" (len $sl) }} {{ (len $sl) -}}:</span>
                 {{- delimit $sl ", " -}} 
             </li>
+        {{- else if eq $meta "series" -}}
+            {{- if (ne $typectx "series") -}}
+                {{- $sl := slice -}}
+                {{- with $context.GetTerms "series" -}}
+                    {{- range . -}}
+                        {{- $sl = $sl | append (printf "<a href=\"%s\">%s</a>" .Permalink (humanize .LinkTitle)) -}}
+                    {{- end -}}
+                {{- end -}}
+                {{- if $sl -}}
+                <li class="post-series">
+                    <i class="bi-files"></i>
+                    <span class="visually-hidden" aria-label="hidden">{{- i18n "series" (len $sl) }} {{ (len $sl) -}}:</span>
+                    {{- delimit $sl ", " -}} 
+                </li>
+                {{- end -}}
+            {{- end -}}
         {{- else if eq $meta "section" -}}
             {{- if ne $kindctx "section" -}}
                 {{- with $context.Parent }}
