@@ -2,26 +2,29 @@
 {{- $kindctx        := .kindctx                        -}}
 {{- $typectx        := .typectx                        -}}
 {{- $display_image  := isset .context.Params "images"  -}}
-{{- $meta_bottom    := $context.Site.Params.PostList.metabottom | default (dict "1" "date" "2" "reading") -}}
-{{- if and (eq $kindctx "taxonomy") (eq $typectx "series") -}}
+{{- $meta           := $context.Site.Params.PostList.meta | default (dict "top" (dict "1" "section") "bottom" (dict "1" "tags" "2" "series")) -}}
+{{/*- if and (eq $kindctx "taxonomy") (eq $typectx "series") -}}
     {{- $meta_bottom = $context.Site.Params.SeriesList.metabottom | default (dict "1" "linkedsection") -}}
-{{- end -}}
+{{- end -*/}}
 <article class="card h-100">
     {{- if $display_image -}}
         {{- partial "image.html" (dict "context" $context "Destination" $context.Params.images "Title" $context.Title "Text" $context.Title "Class" "card-img-top pt-1") -}}<!-- "Link" $context.RelPermalink -->
     {{- end -}}
     <div class="card-body">
+        {{- with $meta.top -}}
+            {{- partial "partials/meta.html" (dict "context" $context "kindctx" $kindctx "meta" $meta.top "class" "meta-top") -}}
+        {{- end -}}
         <h3 class="card-title post-title"><a href="{{- $context.RelPermalink -}}">{{- $context.Title -}}</a></h3>
-        {{- with $context.Site.Params.PostList.metatop -}}
-            {{- partial "partials/meta.html" (dict "context" $context "kindctx" $kindctx "typectx" $typectx "meta" . "class" "meta-top") -}}
+        {{- with $meta.middle -}}
+            {{- partial "partials/meta.html" (dict "context" $context "kindctx" $kindctx "meta" $meta.middle "class" "meta-middle") -}}
         {{- end -}}
         {{- with $context.Summary -}}
             <p class="post-summary card-text">
             {{- . | replaceRE "<p>(.*|\n)</p>"  "$1" | safeHTML -}}
             </p>
         {{- end -}}
-        {{- with $meta_bottom -}}
-            {{- partial "partials/meta.html" (dict "context" $context "kindctx" $kindctx "typectx" $typectx "meta" . "class" "meta-bottom") -}}
+        {{- with $meta.bottom -}}
+            {{- partial "partials/meta.html" (dict "context" $context "kindctx" $kindctx "typectx" $typectx "meta" $meta.bottom "class" "meta-bottom") -}}
         {{- end -}}
     </div><!-- card-body -->
     {{- if and (eq $kindctx "taxonomy") (eq $typectx "series") -}}
