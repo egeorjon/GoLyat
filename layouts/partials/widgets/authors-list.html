@@ -1,10 +1,13 @@
 {{/* Parameters      */}}
 {{/* .context Page   */}}
 {{/* .title   String */}}
-{{- $title := .title | default "" -}}
+{{- $title         := .params.title | default ""        -}}
 {{- $heading_level := int (.params.heading | default 3) -}}
-{{- $heading_title := printf "h%d" $heading_level -}}
-{{- with .context.GetTerms "authors" -}}
+{{- $heading_title := printf "h%d" $heading_level       -}}
+{{- $numposts      := .params.numposts | default false  -}}
+{{- $lastposts     := .params.lastposts | default 0     -}}
+{{- $list          := .params.list | default (.context.GetTerms "authors") -}}
+{{- with $list -}}
     {{- range . -}}
 <div class="col">
     <aside class="card h-100 widget widget-authors">
@@ -17,9 +20,13 @@
                     <img src="{{- .RelPermalink -}}" width="{{- .Width -}}" height="{{- .Height -}}" alt="{{- .Params.Title -}}" />
                 </div>
                 {{- end -}}
+                {{- $post_number := len .Data.Pages -}}
                 <div class="author-description" style="margin-left: {{ with $image -}}{{- math.Mul 1.2 .Width -}}px{{- end -}}">
-                    <p class="author-name">{{- .Params.Title | safeHTML -}}</p>
+                    <a href="{{- .RelPermalink -}}" title="{{- i18n "page-of-author" . -}}"><p class="author-name">{{- .Params.Title -}}</p></a>
                     <p class="author-bio">{{- .Params.Bio | markdownify -}}</p>
+                    {{- if $numposts -}}
+                        <p>{{- printf (i18n "num-publication" $post_number) $post_number -}}</p>
+                    {{- end -}}
                     {{- with .Params.Socials -}}
                     <ul class="author-socials inline-list">
                         {{- range . -}}
@@ -28,6 +35,23 @@
                     </ul>
                     {{- end -}}
                 </div><!-- Author-description -->
+                {{- if and (gt $lastposts 0) (gt $post_number 0) -}}
+                    <div class="author-posts-list">
+                        <p>{{- i18n "list-published-posts" $post_number -}}</p>
+                        <ul>
+                            {{- range first $lastposts .Data.Pages -}}
+                                <li>
+                                    <a href="{{- .RelPermalink -}}" title="{{- .Title -}}">
+                                        {{- .Title }} ({{- .Date | time.Format (.Site.Params.FormatDate | default "2-Jan-2006") -}})
+                                    </a>
+                                </li>
+                            {{- end -}}
+                            {{- if gt $post_number $lastposts -}}
+                            <li><a href="{{- .RelPermalink -}}" title="{{- i18n "page-of-author" . -}}">{{- i18n "see-all-posts" -}}</a></li>
+                            {{- end -}}
+                        </ul>
+                    </div>
+                {{- end -}}
             </div><!-- clearfix -->
         </div><!-- card-body -->
     </aside>
