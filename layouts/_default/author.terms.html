@@ -1,0 +1,16 @@
+{{- define "main" -}}
+    <div class="container limit-width">
+        <div class="row">
+            {{- $string := .Summary -}}
+            {{- with .Description -}}{{- $string = . -}}{{- end -}}
+            {{- with $string -}}
+                <div class="page-summary col mb-5">
+                    <p>{{- . | markdownify -}}</p>
+                </div><!-- col -->
+            {{- end -}}
+        </div>
+        <div class="post-list row row-cols-1">
+            {{- partial "partials/widgets/authors-list.html" (dict "context" . "params" (dict "list" .Pages "numposts" true "lastposts" 10)) -}}
+        </div><!-- row -->
+    </div><!-- container -->
+{{- end -}}
