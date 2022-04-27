@@ -207,6 +207,15 @@
     one   = "The serie"
     other = "The series"
 
+[in-same-serie]
+    other = "In the same serie"
+
+[see-series]
+    other = "See all the series"
+
+[see-complete-series]
+    other = "All the series"
+
 [num-publication]
     one   = "1 post published"
     other = "%d posts published"
@@ -220,3 +229,6 @@
 
 [see-all-posts]
     other = "Tous les articles"
+
+[toc]
+    other = "Table of content"

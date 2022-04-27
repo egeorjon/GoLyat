@@ -212,6 +212,15 @@
     one   = "Le dossier"
     other = "Les dossiers"
 
+[in-same-serie]
+    other = "Dans la même série"
+
+[see-series]
+    other = "Voir toutes les séries"
+
+[see-complete-series]
+    other = "Toutes les séries"
+
 [num-publication]
     one   = "%d article publié"
     other = "%d articles publiés"
@@ -225,3 +234,6 @@
 
 [see-all-posts]
     other = "All the posts"
+
+[toc]
+    other = "Table des matières"
