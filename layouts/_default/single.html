@@ -27,7 +27,7 @@
             <div class="page-content post-content col mb-5">
                 {{/*- if or (.Params.Toc | default false) (.Site.Params.Single.TableOfContents | default false ) -*/}}
                 {{- if .Params.Toc | default .Site.Params.Single.TableOfContents | default false -}}
-                <aside class="card toc mb-3">
+                <aside class="card toc mb-3 d-none d-md-block">
                     <div class="card-header">
                         {{- i18n "toc" -}}
                     </div>

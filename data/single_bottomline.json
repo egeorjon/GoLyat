@@ -20,7 +20,7 @@
       ]
     },
     {
-      "name": "2",
+      "name": "tags-share",
       "limitwidth": false,
       "columns": { "xs": 1, "sm": 1, "md": 2, "lg": 2, "xl": 2 },
       "Groups": [
@@ -57,7 +57,7 @@
       ]
     },
     {
-      "name": "3",
+      "name": "related",
       "columns": { "xs": 1, "sm": 1, "md": 1, "lg": 1, "xl": 1 },
       "limitwidth": false,
       "Groups": [
