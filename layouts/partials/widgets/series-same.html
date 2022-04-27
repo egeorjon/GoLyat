@@ -1,0 +1,48 @@
+{{/* Parameters */}}
+{{/* .context   */}}
+{{/* Params     */}}
+{{/* .title     */}}
+{{/* .numseries */}}
+{{/* .heading   */}}
+{{- $context    := .context -}}
+{{/*- $serie_name := ""       -}}
+{{- with $context.Params.series     -}}
+    {{- $serie_name = index $context.Params.series 0 -}}
+{{- end -*/}}
+{{/*- if $serie_name -*/}}
+    {{- $serie := first 1 ($context.GetTerms "series") -}}
+    {{- range $serie -}}
+        {{- $title         := $.params.title | default (i18n "in-same-serie") -}}
+        {{- $num_series    := $.params.numseries | default 3 -}}
+        {{- $heading_level := 3 -}}
+        {{- with $.params.heading -}}{{- $heading_level = (. | int) -}}{{- end -}}
+        {{- $heading_title    := printf "h%d" $heading_level -}}
+        {{- $heading_subtitle := printf "h%d" (add $heading_level 1) -}}
+
+        <div class="col">
+            <aside class="card h-100 widget widget-same-series">
+                <div class="card-body">
+                    {{- with $title -}}
+                        {{- (printf "<%s class=\"card-title\">%s</%s>" $heading_title $title $heading_title) | safeHTML -}} 
+                    {{- end -}}
+                    <ol class="card-text">
+                        {{- range .Pages.ByPublishDate }}
+                        <li>
+                            {{- if eq . $context -}}
+                            <strong>{{- .Title }}</strong>
+                            {{- else -}}
+                            <a href="{{- .RelPermalink -}}" rel="bookmark">
+                                {{- .Title }} ({{- .Date | time.Format (.Site.Params.FormatDate | default "2-Jan-2006")  -}})
+                            </a>
+                            {{- end -}}
+                        </li>
+                        {{- end }}
+                        {{- if gt (len .Pages) $num_series -}}
+                            <li><a href="{{- .RelPermalink -}}" title="{{- i18n "see-series" -}}">{{- i18n "see-complete-series" -}}</a></li>
+                        {{- end -}}
+                    </ol>
+                </div>
+            </aside>
+        </div>
+    {{- end }}
+{{/*- end -*/}}
