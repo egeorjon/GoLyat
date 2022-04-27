@@ -209,31 +209,31 @@ h4 {
 article.card {
     border: 0;
 }
-
-#TableOfContents {
-    font-size: 1rem;
-    line-height: 1.3;
-    text-align: left;
-}
-
+/*
 .toc {
     float: right;
     display: block;
     width: 50%;
     margin-left: $spacer;
     border: 1px solid $medium;
+
+    margin-top: 5.0625em;
+
+    font-size: 1rem;
+    line-height: 1.6875;
+    // text-align: left;
 }
 
 @media (min-width: map-get($grid-breakpoints, "md")) {
     .toc {
         float: right;
         display: block;
-        width: 50%;
+        width: 30%;
         margin-left: $spacer;
     }
 
 }
-
+*/
 .post-meta {
     font-size: 1rem;
     line-height: 1.6875;
