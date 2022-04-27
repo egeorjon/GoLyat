@@ -42,14 +42,6 @@
                     "params": {
                         "page": "links"
                     }
-                },
-                {
-                    "cache": true,
-                    "weight": 2,
-                    "widget": "page",
-                    "params": {
-                        "page": "site-theme"
-                    }
                 }
             ]
         }
