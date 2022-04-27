@@ -3,43 +3,75 @@
     {
       "name": "authors",
       "columns": { "xs": 1, "sm": 1, "md": 1, "lg": 1, "xl": 1 },
-      "Widgets": [
+      "limitwidth": true, 
+      "Groups": [
         {
-            "widget": "authors-list",
-            "cache": false,
+          "name": "authors",
+          "columns": { "xs": 1, "sm": 1, "md": 1, "lg": 1, "xl": 1 },
+          "Widgets": [
+            {
+                "widget": "authors-list",
+                "cache": false,
+                "weight": 1,
+                "params": {}
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "2",
+      "limitwidth": false,
+      "columns": { "xs": 1, "sm": 1, "md": 2, "lg": 2, "xl": 2 },
+      "Groups": [
+        {
+          "name": "tags-share",
+          "columns": { "xs": 1, "sm": 1, "md": 1, "lg": 1, "xl": 1 },
+          "Widgets": [
+            {
+              "widget": "tags-post",
+              "cache": false,
               "weight": 1,
               "params": {}
-        }
-      ]
-    },
-    {
-      "name": "tags-share",
-      "columns": { "xs": 1, "sm": 1, "md": 2, "lg": 2, "xl": 2 },
-      "Widgets": [
-        {
-            "widget": "tags-post",
-            "cache": false,
-            "weight": 1,
-            "params": {}
+            },
+            {
+              "widget": "share-links",
+              "cache": false,
+              "weight": 2,
+              "params": {}
+            }
+          ]
         },
         {
-            "widget": "share-links",
-            "cache": false,
-            "weight": 2,
-            "params": {}
+          "name": "series",
+          "columns": { "xs": 1, "sm": 1, "md": 1, "lg": 1, "xl": 1 },
+          "Widgets": [
+            {
+              "widget": "series-same",
+              "cache": false,
+              "weight": 1,
+              "params": {}
+            }
+          ]
         }
       ]
     },
     {
-      "limitedWidth": false,
-      "name": "related",
+      "name": "3",
       "columns": { "xs": 1, "sm": 1, "md": 1, "lg": 1, "xl": 1 },
-      "Widgets": [
+      "limitwidth": false,
+      "Groups": [
         {
-            "widget": "related-posts",
-            "cache": false,
-            "weight": 1,
-            "params": {}
+          "name": "related",
+          "columns": { "xs": 1, "sm": 1, "md": 1, "lg": 1, "xl": 1 },
+          "Widgets": [
+            {
+              "widget": "related-posts",
+              "cache": false,
+              "weight": 1,
+              "params": {}
+            }
+          ]
         }
       ]
     }
