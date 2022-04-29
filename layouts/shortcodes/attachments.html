@@ -19,7 +19,7 @@
             <tr>
             {{- $stats := os.Stat (path.Join $.Page.File.Dir .Name) -}}
             {{- if in $fields "icon" -}}
-                {{- $icon := index $.Site.Data.mimetype (string .MediaType) -}}
+                {{- $icon := index site.Data.mimetype (string .MediaType) -}}
                 {{- if not $icon -}}{{- $icon = "bi-file-earmark" -}}{{- end -}}
                 <td><span class="{{- $icon -}}" style="font-size: 1.5rem;"> </span></td>
             {{- end -}}
