@@ -3,7 +3,7 @@
         {
           "name": "top",
           "columns": { "xs": 1, "sm": 1, "md": 2, "lg": 2, "xl": 2 },
-          "limitwidth": false, 
+          "limitedWidth": false, 
           "Groups": [
             {
               "name": "series",
@@ -33,7 +33,7 @@
         },
         {
           "name": "main",
-          "limitwidth": false,
+          "limitedWidth": false,
           "columns": { "xs": 1, "sm": 1, "md": 2, "lg": 2, "xl": 2 },
           "Groups": [
             {
