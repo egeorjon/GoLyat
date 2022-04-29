@@ -45,20 +45,20 @@ $light:         $light-cyan;
 $medium:        $bdazzled-blue;
 $dark:          $gunmetal;
 */
-/*
+
 $primary:       $imperial-red;
 $secondary:     $powder-blue;
 $light:         $honeydew;
 $medium:        $celadon-blue;
 $dark:          $prussian-blue;
-*/
 
+/*
 $primary:       $barn-red;
 $secondary:     $air-superiority-blue;
 $light:         $papaya-whip;
 $medium:        $air-superiority-blue;
 $dark:          $prussian-blue;
-
+*/
 // Boostrap customization
 @import "custom";
 
@@ -550,8 +550,13 @@ $gallery-caption-fontsize: $font-size-sm;
     }
 }
 
+.footer-main,
+.footer-top {
+    padding-top: 2* $spacer;
+    padding-bottom:  $spacer;
+}
+
 .footer-main {
-    padding-top: 0.5 * $spacer;
     background-color: $medium;
     li {
         border-bottom: 1px solid tint-color($medium, 20%);
@@ -560,8 +565,6 @@ $gallery-caption-fontsize: $font-size-sm;
 }
 
 .footer-top {
-    padding-top: 0.5 * $spacer;
-    // padding-bottom: 2 * $spacer;
 
     li {
         border-bottom: 1px solid tint-color($dark, 20%);
