@@ -24,7 +24,7 @@
                 {{- partial "partials/meta.html" (dict "context" $current_page "kindctx" "page" "meta" . "class" "meta-top") -}}
             {{- end -}}
             </div>
-            <div class="page-content post-content col mb-5">
+            <div class="post-content col mb-5">
                 {{/*- if or (.Params.Toc | default false) (site.Params.Single.TableOfContents | default false ) -*/}}
                 {{- if .Params.Toc | default site.Params.Single.TableOfContents | default false -}}
                 <aside class="card toc mb-3 d-none d-md-block">
