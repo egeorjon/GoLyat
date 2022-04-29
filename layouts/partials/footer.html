@@ -1,7 +1,7 @@
 {{- $current_page := . -}}
 <footer id="page-footer">
 
-    {{- range .Site.Params.Footer | default .Site.Data.footer_defaults.Rows -}}{{/* $defaultBottomline */}}
+    {{- range site.Params.Footer | default site.Data.footer_defaults.Rows -}}{{/* $defaultBottomline */}}
         <section class="footer-{{- .name }}">
             {{- $limit := cond (.limitedWidth | default true) "limit-width" "" -}}
             <div class="container {{ $limit -}}">
@@ -42,7 +42,7 @@
         <div class="container">
             <div class="row">
                 <div class="col text-center">
-                    <p>{{- .Site.Copyright | safeHTML -}}</p>
+                    <p>{{- site.Copyright | safeHTML -}}</p>
                 </div><!-- col -->
             </div><!-- row -->
         </div><!-- container -->

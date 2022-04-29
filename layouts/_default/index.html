@@ -1,7 +1,7 @@
 {{- define "main" -}}
     {{- $current_page := . -}}
 
-    {{- range sort (.Site.Params.Homepage.Rows | default .Site.Data.homepage_defaults) "weight" -}}{{/* $defaultBottomline */}}
+    {{- range sort (site.Params.Homepage.Rows | default site.Data.homepage_defaults) "weight" -}}{{/* $defaultBottomline */}}
         <section class="homepage home-{{- .name }} mb-5">
             {{- $limit := cond (.limitedWidth | default true) "limit-width" "" -}}
             <div class="container {{ $limit -}}">

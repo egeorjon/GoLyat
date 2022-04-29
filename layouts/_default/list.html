@@ -1,9 +1,9 @@
 {{- define "main" -}}
-    {{- $columns := .Site.Params.PostList.Columns | default (dict "xs" 1 "sm" 1 "md" 1 "lg" 1 "xl" 1) -}}
-    {{- $post_format := .Site.Params.PostList.PostFormat | default "image-left" -}}
+    {{- $columns := site.Params.PostList.Columns | default (dict "xs" 1 "sm" 1 "md" 1 "lg" 1 "xl" 1) -}}
+    {{- $post_format := site.Params.PostList.PostFormat | default "image-left" -}}
     {{- if and (eq .Kind "taxonomy") (eq .Type "series") -}}
-        {{- $columns = .Site.Params.SeriesList.Columns | default (dict "xs" 1 "sm" 1 "md" 2 "lg" 2 "xl" 2) -}}
-        {{- $post_format = .Site.Params.SeriesList.PostFormat | default "image-top" -}}
+        {{- $columns = site.Params.SeriesList.Columns | default (dict "xs" 1 "sm" 1 "md" 2 "lg" 2 "xl" 2) -}}
+        {{- $post_format = site.Params.SeriesList.PostFormat | default "image-top" -}}
     {{- end -}}
     {{- $partial_path := path.Join "partials/posts-format" (printf "%s%s%s" "posts-list-" $post_format ".html") -}}
     <div class="container limit-width">

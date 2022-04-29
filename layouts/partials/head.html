@@ -7,21 +7,21 @@
 {{- if and .Title (not .IsHome) -}}
     {{- $title = slice (.Title | markdownify | plainify) -}}
 {{- end -}}
-<title>{{- delimit ($title | append (slice (.Site.Title  | markdownify | plainify))) " &dash; " -}}</title>
+<title>{{- delimit ($title | append (slice (site.Title  | markdownify | plainify))) " &dash; " -}}</title>
 
 {{- if ne .Kind "404" -}}
-    {{- $description := .Params.description | default .Site.Params.Description |default "" -}}
+    {{- $description := .Params.description | default site.Params.Description |default "" -}}
     {{- with $description -}}
         <meta name="description" content="{{- . | markdownify | plainify | htmlUnescape -}}" />
     {{- end -}}
 
-    {{- $keywords := .Params.tags | default .Site.Params.Keywords |default "" -}}
+    {{- $keywords := .Params.tags | default site.Params.Keywords |default "" -}}
     {{- with $keywords -}}
         <meta name="keywords" content="{{- delimit . "," | plainify | htmlUnescape -}}" />
     {{- end -}}
 {{- end -}}
 
-{{- with .Site.Author.name -}}
+{{- with site.Author.name -}}
 <meta name="author" content="{{- . -}}">
 {{- end -}}
 
@@ -31,28 +31,28 @@
     <meta name="application-name" content="{{ site.Title  | markdownify }}" />
 {{- end -}}
 
-{{- with .Site.Params.googleToken -}}
+{{- with site.Params.googleToken -}}
 <meta name="google-site-verification" content="verification_token">
 {{- end -}}
 
 {{- hugo.Generator -}}
 
 {{- if ne .Kind "404" -}}
-    {{- $opengraph := .Site.Params.opengraph | default "internal" -}}
+    {{- $opengraph := site.Params.opengraph | default "internal" -}}
     {{- if eq $opengraph "internal" -}}
         {{- template "_internal/opengraph.html" . -}}
     {{- else if eq $opengraph "theme" -}}
         {{- partial "partials/opengraph.html" . -}}
     {{- end -}}
 
-    {{- $twitter := .Site.Params.twitterCards | default "internal" -}}
+    {{- $twitter := site.Params.twitterCards | default "internal" -}}
     {{- if eq $twitter "internal" -}}
         {{- template "_internal/twitter_cards.html" . -}}
     {{- else if eq $twitter "theme" -}}
         {{- partial "partials/twitter.html" . -}}
     {{- end -}}
 
-    {{- $schema := .Site.Params.schema | default "internal" -}}
+    {{- $schema := site.Params.schema | default "internal" -}}
     {{- if eq $schema "internal" -}}
         {{- template "_internal/schema.html" . -}}
     {{- else if eq $schema "theme" -}}
@@ -61,8 +61,8 @@
     {{- end -}}
 {{- end -}}
 
-{{- if .Site.Params.ThemeColor -}}
-    <meta name="theme-color" content="{{- .Site.Params.ThemeColor -}}" />
+{{- if site.Params.ThemeColor -}}
+    <meta name="theme-color" content="{{- site.Params.ThemeColor -}}" />
 {{- end -}}
 
 {{- $production := eq (getenv "HUGO_ENV") "production" | or hugo.IsProduction -}}
@@ -85,7 +85,7 @@
         <link rel="index" href="{{- .Permalink -}}">
     {{- end -}}
 {{- else -}}
-        <link rel="index" href="{{- $.Site.BaseURL -}}">
+        <link rel="index" href="{{- site.BaseURL -}}">
 {{- end -}}
 
 {{- if eq .Kind "page" -}}
@@ -101,11 +101,11 @@
 {{- end -}}
 
 {{- with .OutputFormats.Get "rss" -}}
-    {{- printf `<link rel="%s" type="%s" href="%s" title="%s" />` .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML -}}
+    {{- printf `<link rel="%s" type="%s" href="%s" title="%s" />` .Rel .MediaType.Type .Permalink site.Title | safeHTML -}}
 {{- end -}}
-{{- if .Site.Params.mainSections -}}
-    {{- range .Site.Params.mainSections -}}
-        {{ with $.Site.GetPage . -}}
+{{- if site.Params.mainSections -}}
+    {{- range site.Params.mainSections -}}
+        {{ with site.GetPage . -}}
             {{- $title := .Title -}}
             {{- with .OutputFormats.Get "rss" -}}
                 {{- printf `<link rel="%s" type="%s" href="%s" title="%s" />` .Rel .MediaType.Type .Permalink $title | safeHTML -}}
@@ -119,11 +119,11 @@
     {{- end -}}
 {{- end -}}
 {{- partialCached "partials/styles.html" . -}}
-{{- with .Site.Params.Services.googleWMT | default false -}}
+{{- with site.Params.Services.googleWMT | default false -}}
 <meta name="google-site-verification" content="{{- . -}}" />
 {{- end -}}
-{{- if or $production (.Site.Params.DebugMode | default false) -}}
-    {{- with .Site.Params.Services.piwikpro -}}
+{{- if or $production (site.Params.DebugMode | default false) -}}
+    {{- with site.Params.Services.piwikpro -}}
         {{- partialCached "piwikpro.html" . -}}
     {{- end -}}
 {{- end -}}

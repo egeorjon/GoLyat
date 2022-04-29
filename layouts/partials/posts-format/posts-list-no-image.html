@@ -1,7 +1,7 @@
 {{- $context        := .context                        -}}
 {{- $kindctx        := .kindctx                        -}}
 {{- $default_bottom := (dict "1" "date" "2" "reading") -}}
-{{- $meta          := $context.Site.Params.PostList.meta | default (dict "top" (dict "1" "section") "bottom" (dict "1" "tags" "2" "series")) -}}
+{{- $meta          := site.Params.PostList.meta | default (dict "top" (dict "1" "section") "bottom" (dict "1" "tags" "2" "series")) -}}
 <article class="card h-100">
     <div class="card-body">
         {{- with $meta.top -}}

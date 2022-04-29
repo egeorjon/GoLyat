@@ -55,7 +55,7 @@
     {{- end -}}
     {{- if gt (len $srcsets) 0 -}}{{- $srcsets = $srcsets | append (printf "%s %dw" $image.RelPermalink $width) -}}{{- end -}}
 <figure class="figure figure-center">
-    {{- if and (gt $width 1024) (.Page.Site.Params.lightbox | default false) -}}
+    {{- if and (gt $width 1024) (site.Params.lightbox | default false) -}}
         <a href="{{- $image.RelPermalink -}}" {{ with $title -}}title="{{- . | safeHTML -}}"{{- end }}>
     {{- end -}}
     <img sizes="{{ delimit $sizes "," }}" 
@@ -64,7 +64,7 @@
         src="{{- .Destination | safeURL -}}" 
         {{ with $alt_caption -}}alt="{{- . | safeHTML -}}"{{- end -}}
         {{ with $title -}}title="{{- . | safeHTML -}}"{{- end -}} />
-    {{- if and (gt $width 1024) (.Page.Site.Params.Lightbox | default false) -}}</a>{{- end -}}
+    {{- if and (gt $width 1024) (site.Params.Lightbox | default false) -}}</a>{{- end -}}
     {{- with $alt_caption -}}<figcaption class="figure-caption">{{- . | safeHTML -}}</figcaption>{{- end -}}
 </figure>
 {{- end -}}

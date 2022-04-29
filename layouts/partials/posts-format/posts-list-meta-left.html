@@ -2,7 +2,7 @@
 {{- $kindctx        := .kindctx                        -}}
 {{- $typectx        := .typectx                        -}}
 {{- $display_image  := isset .context.Params "images"  -}}
-{{- $meta           := $context.Site.Params.PostList.meta | default (dict "top" (dict "1" "section" "2" "date" "3" "tags" "4" "series" "5" "reading" )) -}}
+{{- $meta           := site.Params.PostList.meta | default (dict "top" (dict "1" "section" "2" "date" "3" "tags" "4" "series" "5" "reading" )) -}}
 <article class="card h-100">
     <div class="card-body">
         <div class="row">
@@ -36,7 +36,7 @@
                 {{- range $context.Pages.ByPublishDate }}
                     <li>
                         <a href="{{- .RelPermalink -}}" rel="bookmark">
-                            {{- .Title }} ({{- .Date | time.Format (.Site.Params.FormatDate | default "2-Jan-2006")  -}})
+                            {{- .Title }} ({{- .Date | time.Format (site.Params.FormatDate | default "2-Jan-2006")  -}})
                         </a>
                     </li>
                 {{- end }}

@@ -1,24 +1,24 @@
 <!-- -------------------- Organization logo -------------------- -->
 {{- $logo := dict -}}
 {{- $logo_id := false -}}
-{{- if isset .Site.Params "brandlogo" -}}
+{{- if isset site.Params "brandlogo" -}}
     {{- $logo_id = printf "%s#logo" site.BaseURL -}}
-    {{- $logo = dict "@type" "ImageObject" "@id" $logo_id "url" (printf "%s%s" (site.BaseURL | absURL) (index .Site.Params "brandlogo")) "contentUrl" (printf "%s%s" (site.BaseURL | absURL) (index .Site.Params "brandlogo")) "caption" .Site.Title -}}
+    {{- $logo = dict "@type" "ImageObject" "@id" $logo_id "url" (printf "%s%s" (site.BaseURL | absURL) (index site.Params "brandlogo")) "contentUrl" (printf "%s%s" (site.BaseURL | absURL) (index site.Params "brandlogo")) "caption" site.Title -}}
 {{- end -}}
 <!-- -------------------- Organization ---------------------->
 {{- $org_id := (printf "%s#organization" site.BaseURL ) -}}
-{{- $org := dict "@type" "Organization" "@id" (printf "%s#organization" site.BaseURL) "name" .Site.Title "url" site.BaseURL -}}
+{{- $org := dict "@type" "Organization" "@id" (printf "%s#organization" site.BaseURL) "name" site.Title "url" site.BaseURL -}}
 {{- if $logo_id -}}
     {{- $org = merge $org (dict "logo" $logo) -}}
     {{- $org = merge $org (dict "image" (dict "@id" $logo_id)) -}}
 {{- end -}}
-{{- with .Site.Params.FollowLinks.socials -}}
+{{- with site.Params.FollowLinks.socials -}}
     {{- $list_url := slice -}}
     {{- range . -}}
         {{- if .account -}}
             {{- $acc := .account}}
-            {{- if and (ne .id nil) (ne $.Site.Data.socials.config nil) -}}
-                {{- with (index $.Site.Data.socials.config .id) -}}
+            {{- if and (ne .id nil) (ne site.Data.socials.config nil) -}}
+                {{- with (index site.Data.socials.config .id) -}}
                     {{- $list_url = $list_url | append (printf .follow $acc) -}}
                 {{- end -}}
             {{- end -}}
@@ -32,10 +32,10 @@
 {{- $website_id := (printf "%s#website" site.BaseURL) -}}
 {{- $website := dict "@type" "WebSite" "@id" $website_id "url" site.BaseURL "name" site.Title "inLanguage" site.LanguageCode -}}
 {{- $website = merge $website (dict "publisher" (dict "@id" $org_id) "copyrightHolder" (dict "@id" $org_id)) -}}
-{{- with .Site.Params.Description -}}
+{{- with site.Params.Description -}}
   {{- $website = merge $website (dict "description" .) -}}
 {{- end -}}
-{{/* - with .Site.Params.Keywords - */}}
+{{/* - with site.Params.Keywords - */}}
   {{/* - $website = merge $website (dict "keywords" (delimit . ", ")) - */}}
 {{/* - end - */}}
 <!-- ----------- Search box -------------- -->

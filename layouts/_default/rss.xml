@@ -1,45 +1,45 @@
 {{- $limit := 20 -}}
-{{- if gt .Site.Config.Services.RSS.Limit 0 -}}{{- $limit = .Site.Config.Services.RSS.Limit -}}{{- end -}}
+{{- if gt site.Config.Services.RSS.Limit 0 -}}{{- $limit = site.Config.Services.RSS.Limit -}}{{- end -}}
 {{- $pages := .RegularPages | first $limit -}}
 {{- printf "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\"  ?>" | safeHTML -}}
 <rss xmlns:media="http://search.yahoo.com/mrss/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:creativeCommons="http://backend.userland.com/creativeCommonsRssModule" version="2.0">
   <channel>
     {{- $title := "" -}}
     {{- if .IsHome -}}
-      {{- $title = .Title | default .Site.Title -}}
+      {{- $title = .Title | default site.Title -}}
     {{- else if .IsSection -}}
-      {{- $title = printf "%s posts on %s" .Title .Site.Title -}}
+      {{- $title = printf "%s posts on %s" .Title site.Title -}}
     {{- else -}}
-      {{- $title = printf "%s on %s" .Title .Site.Title -}}
+      {{- $title = printf "%s on %s" .Title site.Title -}}
     {{- end -}}
     <title>{{- $title | plainify | htmlUnescape -}}</title>
     <link>{{- .Permalink -}}</link>
     {{- with .OutputFormats.Get "RSS" -}}
       {{- printf "<atom:link href=%q rel=\"self\" type=%q />" .Permalink .MediaType | safeHTML -}}
     {{- end -}}
-    {{- $description := .Params.description | default .Site.Params.description | default "" -}}
+    {{- $description := .Params.description | default site.Params.description | default "" -}}
     {{- with $description -}}
       <description>{{- (printf "<![CDATA[%s]]>" ($description | plainify)) | htmlUnescape -}}</description>
     {{- end -}}
-    {{- with .Site.Params.licenceURL -}}<creativeCommons:license>{{- . | safeHTML -}}</creativeCommons:license>{{- end -}}
-    {{- with .Site.LanguageCode -}}<language>{{- . -}}</language>{{- end -}}
-    {{- with .Site.Author.name -}}
+    {{- with site.Params.licenceURL -}}<creativeCommons:license>{{- . | safeHTML -}}</creativeCommons:license>{{- end -}}
+    {{- with site.LanguageCode -}}<language>{{- . -}}</language>{{- end -}}
+    {{- with site.Author.name -}}
       {{- $name := . -}}
-      {{- with $.Site.Author.email -}}
+      {{- with site.Author.email -}}
         <managingEditor>{{- . -}} ({{- $name | plainify | htmlUnescape -}})</managingEditor>
       {{- else -}}
         <managingEditor>{{- $name | plainify | htmlUnescape -}}</managingEditor>
       {{- end -}}
     {{- end -}}
-    {{- with .Site.Author.name -}}
+    {{- with site.Author.name -}}
       {{- $name := . -}}
-      {{- with $.Site.Author.email -}}
+      {{- with site.Author.email -}}
         <webMaster>{{- . -}} ({{- $name | plainify | htmlUnescape -}})</webMaster>
       {{- else -}}
         <webMaster>{{- $name | plainify | htmlUnescape -}}</webMaster>
       {{- end -}}
     {{- end -}}
-    {{- with .Site.Copyright -}}<copyright>{{- . | htmlUnescape -}}</copyright>{{- end -}}
+    {{- with site.Copyright -}}<copyright>{{- . | htmlUnescape -}}</copyright>{{- end -}}
     {{- if not .Date.IsZero -}}<lastBuildDate>{{- .Date.Format "Mon, 02 Jan 2006 15:04:05 -0700" -}}</lastBuildDate>{{- end -}}
     {{- range $pages -}}
       {{- $title        := .Title   | plainify | htmlUnescape -}}

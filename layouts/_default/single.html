@@ -7,7 +7,7 @@
             </div><!-- col -->
         </div><!-- row -->
     </div><!-- container -->
-{{- $display_image  := and (isset .Params "images") (.Site.Params.Single.displayimage | default false) -}}
+{{- $display_image  := and (isset .Params "images") (site.Params.Single.displayimage | default false) -}}
 {{- if $display_image -}}
     <div class="container">
         <div class="row">
@@ -20,13 +20,13 @@
     <div class="container limit-width">
         <div class="row row-cols-1">
             <div class="col">
-            {{- with .Site.Params.Single.metatop -}}
+            {{- with site.Params.Single.metatop -}}
                 {{- partial "partials/meta.html" (dict "context" $current_page "kindctx" "page" "meta" . "class" "meta-top") -}}
             {{- end -}}
             </div>
             <div class="page-content post-content col mb-5">
-                {{/*- if or (.Params.Toc | default false) (.Site.Params.Single.TableOfContents | default false ) -*/}}
-                {{- if .Params.Toc | default .Site.Params.Single.TableOfContents | default false -}}
+                {{/*- if or (.Params.Toc | default false) (site.Params.Single.TableOfContents | default false ) -*/}}
+                {{- if .Params.Toc | default site.Params.Single.TableOfContents | default false -}}
                 <aside class="card toc mb-3 d-none d-md-block">
                     <div class="card-header">
                         {{- i18n "toc" -}}
@@ -46,7 +46,7 @@
     {{- $current_page := . -}}
     {{- partial "partials/pagination-single.html" . -}}
 
-    {{- range .Site.Params.Single.Rows | default .Site.Data.single_bottomline.Rows -}}{{/* $defaultBottomline */}}
+    {{- range site.Params.Single.Rows | default site.Data.single_bottomline.Rows -}}{{/* $defaultBottomline */}}
         <section class="page-bottomline page-bottomline-{{- .name}} mb-5">
             {{- $limit := cond (.limitedWidth | default true) "limit-width" "" -}}
             <div class="container {{ $limit -}}">
