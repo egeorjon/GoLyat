@@ -46,7 +46,6 @@
     {{- $current_page := . -}}
     {{- partial "partials/pagination-single.html" . -}}
 
-
     {{- range .Site.Params.Single.Rows | default .Site.Data.single_bottomline.Rows -}}{{/* $defaultBottomline */}}
         <section class="page-bottomline page-bottomline-{{- .name}} mb-5">
             {{- $limit := cond (.limitedWidth | default true) "limit-width" "" -}}
@@ -72,7 +71,7 @@
                                         {{- partial $partialPath (dict "context" $current_page "params" .params) -}}
                                     {{- end -}}
                                 {{- else -}}
-                                    {{- partial "partials/widgets/default.html" (dict "context" $current_page "params" .widget) -}}
+                                    {{- partial "partials/widgets/default.html" (dict "context" $current_page "params" (dict "widget" .widget)) -}}
                                 {{- end -}}
                             {{- end -}}
                         {{- if and (gt $num_groups 1) (gt $num_widgets 1) -}}
@@ -84,11 +83,4 @@
             </div><!-- end of container -->
         </section>
     {{- end -}}
-{{- end -}}
-{{- define "partials/max_dict" -}}
-    {{- $max_col := 1 -}}
-    {{- range . -}}
-        {{- if gt . $max_col -}}{{- $max_col = . -}}{{- end -}}
-    {{- end -}}
-    {{- return $max_col -}}
 {{- end -}}

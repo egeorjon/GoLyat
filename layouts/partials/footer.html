@@ -1,15 +1,43 @@
-{{- $context := . -}}
+{{- $current_page := . -}}
 <footer id="page-footer">
-    <section class="footer-top">
-        <div class="container">
-            {{- template "groups_list" (dict "context" $context "gl" (.Site.Params.Footer.Top | default .Site.Data.footer_top) ) -}}
-        </div><!-- container -->
-    </section>
-    <section class="footer-main">
-        <div class="container">
-            {{- template "groups_list" (dict "context" $context "gl" (.Site.Params.Footer.Main | default .Site.Data.footer_main) ) -}}
-        </div><!-- container -->
-    </section>
+
+    {{- range .Site.Params.Footer | default .Site.Data.footer_defaults.Rows -}}{{/* $defaultBottomline */}}
+        <section class="footer-{{- .name }}">
+            {{- $limit := cond (.limitedWidth | default true) "limit-width" "" -}}
+            <div class="container {{ $limit -}}">
+                {{- $columns := .columns | default (dict "xs" 1 "sm" 1 "md" 1 "lg" 1 "xl" 1) -}}
+                {{- $class := partialCached "partials/class-columns.html" $columns (delimit $columns "-") -}}
+                <div class="{{- $class -}}">
+                    {{- $num_groups := len .Groups -}}
+                    {{ range .Groups }}
+                        {{- $num_widgets := len .Widgets -}}
+                        {{- $columns := .columns | default (dict "xs" 1 "sm" 1 "md" 1 "lg" 1 "xl" 1) -}}
+                        {{- $class := partialCached "partials/class-columns.html" $columns (delimit $columns "-") -}}
+                        {{- if and (gt $num_groups 1) (gt $num_widgets 1) -}}
+                        <div class="col">
+                            <div class="{{- $class -}}">
+                        {{- end -}}
+                            {{- range .Widgets -}}
+                                {{- $partialPath := printf "partials/widgets/%s.html" .widget -}}
+                                {{- if templates.Exists $partialPath -}}
+                                    {{- if .cache | default false -}}
+                                        {{- partialCached $partialPath (dict "context" $current_page "params" .params) (printf "%s-%s" .widget .params) -}}
+                                    {{- else -}}
+                                        {{- partial $partialPath (dict "context" $current_page "params" .params) -}}
+                                    {{- end -}}
+                                {{- else -}}
+                                    {{- partial "partials/widgets/default.html" (dict "context" $current_page "params" (dict "widget" .widget)) -}}
+                                {{- end -}}
+                            {{- end -}}
+                        {{- if and (gt $num_groups 1) (gt $num_widgets 1) -}}
+                            </div><!-- row -->                            
+                        </div><!-- col -->
+                        {{- end -}}
+                    {{- end -}}
+                </div><!-- row -->
+            </div><!-- end of container -->
+        </section>
+    {{- end -}}
     <section class="footer-bottom pt-3 pb-2">
         <div class="container">
             <div class="row">
@@ -20,48 +48,3 @@
         </div><!-- container -->
     </section>
 </footer>
-{{- define "groups_list" -}}
-    {{- $context := .context -}}
-    {{- if gt (len .gl.Groups) 1 -}}
-        {{- $columns := .gl.columns | default (dict "xs" 1 "sm" 1 "md" 1 "lg" 2 "xl" 2) -}}
-        {{- $class   := partialCached "partials/class-columns.html" $columns (delimit $columns "-")  -}}
-    <div class="{{- $class -}}">
-        {{- range .gl.Groups -}}
-            {{- if gt (len .Widgets) 1 -}}
-                {{- $columns := .columns | default (dict "xs" 1 "sm" 1 "md" 1 "lg" 1 "xl" 1) -}}
-                {{- $class   := partialCached "partials/class-columns.html" $columns (delimit $columns "-")  -}}
-                <div class="col">
-                    <div class="{{- $class -}}">
-            {{- end -}}
-            {{- template "widgets_list" (dict "context" $context "group" . ) -}}
-            {{- if gt (len .Widgets) 1 -}}
-                    </div><!-- row -->
-                </div><!-- col -->
-            {{- end -}}
-        {{- end -}}
-    </div><!-- row -->
-    {{- else -}}
-        {{- range .gl.Groups -}}
-            {{- $columns := .columns | default (dict "xs" 1 "sm" 1 "md" 1 "lg" 1 "xl" 1) -}}
-            {{- $class   := partialCached "partials/class-columns.html" $columns (delimit $columns "-")  -}}
-            <div class="{{- $class -}}">
-                {{- template "widgets_list" (dict "context" $context "group" .) -}}
-            </div>
-        {{- end -}}
-    {{- end -}}
-{{- end -}}
-{{- define "widgets_list" -}}
-    {{- $context := .context -}}
-    {{- range .group.Widgets -}}
-        {{- $partialPath := printf "partials/widgets/%s.html" .widget -}}
-        {{- if templates.Exists $partialPath -}}
-            {{- if .cache | default false -}}
-                {{- partialCached $partialPath (dict "context" $context "params" .params) (printf "%s-%x" .widget .params) -}}
-            {{- else -}}
-                {{- partial $partialPath (dict "context" $context "params" .params) -}}
-            {{- end -}}
-        {{- else -}}
-            {{- partial "partials/widgets/default.html" (dict "context" $context "params" .widget) -}}
-        {{- end -}}
-    {{- end -}}
-{{- end -}}
