@@ -16,12 +16,12 @@
     </div><!-- container -->
 
     <div class="container limit-width">
-        <div class="row row-cols-1">
-            <div class="post-content col">
+        <div class="post-content row row-cols-1">
+            <div class="col">
                 <p>{{- i18n "content-not-found" -}}</p>
                 <h2>{{- i18n "you-can" -}}</h2>
             </div>
-            <div class="post-content col mb-5">
+            <div class="col mb-5">
                 <h3>{{- i18n "use-search" -}}</h3>
                 {{- partialCached "partials/search-form.html" . -}}
             </div>
