@@ -12,7 +12,7 @@
 {{- $heading_subtitle := printf "h%d" (add $heading_level 1) -}}
 {{- $columns       := .params.columns | default (dict "xs" 1 "sm" 1 "md" 2 "lg" 2 "xl" 2) -}}
 {{- $class         := partialCached "partials/class-columns.html" $columns (delimit $columns "-") -}}
-{{- with .context.Site.Params.mainSections -}}
+{{- with site.Params.mainSections -}}
     <div class="col">
         {{- if eq $widget_format "image" -}}
             {{- with $title -}}
@@ -24,17 +24,17 @@
             {{- end -}}
             <div class="{{ $class -}}">
                 {{- range . -}}
-                    {{- with $.context.Site.GetPage . -}}                
+                    {{- with site.GetPage . -}}                
                 <div class="col mb-5">
-                    <aside class="card h-100 widget widget-sections widget-sections-images">
+                    <aside class="h-100 widget widget-sections widget-sections-images">
                         {{- if isset .Params "images" -}}
                         <a href="{{- .RelPermalink -}}" title="{{- .Title | plainify | htmlUnescape -}}"></a>
                             {{- partial "partials/image.html" (dict "context" . "Destination" .Params.images "Title" .Title "Text" .Title "class" "card-img-top") -}}
                         </a>
                         {{- end -}}
-                        <div class="card-body">
-                            {{- (printf "<%s class=\"card-title\"><a href=\"%s\" title=\"%s\">%s</a></%s>" $heading_subtitle .RelPermalink (.Title | plainify | htmlUnescape) .Title $heading_subtitle) | safeHTML -}}
-                            {{- with .Params.Description -}}<p class="card-text">{{- . | plainify | htmlUnescape -}}</p>{{- end -}}
+                        <div class="widget-inner">
+                            {{- (printf "<%s class=\"widget-title\"><a href=\"%s\" title=\"%s\">%s</a></%s>" $heading_subtitle .RelPermalink (.Title | plainify | htmlUnescape) .Title $heading_subtitle) | safeHTML -}}
+                            {{- with .Params.Description -}}<p>{{- . | plainify | htmlUnescape -}}</p>{{- end -}}
                         </div>
                     </aside>
                 </div><!-- col -->
@@ -42,12 +42,12 @@
                 {{- end -}}
             </div><!-- row -->
         {{- else -}}
-            <aside class="card h-100 widget widget-related widget-related-list">
-                <div class="card-body">
+            <aside class="h-100 widget widget-related widget-related-list">
+                <div class="widget-inner">
                     {{- with $title -}}
-                        <h3 class="card-title">{{- . | safeHTML -}}</h3>
+                        <h3 class="widget-title">{{- . | safeHTML -}}</h3>
                     {{- end -}}
-                    <ul class="card-text">
+                    <ul>
                         {{- range . -}}
                         <li><a href="{{- .RelPermalink -}}" title="{{- .Title | plainify | htmlUnescape -}}">{{- .Title -}}</a></li>
                         {{- end -}}

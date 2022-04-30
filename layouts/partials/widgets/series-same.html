@@ -14,25 +14,24 @@
     {{- range $serie -}}
         {{- $title         := $.params.title | default (i18n "in-same-serie") -}}
         {{- $num_series    := $.params.numseries | default 3 -}}
-        {{- $heading_level := 3 -}}
-        {{- with $.params.heading -}}{{- $heading_level = (. | int) -}}{{- end -}}
+        {{- $heading_level := int ($.params.heading | default 3) -}}
         {{- $heading_title    := printf "h%d" $heading_level -}}
         {{- $heading_subtitle := printf "h%d" (add $heading_level 1) -}}
 
         <div class="col">
-            <aside class="card h-100 widget widget-same-series">
-                <div class="card-body">
+            <aside class="h-100 widget widget-same-series">
+                <div class="widget-inner">
                     {{- with $title -}}
-                        {{- (printf "<%s class=\"card-title\">%s</%s>" $heading_title $title $heading_title) | safeHTML -}} 
+                        {{- (printf "<%s class=\"widget-title\">%s</%s>" $heading_title $title $heading_title) | safeHTML -}} 
                     {{- end -}}
-                    <ol class="card-text">
+                    <ol>
                         {{- range .Pages.ByPublishDate }}
                         <li>
                             {{- if eq . $context -}}
                             <strong>{{- .Title }}</strong>
                             {{- else -}}
                             <a href="{{- .RelPermalink -}}" rel="bookmark">
-                                {{- .Title }} ({{- .Date | time.Format (.Site.Params.FormatDate | default "2-Jan-2006")  -}})
+                                {{- .Title }} ({{- .Date | time.Format (site.Params.FormatDate | default "2-Jan-2006")  -}})
                             </a>
                             {{- end -}}
                         </li>

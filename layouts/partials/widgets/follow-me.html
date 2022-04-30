@@ -1,17 +1,17 @@
 {{/* Parameters      */}}
 {{/* .context Page   */}}
 {{- $heading_level := 3 -}}
-{{- with .params.heading -}}{{- $heading_level = (. | int) -}}{{- end -}}
+{{- $heading_level := int ($.params.heading | default 3) -}}
 {{- $heading_title    := printf "h%d" $heading_level         -}}
 {{- $heading_subtitle := printf "h%d" (add $heading_level 1) -}}
 <div class="col">
-    <aside class="card widget widget-follow">
-        <div class="card-body pb-4">
-            {{- printf "<%s class=\"card-title\">%s</%s>" $heading_title (i18n "follow-me") $heading_title | safeHTML -}}
-            <ul class="card-text">
-            {{- range sort .context.Site.Params.FollowLinks.Socials "weight" -}}
+    <aside class="widget widget-follow">
+        <div class="widget-inner">
+            {{- printf "<%s class=\"widget-title\">%s</%s>" $heading_title (i18n "follow-me") $heading_title | safeHTML -}}
+            <ul>
+            {{- range sort site.Params.FollowLinks.Socials "weight" -}}
                 {{- if eq .id "rss" -}}
-                    {{- with (($.context.Site.GetPage "home").OutputFormats.Get "rss") -}}
+                    {{- with ((site.GetPage "home").OutputFormats.Get "rss") -}}
                         <li>
                             <a href="{{- .Permalink -}}" title="{{- i18n "rss-feeds" -}}"><i class="bi-rss"></i>
                                 <span class="visually-hidden">{{- i18n "rss-feeds" -}}</span> {{ i18n "rss-feeds" -}}
@@ -21,8 +21,8 @@
                 {{- else -}}
                     {{- if .account -}}
                         {{- $media := . -}}
-                        {{- if and (ne $.context.Site.Data.socials.config nil) (ne .id nil) -}}
-                            {{- with (index $.context.Site.Data.socials.config .id) }}
+                        {{- if and (ne site.Data.socials.config nil) (ne .id nil) -}}
+                            {{- with (index site.Data.socials.config .id) }}
                             <li>
                                 <a href="{{- printf .follow $media.account -}}" target="_blank" rel="noopener noreferrer" title="{{- i18n .followtext . -}}">
                                     <i class="{{- .icon }}"></i><span class="visually-hidden">{{- i18n .followtext . -}}</span> {{ .name -}}
@@ -34,6 +34,6 @@
                 {{- end -}}
             {{- end -}}
             </ul>
-        </div><!-- card-body -->
+        </div><!-- widget-inner -->
     </aside>
 </div><!-- col -->

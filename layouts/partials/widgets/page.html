@@ -5,15 +5,15 @@
 {{- $heading_level := int (.params.heading | default 3) -}}
 {{- $heading_title := printf "h%d" $heading_level -}}
 <div class="col">
-    {{- with .context.Site.GetPage .params.page -}}
-    <aside class="card widget widget-page">
-        <div class="card-body widget-inner">
-            {{- (printf "<%s class=\"card-title\">%s</%s>" $heading_title .Title $heading_title) | safeHTML -}}
-            <p class="card-text">{{- .Content  -}}</p>
+    {{- with site.GetPage .params.page -}}
+    <aside class="widget widget-page">
+        <div class="widget-inner">
+            {{- (printf "<%s class=\"widget-title\">%s</%s>" $heading_title .Title $heading_title) | safeHTML -}}
+            <p>{{- .Content  -}}</p>
         </div>
     </aside>
     {{- else -}}
-    <p>{{- i18n "error-post-x-not-found" .params | safeHTML -}}</p>
+    <p>{{- i18n "error-post-x-not-found" .params.page | safeHTML -}}</p>
     {{- end -}}
 </div>
 

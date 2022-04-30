@@ -5,14 +5,14 @@
 {{/*    .heading */}}
 {{- $heading_level := int (.params.heading | default 3) -}}
 {{- $heading_title := printf "h%d" $heading_level -}}
-{{- if isset .context.Site.Taxonomies "tags" -}}
-    {{- $nb_tags := len .context.Site.Taxonomies.tags -}}
+{{- if isset site.Taxonomies "tags" -}}
+    {{- $nb_tags := len site.Taxonomies.tags -}}
     {{- $title   := .params.title | default (i18n "Tags" $nb_tags) -}}
-    {{- with .context.Site.Taxonomies.tags }}
+    {{- with site.Taxonomies.tags }}
 <div class="col mb-5">
-    <aside class="card h-100 widget widget-tags-cloud">
-        <div class="card-body">
-            {{- with $title -}}{{- (printf "<%s class=\"card-title\">%s</%s>" $heading_title . $heading_title) | safeHTML -}}{{- end -}}
+    <aside class="h-100 widget widget-tags-cloud">
+        <div class="widget-inner">
+            {{- with $title -}}{{- (printf "<%s class=\"widget-title\">%s</%s>" $heading_title . $heading_title) | safeHTML -}}{{- end -}}
             {{- $fontUnit          := "rem" -}}
             {{- $largestFontSize   := 2     -}}
             {{- $smallestFontSize  := 0.875 -}}

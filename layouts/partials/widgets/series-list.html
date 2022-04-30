@@ -6,66 +6,64 @@
 {{/* .numposts  */}}
 {{/* .columns   */}}
 {{- $context := .context -}}
-{{- if isset .context.Site.Taxonomies "series" -}}
-    {{- $nb_series     := len .context.Site.Taxonomies.series -}}
+{{- if isset site.Taxonomies "series" -}}
+    {{- $nb_series     := len site.Taxonomies.series -}}
     {{- $title         := .params.title | default (i18n "series" $nb_series) -}}
     {{- $widget_format := .params.type | default "image" -}}
-    {{- $heading_level := 3 -}}
-    {{- with .params.heading -}}{{- $heading_level = (. | int) -}}{{- end -}}
+    {{- $heading_level := int ($.params.heading | default 3) -}}
     {{- $heading_title := printf "h%d" $heading_level -}}
     {{- $heading_subtitle := printf "h%d" (add $heading_level 1) -}}
     {{- $columns       := .params.columns | default (dict "xs" 1 "sm" 1 "md" 2 "lg" 2 "xl" 2) -}}
     {{- $class         := partialCached "partials/class-columns.html" $columns (delimit $columns "-") -}}
-    {{- with .context.Site.Taxonomies.series }}
+    {{- with site.Taxonomies.series }}
         <div class="col">
             {{- if eq $widget_format "image" -}}
                 {{- with $title -}}
-                <div class="row">
-                    <div class="col">
+            <!--    <div class="row">
+                    <div class="col">-->
                         {{- (printf "<%s>%s</%s>" $heading_title . $heading_title) | safeHTML -}}
-                    </div>
-                </div>
+            <!--    </div>
+                </div> -->
                 {{- end -}}
-                <div class="{{ $class -}}">
+                <div class="{{- $class -}}">
                     {{- range . -}}
                     <div class="col mb-5">
-                        <aside class="card h-100 widget widget-series widget-series-images">
-                            {{- with .Page -}}
-                                {{- if isset .Params "images" -}}
-                                    {{- partial "partials/image.html" (dict "context" . "Destination" .Params.images "Title" .Title "Text" .Title "class" "card-img-top") -}}
+                        <aside class="h-100 widget widget-series-images">
+                            <div class="widget-inner">
+                                {{- with .Page -}}
+                                    {{- if isset .Params "images" -}}
+                                        {{- partial "partials/image.html" (dict "context" . "Destination" .Params.images "Title" .Title "Text" .Title ) -}}
+                                    {{- end -}}
+                                    {{- (printf "<%s class=\"widget-title\"><a href=\"%s\" title=\"%s\">%s</a></%s>" $heading_subtitle .RelPermalink (.Title | plainify | htmlUnescape) .Title $heading_subtitle) | safeHTML -}}
+                                    {{- with .Params.Description -}}<p>{{- . | plainify | htmlUnescape -}}</p>{{- end -}}
+                                    </div>
                                 {{- end -}}
-                                <div class="card-body">
-                                    {{- (printf "<%s class=\"card-title\"><a href=\"%s\" title=\"%s\">%s</a></%s>" $heading_subtitle .RelPermalink (.Title | plainify | htmlUnescape) .Title $heading_subtitle) | safeHTML -}}
-                                    {{- with .Params.Description -}}<p class="card-text">{{- . | plainify | htmlUnescape -}}</p>{{- end -}}
-                                </div>
-                            {{- end -}}
-                            {{- if .Pages }}
-                            <div class="card-footer">
-                                <p>{{- i18n "series-posts" -}}</p>
-                                <ol>
-                                {{- range .Pages.ByPublishDate }}
-                                    <li>
-                                        <a href="{{- .RelPermalink -}}" rel="bookmark">
-                                            {{- .Title }} ({{- .Date | time.Format (.Site.Params.FormatDate | default "2-Jan-2006")  -}})
-                                        </a>
-                                    </li>
+                                {{- if .Pages }}
+                                    <p>{{- i18n "series-posts" -}}</p>
+                                    <ol>
+                                    {{- range .Pages.ByPublishDate }}
+                                        <li>
+                                            <a href="{{- .RelPermalink -}}" rel="bookmark">
+                                                {{- .Title }} ({{- .Date | time.Format (site.Params.FormatDate | default "2-Jan-2006")  -}})
+                                            </a>
+                                        </li>
+                                    {{- end }}
+                                    </ol>
+                                {{- else -}}
+                                    {{- i18n "no-post-yet" -}}
                                 {{- end }}
-                                </ol>
-                            </div>
-                            {{- else -}}
-                                {{- i18n "no-post-yet" -}}
-                            {{- end }}
+                            </div><!-- widget-inner -->
                         </aside>
                     </div><!-- col -->
                     {{- end -}}<!-- range -->
                 </div><!-- row -->
             {{- else -}}
-                <aside class="card h-100 widget widget-series widget-series-images">
-                    <div class="card-body">
+                <aside class="h-100 widget widget-series widget-series-images">
+                    <div class="widget-inner">
                         {{- with $title -}}
-                            {{- printf "<%s class=\"card-title\">%s</%s>" $heading_title . $heading_title | safeHTML -}}
+                            {{- printf "<%s class=\"widget-title\">%s</%s>" $heading_title . $heading_title | safeHTML -}}
                         {{- end -}}
-                        <ul class="card-text">
+                        <ul>
                         {{- range . -}}
                             {{- with .Page -}}
                                 <li><a href="{{- .RelPermalink -}}">{{- .Title -}}</a></li>

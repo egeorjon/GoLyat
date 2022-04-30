@@ -1,15 +1,14 @@
 {{/* Parameters      */}}
 {{/* .context Page   */}}
 {{/* .params  widget  */}}
-{{- $heading_level := 3 -}}
-{{- with .params.heading -}}{{- $heading_level = (. | int) -}}{{- end -}}
+{{- $heading_level := int ($.params.heading | default 3) -}}
 {{- $heading_title    := printf "h%d" $heading_level         -}}
 {{- $heading_subtitle := printf "h%d" (add $heading_level 1) -}}
 <div class="col">
-    <aside class="card widget widget-default">
-        <div class="card-body pb-4">
-            {{- (printf "<%s class=\"card-title\">%s</%s>" $heading_title (i18n "widget-not-found") $heading_title) | safeHTML -}}
-            <p class="card-text">{{- i18n "error-widget-not-found" .params.widget -}}</p>
+    <aside class="widget widget-default">
+        <div class="widget-inner">
+            {{- (printf "<%s class=\"widget-title\">%s</%s>" $heading_title (i18n "widget-not-found") $heading_title) | safeHTML -}}
+            <p>{{- i18n "error-widget-not-found" .params.widget -}}</p>
         </div><!-- card-body -->
     </aside>
 </div>

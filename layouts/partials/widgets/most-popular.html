@@ -15,7 +15,7 @@
     {{- with $data -}}
         {{- $posts := slice -}}
         {{- range first $numposts (sort $data.posts "visit" "desc") -}}
-            {{- $p := $context.Site.GetPage .post -}}
+            {{- $p := site.GetPage .post -}}
             {{- with $p -}}
                 {{- $posts = $posts | append (slice .) -}}
             {{- end -}}

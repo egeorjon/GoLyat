@@ -5,19 +5,19 @@
 {{/*    .heading */}}
 {{- $heading_level := int (.params.heading | default 3) -}}
 {{- $heading_title := printf "h%d" $heading_level -}}
-{{- if isset .context.Site.Taxonomies "tags" -}}
-    {{- $nb_tags := len .context.Site.Taxonomies.tags -}}
+{{- if isset site.Taxonomies "tags" -}}
+    {{- $nb_tags := len site.Taxonomies.tags -}}
     {{- $title   := .params.title | default (i18n "Tags" $nb_tags) -}}
-    {{- with .context.Site.Taxonomies.tags }}
+    {{- with site.Taxonomies.tags }}
 <div class="col">
-    <aside class="card h-100 widget widget-tags-list">
-        <div class="card-body">
+    <aside class="h-100 widget widget-tags-list">
+        <div class="widget-inner">
             {{- $tl := slice -}}
             {{- range . }}
                 {{- $tl = $tl | append (printf "<a href=\"%s\" title=\"%s (%d)\" >%s</a>" .Page.Permalink (.Page.Title | plainify) (int .Count) (humanize .Page.Title)) -}}
             {{- end -}}
-            {{- with $title -}}{{- (printf "<%s class=\"card-title\">%s</%s>" $heading_title . $heading_title) | safeHTML -}}{{- end -}}
-            <ul class="card-text"><li>{{- delimit $tl "</li><li>" | safeHTML -}}</li></ul>
+            {{- with $title -}}{{- (printf "<%s class=\"widget-title\">%s</%s>" $heading_title . $heading_title) | safeHTML -}}{{- end -}}
+            <ul><li>{{- delimit $tl "</li><li>" | safeHTML -}}</li></ul>
         </div>
     </aside>
 </div>
