@@ -7,7 +7,22 @@
         {{- partial "header.html" . -}}
         <main role="main" id="page-main">
             {{- partial "partials/headline.html" . -}}
-            <section id="page-content page-type-{{- .Type }} page-{{- .Kind -}}">
+            {{- $class := slice "page-content " -}}
+            {{ if .IsPage -}}
+                {{- $class = $class | append (slice "single-page") -}}
+            {{- else if .IsHome }}
+                {{- $class = $class | append (slice "home") -}}
+            {{- else -}}
+                {{- $class = $class | append (slice "list-page") -}}
+            {{- end -}}
+            {{- if .IsSection }}
+                {{- $class = $class | append (slice (printf "section-%s" .Type)) -}}
+            {{- else if eq .Kind "taxonomy" -}}
+                {{- $class = $class | append (slice (printf "taxonomy taxonomy-%s" .Type )) -}}
+            {{- else if eq .Kind "term" }}
+                {{- $class = $class | append (slice (printf "%s-term" .Type )) -}}
+            {{- end -}}
+            <section class="{{- delimit $class " " -}}">
                 {{- block "main" . }}{{- end }}
             </section>
             {{- block "bottomline" . }}{{- end }}
