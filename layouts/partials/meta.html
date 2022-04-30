@@ -3,24 +3,25 @@
 {{/* .kindctx     Kind of the parent page */}}
 {{/* .meta        List of meta to be displated */}}
 {{/* .class       CSS class to be added   */}}
-{{- $context := .context -}}
-{{- $kindctx := .kindctx -}}
-{{- $typectx := .typectx -}}
+{{- $context  := .context -}}
+{{- $kindctx  := .kindctx -}}
+{{- $typectx  := .typectx -}}
+{{/*- $defaults := .Scratch.Get "defaults" -*/}}
 <ul class="post-meta {{ with .class -}}{{- . | safeHTML -}}{{- end -}}">
     {{- range $order, $meta := .meta -}}
         {{- if eq $meta "date" -}}
         <li class="post-date">
             <i class="bi-calendar3"></i><span class="visually-hidden">{{- i18n "posted-on" -}}</span>
             <time class="entry-date published" datetime="{{- index (split $context.Lastmod " ") 0 -}}">
-                {{- $context.Lastmod | time.Format (site.Params.FormatDate | default "2-Jan-2006") -}}
+                {{- $context.Lastmod | time.Format (site.Params.FormatDate | default site.Data.params_defaults.formatdate) -}}
             </time>
         </li>
         {{- else if eq $meta "fulldate" -}}
         <li class="post-date">
             <i class="bi-calendar3"></i><span class="visually-hidden">{{- i18n "posted-on" -}}</span>
             <time class="entry-date published" datetime="{{- index (split $context.Lastmod " ") 0 -}}">
-                {{- $context.Date | time.Format (site.Params.FormatDate | default "2-Jan-2006") -}}
-                {{- if ne $context.Date $context.Lastmod }} (updated on {{ $context.Lastmod | time.Format (site.Params.FormatDate | default "2-Jan-2006") }} ){{- end -}}
+                {{- $context.Date | time.Format (site.Params.FormatDate | default site.Data.params_defaults.formatdate) -}}
+                {{- if ne $context.Date $context.Lastmod }} (updated on {{ $context.Lastmod | time.Format (site.Params.FormatDate | default site.Data.params_defaults.formatdate) }} ){{- end -}}
             </time>
         </li>
         {{- else if eq $meta "reading" -}}
