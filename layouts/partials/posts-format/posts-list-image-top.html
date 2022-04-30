@@ -6,30 +6,28 @@
 {{/*- if and (eq $kindctx "taxonomy") (eq $typectx "series") -}}
     {{- $meta_bottom = site.Params.SeriesList.metabottom | default (dict "1" "linkedsection") -}}
 {{- end -*/}}
-<article class="card h-100">
+<article class="post h-100">
+    <div class="post-inner">
     {{- if $display_image -}}
-        {{- partial "image.html" (dict "context" $context "Destination" $context.Params.images "Title" $context.Title "Text" $context.Title "Class" "card-img-top pt-1") -}}<!-- "Link" $context.RelPermalink -->
+        {{- partial "image.html" (dict "context" $context "Destination" $context.Params.images "Title" $context.Title "Text" $context.Title "Class" "pt-1") -}}<!-- "Link" $context.RelPermalink -->
     {{- end -}}
-    <div class="card-body">
         {{- with $meta.top -}}
             {{- partial "partials/meta.html" (dict "context" $context "kindctx" $kindctx "meta" $meta.top "class" "meta-top post-format-image-top") -}}
         {{- end -}}
-        <h3 class="card-title post-title"><a href="{{- $context.RelPermalink -}}">{{- $context.Title -}}</a></h3>
+        <h3 class="post-title"><a href="{{- $context.RelPermalink -}}">{{- $context.Title -}}</a></h3>
         {{- with $meta.middle -}}
             {{- partial "partials/meta.html" (dict "context" $context "kindctx" $kindctx "meta" $meta.middle "class" "meta-middle post-format-image-top") -}}
         {{- end -}}
         {{- with $context.Summary -}}
-            <p class="post-summary card-text">
+            <p class="post-summary">
             {{- . | replaceRE "<p>(.*|\n)</p>"  "$1" | safeHTML -}}
             </p>
         {{- end -}}
         {{- with $meta.bottom -}}
             {{- partial "partials/meta.html" (dict "context" $context "kindctx" $kindctx "typectx" $typectx "meta" $meta.bottom "class" "meta-bottom post-format-image-top") -}}
         {{- end -}}
-    </div><!-- card-body -->
     {{- if and (eq $kindctx "taxonomy") (eq $typectx "series") -}}
         {{- if $context.Pages }}
-            <div class="card-footer">
                 <p>{{- i18n "series-posts" -}}</p>
                 <ol>
                 {{- range $context.Pages.ByPublishDate }}
@@ -40,9 +38,9 @@
                     </li>
                 {{- end }}
                 </ol>
-            </div>
         {{- else -}}
-            {{- i18n "no-post-yet" -}}
+            <p>{{- i18n "no-post-yet" -}}</p>
         {{- end }}
     {{- end }}
+    </div>
 </article>
