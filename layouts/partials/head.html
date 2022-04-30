@@ -61,9 +61,7 @@
     {{- end -}}
 {{- end -}}
 
-{{- if site.Params.ThemeColor -}}
-    <meta name="theme-color" content="{{- site.Params.ThemeColor -}}" />
-{{- end -}}
+{{- partialCached "partials/favicons.html" . -}}
 
 {{- $production := eq (getenv "HUGO_ENV") "production" | or hugo.IsProduction -}}
 {{- if $production -}}
