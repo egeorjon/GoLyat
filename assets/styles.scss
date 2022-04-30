@@ -702,6 +702,6 @@ $gallery-caption-fontsize: $font-size-sm;
     }
 
     a:after {
-        content: "( "attr(href)" )"
+        content: "( "attr(href)" )";
     }
 }
