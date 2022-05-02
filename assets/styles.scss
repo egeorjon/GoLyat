@@ -620,6 +620,10 @@ $gallery-caption-fontsize: $font-size-sm;
     text-align: center;
 }
 
+a + .widget-title {
+    margin-top: 0.5 * $spacer!important;
+}
+
 .author-picture {
     float           : left;
     border-radius   : 50%;
@@ -671,7 +675,7 @@ $gallery-caption-fontsize: $font-size-sm;
     }
 
     h3 {
-        margin-top: 0;
+        /* margin-top: 0;*/
         /*margin-bottom: 1em;*/
     }
 
