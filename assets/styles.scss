@@ -552,9 +552,19 @@ $gallery-caption-fontsize: $font-size-sm;
 
 .footer-main,
 .footer-top {
+
+    .col {
+        margin-bottom: 2 * $spacer;
+    }
+
+    .col:last-child {
+        margin-bottom: 0;
+
+    }
     padding-top: 2* $spacer;
     padding-bottom:  $spacer;
 }
+
 
 .footer-main {
     background-color: $medium;
