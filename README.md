@@ -493,7 +493,7 @@ In the following example, the RSS files will be generate for the home page, and 
 
 ### File site.manifest
 
-**Goliath** can generate the manifest file of your site. In order to enable this feature, the `config.toml`file must contain the following parameters:
+**Goliath** can generate the manifest file of your site. In order to enable this feature, the `config.toml` file must contain the following parameters:
 ```toml
 [mediaTypes]
   [mediaTypes."application/manifest+json"]
