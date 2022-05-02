@@ -23,5 +23,5 @@ features = [ "widgets", "responsible", "gallery" ]
 [module]
   [module.hugoVersion]
     extended = true
-    min = "0.85.0"
+    min = "0.87.0"
     max = "0.97.0"
