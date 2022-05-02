@@ -19,11 +19,7 @@
         <div class="col">
             {{- if eq $widget_format "image" -}}
                 {{- with $title -}}
-            <!--    <div class="row">
-                    <div class="col">-->
-                        {{- (printf "<%s>%s</%s>" $heading_title . $heading_title) | safeHTML -}}
-            <!--    </div>
-                </div> -->
+                    {{- (printf "<%s>%s</%s>" $heading_title . $heading_title) | safeHTML -}}
                 {{- end -}}
                 <div class="{{- $class -}}">
                     {{- range . -}}
@@ -32,7 +28,7 @@
                             <div class="widget-inner">
                                 {{- with .Page -}}
                                     {{- if isset .Params "images" -}}
-                                        {{- partial "partials/image.html" (dict "context" . "Destination" .Params.images "Title" .Title "Text" .Title ) -}}
+                                        {{- partial "partials/image.html" (dict "context" . "Destination" .Params.images "Title" .Title "Text" .Title "Link" .RelPermalink) -}}
                                     {{- end -}}
                                     {{- (printf "<%s class=\"widget-title\"><a href=\"%s\" title=\"%s\">%s</a></%s>" $heading_subtitle .RelPermalink (.Title | plainify | htmlUnescape) .Title $heading_subtitle) | safeHTML -}}
                                     {{- with .Params.Description -}}<p>{{- . | plainify | htmlUnescape -}}</p>{{- end -}}
