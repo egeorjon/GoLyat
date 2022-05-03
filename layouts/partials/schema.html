@@ -3,6 +3,7 @@
 {{- $website    := $values.website    -}}
 {{- $org_id     := $values.org_id     -}}
 {{- $org        := $values.org        -}}
+{{- $language   := site.LanguageCode | default site.Data.params_defaults.languagecode -}}
 <!-- Schema -->
 <!-- -------------------- Breadcrumb ----------------------- -->
 {{- $breadcrumb    := dict -}}
@@ -47,12 +48,12 @@
       {{- $details := imageConfig ($imgpath) -}}
       {{- $width   := strings.TrimSuffix "px" $details.Width  -}}
       {{- $height  := strings.TrimSuffix "px" $details.Height -}}
-      {{ $primary_image = (dict "@type" "ImageObject" "@id" $primary_image_id  "inLanguage" site.LanguageCode "url" $src.Permalink "contenturl" $src.Permalink "width" $width "height" $height) -}}
+      {{ $primary_image = (dict "@type" "ImageObject" "@id" $primary_image_id  "inLanguage" $language "url" $src.Permalink "contenturl" $src.Permalink "width" $width "height" $height) -}}
     {{- else -}}
-      {{ $primary_image = (dict "@type" "ImageObject" "@id" $primary_image_id  "inLanguage" site.LanguageCode "url" $src) -}}  
+      {{ $primary_image = (dict "@type" "ImageObject" "@id" $primary_image_id  "inLanguage" $language "url" $src) -}}  
     {{- end -}}
   {{- else -}}
-    {{ $primary_image = (dict "@type" "ImageObject" "@id" $primary_image_id  "inLanguage" site.LanguageCode "url" "No image") -}}  
+    {{ $primary_image = (dict "@type" "ImageObject" "@id" $primary_image_id  "inLanguage" $language "url" "No image") -}}  
   {{- end -}}
 {{- end -}}
 <!-- ----------- WebPage -------------- -->
@@ -70,7 +71,7 @@
     {{- $page_type = (slice "webpage" "CollectionPage") -}}
 {{- end -}}
 {{- if ne .Kind "home" -}}{{- $webpage = merge $webpage (dict "potentialAction" (slice (dict "@type" "ReadAction" "target" (slice (printf .Parent.Permalink))))) -}}{{- end -}}
-{{- $webpage = merge $webpage (dict "@type" $page_type "isPartOf" (dict "@id" $website_id) "inLanguage" site.LanguageCode "description" (.Description | default ( .Summary | plainify | truncate 150 "..." | safeHTML ))) -}}
+{{- $webpage = merge $webpage (dict "@type" $page_type "isPartOf" (dict "@id" $website_id) "inLanguage" $language "description" (.Description | default ( .Summary | plainify | truncate 150 "..." | safeHTML ))) -}}
 {{- if eq .Kind "section" -}}
   {{- with .Params.Tags -}}
     {{- $webpage = merge $webpage (dict "keywords" (delimit . ", ")) -}}
@@ -110,7 +111,7 @@
     {{- end -}}
   {{- end -}}
   {{- $page = dict "@type" "Article" "@id" (printf "%s#article" $permalink) "mainEntityOfPage" (dict "@id" (printf "%s#webpage" $permalink)) "headline" (.Title | safeHTML) -}}
-  {{- $page = merge $page (dict "datePublished" (.Date.Format "2006-01-02") "dateModified" (.Lastmod.Format "2006-01-02") "inLanguage" site.LanguageCode) -}}
+  {{- $page = merge $page (dict "datePublished" (.Date.Format "2006-01-02") "dateModified" (.Lastmod.Format "2006-01-02") "inLanguage" $language) -}}
   {{- $page = merge $page (dict "publisher" (dict "@id" $org_id) "copyrightYear" (.Lastmod.Format "2006") "copyrightHolder" (dict "@id" $org_id)) -}}
   {{- if gt (len $authors) 0 -}}
     {{- $page = merge $page (dict "author" $authors) -}}

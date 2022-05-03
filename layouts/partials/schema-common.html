@@ -30,7 +30,7 @@
 {{- end -}}
 <!-- -------------- Website ----------------- -->
 {{- $website_id := (printf "%s#website" site.BaseURL) -}}
-{{- $website := dict "@type" "WebSite" "@id" $website_id "url" site.BaseURL "name" site.Title "inLanguage" site.LanguageCode -}}
+{{- $website := dict "@type" "WebSite" "@id" $website_id "url" site.BaseURL "name" site.Title "inLanguage" (site.LanguageCode | default site.Data.params_defaults.languagecode) -}}
 {{- $website = merge $website (dict "publisher" (dict "@id" $org_id) "copyrightHolder" (dict "@id" $org_id)) -}}
 {{- with site.Params.Description -}}
   {{- $website = merge $website (dict "description" .) -}}
