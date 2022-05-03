@@ -1,6 +1,13 @@
-{{- $limit := 20 -}}
+{{- $limit := site.Data.params_defaults.rsslimit -}}
 {{- if gt site.Config.Services.RSS.Limit 0 -}}{{- $limit = site.Config.Services.RSS.Limit -}}{{- end -}}
-{{- $pages := .RegularPages | first $limit -}}
+{{- $pages := slice -}}
+{{- if or .IsHome -}}
+  {{- $pages = first $limit (where site.RegularPages "Type" "in" site.Params.mainsections)  -}}
+{{- else if .IsSection -}}
+  {{- $pages = first $limit .RegularPagesRecursive -}}
+{{- else -}}
+  {{- $pages = first $limit .Pages -}}
+{{- end -}}
 {{- printf "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\"  ?>" | safeHTML -}}
 <rss xmlns:media="http://search.yahoo.com/mrss/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:creativeCommons="http://backend.userland.com/creativeCommonsRssModule" version="2.0">
   <channel>
