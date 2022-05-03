@@ -1,3 +1,4 @@
 {
-    "formatdate": "2-Jan-2006"
+    "formatdate": "2-Jan-2006",
+    "rsslimit"  : 10
 }
