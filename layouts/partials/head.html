@@ -31,10 +31,6 @@
     <meta name="application-name" content="{{ site.Title  | markdownify }}" />
 {{- end -}}
 
-{{- with site.Params.googleToken -}}
-<meta name="google-site-verification" content="verification_token">
-{{- end -}}
-
 {{- hugo.Generator -}}
 
 {{- if ne .Kind "404" -}}
@@ -117,11 +113,6 @@
     {{- end -}}
 {{- end -}}
 {{- partialCached "partials/styles.html" . -}}
-{{- with site.Params.Services.googleWMT | default false -}}
-<meta name="google-site-verification" content="{{- . -}}" />
-{{- end -}}
-{{- if or $production (site.Params.DebugMode | default false) -}}
-    {{- with site.Params.Services.piwikpro -}}
-        {{- partialCached "piwikpro.html" . -}}
-    {{- end -}}
+{{- with site.Params.googleWMT | default false -}}
+    <meta name="google-site-verification" content="{{- . -}}" />
 {{- end -}}
