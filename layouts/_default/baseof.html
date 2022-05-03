@@ -1,9 +1,15 @@
 <!DOCTYPE html>
-<html class="no-js" lang="{{- site.LanguageCode | default "en" -}}">
+<html class="no-js" lang="{{- site.LanguageCode | default site.Data.params_defaults.languagecode -}}">
     <head>
         {{- partial "head.html" . -}}
     </head>
     <body>
+        {{- $production := eq (getenv "HUGO_ENV") "production" | or hugo.IsProduction -}}
+        {{- if or $production (site.Params.DebugMode | default false) -}}
+            {{- with site.Params.piwikpro -}}
+                {{- partialCached "piwikpro.html" . -}}
+            {{- end -}}
+        {{- end -}}
         {{- partial "header.html" . -}}
         <main role="main" id="page-main">
             {{- partial "partials/headline.html" . -}}
