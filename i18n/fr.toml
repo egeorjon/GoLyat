@@ -240,3 +240,6 @@
 
 [share-this-post]
     other = "Partagez cet article"
+
+[comments]
+    other = "Commentaires"

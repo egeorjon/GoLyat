@@ -235,3 +235,6 @@
 
 [share-this-post]
     other = "Share this post"
+
+[comments]
+    other = "Comments"
