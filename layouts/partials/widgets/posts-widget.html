@@ -15,6 +15,7 @@
 {{- $heading_title := printf "h%d" $heading_level -}}
 {{- $heading_subtitle := printf "h%d" (add $heading_level 1) -}}
 {{- $columns       := .params.columns | default (dict "xs" 1 "sm" 1 "md" 2 "lg" 2 "xl" 2) -}}
+{{- $widget_class  := .params.widgetclass | default "" -}}
 {{- $class         := partialCached "partials/class-columns.html" $columns (delimit $columns "-") -}}
 {{- with .posts -}}
     <div class="col">
@@ -29,7 +30,7 @@
             <div class="{{ $class -}}">
                 {{- range . -}}
                 <div class="col mb-4">
-                    <aside class="h-100 widget widget-related widget-related-images">
+                    <aside class="h-100 widget {{- printf "widget-%s widget-%s-image" $widget_class $widget_class -}}">
                         <div class="widget-inner">
                         {{- if isset .Params "images" -}}
                             {{- partial "partials/image.html" (dict "context" . "Destination" .Params.images "Title" .Title "Text" .Title "Link" .RelPermalink) -}}
