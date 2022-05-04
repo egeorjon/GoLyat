@@ -41,7 +41,6 @@
 {{- define "bottomline" -}}
     {{- $current_page := . -}}
     {{- partial "partials/pagination-single.html" . -}}
-
     {{- range site.Params.Single.Rows | default site.Data.single_bottomline.Rows -}}{{/* $defaultBottomline */}}
         <section class="page-bottomline page-bottomline-{{- .name}} mb-5">
             {{- $limit := cond (.limitedWidth | default true) "limit-width" "" -}}
@@ -71,12 +70,30 @@
                                 {{- end -}}
                             {{- end -}}
                         {{- if and (gt $num_groups 1) (gt $num_widgets 1) -}}
-                            </div><!-- row -->                            
+                            </div><!-- row -->
                         </div><!-- col -->
                         {{- end -}}
                     {{- end -}}
                 </div><!-- row -->
             </div><!-- end of container -->
         </section>
+    {{- end -}}
+    {{- if site.Params.utteranc_repo | default false -}}
+    <section class="page-bottomline page-bottom-line-comments">
+        <div class="container">
+            <div class="row" id="posts-comments">
+                <div class="col">
+                    <h2>{{- i18n "comments" -}}</h2>
+                    <script src="https://utteranc.es/client.js"
+                        repo       = "{{- site.Params.utteranc_repo -}}"
+                        issue-term = "{{- site.Params.utteranc_term | default "title" -}}"
+                        theme      = "{{- site.Params.utteranc_theme | default "github-light" -}}"
+                        crossorigin= "anonymous"
+                        async>
+                    </script>
+                </div>
+            </div>
+        </div>
+    </section>
     {{- end -}}
 {{- end -}}
