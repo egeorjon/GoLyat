@@ -11,6 +11,9 @@ Why Goliath (why this name)?
 
 ## Table of Contents
 
+{:toc}
+
+
 - [Goliath](#goliath)
   - [Features](#features)
   - [Tools and libraries](#tools-and-libraries)
