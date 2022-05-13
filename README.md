@@ -9,6 +9,9 @@ This theme is intended for personal website and blog. If you'd like to extend th
 
 ## Table of Contents
 
+{:toc}
+
+
 - [Goliath](#goliath)
   - [Features](#features)
   - [Tools and libraries](#tools-and-libraries)
