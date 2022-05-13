@@ -211,7 +211,11 @@
     other = "In the same serie"
 
 [see-series]
+    one   = "See the serie"
     other = "See all the series"
+
+[see-serie-details]
+    other = "See the serie's details"
 
 [see-complete-series]
     other = "All the series"
@@ -238,3 +242,9 @@
 
 [comments]
     other = "Comments"
+
+[see-all-galleries]
+    other = "See all the galleries"
+
+[portfolio]
+    other = "Portfolio"

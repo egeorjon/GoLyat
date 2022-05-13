@@ -9,10 +9,12 @@
 {{- $list          := .params.list | default (.context.GetTerms "authors") -}}
 {{- with $list -}}
     {{- range . -}}
-<div class="col">
-    <aside class="h-100 widget widget-authors pt-4 pb-3">
+
+    <aside class="col widget widget-authors">
         <div class="widget-inner">
-            {{- with $title -}}{{- (printf "<%s class=\"widget-title\">%s</%s>" $heading_title . $heading_title) | safeHTML -}}{{- end -}}
+            {{- with $title -}}
+                {{- (printf "<%s class=\"widget-title\">%s</%s>" $heading_title . $heading_title) | safeHTML -}}
+            {{- end -}}
             <div class="clearfix ">
                 {{- $image := .Page.Resources.GetMatch .Params.Avatar -}}
                 {{- with $image -}}
@@ -55,6 +57,6 @@
             </div><!-- clearfix -->
         </div><!-- widget-inner -->
     </aside>
-</div>
+
     {{- end -}}
 {{- end -}}

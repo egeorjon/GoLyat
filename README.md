@@ -1,13 +1,11 @@
-# GoLyat
+# GoYat
 
-**Goliath** is a theme for the Hugo static site generator. This my second theme for this tool, built for my own blog.
+**Goyat** is a theme for the Hugo static site generator. This my second theme for this tool, built for my own blog.
+
+Goyat is for huGO Yet Another Theme.
 
 You can find a live demo of the original Fresh theme [here](https://www.emmanuelgeorjon.com) (will be completed when the theme will be deployed in production).
 This theme is intended for personal website and blog. If you'd like to extend the theme to include other functionalities, please submit a pull request.
-
-Why Goliath (why this name)?
-
-====>
 
 ## Table of Contents
 

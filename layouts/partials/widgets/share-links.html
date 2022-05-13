@@ -7,10 +7,11 @@
 {{- $heading_title    := printf "h%d" $heading_level -}}
 {{- $heading_subtitle := printf "h%d" (add $heading_level 1) -}}
 {{- if site.Params.sharelinks -}}
-<div class="col">
-    <aside class="h-100 widget widget-share-links">
+    <aside class="col widget widget-share-links">
         <div class="widget-inner">
-            {{- with $title -}}<h3 class="widget-title">{{- . | safeHTML -}}</h3>{{- end -}}
+            {{- with $title -}}
+                {{- (printf "<%s class=\"widget-title\">%s</%s>" $heading_title . $heading_title) | safeHTML -}}
+            {{- end -}}
             <ul>
                 {{- $home  := "/" | absURL -}}
                 {{- $url   := $context.Permalink | absURL | safeURL -}}
@@ -51,7 +52,7 @@
                                 <li>
                                     {{- $text := printf (i18n .sharetext) .name -}}
                                     <a href="{{- $share_url -}}" class="share-link share-{{- $share.id -}}" title="{{- $text -}}" aria-label="{{- $text -}}" rel="noopener noreferrer" target="_blank">
-                                        <i class="{{- .icon -}}" style="font-size: 1.5rem;"></i><span class="visually-hidden" aria-hidden="true">{{- .name -}}</span></a>
+                                        <i class="{{- .icon -}}"></i><span class="visually-hidden" aria-hidden="true"> {{ .name -}}</span></a>
                                 </li>
                             {{- end -}}
                         {{- end -}}
@@ -60,7 +61,6 @@
             </ul>
         </div><!-- card-body -->
     </aside><!-- -->
-</div>
 {{- end -}}
 {{- define "partials/share_regex" -}}
     {{- $new_value := "" -}}

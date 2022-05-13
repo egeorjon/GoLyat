@@ -3,19 +3,19 @@
 
 <script>document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/,'js');</script>
 
-{{- $title := slice -}}
-{{- if and .Title (not .IsHome) -}}
-    {{- $title = slice (.Title | markdownify | plainify) -}}
+{{- $title := slice .Title -}}
+{{- if not .IsHome -}}
+    {{- $title = $title | slice (site.Title | markdownify | plainify) -}}
 {{- end -}}
-<title>{{- delimit ($title | append (slice (site.Title  | markdownify | plainify))) " &dash; " -}}</title>
+<title>{{- delimit $title " &dash; " -}}</title>
 
 {{- if ne .Kind "404" -}}
-    {{- $description := .Params.description | default site.Params.Description |default "" -}}
+    {{- $description := .Params.description | default site.Params.Description | default "" -}}
     {{- with $description -}}
         <meta name="description" content="{{- . | markdownify | plainify | htmlUnescape -}}" />
     {{- end -}}
 
-    {{- $keywords := .Params.tags | default site.Params.Keywords |default "" -}}
+    {{- $keywords := .Params.tags | default site.Params.Keywords | default "" -}}
     {{- with $keywords -}}
         <meta name="keywords" content="{{- delimit . "," | plainify | htmlUnescape -}}" />
     {{- end -}}
@@ -28,7 +28,7 @@
 <meta name="rating" content="General">
 
 {{- if .IsHome -}}
-    <meta name="application-name" content="{{ site.Title  | markdownify }}" />
+    <meta name="application-name" content="{{- site.Title -}}" />
 {{- end -}}
 
 {{- hugo.Generator -}}

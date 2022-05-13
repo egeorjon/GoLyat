@@ -1,34 +1,33 @@
 {{- $current_page := . -}}
 <footer id="page-footer">
-
-    {{- range site.Params.Footer | default site.Data.footer_defaults.Rows -}}{{/* $defaultBottomline */}}
+    {{- range sort site.Data.footer.Rows "weight" -}}
         <section class="footer-{{- .name }}">
             {{- $limit := cond (.limitedWidth | default true) "limit-width" "" -}}
             <div class="container {{ $limit -}}">
-                {{- $columns := .columns | default (dict "xs" 1 "sm" 1 "md" 1 "lg" 1 "xl" 1) -}}
+                {{- $columns := .columns | default site.Data.default_params.columns_1 -}}
                 {{- $class := partialCached "partials/class-columns.html" $columns (delimit $columns "-") -}}
                 <div class="{{- $class -}}">
                     {{- $num_groups := len .Groups -}}
-                    {{ range .Groups }}
+                    {{- range sort .Groups "weight" -}}
                         {{- $num_widgets := len .Widgets -}}
-                        {{- $columns := .columns | default (dict "xs" 1 "sm" 1 "md" 1 "lg" 1 "xl" 1) -}}
+                        {{- $columns := .columns | default site.Data.default_params.columns_1 -}}
                         {{- $class := partialCached "partials/class-columns.html" $columns (delimit $columns "-") -}}
                         {{- if and (gt $num_groups 1) (gt $num_widgets 1) -}}
                         <div class="col">
                             <div class="{{- $class -}}">
                         {{- end -}}
-                            {{- range .Widgets -}}
-                                {{- $partialPath := printf "partials/widgets/%s.html" .widget -}}
-                                {{- if templates.Exists $partialPath -}}
-                                    {{- if .cache | default false -}}
-                                        {{- partialCached $partialPath (dict "context" $current_page "params" .params) (printf "%s-%s" .widget .params) -}}
-                                    {{- else -}}
-                                        {{- partial $partialPath (dict "context" $current_page "params" .params) -}}
-                                    {{- end -}}
+                        {{- range sort .Widgets "weight" -}}
+                            {{- $partialPath := printf "partials/widgets/%s.html" .widget -}}
+                            {{- if templates.Exists $partialPath -}}
+                                {{- if .cache | default false -}}
+                                    {{- partialCached $partialPath (dict "context" $current_page "params" .params) (printf "%s-%s" .widget .params) -}}
                                 {{- else -}}
-                                    {{- partial "partials/widgets/default.html" (dict "context" $current_page "params" (dict "widget" .widget)) -}}
+                                    {{- partial $partialPath (dict "context" $current_page "params" .params) -}}
                                 {{- end -}}
+                            {{- else -}}
+                                {{- partial "partials/widgets/default.html" (dict "context" $current_page "params" (dict "widget" .widget)) -}}
                             {{- end -}}
+                        {{- end -}}
                         {{- if and (gt $num_groups 1) (gt $num_widgets 1) -}}
                             </div><!-- row -->                            
                         </div><!-- col -->
@@ -38,11 +37,14 @@
             </div><!-- end of container -->
         </section>
     {{- end -}}
-    <section class="footer-bottom pt-3 pb-2">
+    <section class="footer-bottom">
         <div class="container">
             <div class="row">
-                <div class="col text-center">
+                <div class="col-11">
                     <p>{{- site.Copyright | safeHTML -}}</p>
+                </div><!-- col -->
+                <div class="col-1">
+                    <a href="#page-main" class="top"><i class="bi-chevron-up"></i></a>
                 </div><!-- col -->
             </div><!-- row -->
         </div><!-- container -->

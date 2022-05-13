@@ -6,25 +6,26 @@
 {{/*- if and (eq $kindctx "taxonomy") (eq $typectx "series") -}}
     {{- $meta_bottom = site.Params.SeriesList.metabottom | default (dict "1" "linkedsection") -}}
 {{- end -*/}}
-<article class="post h-100">
+<article class="post post-format post-format-image-top">
     <div class="post-inner">
     {{- if $display_image -}}
         {{- partial "image.html" (dict "context" $context "Destination" $context.Params.images "Title" $context.Title "Text" $context.Title "Class" "pt-1") -}}<!-- "Link" $context.RelPermalink -->
     {{- end -}}
         {{- with $meta.top -}}
-            {{- partial "partials/meta.html" (dict "context" $context "kindctx" $kindctx "meta" $meta.top "class" "meta-top post-format-image-top") -}}
+            {{- partial "partials/meta.html" (dict "context" $context "kindctx" $kindctx "meta" $meta.top "class" "meta-top") -}}
         {{- end -}}
         <h3 class="post-title"><a href="{{- $context.RelPermalink -}}">{{- $context.Title -}}</a></h3>
         {{- with $meta.middle -}}
-            {{- partial "partials/meta.html" (dict "context" $context "kindctx" $kindctx "meta" $meta.middle "class" "meta-middle post-format-image-top") -}}
+            {{- partial "partials/meta.html" (dict "context" $context "kindctx" $kindctx "meta" $meta.middle "class" "meta-middle") -}}
         {{- end -}}
         {{- with $context.Summary -}}
             <p class="post-summary">
-            {{- . | replaceRE "<p>(.*|\n)</p>"  "$1" | safeHTML -}}
+                {{- . -}}
+            {{/*- . | replaceRE "<p>(.*|\n)</p>"  "$1" | safeHTML -*/}}
             </p>
         {{- end -}}
         {{- with $meta.bottom -}}
-            {{- partial "partials/meta.html" (dict "context" $context "kindctx" $kindctx "typectx" $typectx "meta" $meta.bottom "class" "meta-bottom post-format-image-top") -}}
+            {{- partial "partials/meta.html" (dict "context" $context "kindctx" $kindctx "typectx" $typectx "meta" $meta.bottom "class" "meta-bottom") -}}
         {{- end -}}
     {{- if and (eq $kindctx "taxonomy") (eq $typectx "series") -}}
         {{- if $context.Pages }}

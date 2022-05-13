@@ -1,64 +1,18 @@
 @use "sass:map";
 
-$floral-white: #fffcf2ff;
-$pale-silver: #ccc5b9ff;
-$black-olive: #403d39ff;
-$eerie-black: #252422ff;
-$flame: #eb5e28ff;
 
-$bdazzled-blue: #3d5a80ff;
-$dark-sky-blue: #98c1d9ff;
-$light-cyan: #e0fbfcff;
-$burnt-sienna: #ee6c4dff;
-$gunmetal: #293241ff;
-
-$imperial-red: #e63946ff;
-$honeydew: #f1faeeff;
-$powder-blue: #a8dadcff;
-$celadon-blue: #457b9dff;
-$prussian-blue: #1d3557ff;
-
-$space-cadet: #2b2d42ff;
-$manatee: #8d99aeff;
-$cultured: #edf2f4ff;
-$imperial-red: #ef233cff;
-$amaranth-red: #d90429ff;
-
-$barn-red: #780000ff;
-$venetian-red: #c1121fff;
-$papaya-whip: #fdf0d5ff;
-$prussian-blue: #003049ff;
-$air-superiority-blue: #669bbcff;
-
-/* --- Variable customization ------------- */
-/*
-$primary:       $flame;
-$secondary:     $pale-silver;
-$light:         $floral-white;
-$medium:        $black-olive;
-$dark:          $eerie-black;
-*/
-/*
-$primary:       $burnt-sienna;
-$secondary:     $dark-sky-blue;
-$light:         $light-cyan;
-$medium:        $bdazzled-blue;
-$dark:          $gunmetal;
-*/
+$imperial-red : #e63946;
+$honeydew     : #f1faee;
+$powder-blue  : #f3f7ff; // #a8dadcff;
+$celadon-blue : #457b9d;
+$prussian-blue: #1d3557;
 
 $primary:       $imperial-red;
 $secondary:     $powder-blue;
-$light:         $honeydew;
+$light:         $powder-blue;  /* $honeydew;*/
 $medium:        $celadon-blue;
 $dark:          $prussian-blue;
 
-/*
-$primary:       $barn-red;
-$secondary:     $air-superiority-blue;
-$light:         $papaya-whip;
-$medium:        $air-superiority-blue;
-$dark:          $prussian-blue;
-*/
 // Boostrap customization
 @import "custom";
 
@@ -71,84 +25,73 @@ $dark:          $prussian-blue;
 // Lightbox
 @import "simple-lightbox-2.10.3/simple-lightbox.scss";
 
+/* -------------------------------------------------
+   --- General                                  ---
+   ------------------------------------------------- */
+img {
+    border-radius: 0.5em;
+}
 
-/* ----------------------------------------- */
-/* --- Common styles ----------------------- */
-/* ----------------------------------------- */
-
-/* ----- General ---------------------------- */
+// --- limited width ----------------------------
 @media (min-width: map-get($grid-breakpoints, "md")) {
     .limit-width {
         width: 960px!important;
-    }   
-}
-
-.inline-list {
-
-    list-style-type: none;
-    padding-left: 0;
-
-    li {
-        white-space: nowrap;
-        display: inline-block;
-        margin-right: 0.5 * $spacer;
-    }
-
-    li:last-child {
-        margin-right: 0;
     }
 }
 
-@media (min-width: map-get($grid-breakpoints, "md")) {
-    .inline-list li {
-        margin-right: $spacer;
-    }
-}
-
-@media (min-width: map-get($grid-breakpoints, "lg")) {
-    .inline-list li {
-        margin-right: 1.5 * $spacer;
-    }
-}
-
-.ratio {
-    background-color: $light;
-    border: 1px solid $secondary;
-    text-align: center;
-    vertical-align: middle;
+h1 {
+    font-size: 2.5 * $font-size-base;
+    line-height: 1.2;
+    margin: 0;
 }
 
 h2 {
+    font-size: 2 * $font-size-base;
     line-height: 1.5;
+    margin-top: 0;
+    margin-bottom: 0.75em;
+
     color: $primary;
 }
 
 h3 {
+    font-size: 1.5 * $font-size-base;
     line-height: 1;
+    margin-top: 0;
+    margin-bottom: 1em;
+
     color: $dark;
 }
 
 h4 {
+    font-size: 1.2222 * $font-size-base;
     line-height: 1.2273;
+    margin-top: 0;
+    margin-bottom: 1.2273em;
+}
+
+h2 a, h3 a {
+    text-decoration: none;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+h3 a {
     color: $dark;
 }
 
-/* ----------------------------------------- */
-/* --- Header ------------------------------ */
-/* ----------------------------------------- */
+/* -------------------------------------------------
+   --- Header                                    ---
+   ------------------------------------------------- */
 
 #page-header {
     background-color: white;
 }
 
-@media (min-width: map-get($grid-breakpoints, "md")) {
-
-    .search-form {
-        width: 50%;
-    }
-}
-
 .search-form {
+    width: 50%;
     position: relative;
 }
 
@@ -157,565 +100,407 @@ h4 {
     color     : #6c757d!important;
     transform : translateY(-50%)!important;
     position  : absolute!important;
-    right     : 0!important;
+    right     : 1em!important;
     top       : 50%!important;
 }
 
-/* ----------------------------------------- */
-/* --- Navigation / Main menu -------------- */
-/* ----------------------------------------- */
 
-.navbar-nav .nav-item {
-    font-size: $font-size-lg;
-    font-variant: small-caps;
-}
-
-.nav-item .active {
-    border-top: 1px solid $secondary;
-    border-bottom: 1px solid $secondary;
-}
-
-/* ------------------------------------------ */
-/* --- Headline ----------------------------- */
-/* ------------------------------------------ */
+/* -------------------------------------------------
+   --- Headline                                  ---
+   ------------------------------------------------- */
 
 #page-headline {
-    background-color: $light;
-}
+    background-color: $secondary;
 
-/* ------------------------------------------ */
-/* --- Post-list ---------------------------- */
-/* ------------------------------------------ */
+    padding-top: $spacer;
+    padding-bottom: $spacer;
+    margin-bottom: 2 * $spacer;
 
-.post-list h3 a {
-
-    color: $dark;
-    text-decoration: none;
-
-    &:hover {
-        color: $primary;
-        text-decoration: underline;
+    h1 {
+        a { margin-left: 1em; }
     }
 }
 
-.page-summary,
-.post-summary {
-    text-align: justify;
+
+/* -------------------------------------------------
+   --- Homepage                                  ---
+   ------------------------------------------------- */
+
+// ---- Posts list -------------------------
+.page-item-left {
+    text-align: left;
 }
 
-
-/* ------------------------------------------ */
-/* --- Content basic styles ----------------- */
-/* ------------------------------------------ */
-.post-content {
-    text-align: justify;
-
-    h2 {
-        margin-top: 2.25em;
-        margin-bottom: 1.5em;
-    }
-    
-    h3 {
-        margin-top: 2em;
-        margin-bottom: 1em;
-    }
-    
-    h4 {
-        margin-top: 2,4546em;
-        margin-bottom: 1,2273em;
-    }
-}
-
-article.card {
-    border: 0;
-}
-/*
-.toc {
-    float: right;
-    display: block;
-    width: 50%;
-    margin-left: $spacer;
-    border: 1px solid $medium;
-
-    margin-top: 5.0625em;
-
-    font-size: 1rem;
-    line-height: 1.6875;
-    // text-align: left;
-}
-
-@media (min-width: map-get($grid-breakpoints, "md")) {
-    .toc {
-        float: right;
-        display: block;
-        width: 30%;
-        margin-left: $spacer;
-    }
-
-}
-*/
-.post-meta {
-    font-size: 1rem;
-    line-height: 1.6875;
-    list-style-type: none;
-    padding-left: 0;
-
-    li {
-        white-space: nowrap;
-        display: inline-block;
-        margin-right: 0.5 * $spacer;
-    }
-
-    li:last-child {
-        margin-right: 0;
-    }
-}
-
-@media (min-width: map-get($grid-breakpoints, "md")) {
-    .post-meta li {
-        margin-right: $spacer;
-    }
-}
-
-@media (min-width: map-get($grid-breakpoints, "lg")) {
-    .post-meta li {
-        margin-right: 1.5 * $spacer;
-    }
-}
-
-.post-format-meta-left {
-
-    li {
-        white-space: normal;
-        display: block;
-        text-align: right;
-        margin-right: 0;
-        margin-bottom: $spacer;
-    }
-}
-
-/* ------------------------------------------ */
-/* --- Figures / Images --------------------- */
-/* ------------------------------------------ */
-
-.figure {
-    margin-bottom: 3 * $spacer;
-}
-  
-.figure-img {
-    margin-bottom: $spacer * .5;
-    line-height: 1;
-}
-
-.figure-center {
-    display:block!important;
+.page-item-center {
     text-align: center;
 }
-  
-.figure-caption {
-    margin-top: 0.25rem;
-    font-style: italic;
+
+.page-item-right {
+    text-align: right;
 }
 
 
-/* ------------------------------------------ */
-/* --- Tables ------------------------------- */
-/* ------------------------------------------ */
+/* -------------------------------------------------
+   --- Lists                                     ---
+   ------------------------------------------------- */
 
-.table {
+.post-format-meta-left {
+    .post-meta {
+        text-align: right;
+    }
+}
+
+.post-summary {
+    text-align: justify
+}
+
+
+.post-list {
+    .post {
+        margin-bottom: 5 * $spacer;
+    }
+
+    .post:last-child {
+        margin-bottom: 3 * $spacer;
+    }
+}
+
+.page-bottomline-pagination {
     margin-bottom: 3 * $spacer;
 }
 
+/* -------------------------------------------------
+   --- Single                                    ---
+   ------------------------------------------------- */
 
-/* ------------------------------------------ */
-/* --- Blokcquote --------------------------- */
-/* ------------------------------------------ */
-
-blockquote {
-    position: relative;
-
-    border: 1px solid $pale-silver;
-    border-left: 15px solid $pale-silver;
-    border-radius: 0.5rem;
-    padding: 1rem;
-    margin: 2rem 3rem 2rem 5rem;
+.single-post-summary,
+.single-post-content {
+    text-align: justify;
 }
 
-blockquote p {
-    margin-bottom: 0;
+.single-post-content {
+
+    h2, h3, h4 {
+        margin-bottom: $spacer;
+    }
+
+    h2 {
+        margin-top: 2 * $spacer;
+    }
+
+    h3 {
+        margin-top: 1.5 * $spacer;
+    }
+
+    h4 {
+        margin-top: 1 * $spacer;
+    }
 }
 
-blockquote p:before {
-    display: inline-block;
-    font-family: $bootstrap-icons-font !important;
-    font-size: 2rem;
-    line-height: 1;
-    vertical-align: -.125em;
-
-    position: absolute;
-    left: 1rem;
-    top: -1rem;
-    content: "\f6b0";
-    color: $pale-silver;
-    background-color: white;
+.single-post-image,
+.page-bottomline-prev-next,
+.single-post-content {
+    margin-bottom: 3 * $spacer;
 }
 
-blockquote.info {
-    border-color: $blue-300;
+.single-post-meta {
+    margin-bottom: 2 * $spacer;
 }
 
-blockquote.info p:before {
-    content: "\f431";
-    color: $blue-300;
-}
-
-blockquote.warning {
-    border-color: orange;
-}
-
-blockquote.warning p:before {
-    content: "\f335";
-    color: orange;
-}
-
-blockquote.error {
-    border-color: red;
-}
-
-blockquote.error p:before {
-    content: "\f629";
-    color: red;
-}
-
-
-/* ------------------------------------------ */
-/* --- Gallery ------------------------------ */
-/* ------------------------------------------ */
-
-$gallery-margin-bottom   : 3rem;
-$gallery-margin          : 2rem;
-$gallery-hover-scale     : 1.15;
-$gallery-caption-fontsize: $font-size-sm;
-
-.gallery-wrapper {
-    justify-content : center;
-    margin-bottom   : $gallery-margin-bottom;
-}
-
-.gallery {
-    display   : flex;
-    flex-wrap : wrap;
-    margin    : (-1 * $gallery-margin) (-1 * $gallery-margin);
-}
-
-.gallery-thumb {
-    position   : relative;
-    margin     : $gallery-margin;
-    // box-shadow : 0.3rem 0.4rem 0.4rem rgba(0, 0, 0, 0.4);
-    box-shadow : 0.4rem 0.5rem 0.5rem rgba(0, 0, 0, 0.4);
-    overflow   : hidden;
-}
-
-.gallery-image {
-    display    : block;
-    width      : 100%;
-    height     : auto;
-    object-fit : cover;
-    transition : transform 400ms ease-out;
-}
-
-.gallery-thumb a {
-    color: white;
-    text-decoration: none;
-}
-
-.gallery-thumb a:hover .gallery-image {
-    transform: scale($gallery-hover-scale);
-}
-
-.gallery-thumb figcaption  {
-    position   : absolute;
-    bottom     : 0;
-    left       : 0;
-    right      : 0;
-    transition : 0.5s ease;
-    background-color: black;
-    opacity    : 0;
-
-    text-align : center;
-    font-size  : $gallery-caption-fontsize;
-    padding    : 0.5rem 0;
-}
-
-.gallery-thumb figcaption.center {
-    padding: 45% 0;
-    top: 0;
-}
-
-.gallery-thumb a:hover figcaption  {
-    opacity: 0.55;
-}
-
-/* ------------------------------------------ */
-/* --- Pagination --------------------------- */
-/* ------------------------------------------ */
-
-.page-bottomline-prev-next/*,
-.page-bottomline-pagination */{
-    border-top: 1px solid $pagination-border-color;
-    border-bottom: 1px solid $pagination-border-color;
-}
-
+/* -------------------------------------------------
+   --- Pagination pre / next                     ---
+   ------------------------------------------------- */
 .page-bottomline-prev-next {
+    ul {
+        list-style-type: none;
+    }
 
     a {
         display: block;
-    }
-
-    p {
-        margin-bottom: 0;
+        padding: 0.5rem 1rem;
     }
 
     a:hover {
-        background-color: $pagination-hover-bg;
-        color: $dark;
-        border-radius: $pagination-border-radius;
-    }
-
-    ul {
-        list-style-type: none;
-        padding-left: 0;
-        margin-bottom: 0;
-    }
-
-    li {
-        line-height: 2;
-    }
-
-    .disabled {
-        color: $gray-400;
+        border-radius: 0.25rem;
+        background-color: $light;
     }
 }
 
 
-/* ------------------------------------------ */
-/* --- Bottom lines-------------------------- */
-/* ------------------------------------------ */
+/* -------------------------------------------------
+   --- Post Meta                                 ---
+   ------------------------------------------------- */
 
-.page-bottomline-authors {
-    background-color: $light;
+.post-meta {
+    list-style-type: none;
+    margin-bottom: 0;
+    padding-left: 0;
 }
 
-/* ------------------------------------------ */
-/* --- Footer ------------------------------- */
-/* ------------------------------------------ */
 
-#page-footer {
-    background-color: $dark;
-    color: $light;
+/* -------------------------------------------------
+   --- Widgets                                   ---
+   ------------------------------------------------- */
 
-    h2,h3,h4 {
-        color: white;
-    }
-
-    a {
-        color: white;
-
-        &:hover {
-            color: $primary;
-        }
-    }
-
-    li>a {
-        text-decoration: none;
-
-        &:hover {
-            text-decoration: underline;
-        }
-    }
-
-    ul {
-        list-style-type: none;
-        padding-left: 0;
-    }
-
-    li { 
-        line-height: 3;
-        padding-left: 0.5 * $spacer;
-        width: 75%;
-    }
-
-    li:last-child {
-        border-bottom: 0;
-    }
-}
-
-.footer-main,
-.footer-top {
+.widget {
+    margin-bottom: 2 * $spacer;
 
     .col {
         margin-bottom: 2 * $spacer;
     }
 
-    .col:last-child {
-        margin-bottom: 0;
-
-    }
-    padding-top: 2* $spacer;
-    padding-bottom:  $spacer;
-}
-
-
-.footer-main {
-    background-color: $medium;
-    li {
-        border-bottom: 1px solid tint-color($medium, 20%);
-    }
-
-}
-
-.footer-top {
-
-    li {
-        border-bottom: 1px solid tint-color($dark, 20%);
-    }
-
-}
-
-/* ------------------------------------------ */
-/* --- Style for the style guide page ------- */
-/* ------------------------------------------ */
-
-.palette {
-    div {
-        height: 80px;
-        text-align: center;
-        vertical-align: middle;
-    }
-}
-
-/* ------------------------------------------ */
-/* --- Widgets ------------------------------ */
-/* ------------------------------------------ */
-
-.widget {
-    border: 0;   
-}
-
-.widget-follow {
-    p, ul {
-        display: inline;
-    }
-/*
-    i {
-        font-size: 1.5rem;
-    }
-*/
-    p {
-        margin-right: 0.5 * $spacer;
-    }
-}
-
-.widget-logo {
-    text-align: center;
-}
-
-a + .widget-title {
-    margin-top: 0.5 * $spacer!important;
-}
-
-.author-picture {
-    float           : left;
-    border-radius   : 50%;
-    overflow        : hidden;
-    margin-bottom   : 1rem;
-}
-
-.author-description {
-    text-align: justify;
-}
-
-.widget-tags-cloud a {
-    text-decoration: none;
-    margin-right: 1rem;
-    white-space: nowrap;
-
-    &:hover {
-        text-decoration: underline;
-    }
-}
-
-.widget-series-images .card-footer ol {
-    font-size: 1rem;
-    line-height: 1.6875;
-}
-
-/* ------------------------------------------ */
-/* --- homepage ----------------------------- */
-/* ------------------------------------------ */
-
-.homepage {
-    margin-bottom: $spacer;
-
-    h2 {
-        margin-top: 0;
-        margin-bottom: 1.125em;
-        padding-bottom: 0.2em;
-        color: $primary;
-        position: relative;
-
-        &:after {
-            content: "";
-            bottom: 0;
-            left: 0;
-            position: absolute;
-            width: 20%;
-            border-bottom: 3px solid $primary;
-        }
+    a + h3 {
+        margin-top: 0.5 * $spacer;
     }
 
     h3 {
-        /* margin-top: 0;*/
-        /*margin-bottom: 1em;*/
+        margin-bottom: 0.5 * $spacer;
     }
+}
 
-    h3 a {
-        text-decoration: none;
-        color: $dark;
 
-        &:hover {
-            text-decoration: underline;
-            color: $primary;
+.single-page .widget h3 {
+    margin-bottom: 1 * $spacer;
+}
+
+.widget-content {
+    margin-bottom: 0.5 * $spacer;
+}
+
+// ---- widget-author-----------------------
+.author-picture {
+    float: left;
+}
+
+.page-bottomline-authors {
+    padding-top: 2 * $spacer;
+    background-color: $light;
+    margin-bottom: 3 * $spacer;
+}
+
+.author-socials {
+    list-style-type: none;
+    margin-bottom: 0;
+    padding-left: 0;
+
+    li {
+        display: inline;
+        margin-right: 1.5 * $spacer;
+
+        &:last-child {
+            margin-right: 0;
         }
     }
-}
 
-@media (min-width: map-get($grid-breakpoints, "md")) {
-    
-    .homepage {
-        margin-bottom: 3 * $spacer;
+    i {
+        font-size: 1.5rem;
     }
 }
 
-@media print {
+// ---- widget-page ------------------------
+.widget-page {
+    text-align: justify;
+}
 
-    #page-header, #posts-comments, .breadcrumb, 
-    .page-bottomline-prev-next, .page-bottomline-yzgd-share, .page-bottomline-related, 
-    .footer-top, .footer-main {
-        display: none;
+// ---- widget-follow ----------------------
+.widget-follow-horizontal {
+    ul {
+        list-style-type: none;
+        padding-left: 0;
+        margin-bottom: 0;
     }
 
-    * {
-        color: #000;    
-        background-color: #fff;
+    li {
+        display: inline;
+        margin-left: 1.6 * $spacer;
     }
 
-    body {
-        font-size: 1rem !important;
-        line-height: 1.5 !important;
+    i {
+        font-size: 1.2 * $font-size-base;
+    }
+}
+
+// ---- widget-share-links ------------------
+
+.widget-share-links {
+
+    ul {
+        list-style-type: none;
+        padding-left: 0;
+        margin-bottom: 0;
     }
 
-    a:after {
-        content: "( "attr(href)" )";
+    li {
+        display: inline;
+        margin-right: 1.5 * $spacer;
+    }
+
+    li:last-child {
+        margin-right: 0;
+    }
+
+    i {
+        font-size: 1.75rem;
+    }
+}
+
+/* -------------------------------------------------
+   --- Figure                                    ---
+   ------------------------------------------------- */
+
+.figure-center {
+    display: block;
+    text-align: center;
+}
+
+.figure-caption {
+    font-style: italic;
+    text-align: center;
+    margin-top: 0.5rem;
+}
+
+/* -------------------------------------------------
+   --- Gallery                                   ---
+   ------------------------------------------------- */
+
+   $gallery-margin-bottom   : 3rem;
+   $gallery-margin          : 2rem;
+   $gallery-hover-scale     : 1.15;
+   $gallery-caption-fontsize: $font-size-sm;
+
+   .gallery-wrapper {
+       justify-content : center;
+       margin-bottom   : $gallery-margin-bottom;
+   }
+
+   .gallery {
+       display   : flex;
+       flex-wrap : wrap;
+       margin    : (-1 * $gallery-margin) (-1 * $gallery-margin);
+   }
+
+   .gallery-thumb {
+       position   : relative;
+       margin     : $gallery-margin;
+       // box-shadow : 0.3rem 0.4rem 0.4rem rgba(0, 0, 0, 0.4);
+       box-shadow : 0.4rem 0.5rem 0.5rem rgba(0, 0, 0, 0.4);
+       overflow   : hidden;
+   }
+
+   .gallery-image {
+       display    : block;
+       width      : 100%;
+       height     : auto;
+       object-fit : cover;
+       transition : transform 400ms ease-out;
+   }
+
+   .gallery-thumb a {
+       color: white;
+       text-decoration: none;
+   }
+
+   .gallery-thumb a:hover .gallery-image {
+       transform: scale($gallery-hover-scale);
+   }
+
+   .gallery-thumb figcaption  {
+       position   : absolute;
+       bottom     : 0;
+       left       : 0;
+       right      : 0;
+       transition : 0.5s ease;
+       background-color: black;
+       opacity    : 0;
+
+       text-align : center;
+       font-size  : $gallery-caption-fontsize;
+       padding    : 0.5rem 0;
+   }
+
+   .gallery-thumb figcaption.center {
+       padding: 45% 0;
+       top: 0;
+   }
+
+   .gallery-thumb a:hover figcaption  {
+       opacity: 0.55;
+   }
+
+/* -------------------------------------------------
+   --- Footer                                    ---
+   ------------------------------------------------- */
+
+#page-footer {
+    background-color: $dark;
+    color: $light;
+
+    h2, h3 {
+        color: white;
+    }
+
+    a {
+        color: white;
+    }
+
+}
+
+.footer-top, .footer-main {
+    padding-top: 2 * $spacer;
+    // padding-bottom: $spacer;
+}
+
+.footer-main {
+    background-color: $medium;
+}
+
+.footer-bottom {
+    // text-align: center;
+    padding-top: $spacer;
+}
+
+#page-footer .widget-page,
+#page-footer .widget-series {
+
+    ul {
+        list-style-type: none;
+        margin-bottom: 0;
+        padding-left: 0;
+    }
+
+    li {
+        padding-top: 0.5 * $spacer;
+
+        a {
+            text-decoration: none;
+        }
+
+        &:after {
+            content: " ";
+            display: block;
+            width: 80%;
+            padding-top: 0.5 * $spacer;
+            border-bottom: 1px solid tint-color($dark, 10%);
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    }
+
+    li:last-child:after {
+        border-bottom: 0;
+    }
+}
+
+.top {
+    display: block;
+    text-align: center;
+    border-radius: 0.25rem;
+    /* width: 40px;  */
+    /* height: 40px; */
+
+    &:hover {
+        background-color: $medium;
     }
 }

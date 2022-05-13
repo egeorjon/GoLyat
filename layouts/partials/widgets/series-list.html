@@ -1,38 +1,40 @@
-{{/* Parameters */}}
-{{/* .context   */}}
-{{/* Params     */}}
-{{/* .title     */}}
-{{/* .type      */}}
-{{/* .numposts  */}}
-{{/* .columns   */}}
-{{- $context := .context -}}
-{{- if isset site.Taxonomies "series" -}}
-    {{- $nb_series     := len site.Taxonomies.series -}}
-    {{- $title         := .params.title | default (i18n "series" $nb_series) -}}
-    {{- $widget_format := .params.type | default "image" -}}
-    {{- $heading_level := int ($.params.heading | default 3) -}}
-    {{- $heading_title := printf "h%d" $heading_level -}}
-    {{- $heading_subtitle := printf "h%d" (add $heading_level 1) -}}
-    {{- $columns       := .params.columns | default (dict "xs" 1 "sm" 1 "md" 2 "lg" 2 "xl" 2) -}}
-    {{- $class         := partialCached "partials/class-columns.html" $columns (delimit $columns "-") -}}
+{{/* Parameters    */}}
+{{/* .context      */}}
+{{/* Params        */}}
+{{/*    .title     */}}
+{{/*    .type      */}}
+{{/*    .columns   */}}
+{{/*    .heading   */}}
+{{- $context := .context                                                                             -}}
+{{- if isset site.Taxonomies "series"                                                                -}}
+    {{- $nb_series        := len site.Taxonomies.series                                              -}}
+    {{- $title            := .params.title | default (i18n "series" $nb_series)                      -}}
+    {{- $widget_format    := .params.type | default "image-title"                                    -}}
+    {{- $heading_level    := int (.params.heading | default site.Data.default_params.widget_heading) -}}
+    {{- $heading_title    := printf "h%d" $heading_level                                             -}}
+    {{- $heading_subtitle := printf "h%d" (add $heading_level 1)                                     -}}
+    {{- $columns          := .params.columns | default site.Data.default_params.columns_4            -}}
+    {{- $class            := partialCached "partials/class-columns.html" $columns (delimit $columns "-") -}}
     {{- with site.Taxonomies.series }}
-        <div class="col">
-            {{- if eq $widget_format "image" -}}
-                {{- with $title -}}
-                    {{- (printf "<%s>%s</%s>" $heading_title . $heading_title) | safeHTML -}}
-                {{- end -}}
-                <div class="{{- $class -}}">
-                    {{- range . -}}
-                    <div class="col mb-5">
-                        <aside class="h-100 widget widget-series-images">
-                            <div class="widget-inner">
+        {{- if or (eq $widget_format "image-full") (eq $widget_format "image-title") -}}
+            <div class="col widget widget-series widget-series-images">
+                <div class="widget-inner">
+                    {{- with $title -}}
+                        {{- (printf "<%s>%s</%s>" $heading_title . $heading_title) | safeHTML -}}
+                    {{- end -}}
+                    <div class="{{- $class -}}">
+                        {{- range . -}}
+                            <aside class="col">
                                 {{- with .Page -}}
                                     {{- if isset .Params "images" -}}
                                         {{- partial "partials/image.html" (dict "context" . "Destination" .Params.images "Title" .Title "Text" .Title "Link" .RelPermalink) -}}
                                     {{- end -}}
                                     {{- (printf "<%s class=\"widget-title\"><a href=\"%s\" title=\"%s\">%s</a></%s>" $heading_subtitle .RelPermalink (.Title | plainify | htmlUnescape) .Title $heading_subtitle) | safeHTML -}}
-                                    {{- with .Params.Description -}}<p>{{- . | plainify | htmlUnescape -}}</p>{{- end -}}
-                                    </div>
+                                    {{- if eq $widget_format "image-full" -}}
+                                        {{- with .Params.Description -}}
+                                            <p class="widget-content">{{- . | plainify | htmlUnescape -}}</p>
+                                        {{- end -}}
+                                    {{- end -}}
                                 {{- end -}}
                                 {{- if .Pages }}
                                     <p>{{- i18n "series-posts" -}}</p>
@@ -48,27 +50,26 @@
                                 {{- else -}}
                                     {{- i18n "no-post-yet" -}}
                                 {{- end }}
-                            </div><!-- widget-inner -->
-                        </aside>
-                    </div><!-- col -->
-                    {{- end -}}<!-- range -->
-                </div><!-- row -->
-            {{- else -}}
-                <aside class="h-100 widget widget-series widget-series-images">
-                    <div class="widget-inner">
-                        {{- with $title -}}
-                            {{- printf "<%s class=\"widget-title\">%s</%s>" $heading_title . $heading_title | safeHTML -}}
+                            </aside>
                         {{- end -}}
-                        <ul>
-                        {{- range . -}}
-                            {{- with .Page -}}
-                                <li><a href="{{- .RelPermalink -}}">{{- .Title -}}</a></li>
-                            {{- end -}}
+                    </div><!-- row -->
+                </div><!-- widget-inner -->
+            </div><!-- col -->
+        {{- else -}}
+            <aside class="col widget widget-series widget-series-list">
+                <div class="widget-inner">
+                    {{- with $title -}}
+                        {{- printf "<%s class=\"widget-title\">%s</%s>" $heading_title . $heading_title | safeHTML -}}
+                    {{- end -}}
+                    <ul class="widget-content">
+                    {{- range . -}}
+                        {{- with .Page -}}
+                            <li><a href="{{- .RelPermalink -}}">{{- .Title -}}</a></li>
                         {{- end -}}
-                        </ul>
-                    </div><!-- card-body -->
-                </aside>
-            {{- end -}}<!-- if format -->
-        </div><!-- col -->
-    {{- end -}}
-{{- end -}}<!-- taxonomy exist -->
+                    {{- end -}}
+                    </ul>
+                </div><!-- widget-inner -->
+            </aside>
+        {{- end -}}
+    {{- end -}}{{/* with taxonomy   */}}
+{{- end -}}{{/* End of series exist */}}

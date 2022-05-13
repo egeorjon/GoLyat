@@ -216,7 +216,11 @@
     other = "Dans la même série"
 
 [see-series]
+    one   = "Voir la série"
     other = "Voir toutes les séries"
+
+[see-serie-details]
+    other = "Voir la série en détail"
 
 [see-complete-series]
     other = "Toutes les séries"
@@ -243,3 +247,9 @@
 
 [comments]
     other = "Commentaires"
+
+[see-all-galleries]
+    other = "Voir toutes les galeries"
+
+[portfolio]
+    other = "Portfolio"

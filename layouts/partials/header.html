@@ -1,4 +1,4 @@
-<header id="page-header" class="sticky-top pb-2">
+<header id="page-header" class="sticky-top">
     <div class="navbar navbar-expand-md navbar-light">
         <div class="container">
             {{- $title := site.Title -}}
@@ -19,8 +19,8 @@
             {{- end -}}
             {{- $search_page := site.GetPage "search" -}}
             <form class="search-form input-group d-none d-md-flex" action="{{- $search_page.Permalink -}}" method="GET">
-                <input class="form-control pe-5" type="text" name="s" placeholder="{{- i18n "search-please-enter" -}}" />
-                <i class="bi-search me-3"> </i>
+                <input class="form-control" type="text" name="s" placeholder="{{- i18n "search-please-enter" -}}" />
+                <i class="bi-search"> </i>
             </form>
             <div class="d-flex flex-shrink-0"><!-- align-items-center -->
                 <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-expanded="false">
@@ -32,7 +32,7 @@
     <div class="navbar navbar-expand-md">
         <div class="container">
             <div class="navbar-collapse collapse justify-content-center" id="navbarCollapse">
-                <form class="search-form input-group d-md-none my-3">
+                <form class="search-form input-group d-md-none">
                     <i class="bi-search"> </i>
                     <input class="form-control" type="text" placeholder="{{- i18n "search-please-enter" -}}">
                 </form>

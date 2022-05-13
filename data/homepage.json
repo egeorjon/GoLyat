@@ -10,7 +10,7 @@
               "columns": { "xs": 1, "sm": 1, "md": 1, "lg": 1, "xl": 1 },
               "Widgets": [
                 {
-                    "widget": "post",
+                    "widget": "page",
                     "cache": true,
                     "weight": 1,
                     "params": { "method": "field", "value": "edito", "heading": 2 }
@@ -20,6 +20,24 @@
           ]
         },
         {
+          "name": "last-posts",
+          "limitwidth": true,
+          "columns": { "xs": 1, "sm": 1, "md": 1, "lg": 1, "xl": 1 },
+          "Groups": [
+            {
+              "name": "last-posts",
+              "columns": { "xs": 1, "sm": 1, "md": 1, "lg": 1, "xl": 1 },
+              "Widgets": [
+                {
+                  "widget": "posts-list",
+                  "cache": false,
+                  "weight": 1,
+                  "params": { "heading": 2 }
+                }
+              ]
+            }
+          ]
+        },        {
           "name": "sections",
           "limitwidth": true,
           "columns": { "xs": 1, "sm": 1, "md": 1, "lg": 1, "xl": 1 },
@@ -29,10 +47,10 @@
               "columns": { "xs": 1, "sm": 1, "md": 1, "lg": 1, "xl": 1 },
               "Widgets": [
                 {
-                  "widget": "sections-list.html",
+                  "widget": "sections-list",
                   "cache": false,
                   "weight": 1,
-                  "params": { "heading": 2 }
+                  "params": { "heading": 2, "columns": { "xs": 1, "sm": 1, "md": 2, "lg": 4, "xl": 4 } }
                 }
               ]
             }

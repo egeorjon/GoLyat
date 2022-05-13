@@ -7,62 +7,51 @@
 {{/*   .numposts  */}}
 {{/*   .columns   */}}
 {{/* .posts       */}}
-{{/* .title       */}}
-{{- $title         := .title -}}
-{{- $more          := .params.more | default false -}}
-{{- $widget_format := .params.type | default "image" -}}
-{{- $heading_level := int (.params.heading | default 3) -}}
-{{- $heading_title := printf "h%d" $heading_level -}}
+{{/* .widgetclass */}}
+{{- $title            := .params.title | default ""          -}}
+{{- $widget_format    := .params.type | default "image"      -}}
+{{- $heading_level    := int (.params.heading | default 3)   -}}
+{{- $heading_title    := printf "h%d" $heading_level         -}}
 {{- $heading_subtitle := printf "h%d" (add $heading_level 1) -}}
-{{- $columns       := .params.columns | default (dict "xs" 1 "sm" 1 "md" 2 "lg" 2 "xl" 2) -}}
-{{- $widget_class  := .params.widgetclass | default "" -}}
-{{- $class         := partialCached "partials/class-columns.html" $columns (delimit $columns "-") -}}
+{{- $widget_class     := .widgetclass | default ""           -}}
+{{- $columns          := .params.columns | default site.Data.default_params.columns_3 -}}
+{{- $class            := partialCached "partials/class-columns.html" $columns (delimit $columns "-") -}}
 {{- with .posts -}}
-    <div class="col">
-        {{- if eq $widget_format "image" -}}
-            {{- with $title -}}
-        <!--    <div class="row">
-                <div class="col"> -->
+    {{- if eq $widget_format "image" -}}
+        <div class="{{- printf "col widget widget-%s widget-%s-image" $widget_class $widget_class -}}">
+            <div class="widget-inner">
+                {{- with $title -}}
                     {{- (printf "<%s>%s</%s>" $heading_title . $heading_title) | safeHTML -}}
-        <!--       </div>
-            </div> -->
-            {{- end -}}
-            <div class="{{ $class -}}">
-                {{- range . -}}
-                <div class="col mb-4">
-                    <aside class="h-100 widget {{- printf "widget-%s widget-%s-image" $widget_class $widget_class -}}">
-                        <div class="widget-inner">
-                        {{- if isset .Params "images" -}}
-                            {{- partial "partials/image.html" (dict "context" . "Destination" .Params.images "Title" .Title "Text" .Title "Link" .RelPermalink) -}}
-                        {{- end -}}
-                        {{- (printf "<%s class=\"widget-title\"><a href=\"%s\" title=\"%s\">%s</a></%s>" $heading_subtitle .RelPermalink (.Title | plainify | htmlUnescape) .Title $heading_subtitle) | safeHTML -}}
-                        {{- with .Params.Description -}}<p>{{- . | truncate 100 -}}</p>{{- end -}}
-                        {{- partial "partials/meta.html" (dict "context" . "meta" (dict "1" "section" "2" "date")) -}}
-                        </div>
-                    </aside>
-                </div><!-- col -->
                 {{- end -}}
-            </div><!-- row -->
-            {{- with $more -}}
-            <div class="row">
-                <div class="col">
-                    <p><a href="{{- . -}}">{{- i18n "see-more" -}}</a></p>
-                </div>
-            </div>
-            {{- end -}}
-        {{- else -}}
-            <aside class="h-100 widget widget-related widget-related-list">
-                <div class="widget-inner">
-                    {{- with $title -}}
-                        <h3 class="widget-title">{{- . | safeHTML -}}</h3>
+                <div class="{{ $class -}}">
+                    {{- range . -}}
+                        <aside class="col">
+                            {{- if isset .Params "images" -}}
+                                {{- partial "partials/image.html" (dict "context" . "Destination" .Params.images "Title" .Title "Text" .Title "Link" .RelPermalink) -}}
+                            {{- end -}}
+                            {{- partial "partials/meta.html" (dict "context" . "meta" (dict "1" "section")) -}}
+                            {{- (printf "<%s class=\"widget-title\"><a href=\"%s\" title=\"%s\">%s</a></%s>" $heading_subtitle .RelPermalink (.Title | plainify | htmlUnescape) .Title $heading_subtitle) | safeHTML -}}
+                            {{- with .Summary -}}
+                                <p class="widget-content">{{- . | plainify | truncate 100 -}}</p>
+                            {{- end -}}
+                            {{- partial "partials/meta.html" (dict "context" . "meta" (dict "1" "date")) -}}
+                        </aside>
                     {{- end -}}
-                    <ul>
-                        {{- range . -}}
-                        <li><a href="{{- .RelPermalink -}}" title="{{- .Title | plainify | htmlUnescape -}}">{{- .Title -}}</a></li>
-                        {{- end -}}
-                    </ul>
-                </div><!-- card-body -->
-            </aside>
-        {{- end -}}
-    </div><!-- col -->
+                </div><!-- row -->
+            </div><!-- widget-inner -->
+        </div><!-- col -->
+    {{- else -}}
+        <aside class="{{- printf "col widget widget-%s widget-%s-image" $widget_class $widget_class -}}">
+            <div class="widget-inner">
+                {{- with $title -}}
+                    {{- (printf "<%s>%s</%s>" $heading_title . $heading_title) | safeHTML -}}
+                {{- end -}}
+                <ul class="widget-content">
+                    {{- range . -}}
+                        {{- (printf "<li class=\"widget-title\"><a href=\"%s\" title=\"%s\">%s</a></li>" .RelPermalink (.Title | plainify | htmlUnescape) .Title ) | safeHTML -}}
+                    {{- end -}}
+                </ul>
+            </div><!-- card-body -->
+        </aside>
+    {{- end -}}
 {{- end -}}

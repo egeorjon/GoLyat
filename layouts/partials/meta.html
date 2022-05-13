@@ -11,14 +11,16 @@
     {{- range $order, $meta := .meta -}}
         {{- if eq $meta "date" -}}
         <li class="post-date">
-            <i class="bi-calendar3"></i><span class="visually-hidden">{{- i18n "posted-on" -}}</span>
+            <i class="bi-calendar3"></i> 
+            <span class="visually-hidden">{{- i18n "posted-on" -}}</span>
             <time class="entry-date published" datetime="{{- index (split $context.Lastmod " ") 0 -}}">
                 {{- $context.Lastmod | time.Format (site.Params.FormatDate | default site.Data.params_defaults.formatdate) -}}
             </time>
         </li>
         {{- else if eq $meta "fulldate" -}}
         <li class="post-date">
-            <i class="bi-calendar3"></i><span class="visually-hidden">{{- i18n "posted-on" -}}</span>
+            <i class="bi-calendar3"></i> 
+            <span class="visually-hidden">{{- i18n "posted-on" -}}</span>
             <time class="entry-date published" datetime="{{- index (split $context.Lastmod " ") 0 -}}">
                 {{- $context.Date | time.Format (site.Params.FormatDate | default site.Data.params_defaults.formatdate) -}}
                 {{- if ne $context.Date $context.Lastmod }} (updated on {{ $context.Lastmod | time.Format (site.Params.FormatDate | default site.Data.params_defaults.formatdate) }} ){{- end -}}
@@ -40,7 +42,7 @@
             {{- if $sl -}}
             <li class="post-tags">
                 <i class="bi-tags"></i>
-                <span class="visually-hidden" aria-label="hidden">{{- i18n "tags" (len $sl) }} {{ (len $sl) -}}:</span>
+                <span class="visually-hidden" aria-label="hidden">{{- i18n "tags" (len $sl) }} ({{- len $sl -}}):</span>
                 {{- delimit $sl ", " -}} 
             </li>
             {{- end -}}
@@ -64,7 +66,7 @@
             {{- if ne $kindctx "section" -}}
                 {{- with $context.Parent }}
                     <li class="post-section">
-                        <i class="bi-folder2-open"></i><span class="visually-hidden">{{- i18n "in" -}}</span> 
+                        <i class="bi-folder2-open"></i> <span class="visually-hidden">{{- i18n "in" -}}</span> 
                         <span class="in-category"><a href="{{- .Permalink -}}" title="{{- i18n "post-category" . -}}">{{- .Name -}}</a></span>
                     </li><!-- class="visually-hidden" -->
                 {{- end -}}
@@ -76,7 +78,7 @@
             {{- end -}}
             {{- if gt (len $list) 0 -}}
                 <li class="post-category">
-                    <i class="bi-folder"></i><span class="visually-hidden" aria-label="hidden">{{- i18n "in" -}}</span> 
+                    <i class="bi-folder"></i> <span class="visually-hidden" aria-label="hidden">{{- i18n "in" -}}</span> 
                     <span class="in-category">{{- delimit $list ", " -}} </span>
                 </li>
             {{- end -}}
@@ -86,7 +88,7 @@
                 {{- if $section }}
                     {{- with site.GetPage $section -}}
                     <li class="post-linked">
-                        <i class="bi-folder-symlink"></i><span class="visually-hidden">{{- i18n "posts-of" -}}</span> 
+                        <i class="bi-folder-symlink"></i> <span class="visually-hidden">{{- i18n "posts-of" -}}</span> 
                         <span class="linked-to">{{- i18n "posts-of" -}}<a href="{{- .Permalink -}}" title="{{- i18n "posts-of-section" . -}}"> {{ .Title -}}</a></span>
                     </li><!-- class="visually-hidden" -->
                     {{- end -}}<!-- with -->

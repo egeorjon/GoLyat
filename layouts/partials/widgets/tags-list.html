@@ -9,17 +9,16 @@
     {{- $nb_tags := len site.Taxonomies.tags -}}
     {{- $title   := .params.title | default (i18n "Tags" $nb_tags) -}}
     {{- with site.Taxonomies.tags }}
-<div class="col">
-    <aside class="h-100 widget widget-tags-list">
+
+    <aside class="col widget widget-tags-list">
         <div class="widget-inner">
             {{- $tl := slice -}}
             {{- range . }}
                 {{- $tl = $tl | append (printf "<a href=\"%s\" title=\"%s (%d)\" >%s</a>" .Page.Permalink (.Page.Title | plainify) (int .Count) (humanize .Page.Title)) -}}
             {{- end -}}
             {{- with $title -}}{{- (printf "<%s class=\"widget-title\">%s</%s>" $heading_title . $heading_title) | safeHTML -}}{{- end -}}
-            <ul><li>{{- delimit $tl "</li><li>" | safeHTML -}}</li></ul>
+            <ul class="widget-content"><li>{{- delimit $tl "</li><li>" | safeHTML -}}</li></ul>
         </div>
     </aside>
-</div>
     {{- end -}}
 {{- end -}}

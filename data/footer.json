@@ -16,18 +16,6 @@
                     "params": { "type": "list" }
                 }
               ]
-            },
-            {
-                "name": "follow",
-                "columns": { "xs": 1, "sm": 1, "md": 1, "lg": 1, "xl": 1 },
-                "Widgets": [
-                  {
-                      "widget": "follow-me",
-                      "cache": false,
-                      "weight": 1,
-                      "params": {}
-                  }
-                ]
             }
           ]
         },
@@ -44,7 +32,7 @@
                   "widget": "page",
                   "cache": false,
                   "weight": 1,
-                  "params": { "page": "a-propos" }
+                  "params": { "method": "path", "value": "/pages/a-propos" }
                 }
               ]
             },
@@ -53,10 +41,16 @@
               "columns": { "xs": 1, "sm": 1, "md": 1, "lg": 1, "xl": 1 },
               "Widgets": [
                 {
-                  "widget": "page",
+                  "widget": "follow-me",
                   "cache": false,
                   "weight": 1,
-                  "params": { "page": "links"}
+                  "params": { }
+                },
+                {
+                  "widget": "page",
+                  "cache": false,
+                  "weight": 2,
+                  "params": { "method": "path", "value": "/pages/links"}
                 }
               ]
             }

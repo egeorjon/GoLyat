@@ -12,36 +12,33 @@
 {{/*- if $serie_name -*/}}
     {{- $serie := first 1 ($context.GetTerms "series") -}}
     {{- range $serie -}}
-        {{- $title         := $.params.title | default (i18n "in-same-serie") -}}
-        {{- $num_series    := $.params.numseries | default 3 -}}
-        {{- $heading_level := int ($.params.heading | default 3) -}}
+        {{- $title            := $.params.title | default (i18n "in-same-serie") -}}
+        {{- $num_posts        := $.params.num_posts | default 10 -}}
+        {{- $heading_level    := int ($.params.heading | default 3) -}}
         {{- $heading_title    := printf "h%d" $heading_level -}}
         {{- $heading_subtitle := printf "h%d" (add $heading_level 1) -}}
-
-        <div class="col">
-            <aside class="h-100 widget widget-same-series">
-                <div class="widget-inner">
-                    {{- with $title -}}
-                        {{- (printf "<%s class=\"widget-title\">%s</%s>" $heading_title $title $heading_title) | safeHTML -}} 
-                    {{- end -}}
-                    <ol>
-                        {{- range .Pages.ByPublishDate }}
-                        <li>
-                            {{- if eq . $context -}}
-                            <strong>{{- .Title }}</strong>
-                            {{- else -}}
-                            <a href="{{- .RelPermalink -}}" rel="bookmark">
-                                {{- .Title }} ({{- .Date | time.Format (site.Params.FormatDate | default site.Data.params_defaults.formatdate)  -}})
-                            </a>
-                            {{- end -}}
-                        </li>
-                        {{- end }}
-                        {{- if gt (len .Pages) $num_series -}}
-                            <li><a href="{{- .RelPermalink -}}" title="{{- i18n "see-series" -}}">{{- i18n "see-complete-series" -}}</a></li>
+        <aside class="col widget widget-same-series">
+            <div class="widget-inner">
+                {{- with $title -}}
+                    {{- (printf "<%s class=\"widget-title\">%s</%s>" $heading_title $title $heading_title) | safeHTML -}} 
+                {{- end -}}
+                <ol class="widget-content">
+                    {{- range first $num_posts .Pages.ByPublishDate }}
+                    <li>
+                        {{- if eq . $context -}}
+                        <strong>{{- .Title }}</strong>
+                        {{- else -}}
+                        <a href="{{- .RelPermalink -}}" rel="bookmark">
+                            {{- .Title }} ({{- .Date | time.Format (site.Params.FormatDate | default site.Data.params_defaults.formatdate)  -}})
+                        </a>
                         {{- end -}}
-                    </ol>
-                </div>
-            </aside>
-        </div>
+                    </li>
+                    {{- end }}
+                </ol>
+                {{/*- if gt (len .Pages) $num_posts -*/}}
+                    <p><a href="{{- .RelPermalink -}}" title="{{- i18n "see-series" 1 -}}">{{- i18n "see-serie-details" -}}</a></p>
+                {{/*- end -*/}}
+            </div>
+        </aside>
     {{- end }}
 {{/*- end -*/}}

@@ -1,171 +1,50 @@
-/*!
- * Custom Bootstrap file for Golyat theme
- */
+// Custom.scss
 
+// 1. Include functions first (so you can manipulate colors, SVGs, calc, etc)
 @import "bootstrap-5.1.3/scss/functions";
 
-// $body-bg:                  $white !default;
-$body-color:                  $dark; // $gray-900 !default;
-// $body-text-align:          null !default;
+// 2. Include any default variable overrides here
+$body-color:            $dark; // $gray-900 !default;
+$font-size-base:        1.125rem; // 1rem = 16px
+$font-size-sm:          1rem;     // $font-size-base * .875;
+$font-size-lg:          1.111111111 * $font-size-base; // * 1.25;
 
-// $link-color:               $primary !default;
-// $link-decoration:          underline !default;
-// $link-shade-percentage:    20% !default;
-$link-hover-color:            $dark; // shift-color($link-color, $link-shade-percentage) !default;
-// $link-hover-decoration:    null !default;
+$link-hover-color:      $dark;
+$border-color:          $secondary;
 
-$border-color:                $secondary;
-
-$font-size-base:              1.125rem; // 1rem = 16px
-$font-size-sm:                1rem;     // $font-size-base * .875;
-$font-size-lg:                1.111111111 * $font-size-base; // * 1.25;
-
-// $line-height-base:            1.5 !default;
-$line-height-sm:              1.6875;
-$line-height-lg:              1.35;
-
-$h1-font-size:                2.5 *  $font-size-base;  // 2.5 !default;
-$h2-font-size:                2   *  $font-size-base;  // 2
-$h3-font-size:                1.5 *  $font-size-base;  // 1.75
-$h4-font-size:                1.2222 *  $font-size-base;  // 1.5
-$h5-font-size:                1.1111 *  $font-size-base;  // 1.25
-$h6-font-size:                1 *  $font-size-base;  // 1
+// $line-height-base:   1.5 !default;
+// $line-height-sm:        1.6875;
+// $line-height-lg:        1.35;
 
 $spacer: $font-size-base * 1.5;
+$paragraph-margin-bottom: $spacer;
 
-// $headings-margin-bottom:      $spacer; // * .5 !default;
-// $headings-font-family:     null !default;
-// $headings-font-style:      null !default;
-// $headings-font-weight:     500 !default;
-// $headings-line-height:        1.2 !default;
-// $headings-color:           null !default;
+// $navbar-light-color:                $dark; // rgba($black, .55) !default;
+// $navbar-light-hover-color:          $primary; // rgba($black, .7) !default;
+// $navbar-light-active-color:         $dark; // rgba($black, .9) !default;
+// $navbar-light-toggler-border-color: white; //rgba($black, .1) !default;
 
-// ---------------- Missing tables colors ----------------
+// $nav-link-padding-x:                3rem ;
+$nav-link-font-size: $font-size-lg;
 
-// $table-cell-padding-y:      .5rem !default;
-// $table-cell-padding-x:      .5rem !default;
-// $table-cell-padding-y-sm:   .25rem !default;
-// $table-cell-padding-x-sm:   .25rem !default;
 
-// $table-cell-vertical-align: top !default;
-
-// $table-color:               $body-color !default;
-// $table-bg:                  transparent !default;
-// $table-accent-bg:           transparent !default;
-
-// $table-th-font-weight:      null !default;
-
-// $table-striped-color:       $table-color !default;
-$table-striped-bg-factor:     .02; // .0.5
-$table-striped-bg:            rgba($dark, $table-striped-bg-factor); // rgba($black, $table-striped-bg-factor) !default;
-
-// $table-active-color:       $table-color !default;
-$table-active-bg-factor:      .1 ;
-$table-active-bg:             rgba($dark, $table-active-bg-factor); // rgba($black, $table-active-bg-factor) !default;
-
-// $table-hover-color:        $table-color !default;
-$table-hover-bg-factor:       .075 ;
-$table-hover-bg:              rgba($dark, $table-hover-bg-factor);
-
-// $table-border-factor:      .1 !default;
-// $table-border-width:       $border-width !default;
-// $table-border-color:       $border-color !default;
-
-// $table-striped-order:      odd !default;
-// $table-group-separator-color: currentColor !default;
-// $table-caption-color:      $text-muted !default;
-// $table-bg-scale:           -80% !default;
-
-// $nav-link-padding-y:                .5rem !default;
-// $nav-link-padding-x:                1rem !default;
-// $nav-link-font-size:                null !default;
-// $nav-link-font-weight:              null !default;
-$nav-link-color:                    $dark; // $link-color !default;
-$nav-link-hover-color:              $primary; // $link-hover-color !default;
-$nav-link-transition:               color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out !default;
-// $nav-link-disabled-color:           $gray-600 !default;
-
-$navbar-light-color:                $dark; // rgba($black, .55) !default;
-$navbar-light-hover-color:          $primary; // rgba($black, .7) !default;
-$navbar-light-active-color:         $dark; // rgba($black, .9) !default;
-// $navbar-light-disabled-color:       rgba($black, .3) !default;
-// $navbar-light-toggler-icon-bg:      url("...") !default;
-$navbar-light-toggler-border-color:  white; //rgba($black, .1) !default;
-
-// $pagination-padding-y:              .375rem !default;
-// $pagination-padding-x:              .75rem !default;
-// $pagination-padding-y-sm:           .25rem !default;
-// $pagination-padding-x-sm:           .5rem !default;
-// $pagination-padding-y-lg:           .75rem !default;
-// $pagination-padding-x-lg:           1.5rem !default;
-
-// $pagination-color:                  $link-color !default;
-// $pagination-bg:                     $white !default;
-// $pagination-border-width:           $border-width !default;
-// $pagination-border-radius:          $border-radius !default;
-// $pagination-margin-start:           -$pagination-border-width !default;
-$pagination-border-color:           $secondary; //$gray-300 !default;
-
-// $pagination-focus-color:            $link-hover-color !default;
-// $pagination-focus-bg:               $gray-200 !default;
-// $pagination-focus-box-shadow:       $input-btn-focus-box-shadow !default;
-// $pagination-focus-outline:          0 !default;
-
-// $pagination-hover-color:            $link-hover-color !default;
-$pagination-hover-bg:               $secondary; //$gray-200 !default;
-$pagination-hover-border-color:     $secondary; //$gray-300 !default;
-
-// $pagination-active-color:           $component-active-color !default;
-// $pagination-active-bg:              $component-active-bg !default;
-// $pagination-active-border-color:    $pagination-active-bg !default;
-
-// $pagination-disabled-color:         $gray-600 !default;
-// $pagination-disabled-bg:            $white !default;
-// $pagination-disabled-border-color:  $gray-300 !default;
-
-// $pagination-transition:              color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out !default;
-
-// $pagination-border-radius-sm:       $border-radius-sm !default;
-// $pagination-border-radius-lg:       $border-radius-lg !default;
-
-// $card-spacer-y:                     $spacer;
-// $card-spacer-x:                        $spacer;
-// $card-title-spacer-y:               $spacer * .5 !default;
-// $card-border-width:                 0; // $border-width !default;
-// $card-border-color:                 rgba($black, .125) !default;
-// $card-border-radius:                $border-radius !default;
-// $card-box-shadow:                   null !default;
-// $card-inner-border-radius:          subtract($card-border-radius, $card-border-width) !default;
-// $card-cap-padding-y:                $card-spacer-y * .5 !default;
-// $card-cap-padding-x:                $card-spacer-x !default;
-// $card-cap-bg:                       transparent; // rgba($black, .03) !default;
-// $card-cap-color:                    null !default;
-// $card-height:                       null !default;
-// $card-color:                        null !default;
-$card-bg:                           transparent; // $white !default;
-// $card-img-overlay-padding:          $spacer !default;
-// $card-group-margin:                 $grid-gutter-width * .5 !default;
-
-/* ---------------- Variable customization --- */
-
+// 3. Include remainder of required Bootstrap stylesheets
 @import "bootstrap-5.1.3/scss/variables";
 
-/* --- Variable customization ------------- */
 
-$theme-colors: map-remove($theme-colors, 
+$display-font-sizes: map-remove($display-font-sizes,
+  1, 2, 3, 4, 5
+);
+
+$table-variants: map-remove( $table-variants, 
   "success",
   "info",
   "warning",
-  "danger",
+  "danger"
 );
 
 $theme-colors: map-merge($theme-colors, (
         "medium": $medium
-    )
-);
-
-$spacers: map-merge($spacers, (
-        6: $spacer * 4
     )
 );
 
@@ -199,7 +78,6 @@ $table-variants: map-remove( $table-variants,
   "danger"
 );
 
-
 $aspect-ratios: map-merge($aspect-ratios, (
         "47x20": calc(20 / 47 * 100%)
     )
@@ -209,10 +87,13 @@ $aspect-ratios: map-merge($aspect-ratios, (
 @import "bootstrap-5.1.3/scss/root";
 @import "bootstrap-5.1.3/scss/utilities";
 
-/* --- Utilities customization ------------- */
+// 4. Include any default variable overrides here
+
+// Utilities
+
 $utilities: map-remove($utilities, 
     "align",
- /* "float",*/
+/* "float",*/
     "opacity",
     "overflow",
  /* "display",*/
@@ -234,28 +115,28 @@ $utilities: map-remove($utilities,
     "max-width",
     "viewport-width",
     "min-viewport-width",
-/*  "height", */
+    "height",
     "max-height",
     "viewport-height",
     "min-viewport-height",
-/*  "flex",
+/*    "flex",
     "flex-direction",
     "flex-grow",
     "flex-shrink",
-    "flex-wrap", */
+    "flex-wrap",*/
     "gap",
-/*  "justify-content", */
+/*    "justify-content", */
     "align-items",
     "align-content",
     "align-self",
     "order",
     "margin",
     "margin-x",
-/*  "margin-y", */
+    "margin-y",
     "margin-top",
-/*  "margin-end",*/
-/*  "margin-bottom", */
-/*  "margin-start",*/
+    "margin-end",
+    "margin-bottom",
+    "margin-start",
     "negative-margin",
     "negative-margin-x",
     "negative-margin-y",
@@ -266,9 +147,9 @@ $utilities: map-remove($utilities,
     "padding",
     "padding-x",
     "padding-y",
-/*  "padding-top",*/
-/*  "padding-end",*/
-/*  "padding-bottom",*/
+    "padding-top",
+    "padding-end",
+    "padding-bottom",
     "padding-start",
     "font-family",
     "font-size",
@@ -295,31 +176,30 @@ $utilities: map-remove($utilities,
     "visibility"
 );
 
-/* ---------------- Utilities customization --- */
-
+// 5. Include any optional Bootstrap CSS as needed
 @import "bootstrap-5.1.3/scss/reboot";
 // @import "bootstrap-5.1.3/scss/type";  // .hx, blockquote, lead, ...
 @import "bootstrap-5.1.3/scss/images";   // img-fluid, figure, figcaption
 @import "bootstrap-5.1.3/scss/containers"; 
 @import "bootstrap-5.1.3/scss/grid"; // enabled / Disables through $enable-grid-classes
 @import "bootstrap-5.1.3/scss/tables";
-// @import "bootstrap-5.1.3/scss/forms";
-//    @import "bootstrap-5.1.3/scss/forms/floating-labels";
-//    @import "bootstrap-5.1.3/scss/forms/form-check";
-    @import "bootstrap-5.1.3/scss/forms/form-control";
-//    @import "bootstrap-5.1.3/scss/forms/form-range";
-//    @import "bootstrap-5.1.3/scss/forms/form-select";
-    @import "bootstrap-5.1.3/scss/forms/form-text";
-    @import "bootstrap-5.1.3/scss/forms/input-group";
-    @import "bootstrap-5.1.3/scss/forms/labels";
-//    @import "bootstrap-5.1.3/scss/forms/validation";
-@import "bootstrap-5.1.3/scss/buttons";
+@import "bootstrap-5.1.3/scss/forms";
+// @import "bootstrap-5.1.3/scss/forms/floating-labels";
+// @import "bootstrap-5.1.3/scss/forms/form-check";
+@import "bootstrap-5.1.3/scss/forms/form-control";
+// @import "bootstrap-5.1.3/scss/forms/form-range";
+// @import "bootstrap-5.1.3/scss/forms/form-select";
+@import "bootstrap-5.1.3/scss/forms/form-text";
+@import "bootstrap-5.1.3/scss/forms/input-group";
+@import "bootstrap-5.1.3/scss/forms/labels";
+// @import "bootstrap-5.1.3/scss/forms/validation";
+// @import "bootstrap-5.1.3/scss/buttons";
 @import "bootstrap-5.1.3/scss/transitions";
 // @import "bootstrap-5.1.3/scss/dropdown";
 // @import "bootstrap-5.1.3/scss/button-group";
 @import "bootstrap-5.1.3/scss/nav";
 @import "bootstrap-5.1.3/scss/navbar";
-@import "bootstrap-5.1.3/scss/card";
+// @import "bootstrap-5.1.3/scss/card";
 // @import "bootstrap-5.1.3/scss/accordion";
 @import "bootstrap-5.1.3/scss/breadcrumb";
 @import "bootstrap-5.1.3/scss/pagination";
@@ -339,15 +219,19 @@ $utilities: map-remove($utilities,
 
 // Helpers
 // @import "bootstrap-5.1.3/scss/helpers";
-    @import "bootstrap-5.1.3/scss/helpers/clearfix";
-//    @import "bootstrap-5.1.3/scss/helpers/colored-links";
-    @import "bootstrap-5.1.3/scss/helpers/position";
-    @import "bootstrap-5.1.3/scss/helpers/ratio";
-//    @import "bootstrap-5.1.3/scss/helpers/stacks";
-//    @import "bootstrap-5.1.3/scss/helpers/stretched-link";
-//    @import "bootstrap-5.1.3/scss/helpers/text-truncation";
-    @import "bootstrap-5.1.3/scss/helpers/visually-hidden";
-//    @import "bootstrap-5.1.3/scss/helpers/vr";
+// @import "bootstrap-5.1.3/scss/helpers/clearfix";
+// @import "bootstrap-5.1.3/scss/helpers/colored-links";
+// @import "bootstrap-5.1.3/scss/helpers/position";
+@import "bootstrap-5.1.3/scss/helpers/ratio";
+// @import "bootstrap-5.1.3/scss/helpers/stacks";
+// @import "bootstrap-5.1.3/scss/helpers/stretched-link";
+// @import "bootstrap-5.1.3/scss/helpers/text-truncation";
+@import "bootstrap-5.1.3/scss/helpers/visually-hidden";
+// @import "bootstrap-5.1.3/scss/helpers/vr";
 
-// Utilities
 @import "bootstrap-5.1.3/scss/utilities/api";
+
+// 6. Optionally include utilities API last to generate classes based on the Sass map in `_utilities.scss`
+// @import "../node_modules/bootstrap/scss/utilities/api";
+
+// 7. Add additional custom code here

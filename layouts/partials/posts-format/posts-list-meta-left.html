@@ -1,9 +1,9 @@
-{{- $context        := .context                        -}}
-{{- $kindctx        := .kindctx                        -}}
-{{- $typectx        := .typectx                        -}}
-{{- $display_image  := isset .context.Params "images"  -}}
-{{- $meta           := site.Params.PostList.meta | default (dict "top" (dict "1" "section" "2" "date" "3" "tags" "4" "series" "5" "reading" )) -}}
-<article class="post h-100">
+{{- $context       := .context                        -}}
+{{- $kindctx       := .kindctx                        -}}
+{{- $typectx       := .typectx                        -}}
+{{- $display_image := isset .context.Params "images"  -}}
+{{- $meta          := site.Params.PostList.meta | default (dict "top" (dict "1" "section" "2" "date" "3" "tags" "4" "series" "5" "reading" )) -}}
+<article class="post post-format post-format-meta-left">
         <div class="row">
             <div class="col-12 col-md-8 offset-md-4 col-lg-9 offset-lg-3">
                 <h2 class="post-title"><a href="{{- $context.RelPermalink -}}">{{- $context.Title -}}</a></h2>
@@ -12,14 +12,14 @@
         <div class="row">
             <div class="col-12 col-md-4 col-lg-3">
             {{- with $meta.top -}}
-                {{- partial "partials/meta.html" (dict "context" $context "kindctx" $kindctx "meta" . "class" "meta-top post-format-meta-left") -}}
+                {{- partial "partials/meta.html" (dict "context" $context "kindctx" $kindctx "meta" . "class" "meta-top") -}}
             {{- end -}}
             </div><!-- col -->
-            <div class="col-12 col-md-8 col-lg-9">
-                {{- with $context.Summary -}}
-                <p class="post-summary">
-                {{- . | replaceRE "<p>(.*|\n)</p>"  "$1" | safeHTML -}}
-                </p>
+            <div class="col-12 col-md-8 col-lg-9 post-summary">
+            {{- with $context.Summary -}}
+                {{- . -}}
+                <!-- <p class="post-summary"></p> -->
+                {{/*- . | replaceRE "<p>(.*|\n)</p>" "$1" -*/}}
             {{- end -}}
             {{- if $display_image -}}
                 {{- partial "image.html" (dict "context" $context "Destination" $context.Params.images "Title" $context.Title "Text" $context.Title "Class" "pt-1") -}}<!-- "Link" $context.RelPermalink -->

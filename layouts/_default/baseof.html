@@ -1,39 +1,34 @@
 <!DOCTYPE html>
-<html class="no-js" lang="{{- site.LanguageCode | default site.Data.params_defaults.languagecode -}}">
+<html class="no-js" lang="{{- site.LanguageCode | default "en" -}}">
     <head>
         {{- partial "head.html" . -}}
     </head>
-    <body>
-        {{- $production := eq (getenv "HUGO_ENV") "production" | or hugo.IsProduction -}}
-        {{- if or $production (site.Params.DebugMode | default false) -}}
-            {{- with site.Params.piwikpro -}}
-                {{- partialCached "piwikpro.html" . -}}
-            {{- end -}}
-        {{- end -}}
+    <body class="{{- partial "main_class.html" . -}}">
         {{- partial "header.html" . -}}
         <main role="main" id="page-main">
             {{- partial "partials/headline.html" . -}}
-            {{- $class := slice "page-content " -}}
-            {{ if .IsPage -}}
-                {{- $class = $class | append (slice "single-page") -}}
-            {{- else if .IsHome }}
-                {{- $class = $class | append (slice "home") -}}
-            {{- else -}}
-                {{- $class = $class | append (slice "list-page") -}}
-            {{- end -}}
-            {{- if .IsSection }}
-                {{- $class = $class | append (slice (printf "section-%s" .Type)) -}}
-            {{- else if eq .Kind "taxonomy" -}}
-                {{- $class = $class | append (slice (printf "taxonomy taxonomy-%s" .Type )) -}}
-            {{- else if eq .Kind "term" }}
-                {{- $class = $class | append (slice (printf "%s-term" .Type )) -}}
-            {{- end -}}
-            <section class="{{- delimit $class " " -}}">
+            <!-- <section > -->
                 {{- block "main" . }}{{- end }}
-            </section>
+            <!-- </section> -->
             {{- block "bottomline" . }}{{- end }}
         </main>
         {{- partial "footer.html" . -}}
         {{- partialCached "js.html" . (printf "%s-%s" .Type .Layout) -}}
     </body>
 </html>
+{{ define "partials/main_class.html"}}
+    {{- $class := slice "page-content " -}}
+    {{ if .IsPage -}}{{- $class = $class | append (slice "single-page") -}}
+    {{- else if .IsHome }}{{- $class = $class | append (slice "home") -}}
+    {{- else -}}
+        {{- $class = $class | append (slice "list-page") -}}
+        {{- if .IsSection }}
+            {{- $class = $class | append (slice (printf "section-%s" .Type)) -}}
+        {{- else if eq .Kind "taxonomy" -}}
+            {{- $class = $class | append (slice (printf "taxonomy taxonomy-%s" .Type )) -}}
+        {{- else if eq .Kind "term" }}
+            {{- $class = $class | append (slice (printf "%s-term" .Type )) -}}
+        {{- end -}}
+    {{- end -}}
+    {{- return (delimit $class " ") -}}
+{{- end -}}

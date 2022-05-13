@@ -1,9 +1,9 @@
 {{- define "main" -}}
     {{- $current_page := . -}}
-    {{- $meta := site.Params.Single.meta | default (dict "top" (dict) "middle" (dict "1" "fulldate" "2" "reading") "bottom" (dict)) -}}
-    <div class="container limit-width">
+    {{- $meta := site.Params.Single.meta | default site.Data.defaults_params.single_meta -}}
+    <div class="container single-post-summary limit-width">
         <div class="row">
-            <div class="col post-summary mb-4">
+            <div class="col">
                 {{- .Summary -}}
                 {{- with $meta.top -}}
                     {{- partial "partials/meta.html" (dict "context" $current_page "kindctx" .Kind "meta" . "class" "meta-top") -}}
@@ -11,45 +11,64 @@
             </div><!-- col -->
         </div><!-- row -->
     </div><!-- container -->
-{{- $display_image  := and (isset .Params "images") (site.Params.Single.displayimage | default false) -}}
-{{- if $display_image -}}
-    <div class="container">
-        <div class="row">
-            <div class="col mb-5 text-center">
-                {{- partial "partials/image.html" (dict "context" . "Destination" .Params.images "Title" .Title "Text" .Title) -}}
-            </div><!-- col -->
-        </div><!-- row -->
-    </div><!-- container -->
-{{- end -}}
-    <div class="container limit-width">
-        <div class="row row-cols-1">
-            <div class="col">
-                {{- with $meta.middle -}}
+    {{- with $meta.top -}}
+        <div class="container limit-width single-post-meta single-post-meta-top">
+            <div class="row row-cols-1">
+                <div class="col">
                     {{- partial "partials/meta.html" (dict "context" $current_page "kindctx" .Kind "meta" . "class" "meta-middle") -}}
-                {{- end -}}
-            </div>
-            <div class="post-content col mb-5">
-                {{/*- .Content -*/}}
-                {{- replace .Content .Summary "" | safeHTML -}}
-            </div><!-- col -->
-            {{- with $meta.bottom -}}
-                {{- partial "partials/meta.html" (dict "context" $current_page "kindctx" .Kind "meta" . "class" "meta-bottom") -}}
-            {{- end -}}
-        </div><!-- row -->
-    </div><!-- container -->
+                </div><!-- col -->
+            </div><!-- row -->
+        </div><!-- container -->
+    {{- end -}}
+    {{- $display_image := and (isset .Params "images") (site.Params.Single.displayimage | default false) -}}
+    {{- if $display_image -}}
+        <div class="container single-post-image">
+            <div class="row">
+                <div class="col">
+                    {{- partial "partials/image.html" (dict "context" . "Destination" .Params.images "Title" .Title "Text" .Title) -}}
+                </div><!-- col -->
+            </div><!-- row -->
+        </div><!-- container -->
+    {{- end -}}
+    {{- with $meta.middle -}}
+        <div class="container limit-width single-post-meta single-post-meta-middle">
+            <div class="row row-cols-1">
+                <div class="col">
+                    {{- partial "partials/meta.html" (dict "context" $current_page "kindctx" .Kind "meta" . "class" "meta-middle") -}}
+                </div><!-- col -->
+            </div><!-- row -->
+        </div><!-- container -->
+    {{- end -}}
+        <div class="container limit-width single-post-content">
+            <div class="row">
+                <div class="col">
+                    {{/*- .Content -*/}}
+                    {{- replace .Content .Summary "" | safeHTML -}}
+                </div><!-- col -->
+            </div><!-- row -->
+        </div><!-- container -->
+    {{- with $meta.bottom -}}
+        <div class="container limit-width single-post-meta single-post-meta-bottom">
+            <div class="row row-cols-1">
+                <div class="col">
+                    {{- partial "partials/meta.html" (dict "context" $current_page "kindctx" .Kind "meta" . "class" "meta-bottom") -}}
+                </div><!-- col -->
+            </div><!-- row -->
+        </div><!-- container -->
+    {{- end -}}
 {{- end -}}
 {{- define "bottomline" -}}
     {{- $current_page := . -}}
     {{- partial "partials/pagination-single.html" . -}}
-    {{- range site.Params.Single.Rows | default site.Data.single_bottomline.Rows -}}{{/* $defaultBottomline */}}
-        <section class="page-bottomline page-bottomline-{{- .name}} mb-5">
+    {{- range sort site.Data.single.Rows "weight" -}}{{/* $defaultBottomline */}}
+        <section class="page-bottomline page-bottomline-{{- .name}}">
             {{- $limit := cond (.limitedWidth | default true) "limit-width" "" -}}
             <div class="container {{ $limit -}}">
                 {{- $columns := .columns | default (dict "xs" 1 "sm" 1 "md" 1 "lg" 1 "xl" 1) -}}
                 {{- $class := partialCached "partials/class-columns.html" $columns (delimit $columns "-") -}}
                 <div class="{{- $class -}}">
                     {{- $num_groups := len .Groups -}}
-                    {{ range .Groups }}
+                    {{- range sort .Groups "weight" -}}
                         {{- $num_widgets := len .Widgets -}}
                         {{- $columns := .columns | default (dict "xs" 1 "sm" 1 "md" 1 "lg" 1 "xl" 1) -}}
                         {{- $class := partialCached "partials/class-columns.html" $columns (delimit $columns "-") -}}
@@ -57,7 +76,7 @@
                         <div class="col">
                             <div class="{{- $class -}}">
                         {{- end -}}
-                            {{- range .Widgets -}}
+                            {{- range sort .Widgets "weight" -}}
                                 {{- $partialPath := printf "partials/widgets/%s.html" .widget -}}
                                 {{- if templates.Exists $partialPath -}}
                                     {{- if .cache | default false -}}
@@ -85,10 +104,10 @@
                 <div class="col">
                     <h2>{{- i18n "comments" -}}</h2>
                     <script src="https://utteranc.es/client.js"
-                        repo       = "{{- site.Params.utteranc_repo -}}"
-                        issue-term = "{{- site.Params.utteranc_term | default "title" -}}"
-                        theme      = "{{- site.Params.utteranc_theme | default "github-light" -}}"
-                        crossorigin= "anonymous"
+                        repo        = "{{- site.Params.utteranc_repo -}}"
+                        issue-term  = "{{- site.Params.utteranc_term | default "title" -}}"
+                        theme       = "{{- site.Params.utteranc_theme | default "github-light" -}}"
+                        crossorigin = "anonymous"
                         async>
                     </script>
                 </div>

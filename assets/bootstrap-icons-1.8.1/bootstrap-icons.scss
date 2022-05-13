@@ -1,6 +1,6 @@
 $bootstrap-icons-font: "bootstrap-icons" !default;
-$bootstrap-icons-font-src: url("../fonts/bootstrap-icons.woff2?524846017b983fc8ded9325d94ed40f3") format("woff2"),
-url("../fonts/bootstrap-icons.woff?524846017b983fc8ded9325d94ed40f3") format("woff") !default;
+$bootstrap-icons-font-src: url("/fonts/bootstrap-icons.woff2?524846017b983fc8ded9325d94ed40f3") format("woff2"),
+url("/fonts/bootstrap-icons.woff?524846017b983fc8ded9325d94ed40f3") format("woff") !default;
 
 @font-face {
   font-family: $bootstrap-icons-font;
@@ -413,7 +413,7 @@ $bootstrap-icons-map: (
 /*  "chevron-expand": "\f283", */
   "chevron-left": "\f284",
   "chevron-right": "\f285",
-/*  "chevron-up": "\f286", */
+  "chevron-up": "\f286",
 /*  "circle-fill": "\f287", */
 /*  "circle-half": "\f288", */
 /*  "circle-square": "\f289", */
@@ -2098,7 +2098,7 @@ $bootstrap-icons-map: (
 /*  .bi-chevron-expand::before { content: map-get($bootstrap-icons-map, "chevron-expand"); } */
   .bi-chevron-left::before { content: map-get($bootstrap-icons-map, "chevron-left"); }
   .bi-chevron-right::before { content: map-get($bootstrap-icons-map, "chevron-right"); }
-/*  .bi-chevron-up::before { content: map-get($bootstrap-icons-map, "chevron-up"); } */
+  .bi-chevron-up::before { content: map-get($bootstrap-icons-map, "chevron-up"); } 
 /*  .bi-circle-fill::before { content: map-get($bootstrap-icons-map, "circle-fill"); } */
 /*  .bi-circle-half::before { content: map-get($bootstrap-icons-map, "circle-half"); } */
 /*  .bi-circle-square::before { content: map-get($bootstrap-icons-map, "circle-square"); } */

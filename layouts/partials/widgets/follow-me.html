@@ -1,39 +1,34 @@
 {{/* Parameters      */}}
 {{/* .context Page   */}}
-{{- $heading_level := 3 -}}
-{{- $heading_level := int ($.params.heading | default 3) -}}
+{{- $title            := .params.title | default (i18n "follow-me") -}}
+{{- $direction        := .params.direction | default "horizontal" -}}
+{{- $heading_level    := int ($.params.heading | default site.Data.default_params.widget_heading) -}}
 {{- $heading_title    := printf "h%d" $heading_level         -}}
 {{- $heading_subtitle := printf "h%d" (add $heading_level 1) -}}
-<div class="col">
-    <aside class="widget widget-follow">
-        <div class="widget-inner">
-            {{- printf "<%s class=\"widget-title\">%s</%s>" $heading_title (i18n "follow-me") $heading_title | safeHTML -}}
-            <ul>
-            {{- range sort site.Params.FollowLinks.Socials "weight" -}}
-                {{- if eq .id "rss" -}}
-                    {{- with ((site.GetPage "home").OutputFormats.Get "rss") -}}
+<aside class="col widget widget-follow {{- printf " widget-follow-%s" $direction -}}">
+    <div class="widget-inner">
+        {{- printf "<%s class=\"widget-title\">%s</%s>" $heading_title $title $heading_title | safeHTML -}}
+        <ul>
+        {{- range sort site.Params.FollowLinks.Socials "weight" -}}
+            {{- if eq .id "rss" -}}
+                {{- with ((site.GetPage "home").OutputFormats.Get "rss") -}}
+                    <li>
+                        <a href="{{- .Permalink -}}" title="{{- i18n "rss-feeds" -}}"><i class="bi-rss"></i><span class="visually-hidden">{{- i18n "rss-feeds" -}}</span>{{/* i18n "rss-feeds" -*/}}</a>
+                    </li>
+                {{ end -}}
+            {{- else -}}
+                {{- if .account -}}
+                    {{- $media := . -}}
+                    {{- if and (ne site.Data.socials.config nil) (ne .id nil) -}}
+                        {{- with (index site.Data.socials.config .id) }}
                         <li>
-                            <a href="{{- .Permalink -}}" title="{{- i18n "rss-feeds" -}}"><i class="bi-rss"></i>
-                                <span class="visually-hidden">{{- i18n "rss-feeds" -}}</span> {{ i18n "rss-feeds" -}}
-                            </a>
+                            <a href="{{- printf .follow $media.account -}}" target="_blank" rel="noopener noreferrer" title="{{- i18n .followtext . -}}"><i class="{{- .icon }}"></i><span class="visually-hidden">{{- i18n .followtext . }}</span>{{/* .name -*/}}</a>
                         </li>
-                    {{ end -}}
-                {{- else -}}
-                    {{- if .account -}}
-                        {{- $media := . -}}
-                        {{- if and (ne site.Data.socials.config nil) (ne .id nil) -}}
-                            {{- with (index site.Data.socials.config .id) }}
-                            <li>
-                                <a href="{{- printf .follow $media.account -}}" target="_blank" rel="noopener noreferrer" title="{{- i18n .followtext . -}}">
-                                    <i class="{{- .icon }}"></i><span class="visually-hidden">{{- i18n .followtext . -}}</span> {{ .name -}}
-                                </a>
-                            </li>
-                            {{- end -}}
                         {{- end -}}
                     {{- end -}}
                 {{- end -}}
             {{- end -}}
-            </ul>
-        </div><!-- widget-inner -->
-    </aside>
-</div><!-- col -->
+        {{- end -}}
+        </ul>
+    </div><!-- widget-inner -->
+</aside>

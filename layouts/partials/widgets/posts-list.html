@@ -1,0 +1,67 @@
+{{/* Parameters   */}}
+{{/* .context     */}}
+{{/* .Param       */}}
+{{/*   .title     */}}
+{{/*   .type      */}}
+{{/*   .numposts  */}}
+{{/*   .columns   */}}
+{{- $context          := .context -}}
+{{- $title            := .title | default (i18n "last-posts-published") -}}
+{{- $heading_level    := int (.params.heading | default site.Data.default_params.widget_heading) -}}
+{{- $heading_title    := printf "h%d" $heading_level -}}
+{{- $heading_subtitle := printf "h%d" (add $heading_level 1) -}}
+{{- $columns          := .params.columns | default site.Data.default_params.columns_3 -}}
+{{- $class            := partialCached "partials/class-columns.html" $columns (delimit $columns "-") -}}
+{{- $numposts         := .params.numposts | default site.Data.default_params.widget_postlist_numposts -}}
+{{- $p                := where site.RegularPages "Type" "in" site.Params.mainSections -}}
+{{- $paginator        := $context.Paginate $p $numposts -}}
+<div class="col widget widget-posts widget-posts-images">
+    <div class="widget-inner">
+        {{- with $title -}}
+            {{- (printf "<%s>%s</%s>" $heading_title . $heading_title) | safeHTML -}}
+        {{- end -}} 
+        <div class="{{ $class -}}">
+            {{- range $paginator.Pages -}}
+                <aside class="col">
+                    {{- if isset .Params "images" -}}
+                        {{- partial "partials/image.html" (dict "context" . "Destination" .Params.images "Title" .Title "Text" .Title "Link" .RelPermalink) -}}
+                    {{- end -}}
+                    {{- (printf "<%s class=\"widget-title\"><a href=\"%s\" title=\"%s\">%s</a></%s>" $heading_subtitle .RelPermalink (.Title | plainify | htmlUnescape) .Title $heading_subtitle) | safeHTML -}}
+                    {{- with .Summary -}}<p>{{- . | truncate 150 -}}</p>{{- end -}}
+                    {{/*- partial "partials/meta.html" (dict "context" . "meta" (dict "1" "section" "2" "date")) -*/}}
+                </aside>
+            {{- end -}}
+        </div><!-- row -->
+        {{- with $paginator -}}
+            {{- if gt .TotalPages 1 -}}
+            <nav class="row row-cols-3" aria-label="Page navigation">
+                {{- $disabled := "" -}}
+                {{- $aria     := false -}}
+                {{- if eq .PageNumber 1 -}}
+                    {{- $disabled = "disabled" -}}
+                    {{- $aria     = true -}}
+                {{- end -}}
+                <div class="col page-item page-item-left {{ $disabled -}}">
+                    <a class="page-link" href="{{- with .Prev -}}{{- .URL -}}{{- else -}}#{{- end -}}" aria-label="Previous" {{ if $aria -}}aria-disabled="true"{{- end -}}>
+                        <i class="bi-chevron-left"> </i><span class="d-none d-lg-inline">{{- i18n "previous-post" -}}</span>
+                    </a>
+                </div><!-- col -->
+                <div class="col page-item page-item-center">
+                    <a class="page-link">{{- printf "%d / %d" .PageNumber .TotalPages -}}</a>
+                </div><!-- col -->
+                {{- $disabled := "" -}}
+                {{- $aria     := false -}}
+                {{- if eq .PageNumber .TotalPages -}}
+                    {{- $disabled = "disabled" -}}
+                    {{- $aria     = true -}}
+                {{- end -}}
+                <div class="col page-item page-item-right {{ $disabled -}}">
+                    <a class="page-link" href="{{- with .Next -}}{{- .URL -}}{{- else -}}#{{- end -}}" aria-label="Next" {{ if $aria -}}aria-disabled="true"{{- end -}}>
+                        <span class="d-none d-lg-inline">{{- i18n "next-post" -}}</span><i class="bi-chevron-right"> </i>
+                    </a>
+                </div><!-- col -->
+            </nav><!-- row -->
+            {{- end -}}
+        {{- end -}}
+    </div><!-- widget-inner -->
+</div><!-- col -->

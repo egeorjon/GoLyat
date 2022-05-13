@@ -1,19 +1,37 @@
 {{/* .context */}}
 {{/* .params  */}}
-{{/*    .page  : page to be displayed */}}
-{{- $title  := .params.value  | default ""      -}}
-{{- $heading_level := int (.params.heading | default 3) -}}
+{{/*    .method: field, path,   */}}
+{{/*    .value   */}}
+{{- $method        := .params.method | default "path" -}}
+{{- $value         := .params.value  | default ""     -}}
+{{- $heading_level := int (.params.heading | default site.Data.default_params.widget_heading) -}}
 {{- $heading_title := printf "h%d" $heading_level -}}
-<div class="col">
-    {{- with site.GetPage .params.page -}}
-    <aside class="widget widget-page">
-        <div class="widget-inner">
-            {{- (printf "<%s class=\"widget-title\">%s</%s>" $heading_title .Title $heading_title) | safeHTML -}}
-            <p>{{- .Content  -}}</p>
-        </div>
-    </aside>
+{{- $post          := slice -}}
+{{- if eq $method "field" -}}
+    {{- $post = where site.Pages (printf "Params.%s" $value) true -}}
+        {{- range first 1 $post -}}
+        <aside class="col widget widget-page">
+            <div class="widget-inner">
+                {{- (printf "<%s class=\"widget-title\">%s</%s>" $heading_title .Title $heading_title) | safeHTML -}}
+                <p class="widget-content">{{- .Content -}}</p>
+            </div>
+        </aside>
     {{- else -}}
-    <p>{{- i18n "error-post-x-not-found" .params.page | safeHTML -}}</p>
+        <div class="col">
+            <p>{{- i18n "error-post-not-found" -}}</p>
+        </div>
     {{- end -}}
-</div>
-
+{{- else -}}
+    {{- with site.GetPage $value -}}
+        <aside class="col widget widget-page">
+            <div class="widget-inner">
+                {{- (printf "<%s class=\"widget-title\">%s</%s>" $heading_title .Title $heading_title) | safeHTML -}}
+                <p class="widget-content">{{- .Content -}}</p>
+            </div>
+        </aside>
+    {{- else -}}
+        <div class="col">
+            <p>{{- i18n "error-post-not-found" -}}</p>
+        </div>
+    {{- end -}}
+{{- end -}}

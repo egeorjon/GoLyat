@@ -5,8 +5,8 @@
 {{/* .type      */}}
 {{/* .numposts  */}}
 {{/* .columns   */}}
-{{- $numposts      := .params.numposts | default 3 -}}
-{{- $columns       := .params.columns | default (dict "xs" 1 "sm" 1 "md" 3 "lg" 3 "xl" 3) -}}
-{{- $posts         := site.RegularPages.Related .context | first $numposts -}}
-{{- partial "partials/widgets/posts-widget.html" (dict "context" .context "params" .params "title" (.params.title | default (i18n "related-posts")) "widgetclass" "related" "posts" $posts) -}}
-{{/*- with $related.ByPublishDate.Reverse -*/}}
+{{- $numposts := .params.numposts | default 3 -}}
+{{- $params   := merge .params (dict "title" (.params.title | default (i18n "related-posts")) "numposts" $numposts ) -}}
+{{- $params   := merge $params (dict "columns" .params.columns | default site.Data.default_params.columns_3) -}}
+{{- $posts    := site.RegularPages.Related .context | first $numposts -}}
+{{- partial "partials/widgets/posts-widget.html" (dict "context" .context "params" $params "widgetclass" "related" "posts" $posts) -}}

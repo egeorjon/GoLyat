@@ -1,4 +1,4 @@
-<section id="page-headline" class="pt-3 pb-3 mb-3">
+<section id="page-headline">
     <div class="container">
         <div class="row">
             <div class="col">
@@ -6,7 +6,7 @@
                 <h1>{{- if eq .Kind "404" -}}{{- i18n "404-page-not-found" -}}{{- else -}}{{- .Title -}}{{- end -}}
                     {{- if and (eq .Kind "section") (ne .Type "search") -}}
                         {{- with .OutputFormats.Get "rss" -}}
-                            {{- printf `<a class="ms-3" rel="%s" href="%s" title="%s" ><i class="bi-rss"></i></a>` .Rel .Permalink "RSS feed" | safeHTML -}}
+                            {{- printf `<a rel="%s" href="%s" title="%s" ><i class="bi-rss"></i></a>` .Rel .Permalink "RSS feed" | safeHTML -}}
                         {{- end -}}
                     {{- end -}}
                 </h1>

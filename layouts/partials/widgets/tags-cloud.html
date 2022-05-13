@@ -9,8 +9,8 @@
     {{- $nb_tags := len site.Taxonomies.tags -}}
     {{- $title   := .params.title | default (i18n "Tags" $nb_tags) -}}
     {{- with site.Taxonomies.tags }}
-<div class="col mb-5">
-    <aside class="h-100 widget widget-tags-cloud">
+
+    <aside class="col widget widget-tags-cloud">
         <div class="widget-inner">
             {{- with $title -}}{{- (printf "<%s class=\"widget-title\">%s</%s>" $heading_title . $heading_title) | safeHTML -}}{{- end -}}
             {{- $fontUnit          := "rem" -}}
@@ -29,6 +29,6 @@
             {{- end -}}
         </div>
     </aside>
-</div>
+
     {{- end -}}
 {{- end -}}

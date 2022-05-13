@@ -1,0 +1,41 @@
+{{/* Parameters    */}}
+{{/* .context      */}}
+{{/* Params        */}}
+{{/*    .title     */}}
+{{/*    .columns   */}}
+{{/*    .heading   */}}
+{{/*    .numposts  */}}
+{{/*    .taxo      */}}
+{{/*    .term      */}}
+{{- $taxo          := .params.tax   | default "tags"             -}}
+{{- $term          := .params.term  | default "tags"             -}}
+{{- $title         := .params.title | default (i18n "portfolio") -}}
+{{- $heading_level := int (.params.heading | default site.Data.default_params.widget_heading) -}}
+{{- $heading_title := printf "h%d" $heading_level                -}}
+{{- $columns       := int (.params.columns |  default 2)         -}}
+{{- $numposts      := int (.params.numposts |  default 6)        -}}
+
+{{- $term_path     := path.Join "/" $taxo $term  -}}
+{{- $posts         := site.GetPage $term_path    -}}
+{{- with $posts -}}
+    <div class="col widget widget-gallery">
+        <div class="widget-inner">
+            {{- with $title -}}
+                {{- (printf "<%s>%s</%s>" $heading_title . $heading_title) | safeHTML -}}
+            {{- end -}}
+            <div class="{{- printf "row row-cols-%d" $columns -}}">
+            {{- range first $numposts (shuffle .Pages) -}}
+                <aside class="col">
+                    {{- if isset .Params "images" -}}
+                        {{- partial "partials/image.html" (dict "context" . "Destination" .Params.images "Title" .Title "Text" .Title "Link" .RelPermalink) -}}
+                    {{- end -}}
+                </aside><!-- col -->
+            {{- end -}}
+            </div><!-- row -->
+            <p><a href="{{- .RelPermalink -}}" title="{{- i18n "see-all-galleries" -}}">{{- i18n "see-all-galleries" -}}</a></p>
+        </div><!-- widget-inner -->
+    </div><!-- col -->
+{{- end -}}
+
+
+
