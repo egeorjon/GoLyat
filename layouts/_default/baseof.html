@@ -18,8 +18,10 @@
 </html>
 {{ define "partials/main_class.html"}}
     {{- $class := slice "page-content " -}}
-    {{ if .IsPage -}}{{- $class = $class | append (slice "single-page") -}}
-    {{- else if .IsHome }}{{- $class = $class | append (slice "home") -}}
+    {{ if .IsHome }}{{- $class = $class | append (slice "home") -}}
+    {{- else if .IsPage -}}
+        {{- $class = $class | append (slice "single-page") -}}
+        {{- $class = $class | append (slice (printf "page-%s" .Layout)) -}}
     {{- else -}}
         {{- $class = $class | append (slice "list-page") -}}
         {{- if .IsSection }}
