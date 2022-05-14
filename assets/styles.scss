@@ -427,6 +427,27 @@ h3 a {
        opacity: 0.55;
    }
 
+
+/* -------------------------------------------------
+   --- Page contact                              ---
+   ------------------------------------------------- */
+
+#contact-form {
+    margin-bottom: 3 * $spacer;
+
+    .form-control {
+        margin-bottom: 1.5 * $spacer;
+    }
+}
+
+/* -------------------------------------------------
+   --- Search form                               ---
+   ------------------------------------------------- */
+
+#search-form {
+    margin-bottom: 3 * $spacer;
+}
+
 /* -------------------------------------------------
    --- Footer                                    ---
    ------------------------------------------------- */
@@ -502,5 +523,32 @@ h3 a {
 
     &:hover {
         background-color: $medium;
+    }
+}
+
+/* -------------------------------------------------
+   --- Print                                     ---
+   ------------------------------------------------- */
+
+@media print {
+
+    #page-header, #posts-comments, .breadcrumb,
+    .page-bottomline-prev-next, .page-bottomline-yzgd-share, .page-bottomline-related,
+    .footer-top, .footer-main {
+        display: none;
+    }
+
+    * {
+        color: #000;
+        background-color: #fff;
+    }
+
+    body {
+        font-size: 1rem !important;
+        line-height: 1.5 !important;
+    }
+
+    a:after {
+        content: "( "attr(href)" )"
     }
 }

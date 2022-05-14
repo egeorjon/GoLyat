@@ -36,7 +36,7 @@ $display-font-sizes: map-remove($display-font-sizes,
   1, 2, 3, 4, 5
 );
 
-$table-variants: map-remove( $table-variants, 
+$table-variants: map-remove( $table-variants,
   "success",
   "info",
   "warning",
@@ -56,7 +56,7 @@ $container-max-widths: map-remove($container-max-widths,
     xxl
 );
 
-$border-widths: map-remove($border-widths, 
+$border-widths: map-remove($border-widths,
   2,
   3,
   4,
@@ -71,7 +71,7 @@ $display-font-sizes: map-remove($display-font-sizes,
   5
 );
 
-$table-variants: map-remove( $table-variants, 
+$table-variants: map-remove( $table-variants,
   "success",
   "info",
   "warning",
@@ -91,7 +91,7 @@ $aspect-ratios: map-merge($aspect-ratios, (
 
 // Utilities
 
-$utilities: map-remove($utilities, 
+$utilities: map-remove($utilities,
     "align",
 /* "float",*/
     "opacity",
@@ -99,7 +99,7 @@ $utilities: map-remove($utilities,
  /* "display",*/
     "shadow",
     "position",
-    "top", 
+    "top",
     "bottom",
     "start",
     "end",
@@ -180,7 +180,7 @@ $utilities: map-remove($utilities,
 @import "bootstrap-5.1.3/scss/reboot";
 // @import "bootstrap-5.1.3/scss/type";  // .hx, blockquote, lead, ...
 @import "bootstrap-5.1.3/scss/images";   // img-fluid, figure, figcaption
-@import "bootstrap-5.1.3/scss/containers"; 
+@import "bootstrap-5.1.3/scss/containers";
 @import "bootstrap-5.1.3/scss/grid"; // enabled / Disables through $enable-grid-classes
 @import "bootstrap-5.1.3/scss/tables";
 @import "bootstrap-5.1.3/scss/forms";
@@ -193,7 +193,7 @@ $utilities: map-remove($utilities,
 @import "bootstrap-5.1.3/scss/forms/input-group";
 @import "bootstrap-5.1.3/scss/forms/labels";
 // @import "bootstrap-5.1.3/scss/forms/validation";
-// @import "bootstrap-5.1.3/scss/buttons";
+@import "bootstrap-5.1.3/scss/buttons";
 @import "bootstrap-5.1.3/scss/transitions";
 // @import "bootstrap-5.1.3/scss/dropdown";
 // @import "bootstrap-5.1.3/scss/button-group";
