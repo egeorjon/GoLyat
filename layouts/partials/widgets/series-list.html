@@ -13,7 +13,7 @@
     {{- $heading_level    := int (.params.heading | default site.Data.default_params.widget_heading) -}}
     {{- $heading_title    := printf "h%d" $heading_level                                             -}}
     {{- $heading_subtitle := printf "h%d" (add $heading_level 1)                                     -}}
-    {{- $columns          := .params.columns | default site.Data.default_params.columns_4            -}}
+    {{- $columns          := .params.columns | default site.Data.default_params.columns_3            -}}
     {{- $class            := partialCached "partials/class-columns.html" $columns (delimit $columns "-") -}}
     {{- with site.Taxonomies.series }}
         {{- if or (eq $widget_format "image-full") (eq $widget_format "image-title") -}}
