@@ -1,6 +1,6 @@
 {{- $page := .GetPage "search" -}}
 {{-  with $page -}}
-<form action="{{ .Permalink }}" method="GET" class="row justify-content-center">
+<form action="{{- .Permalink }}" method="GET" class="row justify-content-center form-search">
     <label for="search-query" class="col-form-label col-auto"><span class="visually-hidden">{{- i18n "search-please-enter" -}}</span></label>
     <div class="col-auto">
         <input type="text" class="form-control" id="search-query" aria-describedby="searchHelp" name="s" placeholder="{{- i18n "search-please-enter" -}}" />
