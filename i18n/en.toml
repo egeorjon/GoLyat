@@ -248,3 +248,6 @@
 
 [portfolio]
     other = "Portfolio"
+
+[score]
+    other = "Score"
