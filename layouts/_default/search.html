@@ -24,26 +24,32 @@
                 <h2 class="col" id="search-results-title">{{- i18n "search-results" -}}</h2>
             </div>
             {{- $columns := site.Params.PostList.ListColumns | default (dict "xs" 1 "sm" 1 "md" 1 "lg" 1 "xl" 1) -}}
-            {{- $class   := partialCached "partials/class-columns.html" $columns (delimit $columns "-") -}}       
+            {{- $class   := partialCached "partials/class-columns.html" $columns (delimit $columns "-") -}}
             <div id="search-results-items" class="post-list {{ $class -}}">
 
             </div><!-- search-results-items -->
         </div><!-- container -->
     </div><!-- Search-results -->
     <script id="search-result-template" type="text/x-js-template">
-    <div class="col mb-6">
-        <article class="card">
-            <div class="card-body">
-                <h3 class="card-title post-title"><a href="${link}">${title}</a></h3>
-                <ul class="post-meta inline-list">
-                    ${ isset section }<li class="post-section"><i class="bi-folder2-open"></i> <span class="visually-hidden">{{- "In" -}}</span><span class="in-category">${section}</span></li>${end}
-                    ${ isset publish }<li class="post-date"><i class="bi-calendar3"></i> <span class="visually-hidden">{{- "posted-on" -}}</span><time class="entry-date published" datetime="${publish}">${publish}</time></li>${end}
-                    ${ isset tags }<li class="post-tags"><i class="bi-tags"></i> <span class="visually-hidden" aria-label="hidden">{{- i18n "tags" -}}:</span>${tags}</li>${end}
-                </ul>                
-                <p class="post-summary card-text">${summary}</p>
-                <p><i class="bi-reception-4"></i> ${score}</p>
-            </div><!-- card-body -->
-        </article>
-    </div><!-- col -->
+<article class="col post post-format post-format-meta-left">
+    <div class="row">
+        <div class="col-12 col-md-8 offset-md-4 col-lg-9 offset-lg-3">
+            <h3 class="post-title"><a href="${link}">${title}</a></h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 col-md-4 col-lg-3">
+            <ul class="post-meta inline-list">
+                ${ isset section }<li class="post-section"><i class="bi-folder2-open"></i> <span class="visually-hidden">{{- "In" -}}</span><span class="in-category">${section}</span></li>${end}
+                ${ isset publish }<li class="post-date"><i class="bi-calendar3"></i> <span class="visually-hidden">{{- "posted-on" -}}</span><time class="entry-date published" datetime="${publish}">${publish}</time></li>${end}
+                ${ isset tags }<li class="post-tags"><i class="bi-tags"></i> <span class="visually-hidden" aria-label="hidden">{{- i18n "tags" -}}:</span>${tags}</li>${end}
+                <li class="post-score"><i class="bi-reception-4"></i>  <span class="visually-hidden" aria-label="hidden">{{- i18n "score" -}}:</span>${score}</li>
+            </ul>
+        </div><!-- col -->
+        <div class="col-12 col-md-8 col-lg-9 post-summary">
+            ${summary}
+        </div><!-- col -->
+    </div><!-- row -->
+</article>
     </script>
 {{- end -}}
