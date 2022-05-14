@@ -344,6 +344,35 @@ h3 a {
     }
 }
 
+// ---- widget-tags-cloud ------------------
+
+.widget-tags-cloud {
+    margin-bottom: 3 * $spacer;
+
+    ul {
+        list-style-type: none;
+        padding-left: 0;
+        margin-bottom: 0;
+    }
+
+    li {
+        display: inline;
+    }
+
+    a {
+        color: $dark;
+        text-decoration: none;
+    }
+}
+
+// ---- widget-series ------------------
+.widget-series {
+    font-size: 1rem;
+    ol {
+        padding-left: 0;
+    }
+}
+
 /* -------------------------------------------------
    --- Figure                                    ---
    ------------------------------------------------- */
@@ -445,6 +474,10 @@ h3 a {
    ------------------------------------------------- */
 
 #search-form {
+    margin-bottom: 3 * $spacer;
+}
+
+.form-search {
     margin-bottom: 3 * $spacer;
 }
 
