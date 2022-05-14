@@ -1,0 +1,33 @@
+{{- define "main" -}}
+    {{- $current_page := . -}}
+    <div class="container limit-width">
+        <div class="row">
+            <div class="col post-summary mb-4">
+                {{- i18n "404-error-desc" -}}
+            </div><!-- col -->
+        </div><!-- row -->
+    </div><!-- container -->
+    <div class="container">
+        <div class="row">
+            <div class="col mb-5 text-center">
+                <img src="/img/404.jpg" width="1200" height="370" alt="{{- i18n "404-page-not-found" -}}" />
+            </div><!-- col -->
+        </div><!-- row -->
+    </div><!-- container -->
+
+    <div class="container limit-width">
+        <div class="post-content row row-cols-1">
+            <div class="col">
+                <p>{{- i18n "content-not-found" -}}</p>
+                <h2>{{- i18n "you-can" -}}</h2>
+            </div>
+            <div class="col mb-5">
+                <h3>{{- i18n "use-search" -}}</h3>
+                {{- partialCached "partials/search-form.html" . -}}
+            </div>
+            {{- partialCached "partials/widgets/sections-list.html" (dict "context" . "params" (dict "title" (i18n "navigate-sections")))       -}}
+            {{- partial "partials/widgets/tags-cloud.html"    (dict "context" . "params" (dict "title" (i18n "navigate-tags") "heading" 2 )) -}}
+            {{- partialCached "partials/widgets/series-list.html"   (dict "context" . "params" (dict "title" (i18n "navigate-series")))           -}}
+        </div><!-- row -->
+    </div><!-- container -->
+{{- end -}}
