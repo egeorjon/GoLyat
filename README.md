@@ -4,6 +4,8 @@
 
 Goyat is for huGO Yet Another Theme.
 
+> This version is not yet finalized: Improvements are planned to stabilize it, and make it easier to use.
+
 You can find a live demo of the original Fresh theme [here](https://www.emmanuelgeorjon.com) (will be completed when the theme will be deployed in production).
 This theme is intended for personal website and blog. If you'd like to extend the theme to include other functionalities, please submit a pull request.
 
