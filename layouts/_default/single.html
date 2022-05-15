@@ -24,8 +24,8 @@
     {{- if $display_image -}}
         <div class="container single-post-image">
             <div class="row">
-                <div class="col">
-                    {{- partial "partials/image.html" (dict "context" . "Destination" .Params.images "Title" .Title "Text" .Title) -}}
+                <div class="col img-center">
+                    {{- partial "partials/image.html" (dict "context" . "Destination" .Params.images "Title" .Title "Text" .Title ) -}}
                 </div><!-- col -->
             </div><!-- row -->
         </div><!-- container -->
