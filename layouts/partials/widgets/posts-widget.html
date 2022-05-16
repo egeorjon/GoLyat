@@ -26,15 +26,16 @@
                 <div class="{{ $class -}}">
                     {{- range . -}}
                         <aside class="col">
+                            {{- partial "partials/meta.html" (dict "context" . "meta" (dict "1" "section")) -}}
                             {{- if isset .Params "images" -}}
                                 {{- partial "partials/image.html" (dict "context" . "Destination" .Params.images "Title" .Title "Text" .Title "Link" .RelPermalink) -}}
                             {{- end -}}
-                            {{- partial "partials/meta.html" (dict "context" . "meta" (dict "1" "section")) -}}
+                            {{/*- partial "partials/meta.html" (dict "context" . "meta" (dict "1" "date" "2" "reading")) -*/}}
                             {{- (printf "<%s class=\"widget-title\"><a href=\"%s\" title=\"%s\">%s</a></%s>" $heading_subtitle .RelPermalink (.Title | plainify | htmlUnescape) .Title $heading_subtitle) | safeHTML -}}
                             {{- with .Summary -}}
                                 <p class="widget-content">{{- . | plainify | truncate 100 -}}</p>
                             {{- end -}}
-                            {{- partial "partials/meta.html" (dict "context" . "meta" (dict "1" "date")) -}}
+                            {{- partial "partials/meta.html" (dict "context" . "meta" (dict "1" "date" "2" "reading")) -}}
                         </aside>
                     {{- end -}}
                 </div><!-- row -->
