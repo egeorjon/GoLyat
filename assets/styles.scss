@@ -197,6 +197,7 @@ h3 a {
     }
 }
 
+.single-page-image,
 .single-post-image,
 .page-bottomline-prev-next,
 .single-post-content {
@@ -274,7 +275,7 @@ h3 a {
 
 .page-bottomline-authors {
     padding-top: 2 * $spacer;
-    background-color: $light;
+    background-color: $secondary;
     margin-bottom: 3 * $spacer;
 }
 
@@ -312,11 +313,19 @@ h3 a {
 
     li {
         display: inline;
-        margin-left: 1.6 * $spacer;
+        margin-left: 1 * $spacer;
     }
 
     i {
         font-size: 1.2 * $font-size-base;
+    }
+}
+
+@media (min-width: map-get($grid-breakpoints, "md")) {
+    .widget-follow-horizontal {
+        li {
+            margin-left: 1.5 * $spacer;
+        }
     }
 }
 
