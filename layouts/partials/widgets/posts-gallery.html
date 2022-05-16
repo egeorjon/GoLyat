@@ -8,15 +8,14 @@
 {{/*    .taxo      */}}
 {{/*    .term      */}}
 {{- $taxo          := .params.tax   | default "tags"             -}}
-{{- $term          := .params.term  | default "tags"             -}}
+{{- $term          := .params.term  | default ""                 -}}
 {{- $title         := .params.title | default (i18n "portfolio") -}}
 {{- $heading_level := int (.params.heading | default site.Data.default_params.widget_heading) -}}
 {{- $heading_title := printf "h%d" $heading_level                -}}
 {{- $columns       := int (.params.columns |  default 2)         -}}
 {{- $numposts      := int (.params.numposts |  default 6)        -}}
-
-{{- $term_path     := path.Join "/" $taxo $term  -}}
-{{- $posts         := site.GetPage $term_path    -}}
+{{- $term_path     := path.Join "/" $taxo $term                  -}}
+{{- $posts         := site.GetPage $term_path                    -}}
 {{- with $posts -}}
     <div class="col widget widget-gallery">
         <div class="widget-inner">
