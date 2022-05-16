@@ -10,10 +10,22 @@
               "columns": { "xs": 1, "sm": 1, "md": 1, "lg": 1, "xl": 1 },
               "Widgets": [
                 {
-                    "widget": "series-list",
-                    "cache": false,
-                    "weight": 1,
-                    "params": { "type": "list" }
+                  "widget" : "series-list",
+                  "cache"  : false,
+                  "weight" : 1,
+                  "params" : { "type": "list" }
+                }
+              ]
+            },
+            {
+              "name": "galleries",
+              "columns": { "xs": 1, "sm": 1, "md": 1, "lg": 1, "xl": 1 },
+              "Widgets": [
+                {
+                  "widget" : "posts-gallery",
+                  "cache"  : false,
+                  "weight" : 1,
+                  "params" : { "term": "galerie" }
                 }
               ]
             }
@@ -29,10 +41,10 @@
               "columns": { "xs": 1, "sm": 1, "md": 1, "lg": 1, "xl": 1 },
               "Widgets": [
                 {
-                  "widget": "page",
-                  "cache": false,
-                  "weight": 1,
-                  "params": { "method": "path", "value": "/pages/a-propos" }
+                  "widget" : "page",
+                  "cache"  : false,
+                  "weight" : 1,
+                  "params" : { "method": "path", "value": "/pages/a-propos" }
                 }
               ]
             },
