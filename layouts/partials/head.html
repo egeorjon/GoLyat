@@ -59,7 +59,7 @@
 
 {{- partialCached "partials/favicons.html" . -}}
 
-{{- $production := eq (getenv "HUGO_ENV") "production" | or hugo.IsProduction | or (not .Site.IsServer) -}}
+{{- $production := or (or (eq (getenv "HUGO_ENV") "production") hugo.IsProduction) (not .Site.IsServer) -}}
 {{- if $production -}}
     <meta name="robots" content="index,follow" />
 {{- else -}}
@@ -116,8 +116,9 @@
 {{- with site.Params.googleWMT | default false -}}
     <meta name="google-site-verification" content="{{- . -}}" />
 {{- end -}}
+==={{- site.Params.piwikpro -}}===
 {{- if or $production (site.Params.DebugMode | default false) -}}
-    {{- with site.Params.Services.piwikpro -}}
+    {{- with site.Params.piwikpro -}}
         {{- partialCached "piwikpro.html" . -}}
     {{- end -}}
 {{- end -}}
