@@ -44,7 +44,7 @@
             {{- $srcsets = $srcsets | append (printf "%s %dw" $img.RelPermalink $size) -}}
         {{- end -}}
     {{- end -}}
-    {{- if gt (len $srcsets) 0 -}}{{- $srcsets = $srcsets | append (printf "%s %dw" $image.RelPermalink $width) -}}{{- end -}}
+    {{/*- if gt (len $srcsets) 0 -*/}}{{- $srcsets = $srcsets | append (printf "%s %dw" $image.RelPermalink $width) -}}{{/*- end -*/}}
     {{- if .Link -}}<a href="{{- .Link -}}" title="{{- .Title -}}">{{- end -}}
         <img {{ with $sizes -}}sizes="{{ delimit . "," }}"{{- end }} {{ with $srcsets -}}srcset="{{ delimit . "," }}"{{- end }} class="img-fluid {{ with .class -}}{{- . | safeHTML -}}{{- end -}}" src="{{- $image.RelPermalink | safeURL -}}" alt="{{- .Text | safeHTML -}}" {{ with .Title -}}title="{{- . | safeHTML -}}"{{- end }} />
     {{- if .Link -}}</a>{{- end -}}
