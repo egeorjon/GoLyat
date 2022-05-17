@@ -1,15 +1,16 @@
 {{- $context        := .context                        -}}
-{{- $kindctx        := .kindctx                        -}}
-{{- $default_bottom := (dict "1" "date" "2" "reading") -}}
-{{- $meta          := site.Params.PostList.meta | default (dict "top" (dict "1" "section") "bottom" (dict "1" "tags" "2" "series")) -}}
+{{- $kindctx        := .params.kindctx                 -}}
+{{- $typectx        := .params.typectx                 -}}
+{{- $display_image  := isset .context.Params "images"  -}}
+{{- $meta           := .params.meta | default (dict "top" (dict "1" "section") "bottom" (dict "1" "tags" "2" "series")) -}}
 <article class="post post-format post-format-no-image">
     <div class="post-inner">
         {{- with $meta.top -}}
-            {{- partial "partials/meta.html" (dict "context" $context "kindctx" $kindctx "meta" . "class" "meta-top") -}}
+            {{- partial "partials/meta.html" (dict "context" $context "kindctx" $kindctx "typectx" $typectx "meta" . "class" "meta-top") -}}
         {{- end -}}
         <h3 class="post-title"><a href="{{- $context.RelPermalink -}}">{{- $context.Title -}}</a></h3>
         {{- with $meta.middle -}}
-            {{- partial "partials/meta.html" (dict "context" $context "kindctx" $kindctx "meta" . "class" "meta-midle") -}}
+            {{- partial "partials/meta.html" (dict "context" $context "kindctx" $kindctx "typectx" $typectx "meta" . "class" "meta-midle") -}}
         {{- end -}}
         {{- with $context.Summary -}}
             <p class="post-summary">
@@ -18,7 +19,7 @@
             </p>
         {{- end -}}
         {{- with $meta.bottom -}}
-            {{- partial "partials/meta.html" (dict "context" $context "kindctx" $kindctx "meta" . "class" "meta-bottom") -}}
+            {{- partial "partials/meta.html" (dict "context" $context "kindctx" $kindctx "typectx" $typectx "meta" . "class" "meta-bottom") -}}
         {{- end -}}
     </div><!-- post-inner -->
 </article>

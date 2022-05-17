@@ -1,22 +1,19 @@
 {{- $context        := .context                        -}}
-{{- $kindctx        := .kindctx                        -}}
-{{- $typectx        := .typectx                        -}}
+{{- $kindctx        := .params.kindctx                 -}}
+{{- $typectx        := .params.typectx                 -}}
 {{- $display_image  := isset .context.Params "images"  -}}
-{{- $meta           := site.Params.PostList.meta | default (dict "top" (dict "1" "section") "bottom" (dict "1" "tags" "2" "series")) -}}
-{{/*- if and (eq $kindctx "taxonomy") (eq $typectx "series") -}}
-    {{- $meta_bottom = site.Params.SeriesList.metabottom | default (dict "1" "linkedsection") -}}
-{{- end -*/}}
+{{- $meta           := .params.meta | default (dict "top" (dict "1" "section") "bottom" (dict "1" "tags" "2" "series")) -}}
 <article class="post post-format post-format-image-top">
     <div class="post-inner">
     {{- if $display_image -}}
         {{- partial "image.html" (dict "context" $context "Destination" $context.Params.images "Title" $context.Title "Text" $context.Title "Class" "pt-1") -}}<!-- "Link" $context.RelPermalink -->
     {{- end -}}
         {{- with $meta.top -}}
-            {{- partial "partials/meta.html" (dict "context" $context "kindctx" $kindctx "meta" $meta.top "class" "meta-top") -}}
+            {{- partial "partials/meta.html" (dict "context" $context "kindctx" $kindctx "typectx" $typectx "meta" . "class" "meta-top") -}}
         {{- end -}}
         <h3 class="post-title"><a href="{{- $context.RelPermalink -}}">{{- $context.Title -}}</a></h3>
         {{- with $meta.middle -}}
-            {{- partial "partials/meta.html" (dict "context" $context "kindctx" $kindctx "meta" $meta.middle "class" "meta-middle") -}}
+            {{- partial "partials/meta.html" (dict "context" $context "kindctx" $kindctx "typectx" $typectx "meta" . "class" "meta-middle") -}}
         {{- end -}}
         {{- with $context.Summary -}}
             <p class="post-summary">
@@ -25,23 +22,23 @@
             </p>
         {{- end -}}
         {{- with $meta.bottom -}}
-            {{- partial "partials/meta.html" (dict "context" $context "kindctx" $kindctx "typectx" $typectx "meta" $meta.bottom "class" "meta-bottom") -}}
+            {{- partial "partials/meta.html" (dict "context" $context "kindctx" $kindctx "typectx" $typectx "meta" . "class" "meta-bottom") -}}
         {{- end -}}
-    {{- if and (eq $kindctx "taxonomy") (eq $typectx "series") -}}
-        {{- if $context.Pages }}
-                <p>{{- i18n "series-posts" -}}</p>
-                <ol class="serie-posts">
-                {{- range $context.Pages.ByPublishDate }}
-                    <li>
-                        <a href="{{- .RelPermalink -}}" rel="bookmark">
-                            {{- .Title }} ({{- .Date | time.Format (site.Params.FormatDate | default site.Data.params_defaults.formatdate)  -}})
-                        </a>
-                    </li>
-                {{- end }}
-                </ol>
-        {{- else -}}
-            <p>{{- i18n "no-post-yet" -}}</p>
+        {{- if and (eq $kindctx "taxonomy") (eq $typectx "series") -}}
+            {{- if $context.Pages }}
+                    <p>{{- i18n "series-posts" -}}</p>
+                    <ol class="serie-posts">
+                    {{- range $context.Pages.ByPublishDate }}
+                        <li>
+                            <a href="{{- .RelPermalink -}}" rel="bookmark">
+                                {{- .Title }} ({{- .Date | time.Format (site.Params.FormatDate | default site.Data.params_defaults.formatdate)  -}})
+                            </a>
+                        </li>
+                    {{- end }}
+                    </ol>
+            {{- else -}}
+                <p>{{- i18n "no-post-yet" -}}</p>
+            {{- end }}
         {{- end }}
-    {{- end }}
     </div>
 </article>
