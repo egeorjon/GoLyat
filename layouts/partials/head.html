@@ -116,3 +116,8 @@
 {{- with site.Params.googleWMT | default false -}}
     <meta name="google-site-verification" content="{{- . -}}" />
 {{- end -}}
+{{- if or $production (site.Params.DebugMode | default false) -}}
+    {{- with site.Params.Services.piwikpro -}}
+        {{- partialCached "piwikpro.html" . -}}
+    {{- end -}}
+{{- end -}}
