@@ -13,7 +13,7 @@
         <aside class="col widget widget-page">
             <div class="widget-inner">
                 {{- (printf "<%s class=\"widget-title\">%s</%s>" $heading_title .Title $heading_title) | safeHTML -}}
-                <p class="widget-content">{{- .Content -}}</p>
+                <div class="widget-content">{{- .Content -}}</div>
             </div>
         </aside>
     {{- else -}}
@@ -31,7 +31,7 @@
         </aside>
     {{- else -}}
         <div class="col">
-            <p>{{- i18n "error-post-not-found" -}}</p>
+            <div class="widget-inner">{{- i18n "error-post-not-found" -}}</div>
         </div>
     {{- end -}}
 {{- end -}}
