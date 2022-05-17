@@ -59,7 +59,7 @@
 
 {{- partialCached "partials/favicons.html" . -}}
 
-{{- $production := eq (getenv "HUGO_ENV") "production" | or hugo.IsProduction -}}
+{{- $production := eq (getenv "HUGO_ENV") "production" | or hugo.IsProduction | or (not .Site.IsServer) -}}
 {{- if $production -}}
     <meta name="robots" content="index,follow" />
 {{- else -}}
