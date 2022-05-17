@@ -30,7 +30,7 @@
     {{- if and (eq $kindctx "taxonomy") (eq $typectx "series") -}}
         {{- if $context.Pages }}
                 <p>{{- i18n "series-posts" -}}</p>
-                <ol>
+                <ol class="serie-posts">
                 {{- range $context.Pages.ByPublishDate }}
                     <li>
                         <a href="{{- .RelPermalink -}}" rel="bookmark">
