@@ -11,7 +11,7 @@
         </div><!-- row -->
         <div class="row tags-list">
             <div class="col mb-4">
-                {{- partialCached "partials/widgets/tags-cloud.html" (dict "context" .) -}}
+                {{- partialCached "partials/widgets/tags-cloud.html" (dict "context" . "params" (dict "title" " ")) -}}
             </div><!-- col -->
         </div><!-- row -->
     </div><!-- container -->
