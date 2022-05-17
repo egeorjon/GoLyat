@@ -1,7 +1,7 @@
 {
     "name":         "{{- site.Params.Manifest.name         | default site.Title   -}}",
     "short_name":   "{{- site.Params.Manifest.shortName    | default site.Title   -}}",
-    "lang":         "{{- site.Params.Manifest.languageCode | default site.Params.languageCode | default site.Data.params_defaults.languagecode -}}",
+    "lang":         "{{- site.Params.Manifest.languageCode | default site.languageCode | default site.Data.params_defaults.languagecode -}}",
     "display":      "{{- site.Params.Manifest.display      | default "browser"     -}}",
     "start_url":    "{{- site.Params.Manifest.startUrl     | default site.BaseURL -}}",
     "theme_color":  "{{- site.Params.Manifest.themeColor   | default site.Params.ThemeColor | default site.Data.params_defaults.themecolor -}}",
