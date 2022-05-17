@@ -38,7 +38,7 @@
                                 {{- end -}}
                                 {{- if .Pages }}
                                     <p>{{- i18n "series-posts" -}}</p>
-                                    <ol>
+                                    <ol class="serie-posts">
                                     {{- range .Pages.ByPublishDate }}
                                         <li>
                                             <a href="{{- .RelPermalink -}}" rel="bookmark">
