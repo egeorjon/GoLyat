@@ -1,9 +1,11 @@
 {{- define "main" -}}
     {{- $columns     := site.Params.PostList.Columns | default site.Data.default_params.list_columns -}}
     {{- $post_format := site.Params.PostList.PostFormat | default site.Data.default_params.list_format -}}
+    {{- $meta        := site.Params.PostList.meta -}}
     {{- if and (eq .Kind "taxonomy") (eq .Type "series") -}}
         {{- $columns = site.Params.SeriesList.Columns | default site.Data.default_params.list_series_columns -}}
         {{- $post_format = site.Params.SeriesList.PostFormat | default site.Data.default_params.list_series_format -}}
+        {{- $meta        = dict "middle" (dict "1" "linkedsection") -}}
     {{- end -}}
     {{- $partial_path := path.Join "partials/posts-format" (printf "%s%s%s" "posts-list-" $post_format ".html") -}}
     <section class="page-list">
@@ -21,7 +23,7 @@
             <div class="post-list {{ $class -}}">
                 {{- range .Paginator.Pages -}}
                 <div class="col">
-                    {{- partial $partial_path (dict "context" . "kindctx" $.Kind "typectx" $.Type) -}}
+                    {{- partial $partial_path (dict "context" . "params" (dict "kindctx" $.Kind "typectx" $.Type "meta" $meta)) -}}
                 </div><!-- col -->
                 {{- end -}}
             </div><!-- row -->
