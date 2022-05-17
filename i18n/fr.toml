@@ -197,9 +197,11 @@
     other = "Consulter les dossiers"
 
 [posts-of]
-    other = "Article de la rubrique"
+    one   = "Article de la rubrique"
+    other = "Articles de la rubrique"
 
 [posts-of-section]
+    one   = "Article de la rubrique {{ .Title }}"
     other = "Articles de la rubrique {{ .Title }}"
 
 [series-posts]

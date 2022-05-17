@@ -192,9 +192,11 @@
     other = "Use the series"
 
 [posts-of]
+    one   = "Post of the section"
     other = "Posts of the section"
 
 [posts-of-section]
+    one   = "Post of the section {{ .Title }}"
     other = "Posts of the section {{ .Title }}"
 
 [series-posts]
