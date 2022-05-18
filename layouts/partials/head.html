@@ -11,14 +11,13 @@
 
 {{- if ne .Kind "404" -}}
     {{- $description := .Params.description | default site.Params.Description | default "" -}}
-    {{- with $description -}}
+    {{ with $description }}
         <meta name="description" content="{{- . | markdownify | plainify | htmlUnescape -}}" />
-    {{- end -}}
-
+    {{ end }}
     {{- $keywords := .Params.tags | default site.Params.Keywords | default "" -}}
-    {{- with $keywords -}}
+    {{ with $keywords }}
         <meta name="keywords" content="{{- delimit . "," | plainify | htmlUnescape -}}" />
-    {{- end -}}
+    {{ end }}
 {{- end -}}
 
 {{- with site.Author.name -}}
