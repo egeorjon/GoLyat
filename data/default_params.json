@@ -13,6 +13,7 @@
     "columns_3": { "xs": 1, "sm": 1, "md": 3, "lg": 3, "xl": 3 },
     "columns_4": { "xs": 1, "sm": 1, "md": 2, "lg": 4, "xl": 4 },
     "rsslimit": 10,
+    "languagecode": "en-US",
     "params": {
         "opengraph": "internal",
         "twittercards": "internal",
