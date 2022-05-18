@@ -1,4 +1,5 @@
-  
+{{/* Similar to the internal with some updates*/}}
+{{/* Added */}}
 {{- $post_link := .RelPermalink -}}
 {{- with $.Params.images -}}
     <meta name="twitter:card" content="summary_large_image"/>
@@ -15,6 +16,7 @@
     {{- else -}}
         {{- with site.Params.images -}}
             <meta name="twitter:card" content="summary_large_image"/>
+            {{/* Update : path.Join ... */}}
             <meta name="twitter:image" content="{{- path.Join $post_link (index . 0) | absURL -}}"/>
         {{ else -}}
             <meta name="twitter:card" content="summary"/>
