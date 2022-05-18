@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="no-js" lang="{{- site.LanguageCode | default "en" -}}">
+<html class="no-js" lang="{{- site.LanguageCode | default site.Data.params_defaults.languagecode -}}">
     <head>
         {{- partial "head.html" . -}}
     </head>
@@ -16,7 +16,7 @@
         {{- partialCached "js.html" . (printf "%s-%s" .Type .Layout) -}}
     </body>
 </html>
-{{ define "partials/main_class.html"}}
+{{- define "partials/main_class.html" -}}
     {{- $class := slice "page-content " -}}
     {{ if .IsHome }}{{- $class = $class | append (slice "home") -}}
     {{- else if .IsPage -}}
