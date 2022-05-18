@@ -12,7 +12,7 @@
     {{- $org = merge $org (dict "logo" $logo) -}}
     {{- $org = merge $org (dict "image" (dict "@id" $logo_id)) -}}
 {{- end -}}
-{{- with site.Params.FollowLinks.socials -}}
+{{- with site.Params.FollowLinks -}}
     {{- $list_url := slice -}}
     {{- range . -}}
         {{- if .account -}}
