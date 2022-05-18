@@ -35,9 +35,6 @@
 {{- with site.Params.Description -}}
   {{- $website = merge $website (dict "description" .) -}}
 {{- end -}}
-{{/* - with site.Params.Keywords - */}}
-  {{/* - $website = merge $website (dict "keywords" (delimit . ", ")) - */}}
-{{/* - end - */}}
 <!-- ----------- Search box -------------- -->
 {{- $website = merge $website (dict "potentialAction" (dict "@type" "SearchAction" "target" (dict "@type" "EntryPoint" "urltemplate" (printf "%s%s" site.BaseURL "/search/?s={search_term_string}")) "query-input" "required name=search_term_string")) -}}
 {{- return (dict "org_id" $org_id "org" $org "website_id" $website_id "website" $website ) -}}
