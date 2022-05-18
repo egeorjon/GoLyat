@@ -11,9 +11,6 @@ This theme is intended for personal website and blog. If you'd like to extend th
 
 ## Table of Contents
 
-{:toc}
-
-
 - [Goliath](#goliath)
   - [Features](#features)
   - [Tools and libraries](#tools-and-libraries)
@@ -710,25 +707,51 @@ If you combine the two last points, you can drastically change the theme layout:
 
 ## Configuration of the social media
 
-The social links can be configured also
+The social links can be configured also, with the following syntax: 
 ```toml
-[params.followlinks]
-twitter = "<link to your Twitter account"
-github = "<link to your GitHub account>"
-facebook = "<link to your facebook account>"
-pinterest = "<link to your PInterest account>"
-linkedin = "<link to your LinkedIn account>"
-rss = "<link to your RSS file>"
+[[params.followlinks]]
+  id      = "<social media id 1"
+  account = "<account id for this social media>"
+  weight  = <order>
+
+[[params.followlinks]]
+  id      = "<social media id 2"
+  account = "<account id for this social media>"
+  weight  = <order>
+
+... ...
+
+[[params.followlinks]]
+  id      = "<social media id 1"
+  account = "<account id for this social media>"
+  weight  = <order>
 ```
+
 Example:
 ```toml
-[params.followlinks]
-twitter = "https://twitter.com/johndoe"
-github = "https://github.com/johndoe"
-facebook = ""
-pinterest = ""
-linkedin = "https://linkedin.com/in/johndoe"
-rss = ""
+[[params.followlinks]]
+  id      = "rss"
+  weight  = 1
+[[params.followlinks]]
+  id      = "linkedin"
+  account = "johndoe"
+  weight  = 2
+[[params.followlinks]]
+  id      = "twitter"
+  account = "johndoe"
+  weight  = 3
+[[params.followlinks]]
+  id      = "github"
+  account = "jdoe"
+  weight  = 4
+[[params.followlinks]]
+  id      = "facebook"
+  account = ""
+  weight  = 5
+[[params.followlinks]]
+  id      = "pinterest"
+  account = "doejohn"
+  weight  = 6
 ```
 
 ### SEO features
