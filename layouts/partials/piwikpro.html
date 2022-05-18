@@ -1,3 +1,4 @@
+{{- with site.Params.piwikpro -}}
 <script type="text/javascript">
     (function(window, document, dataLayerName, id) {
     window[dataLayerName]=window[dataLayerName]||[],window[dataLayerName].push({start:(new Date).getTime(),event:"stg.start"});var scripts=document.getElementsByTagName('script')[0],tags=document.createElement('script');
@@ -11,3 +12,4 @@
 <noscript>
     <iframe src="https://egeorjon.containers.piwik.pro/{{- . -}}/noscript.html" height="0" width="0" style="display:none;visibility:hidden"></iframe>
 </noscript>
+{{- end -}}

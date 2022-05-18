@@ -117,7 +117,5 @@
     <meta name="google-site-verification" content="{{- . -}}" />
 {{- end -}}
 {{- if or $production (site.Params.debugMode | default false) -}}
-    {{- with site.Params.piwikpro -}}
-        {{- partialCached "piwikpro.html" . -}}
-    {{- end -}}
+    {{- partialCached "piwikpro.html" . -}}
 {{- end -}}
