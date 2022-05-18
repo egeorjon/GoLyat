@@ -10,9 +10,9 @@
                 <link rel="apple-touch-icon" href="{{- $url -}}" sizes="{{- .Width -}}x{{- .Height -}}" />
             {{- end -}}   
         {{- else if eq (substr .Name 0 6) "safari" -}}
-            <link rel="mask-icon" href="/favicons/safari-pinned-tab.svg" color="{{- site.Params.safaritabColor | default "#ffffff" -}}">
+            <link rel="mask-icon" href="/favicons/safari-pinned-tab.svg" color="{{- site.Params.safaritabColor | default site.Data.params_defaults.params.safaritabColor -}}">
         {{- else if eq (substr .Name 0 2) "ms" -}}
-            <meta name="msapplication-TileColor" content="{{- site.Params.mstileColor | default "#00aba9" -}}" />
+            <meta name="msapplication-TileColor" content="{{- site.Params.mstileColor | default site.Data.params_defaults.params.mstilecolor -}}" />
             <meta name="msapplication-TileImage" content="{{- $url -}}" />
         {{- else if eq (substr .Name 0 8) "favicon-" -}}
             {{ with (imageConfig $fullname) }}
@@ -26,7 +26,7 @@
 {{- if fileExists "/static/favicon.ico" -}}
     <link rel="shortcut icon" href="/favicon.ico" />            
 {{- end -}}
-{{ with site.Params.themeColor }}
+{{- with site.Params.themeColor | default site.Data.params_defaults.params.themecolor -}}
     <meta name="theme-color" content="{{- . -}}" />
 {{- end -}}
 {{ with site.Params.appName }}
