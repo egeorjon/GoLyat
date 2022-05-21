@@ -1,11 +1,11 @@
 {{- define "main" -}}
-    {{- $columns     := site.Params.PostList.Columns | default site.Data.default_params.list_columns -}}
-    {{- $post_format := site.Params.PostList.PostFormat | default site.Data.default_params.list_format -}}
-    {{- $meta        := site.Params.PostList.meta -}}
+    {{- $columns     := site.Params.postsList.Columns | default site.Data.default_params.params.postslist.columns -}}
+    {{- $post_format := site.Params.postsList.postFormat | default site.Data.default_params.params.postslist.format -}}
+    {{- $meta        := site.Params.postsList.Meta | default site.Data.default_params.params.postslist.meta -}}
     {{- if and (eq .Kind "taxonomy") (eq .Type "series") -}}
-        {{- $columns = site.Params.SeriesList.Columns | default site.Data.default_params.list_series_columns -}}
-        {{- $post_format = site.Params.SeriesList.PostFormat | default site.Data.default_params.list_series_format -}}
-        {{- $meta        = dict "middle" (dict "1" "linkedsection") -}}
+        {{- $columns     = site.Params.seriesList.Columns | default site.Data.default_params.params.serieslist.columns -}}
+        {{- $post_format = site.Params.seriesList.PostFormat | default site.Data.default_params.params.serieslist.format -}}
+        {{- $meta        = site.Params.seriesList.Meta | default site.Data.default_params.params.serieslist.meta -}}
     {{- end -}}
     {{- $partial_path := path.Join "partials/posts-format" (printf "%s%s%s" "posts-list-" $post_format ".html") -}}
     <section class="page-list">
