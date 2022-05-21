@@ -1,7 +1,10 @@
 {{- $rfc822_date := "Mon, 02 Jan 2006 15:04:05 -0700" -}}
 {{- $limit := 20 -}}
-{{- if gt site.Config.Services.RSS.Limit 0 -}}{{- $limit = site.Config.Services.RSS.Limit -}}{{- end -}}
+{{- if gt site.Config.Services.RSS.Limit 0 -}}{{- $limit = site.Config.Services.RSS.Limit | default site.Data.default_params.services.rss -}}{{- end -}}
 {{- $pages := .RegularPages | first $limit -}}
+{{- if .IsHome -}}
+  {{- $pages = first $limit (where site.RegularPages "Type" "in" site.Params.mainSections) -}}
+{{- end -}}
 {{- printf "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\"  ?>" | safeHTML -}}
 <rss xmlns:media="http://search.yahoo.com/mrss/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:creativeCommons="http://backend.userland.com/creativeCommonsRssModule" version="2.0">
   <channel>
@@ -56,7 +59,9 @@
         <pubDate>{{- .Lastmod.Format $rfc822_date -}}</pubDate>
         <description>{{- (printf "<![CDATA[%s]]>" ($summary | plainify)) | htmlUnescape -}}</description>
         {{- with $authors_list -}}<author>{{- delimit $authors_list "," -}}</author>{{- end -}}
-        {{- with .CurrentSection -}}<category domain="{{- .Permalink -}}">{{- .Title -}}</category>{{- end -}}
+        {{- if not .IsHome -}}
+          {{- with .CurrentSection -}}<category domain="{{- .Permalink -}}">{{- .Title -}}</category>{{- end -}}
+        {{- end -}}
         {{- if isset .Params "images" -}}
             {{- $image := .Resources.GetMatch (index .Params.Images 0) -}}
             {{- with $image -}}
