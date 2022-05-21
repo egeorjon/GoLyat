@@ -7,7 +7,7 @@
             </div><!-- col -->
         </div><!-- row -->
     </div><!-- container -->
-    {{- $display_image  := and (isset .Params "images") (site.Params.Single.displayimage | default false) -}}
+    {{- $display_image  := and (isset .Params "images") (site.Params.Single.displayimage | default site.Params.default_params.params.single.displayimage) -}}
     {{- if $display_image -}}
         <div class="container">
             <div class="row">
