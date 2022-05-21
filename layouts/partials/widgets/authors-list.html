@@ -1,11 +1,11 @@
 {{/* Parameters      */}}
 {{/* .context Page   */}}
 {{/* .title   String */}}
-{{- $title         := .params.title | default ""        -}}
-{{- $heading_level := int (.params.heading | default 3) -}}
-{{- $heading_title := printf "h%d" $heading_level       -}}
-{{- $numposts      := .params.numposts | default false  -}}
-{{- $lastposts     := .params.lastposts | default 0     -}}
+{{- $title         := .params.title | default "" -}}
+{{- $heading_level := int (.params.heading | default site.Data.params_defaults.params.widget_heading) -}}
+{{- $heading_title := printf "h%d" $heading_level -}}
+{{- $numposts      := .params.numposts | default site.Data.params_defaults.params.author_disposts   -}}
+{{- $lastposts     := .params.lastposts | default site.Data.params_defaults.params.author_posts     -}}
 {{- $list          := .params.list | default (.context.GetTerms "authors") -}}
 {{- with $list -}}
     {{- range . -}}
