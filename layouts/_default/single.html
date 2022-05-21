@@ -1,6 +1,6 @@
 {{- define "main" -}}
     {{- $current_page := . -}}
-    {{- $meta := site.Params.Single.meta | default site.Data.defaults_params.single_meta -}}
+    {{- $meta := site.Params.Single.meta | default site.Data.defaults_params.params.single.meta -}}
     <div class="container single-post-summary limit-width">
         <div class="row">
             <div class="col">
@@ -20,7 +20,7 @@
             </div><!-- row -->
         </div><!-- container -->
     {{- end -}}
-    {{- $display_image := and (isset .Params "images") (site.Params.Single.displayimage | default false) -}}
+    {{- $display_image := and (isset .Params "images") (site.Params.Single.displayimage | default site.Data.defaults_params.params.single.displayimage) -}}
     {{- if $display_image -}}
         <div class="container single-post-image">
             <div class="row">
@@ -62,15 +62,15 @@
     {{- partial "partials/pagination-single.html" . -}}
     {{- range sort site.Data.single.Rows "weight" -}}{{/* $defaultBottomline */}}
         <section class="page-bottomline page-bottomline-{{- .name}}">
-            {{- $limit := cond (.limitedWidth | default true) "limit-width" "" -}}
+            {{- $limit := cond (.limitedWidth | default site.Data.default_params.params.widget_area.limitedwidth) "limit-width" "" -}}
             <div class="container {{ $limit -}}">
-                {{- $columns := .columns | default (dict "xs" 1 "sm" 1 "md" 1 "lg" 1 "xl" 1) -}}
+                {{- $columns := .columns | default site.Data.default_params.params.widget_area.columns -}}
                 {{- $class := partialCached "partials/class-columns.html" $columns (delimit $columns "-") -}}
                 <div class="{{- $class -}}">
                     {{- $num_groups := len .Groups -}}
                     {{- range sort .Groups "weight" -}}
                         {{- $num_widgets := len .Widgets -}}
-                        {{- $columns := .columns | default (dict "xs" 1 "sm" 1 "md" 1 "lg" 1 "xl" 1) -}}
+                        {{- $columns := .columns | default site.Data.default_params.params.widget_area.columns -}}
                         {{- $class := partialCached "partials/class-columns.html" $columns (delimit $columns "-") -}}
                         {{- if and (gt $num_groups 1) (gt $num_widgets 1) -}}
                         <div class="col">
@@ -79,7 +79,7 @@
                             {{- range sort .Widgets "weight" -}}
                                 {{- $partialPath := printf "partials/widgets/%s.html" .widget -}}
                                 {{- if templates.Exists $partialPath -}}
-                                    {{- if .cache | default false -}}
+                                    {{- if .cache | default site.Data.default_params.params.widget_area.cache -}}
                                         {{- partialCached $partialPath (dict "context" $current_page "params" .params) (printf "%s-%s" .widget .params) -}}
                                     {{- else -}}
                                         {{- partial $partialPath (dict "context" $current_page "params" .params) -}}
