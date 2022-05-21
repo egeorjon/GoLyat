@@ -1,6 +1,6 @@
 {{- define "main" -}}
     {{- $current_page := . -}}
-    {{- $display_image  := and (isset .Params "images") (site.Params.Single.displayimage | default false) -}}
+    {{- $display_image  := and (isset .Params "images") (site.Params.Single.displayimage | default site.Data.default_params.params.single.displayimage) -}}
     {{- if $display_image -}}
         <div class="container">
             <div class="row">
@@ -23,7 +23,7 @@
             <div class="row">
                 <h2 class="col" id="search-results-title">{{- i18n "search-results" -}}</h2>
             </div>
-            {{- $columns := site.Params.PostList.ListColumns | default (dict "xs" 1 "sm" 1 "md" 1 "lg" 1 "xl" 1) -}}
+            {{- $columns := site.Params.PostList.ListColumns | default site.Data.default_params.params.postslist.columns -}}
             {{- $class   := partialCached "partials/class-columns.html" $columns (delimit $columns "-") -}}
             <div id="search-results-items" class="post-list {{ $class -}}">
 
