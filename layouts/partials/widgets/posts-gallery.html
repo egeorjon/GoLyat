@@ -10,7 +10,7 @@
 {{- $taxo          := .params.tax   | default "tags"             -}}
 {{- $term          := .params.term  | default ""                 -}}
 {{- $title         := .params.title | default (i18n "portfolio") -}}
-{{- $heading_level := int (.params.heading | default site.Data.default_params.widget_heading) -}}
+{{- $heading_level := int (.params.heading | default site.Data.default_params.params.widgets.heading) -}}
 {{- $heading_title := printf "h%d" $heading_level                -}}
 {{- $columns       := int (.params.columns |  default 2)         -}}
 {{- $numposts      := int (.params.numposts |  default 6)        -}}

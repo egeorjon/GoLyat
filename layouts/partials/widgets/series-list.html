@@ -10,7 +10,7 @@
     {{- $nb_series        := len site.Taxonomies.series                                              -}}
     {{- $title            := .params.title | default (i18n "series" $nb_series)                      -}}
     {{- $widget_format    := .params.type | default "image-title"                                    -}}
-    {{- $heading_level    := int (.params.heading | default site.Data.default_params.widget_heading) -}}
+    {{- $heading_level    := int (.params.heading | default site.Data.default_params.params.widgets.heading) -}}
     {{- $heading_title    := printf "h%d" $heading_level                                             -}}
     {{- $heading_subtitle := printf "h%d" (add $heading_level 1)                                     -}}
     {{- $columns          := .params.columns | default site.Data.default_params.columns_3            -}}

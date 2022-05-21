@@ -14,7 +14,7 @@
     {{- range $serie -}}
         {{- $title            := $.params.title | default (i18n "in-same-serie") -}}
         {{- $num_posts        := $.params.num_posts | default 10 -}}
-        {{- $heading_level    := int ($.params.heading | default 3) -}}
+        {{- $heading_level    := int ($.params.heading | default site.Data.default_params.params.widgets.heading) -}}
         {{- $heading_title    := printf "h%d" $heading_level -}}
         {{- $heading_subtitle := printf "h%d" (add $heading_level 1) -}}
         <aside class="col widget widget-same-series">

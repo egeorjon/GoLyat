@@ -3,7 +3,7 @@
 {{/* .params     */}}
 {{/*    .title   */}}
 {{/*    .heading */}}
-{{- $heading_level := int (.params.heading | default 3) -}}
+{{- $heading_level := int (.params.heading | default site.Data.default_params.params.widgets.heading) -}}
 {{- $heading_title := printf "h%d" $heading_level -}}
 {{- if isset site.Taxonomies "tags" -}}
     {{- $nb_tags := len site.Taxonomies.tags -}}
