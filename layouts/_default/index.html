@@ -2,15 +2,15 @@
     {{- $current_page := . -}}
     {{- range sort site.Data.homepage.Rows "weight" -}}
         <section class="homepage home-{{- .name }}">
-            {{- $limit := cond (.limitedWidth | default true) "limit-width" "" -}}
+            {{- $limit := cond (.limitedWidth | default site.Data.default_params.params.widget_area.limitedwidth) "limit-width" "" -}}
             <div class="container {{ $limit -}}">
-                {{- $columns := .columns | default (dict "xs" 1 "sm" 1 "md" 1 "lg" 1 "xl" 1) -}}
+                {{- $columns := .columns | default site.Data.default_params.params.widget_area.columns -}}
                 {{- $class := partialCached "partials/class-columns.html" $columns (delimit $columns "-") -}}
                 <div class="{{- $class -}}">
                     {{- $num_groups := len .Groups -}}
                     {{ range sort .Groups "weight" }}
                         {{- $num_widgets := len .Widgets -}}
-                        {{- $columns := .columns | default (dict "xs" 1 "sm" 1 "md" 1 "lg" 1 "xl" 1) -}}
+                        {{- $columns := .columns | default site.Data.default_params.params.widget_area.columns -}}
                         {{- $class := partialCached "partials/class-columns.html" $columns (delimit $columns "-") -}}
                         {{- if and (gt $num_groups 1) (gt $num_widgets 1) -}}
                         <div class="col">
