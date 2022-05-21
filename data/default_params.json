@@ -1,25 +1,58 @@
 {
     "formatdate": "2-Jan-2006",
-    "list_columns": { "xs": 1, "sm": 1, "md": 1, "lg": 1, "xl": 1 },
-    "list_format": "meta-left",
-    "list_series_columns": { "xs": 1, "sm": 1, "md": 2, "lg": 2, "xl": 2 },
-    "list_series_format": "image-top",
-    "single_meta": { "top": {}, "middle": { "1": "fulldate", "2": "reading"}, "bottom": {} },
-    "widget_heading": 2,
     "widget_postlist_numposts": 6,
     "widget_popular_numposts": 6,
     "columns_1": { "xs": 1, "sm": 1, "md": 1, "lg": 1, "xl": 1 },
     "columns_2": { "xs": 1, "sm": 1, "md": 2, "lg": 2, "xl": 2 },
     "columns_3": { "xs": 1, "sm": 1, "md": 3, "lg": 3, "xl": 3 },
     "columns_4": { "xs": 1, "sm": 1, "md": 2, "lg": 4, "xl": 4 },
-    "rsslimit": 10,
     "languagecode": "en-US",
     "params": {
-        "opengraph": "internal",
-        "twittercards": "internal",
-        "schema": "internal",
-        "safaritabColor": "#ffffff",
-        "mstilecolor" : "#00aba9",
-        "themecolor"  : "#ffffff"
+        "opengraph"             : "internal",
+        "twittercards"          : "internal",
+        "schema"                : "internal",
+        "author_posts"          : 0,
+        "author_disposts"       : false,
+        "authors_list_posts"    : 10,
+        "authors_list_disposts" : true,
+        "widget_heading"        : 2,
+        "single": {
+            "displayimage"      : true,
+            "meta"              : { "top": {}, "middle": { "1": "fulldate", "2": "reading"}, "bottom": {} }
+        },
+        "postslist": {
+            "format"            : "meta-left",
+            "columns"           : { "xs": 1, "sm": 1, "md": 1, "lg": 1, "xl": 1 },
+            "meta"              : { "top": { "1": "section", "2": "date", "3": "tags", "4": "series", "5": "reading" }, "middle": {}, "bottom": {} }
+        },
+        "serieslist": {
+            "format"            : "image-top",
+            "columns"           : { "xs": 1, "sm": 1, "md": 2, "lg": 2, "xl": 2 },
+            "meta"              : { "top": { }, "middle": { "1": "linkedsection" }, "bottom": {} }
+        },
+        "authorslist": {
+            "numposts"          : true,
+            "lastposts"         : 10
+        },
+        "widget_area": {
+            "limitedwidth"      : false,
+            "cache"             : false,
+            "columns"           : { "xs": 1, "sm": 1, "md": 1, "lg": 1, "xl": 1 }
+        },
+        "manifest": {
+            "display"           : "browser",
+            "backgroundColor"   : "#ffffff",
+            "orientation"       : "portrait",
+            "favicons"          : "favicons",
+            "scope"             : "/"
+        },
+        "favicons": {
+            "safaritabColor"    : "#ffffff",
+            "mstilecolor"       : "#00aba9",
+            "themecolor"        : "#ffffff"
+        }
+    },
+    "services": {
+        "rss"                   : 10
     }
 }
