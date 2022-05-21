@@ -15,7 +15,6 @@
         "author_disposts"       : false,
         "authors_list_posts"    : 10,
         "authors_list_disposts" : true,
-        "widget_heading"        : 2,
         "single": {
             "displayimage"      : true,
             "meta"              : { "top": {}, "middle": { "1": "fulldate", "2": "reading"}, "bottom": {} }
@@ -50,6 +49,9 @@
             "safaritabColor"    : "#ffffff",
             "mstilecolor"       : "#00aba9",
             "themecolor"        : "#ffffff"
+        },
+        "widgets": {
+            "heading"           : 2
         }
     },
     "services": {
