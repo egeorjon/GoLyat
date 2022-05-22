@@ -15,6 +15,7 @@
         "author_disposts"       : false,
         "authors_list_posts"    : 10,
         "authors_list_disposts" : true,
+        "lighbox_for_big_image" : true,
         "single": {
             "displayimage"      : true,
             "meta"              : { "top": {}, "middle": { "1": "fulldate", "2": "reading"}, "bottom": {} }
