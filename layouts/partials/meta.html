@@ -6,7 +6,7 @@
 {{- $context  := .context -}}
 {{- $kindctx  := .kindctx -}}
 {{- $typectx  := .typectx -}}
-{{/*- $defaults := .Scratch.Get "defaults" -*/}}
+{{- $formatdate := site.Params.FormatDate | default site.Data.default_params.formatdate -}}
 <ul class="post-meta {{ with .class -}}{{- . | safeHTML -}}{{- end -}}">
     {{- range $order, $meta := .meta -}}
         {{- if eq $meta "date" -}}
@@ -14,7 +14,7 @@
             <i class="bi-calendar3"></i> 
             <span class="visually-hidden">{{- i18n "posted-on" -}}</span>
             <time class="entry-date published" datetime="{{- index (split $context.Lastmod " ") 0 -}}">
-                {{- $context.Date | time.Format (site.Params.FormatDate | default site.Data.default_params.formatdate) -}}
+                {{- $context.Date | time.Format $formatdate -}}
             </time>
         </li>
         {{- else if eq $meta "fulldate" -}}
@@ -22,8 +22,8 @@
             <i class="bi-calendar3"></i> 
             <span class="visually-hidden">{{- i18n "posted-on" -}}</span>
             <time class="entry-date published" datetime="{{- index (split $context.Date " ") 0 -}}">
-                {{- $context.Date | time.Format (site.Params.FormatDate | default site.Data.default_params.formatdate) -}}
-                {{- if ne $context.Date $context.Date }} (updated on {{ $context.Date | time.Format (site.Params.FormatDate | default site.Data.default_params.formatdate) -}}){{- end -}}
+                {{- $context.Date | time.Format $formatdate -}}
+                {{- if ne $context.Date $context.Date }} (updated on {{ $context.Date | time.Format $formatdate -}}){{- end -}}
             </time>
         </li>
         {{- else if eq $meta "reading" -}}
