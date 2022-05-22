@@ -3,7 +3,13 @@
         <div class="row">
             <div class="col">
                 {{- partial "partials/breadcrumb.html" . -}}
-                <h1>{{- if eq .Kind "404" -}}{{- i18n "404-page-not-found" -}}{{- else -}}{{- .Title -}}{{- end -}}
+                <h1>
+                    {{- if eq .Kind "404" -}}
+                        {{- i18n "404-page-not-found" -}}
+                    {{- else -}}
+                        {{- $title := i18n .Title -}}
+                        {{- if eq $title "" -}}{{- .Title -}}{{- else -}}{{- $title -}}{{- end -}}
+                    {{- end -}}
                     {{- if and (eq .Kind "section") (ne .Type "search") -}}
                         {{- with .OutputFormats.Get "rss" -}}
                             {{- printf `<a rel="%s" href="%s" title="%s" ><i class="bi-rss"></i></a>` .Rel .Permalink "RSS feed" | safeHTML -}}
