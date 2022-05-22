@@ -2,7 +2,7 @@
 {{- $kindctx        := .params.kindctx                 -}}
 {{- $typectx        := .params.typectx                 -}}
 {{- $display_image  := isset .context.Params "images"  -}}
-{{- $meta           := .params.meta | default (dict "top" (dict "1" "section") "bottom" (dict "1" "tags" "2" "series")) -}}
+{{- $meta           := .params.meta | default site.Data.default_params.params.meta.format_image_right -}}
 <article class="post post-format post-format-image-right">
     <div class="row">
         <div class="col-12 {{ if $display_image -}}col-md-7{{- end -}}">
