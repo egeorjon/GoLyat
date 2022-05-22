@@ -1,20 +1,10 @@
 {
     "formatdate": "2-Jan-2006",
-    "widget_postlist_numposts": 6,
-    "widget_popular_numposts": 6,
-    "columns_1": { "xs": 1, "sm": 1, "md": 1, "lg": 1, "xl": 1 },
-    "columns_2": { "xs": 1, "sm": 1, "md": 2, "lg": 2, "xl": 2 },
-    "columns_3": { "xs": 1, "sm": 1, "md": 3, "lg": 3, "xl": 3 },
-    "columns_4": { "xs": 1, "sm": 1, "md": 2, "lg": 4, "xl": 4 },
     "languagecode": "en-US",
     "params": {
         "opengraph"             : "internal",
         "twittercards"          : "internal",
         "schema"                : "internal",
-        "author_posts"          : 0,
-        "author_disposts"       : false,
-        "authors_list_posts"    : 10,
-        "authors_list_disposts" : true,
         "lighbox_for_big_image" : true,
         "single": {
             "displayimage"      : true,
@@ -29,6 +19,33 @@
             "format"            : "image-top",
             "columns"           : { "xs": 1, "sm": 1, "md": 2, "lg": 2, "xl": 2 },
             "meta"              : { "top": { }, "middle": { "1": "linkedsection" }, "bottom": {} }
+        },
+        "meta": {
+            "format_image_left": { 
+                "top"           : { "1": "section" },
+                "middle"        : { "2": "tags" },
+                "bottom"        : { "1": "date", "2": "reading" }
+            },
+            "format_image_right": { 
+                "top"           : { "1": "section" },
+                "middle"        : { "2": "tags" },
+                "bottom"        : { "1": "date", "2": "reading" }
+            },
+            "format_image_top": { 
+                "top"           : { "1": "section" },
+                "middle"        : { "2": "tags" },
+                "bottom"        : { "1": "date", "2": "reading" }
+            },
+            "format_meta_left": { 
+                "top"           : { "1": "section", "2": "date", "3": "tags", "4": "series", "5": "reading" },
+                "middle"        : {},
+                "bottom"        : {}
+            },
+            "format_no_image": { 
+                "top"           : { "1": "section" },
+                "middle"        : { "2": "tags" },
+                "bottom"        : { "1": "date", "2": "reading" }
+            }
         },
         "authorslist": {
             "numposts"          : true,
@@ -52,7 +69,61 @@
             "themecolor"        : "#ffffff"
         },
         "widgets": {
-            "heading"           : 2
+            "heading"           : 2,
+            "columns"           : { "xs": 1, "sm": 1, "md": 3, "lg": 3, "xl": 3 },
+            "format"            : "image-full"
+        },
+        "widget_follow_me": {
+            "title"             : "follow-me",
+            "direction"         : "horizontal"
+        },
+        "widget_popular": {
+            "title"             : "most-popular-posts",
+            "numposts"          : 6,
+            "filename"          : "popularposts.json"
+        },
+        "widget_gallery": {
+            "title"             : "portfolio",
+            "columns"           : 2,
+            "nuposts"           : 6,
+            "taxonomy"          : "tags"
+        },
+        "widget_related": {
+            "title"             : "related-posts",
+            "columns"           : { "xs": 1, "sm": 1, "md": 3, "lg": 3, "xl": 3 },
+            "numposts"          : 3
+        },
+        "widget_sections": {
+            "title"             : "sections-list",
+            "columns"           : { "xs": 1, "sm": 1, "md": 2, "lg": 4, "xl": 4 },
+            "format"            : "image-title"
+        },
+        "widget_serieslist": {
+            "title"             : "series-list",
+            "columns"           : { "xs": 1, "sm": 1, "md": 3, "lg": 3, "xl": 3 },
+            "format"            : "image-title"
+        },
+        "widget_seriesame": {
+            "title"             : "in-same-serie",
+            "numposts"          : 10
+        },
+        "widget_share": {
+            "title"             : "share-this-post"
+        },
+        "widget_tagscloud": {
+            "title"             : "tags",
+            "largest"           : 2,
+            "smallest"          : 0.875
+        },
+        "widget_tagslist": {
+            "title"             : "tags"
+        },
+        "widget_tags": {
+            "title"             : "tags"
+        },
+        "widget_posts": {
+            "title"             : "last-posts-published",
+            "numposts"          : 6
         }
     },
     "services": {
