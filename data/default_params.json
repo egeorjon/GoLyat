@@ -42,10 +42,10 @@
             "display"           : "browser",
             "backgroundColor"   : "#ffffff",
             "orientation"       : "portrait",
-            "favicons"          : "favicons",
             "scope"             : "/"
         },
         "favicons": {
+            "folder"            : "favicons",
             "safaritabColor"    : "#ffffff",
             "mstilecolor"       : "#00aba9",
             "themecolor"        : "#ffffff"
