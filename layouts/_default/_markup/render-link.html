@@ -1,8 +1,8 @@
-<a href="{{ .Destination | safeURL }}"{{ with .Title -}} title="{{ . }}"{{- end -}} {{- if strings.HasPrefix .Destination "http" -}}target="_blank" rel="noopener noreferrer"{{- end -}}>
+<a href="{{- .Destination | safeURL -}}"{{ with .Title -}} title="{{ . }}"{{- end -}} {{- if strings.HasPrefix .Destination "http" -}}target="_blank" rel="noopener noreferrer"{{- end -}}>
     {{- .Text | safeHTML -}}
     {{- if strings.HasPrefix .Destination "http" -}}
         {{- if strings.HasPrefix .Destination "https://github" }} <i class="bi-github"></i>
-        {{- else -}} <i class="bi-link-45deg"></i>
+        {{- else }} <i class="bi-link-45deg"></i>
         {{- end -}}
     {{- end -}}
 </a>
