@@ -1,23 +1,23 @@
 {
     "name":         "{{- site.Params.Manifest.name         | default site.Title   -}}",
     "short_name":   "{{- site.Params.Manifest.shortName    | default site.Title   -}}",
-    "lang":         "{{- site.Params.Manifest.languageCode | default site.LanguageCode | default site.Data.params_defaults.languagecode -}}",
-    "display":      "{{- site.Params.Manifest.display      | default site.Data.params_defaults.params.manifest.display -}}",
+    "lang":         "{{- site.Params.Manifest.languageCode | default site.LanguageCode | default site.Data.default_params.languagecode -}}",
+    "display":      "{{- site.Params.Manifest.display      | default site.Data.default_params.params.manifest.display -}}",
     "start_url":    "{{- site.Params.Manifest.startUrl     | default site.BaseURL -}}",
-    "theme_color":  "{{- site.Params.Manifest.themeColor   | default site.Params.themeColor | default site.Data.params_defaults.params.manifest.themecolor -}}",
-    {{- with site.Params.Manifest.backgroundColor |  default site.Data.params_defaults.params.manifest.backgroundcolor -}}
+    "theme_color":  "{{- site.Params.Manifest.themeColor   | default site.Params.themeColor | default site.Data.default_params.params.favicons.themecolor -}}",
+    {{- with site.Params.Manifest.backgroundColor |  default site.Data.default_params.params.manifest.backgroundcolor -}}
     "background_color": "{{- . -}}",
     {{- end -}}
     {{- with (site.Params.Manifest.description | default site.Params.Description | default "") -}}
     "description": "{{- . | plainify | htmlUnescape -}}",
     {{- end -}}
-    {{- with (site.Params.Manifest.orientation | default site.Data.params_defaults.params.manifest.orientation) }}
+    {{- with (site.Params.Manifest.orientation | default site.Data.default_params.params.manifest.orientation) }}
     "orientation": "{{- . -}}",
     {{- end }}
-    {{- with (site.Params.Manifest.scope | default site.Data.params_defaults.params.manifest.scope) }}
+    {{- with (site.Params.Manifest.scope | default site.Data.default_params.params.manifest.scope) }}
     "scope": "{{- . -}}",
     {{ end }}
-    {{- $fav_path := site.Params.Manifest.favicons | default site.Data.params_defaults.params.manifest.favicons -}}
+    {{- $fav_path  := site.Params.favIcons.folder | default site.Data.default_params.params.favicons.folder -}}
     {{- $base_path := path.Join "/static" $fav_path -}}
     {{- if fileExists $base_path -}}
         {{ $icon_list := slice -}}
