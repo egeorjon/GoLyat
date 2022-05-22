@@ -5,22 +5,22 @@
 {{/*    .type      */}}
 {{/*    .columns   */}}
 {{/*    .heading   */}}
-{{- $context := .context                                                                             -}}
-{{- if isset site.Taxonomies "series"                                                                -}}
-    {{- $nb_series        := len site.Taxonomies.series                                              -}}
-    {{- $title            := .params.title | default (i18n "series" $nb_series)                      -}}
-    {{- $widget_format    := .params.type | default "image-title"                                    -}}
-    {{- $heading_level    := int (.params.heading | default site.Data.default_params.params.widgets.heading) -}}
-    {{- $heading_title    := printf "h%d" $heading_level                                             -}}
-    {{- $heading_subtitle := printf "h%d" (add $heading_level 1)                                     -}}
-    {{- $columns          := .params.columns | default site.Data.default_params.columns_3            -}}
-    {{- $class            := partialCached "partials/class-columns.html" $columns (delimit $columns "-") -}}
+{{- $context := .context                                                                                   -}}
+{{- if isset site.Taxonomies "series"                                                                      -}}
+    {{- $nb_series      := len site.Taxonomies.series                                                      -}}
+    {{- $title          := .params.title | default (i18n site.Data.default_params.params.serieslist.title $nb_series) -}}
+    {{- $widget_format  := .params.type | default site.Data.default_params.params.serieslist.format        -}}
+    {{- $heading_level  := int (.params.heading | default site.Data.default_params.params.widgets.heading) -}}
+    {{- $columns        := .params.columns | default site.Data.default_params.params.serieslist.columns   -}}
+    {{- $class          := partialCached "partials/class-columns.html" $columns (delimit $columns "-")     -}}
+    {{- $heading_tag    := printf "h%d" $heading_level                                                     -}}
+    {{- $subheading_tag := printf "h%d" (add $heading_level 1)                                             -}}
     {{- with site.Taxonomies.series }}
         {{- if or (eq $widget_format "image-full") (eq $widget_format "image-title") -}}
             <div class="col widget widget-series widget-series-images">
                 <div class="widget-inner">
                     {{- with $title -}}
-                        {{- (printf "<%s>%s</%s>" $heading_title . $heading_title) | safeHTML -}}
+                        {{- (printf "<%s>%s</%s>" $heading_tag . $heading_tag) | safeHTML -}}
                     {{- end -}}
                     <div class="{{- $class -}}">
                         {{- range . -}}
@@ -29,7 +29,7 @@
                                     {{- if isset .Params "images" -}}
                                         {{- partial "partials/image.html" (dict "context" . "Destination" .Params.images "Title" .Title "Text" .Title "Link" .RelPermalink) -}}
                                     {{- end -}}
-                                    {{- (printf "<%s class=\"widget-title\"><a href=\"%s\" title=\"%s\">%s</a></%s>" $heading_subtitle .RelPermalink (.Title | plainify | htmlUnescape) .Title $heading_subtitle) | safeHTML -}}
+                                    {{- (printf "<%s class=\"widget-title\"><a href=\"%s\" title=\"%s\">%s</a></%s>" $subheading_tag .RelPermalink (.Title | plainify | htmlUnescape) .Title $subheading_tag) | safeHTML -}}
                                     {{- if eq $widget_format "image-full" -}}
                                         {{- with .Params.Description -}}
                                             <p class="widget-content">{{- . | plainify | htmlUnescape -}}</p>
@@ -59,7 +59,7 @@
             <aside class="col widget widget-series widget-series-list">
                 <div class="widget-inner">
                     {{- with $title -}}
-                        {{- printf "<%s class=\"widget-title\">%s</%s>" $heading_title . $heading_title | safeHTML -}}
+                        {{- printf "<%s class=\"widget-title\">%s</%s>" $heading_tag . $heading_tag | safeHTML -}}
                     {{- end -}}
                     <ul class="widget-content">
                     {{- range . -}}

@@ -4,22 +4,22 @@
 {{/*    .title   */}}
 {{/*    .heading */}}
 {{- $heading_level := int (.params.heading | default site.Data.default_params.params.widgets.heading) -}}
-{{- $heading_title := printf "h%d" $heading_level -}}
+{{- $heading_tag   := printf "h%d" $heading_level -}}
 {{- if isset site.Taxonomies "tags" -}}
     {{- $nb_tags := len site.Taxonomies.tags -}}
-    {{- $title   := .params.title | default (i18n "Tags" $nb_tags) -}}
+    {{- $title   := .params.title | default (i18n site.Data.default_params.params.widget_tagscloud.title $nb_tags) -}}
     {{- $title   := trim $title " " -}}
     {{- with site.Taxonomies.tags }}
 
     <div class="col widget widget-tags-cloud">
         <div class="widget-inner">
-            {{- with $title -}}{{- (printf "<%s class=\"widget-title\">%s</%s>" $heading_title . $heading_title) | safeHTML -}}{{- end -}}
-            {{- $fontUnit         := "rem" -}}
-            {{- $largestFontSize  := 2     -}}
-            {{- $smallestFontSize := 0.875 -}}
-            {{- $fontGap          := sub $largestFontSize $smallestFontSize -}}
-            {{- $max              := add (len (index .ByCount 0).Pages) 1 -}}
-            {{- $min              := len (index .ByCount.Reverse 0).Pages -}}
+            {{- with $title -}}{{- (printf "<%s class=\"widget-title\">%s</%s>" $heading_tag . $heading_tag) | safeHTML -}}{{- end -}}
+            {{- $fontUnit         := "rem"                                                     -}}
+            {{- $largestFontSize  := site.Data.default_params.params.widget_tagscloud.largest  -}}
+            {{- $smallestFontSize := site.Data.default_params.params.widget_tagscloud.smallest -}}
+            {{- $fontGap          := sub $largestFontSize $smallestFontSize                    -}}
+            {{- $max              := add (len (index .ByCount 0).Pages) 1                      -}}
+            {{- $min              := len (index .ByCount.Reverse 0).Pages                      -}}
             {{- $gap              := sub $max $min     -}}
             {{- $fontStep         := div $fontGap $gap -}}
             <ul>

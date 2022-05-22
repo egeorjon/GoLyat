@@ -1,17 +1,17 @@
 {{/* Parameters */}}
 {{/* .context   */}}
 {{/* .title     */}}
-{{- $title := .title | default (i18n "Tags") -}}
+{{- $title := .title | default (i18n  site.Data.default_params.params.widget_tags.title) -}}
 {{- $sl := slice -}}
-{{- $heading_level := int (.params.heading | default 3) -}}
-{{- $heading_title := printf "h%d" $heading_level -}}
+{{- $heading_level := int (.params.heading | default site.Data.default_params.params.widgets.heading) -}}
+{{- $heading_tag := printf "h%d" $heading_level -}}
 {{- with .context.GetTerms "tags" -}}
     <aside class="col widget widget-tags">
         <div class="widget-inner">
             {{- range . -}}
                 {{- $sl = $sl | append (printf "<a href=\"%s\">%s</a>" .Permalink (humanize .LinkTitle)) -}}
             {{- end -}}
-            {{- with $title -}}{{- (printf "<%s class=\"widget-title\">%s</%s>" $heading_title . $heading_title) | safeHTML -}}{{- end -}}
+            {{- with $title -}}{{- (printf "<%s class=\"widget-title\">%s</%s>" $heading_tag . $heading_tag) | safeHTML -}}{{- end -}}
             <p class="widget-content"><i class="bi-tags"></i> <span class="visually-hidden" aria-hidden="true">Tags ({{ (len $sl) -}}) : </span> {{- delimit $sl ", " -}}</p>
         </div>
     </aside>

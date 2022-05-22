@@ -1,17 +1,14 @@
 {{/* Parameters  */}}
 {{/* .context    */}}
 {{/* Params      */}}
-{{/*  .title     */}}
 {{/*  .columns   */}}
 {{/*  .type      */}}
-{{/*  .numposts  */}}
 {{/*  .filename  */}}
 {{- $context  := .context -}}
-{{- $params   := .params  -}}
-{{- $numposts := .params.numposts | default site.Data.default_params.widget_popular_numposts -}}
-{{- $title    := .params.title | default (i18n "most-popular-posts" 2) -}}
-{{- $params   := merge $params (dict "title" $title ) -}}
-{{- $filepath := path.Join "data" (.params.filename | default "popularposts.json") -}}
+{{- $numposts := .params.numposts | default site.Data.default_params.params.widget_popular.numposts -}}
+{{- $title    := .params.title | default (i18n site.Data.default_params.params.widget_popular.title 2) -}}
+{{- $filepath := path.Join "data" (.params.filename | default site.Data.default_params.params.widget_popular.filename) -}}
+{{- $params   := merge .params (dict "title" $title "numpost" $numposts) -}}
 {{- if os.FileExists $filepath -}}
     {{- $data := getJSON $filepath -}}
     {{- with $data -}}

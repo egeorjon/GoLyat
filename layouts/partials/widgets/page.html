@@ -5,14 +5,14 @@
 {{- $method        := .params.method | default "path" -}}
 {{- $value         := .params.value  | default ""     -}}
 {{- $heading_level := int (.params.heading | default site.Data.default_params.params.widgets.heading) -}}
-{{- $heading_title := printf "h%d" $heading_level -}}
+{{- $heading_tag   := printf "h%d" $heading_level -}}
 {{- $post          := slice -}}
 {{- if eq $method "field" -}}
     {{- $post = where site.Pages (printf "Params.%s" $value) true -}}
         {{- range first 1 $post -}}
         <aside class="col widget widget-page">
             <div class="widget-inner">
-                {{- (printf "<%s class=\"widget-title\">%s</%s>" $heading_title .Title $heading_title) | safeHTML -}}
+                {{- (printf "<%s class=\"widget-title\">%s</%s>" $heading_tag .Title $heading_tag) | safeHTML -}}
                 <div class="widget-content">{{- .Content -}}</div>
             </div>
         </aside>
@@ -25,7 +25,7 @@
     {{- with site.GetPage $value -}}
         <aside class="col widget widget-page">
             <div class="widget-inner">
-                {{- (printf "<%s class=\"widget-title\">%s</%s>" $heading_title .Title $heading_title) | safeHTML -}}
+                {{- (printf "<%s class=\"widget-title\">%s</%s>" $heading_tag .Title $heading_tag) | safeHTML -}}
                 <div class="widget-content">{{- .Content -}}</div>
             </div>
         </aside>

@@ -1,14 +1,13 @@
 {{/* Parameters      */}}
 {{/* .context Page   */}}
-{{- $title            := .params.title         | default (i18n "follow-me") -}}
-{{- $direction        := .params.direction     | default "horizontal" -}}
-{{- $heading_level    := int ($.params.heading | default site.Data.default_params.params.widgets.heading) -}}
-{{- $heading_title    := printf "h%d" $heading_level         -}}
-{{- $heading_subtitle := printf "h%d" (add $heading_level 1) -}}
+{{- $title         := .params.title        | default (i18n site.Data.default_params.params.widget_follow_me.title) -}}
+{{- $direction     := .params.direction    | default site.Data.default_params.params.widget_follow_me.direction    -}}
+{{- $heading_level := int (.params.heading | default site.Data.default_params.params.widgets.heading)              -}}
+{{- $heading_tag   := printf "h%d" $heading_level -}}
 {{- with site.Params.FollowLinks -}}
 <aside class="col widget widget-follow {{- printf " widget-follow-%s" $direction -}}">
     <div class="widget-inner">
-        {{- printf "<%s class=\"widget-title\">%s</%s>" $heading_title $title $heading_title | safeHTML -}}
+        {{- printf "<%s class=\"widget-title\">%s</%s>" $heading_tag $title $heading_tag | safeHTML -}}
         <ul>
             {{- range sort . "weight" -}}
                 {{- if eq .id "rss" -}}

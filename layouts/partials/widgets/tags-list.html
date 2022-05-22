@@ -4,10 +4,10 @@
 {{/*    .title   */}}
 {{/*    .heading */}}
 {{- $heading_level := int (.params.heading | default site.Data.default_params.params.widgets.heading) -}}
-{{- $heading_title := printf "h%d" $heading_level -}}
+{{- $heading_tag := printf "h%d" $heading_level -}}
 {{- if isset site.Taxonomies "tags" -}}
     {{- $nb_tags := len site.Taxonomies.tags -}}
-    {{- $title   := .params.title | default (i18n "Tags" $nb_tags) -}}
+    {{- $title   := .params.title | default (i18n site.Data.default_params.params.widget_tagslist.title $nb_tags) -}}
     {{- with site.Taxonomies.tags }}
 
     <aside class="col widget widget-tags-list">
@@ -16,7 +16,7 @@
             {{- range . }}
                 {{- $tl = $tl | append (printf "<a href=\"%s\" title=\"%s (%d)\" >%s</a>" .Page.Permalink (.Page.Title | plainify) (int .Count) (humanize .Page.Title)) -}}
             {{- end -}}
-            {{- with $title -}}{{- (printf "<%s class=\"widget-title\">%s</%s>" $heading_title . $heading_title) | safeHTML -}}{{- end -}}
+            {{- with $title -}}{{- (printf "<%s class=\"widget-title\">%s</%s>" $heading_tag . $heading_tag) | safeHTML -}}{{- end -}}
             <ul class="widget-content"><li>{{- delimit $tl "</li><li>" | safeHTML -}}</li></ul>
         </div>
     </aside>
