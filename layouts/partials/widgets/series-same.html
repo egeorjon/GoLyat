@@ -29,7 +29,7 @@
                         <strong>{{- .Title }}</strong>
                         {{- else -}}
                         <a href="{{- .RelPermalink -}}" rel="bookmark">
-                            {{- .Title }} ({{- .Date | time.Format (site.Params.FormatDate | default site.Data.params_defaults.formatdate)  -}})
+                            {{- .Title }} ({{- .Date | time.Format (site.Params.FormatDate | default site.Data.default_params.formatdate)  -}})
                         </a>
                         {{- end -}}
                     </li>

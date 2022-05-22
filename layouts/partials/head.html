@@ -33,21 +33,21 @@
 {{- hugo.Generator -}}
 
 {{- if ne .Kind "404" -}}
-    {{- $opengraph := site.Params.opengraph | default site.Data.params_defaults.params.opengraph -}}
+    {{- $opengraph := site.Params.opengraph | default site.Data.default_params.params.opengraph -}}
     {{- if eq $opengraph "internal" -}}
         {{- template "_internal/opengraph.html" . -}}
     {{- else if eq $opengraph "theme" -}}
         {{- partial "partials/opengraph.html" . -}}
     {{- end -}}
 
-    {{- $twitter := site.Params.twitterCards | default site.Data.params_defaults.params.twittercards -}}
+    {{- $twitter := site.Params.twitterCards | default site.Data.default_params.params.twittercards -}}
     {{- if eq $twitter "internal" -}}
         {{- template "_internal/twitter_cards.html" . -}}
     {{- else if eq $twitter "theme" -}}
         {{- partial "partials/twitter.html" . -}}
     {{- end -}}
 
-    {{- $schema := site.Params.schema | default site.Data.params_defaults.params.schema -}}
+    {{- $schema := site.Params.schema | default site.Data.default_params.params.schema -}}
     {{- if eq $schema "internal" -}}
         {{- template "_internal/schema.html" . -}}
     {{- else if eq $schema "theme" -}}

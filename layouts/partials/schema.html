@@ -3,7 +3,7 @@
 {{- $website    := $values.website    -}}
 {{- $org_id     := $values.org_id     -}}
 {{- $org        := $values.org        -}}
-{{- $language   := site.LanguageCode | default site.Data.params_defaults.languagecode -}}
+{{- $language   := site.LanguageCode | default site.Data.default_params.languagecode -}}
 <!-- Schema -->
 <!-- -------------------- Breadcrumb ----------------------- -->
 {{- $breadcrumb    := dict -}}

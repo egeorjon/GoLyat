@@ -2,10 +2,10 @@
 {{/* .context Page   */}}
 {{/* .title   String */}}
 {{- $title         := .params.title | default "" -}}
-{{- $heading_level := int (.params.heading | default site.Data.params_defaults.params.widgets.heading) -}}
+{{- $heading_level := int (.params.heading | default site.Data.default_params.params.widgets.heading) -}}
 {{- $heading_title := printf "h%d" $heading_level -}}
-{{- $numposts      := .params.numposts | default site.Data.params_defaults.params.author_disposts   -}}
-{{- $lastposts     := .params.lastposts | default site.Data.params_defaults.params.author_posts     -}}
+{{- $numposts      := .params.numposts | default site.Data.default_params.params.author_disposts   -}}
+{{- $lastposts     := .params.lastposts | default site.Data.default_params.params.author_posts     -}}
 {{- $list          := .params.list | default (.context.GetTerms "authors") -}}
 {{- with $list -}}
     {{- range . -}}
@@ -44,7 +44,7 @@
                             {{- range first $lastposts .Data.Pages -}}
                                 <li>
                                     <a href="{{- .RelPermalink -}}" title="{{- .Title -}}">
-                                        {{- .Title }} ({{- .Date | time.Format (site.Params.FormatDate | default site.Data.params_defaults.formatdate) -}})
+                                        {{- .Title }} ({{- .Date | time.Format (site.Params.FormatDate | default site.Data.default_params.formatdate) -}})
                                     </a>
                                 </li>
                             {{- end -}}

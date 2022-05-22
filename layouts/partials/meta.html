@@ -14,7 +14,7 @@
             <i class="bi-calendar3"></i> 
             <span class="visually-hidden">{{- i18n "posted-on" -}}</span>
             <time class="entry-date published" datetime="{{- index (split $context.Lastmod " ") 0 -}}">
-                {{- $context.Date | time.Format (site.Params.FormatDate | default site.Data.params_defaults.formatdate) -}}
+                {{- $context.Date | time.Format (site.Params.FormatDate | default site.Data.default_params.formatdate) -}}
             </time>
         </li>
         {{- else if eq $meta "fulldate" -}}
@@ -22,8 +22,8 @@
             <i class="bi-calendar3"></i> 
             <span class="visually-hidden">{{- i18n "posted-on" -}}</span>
             <time class="entry-date published" datetime="{{- index (split $context.Date " ") 0 -}}">
-                {{- $context.Date | time.Format (site.Params.FormatDate | default site.Data.params_defaults.formatdate) -}}
-                {{- if ne $context.Date $context.Date }} (updated on {{ $context.Date | time.Format (site.Params.FormatDate | default site.Data.params_defaults.formatdate) -}}){{- end -}}
+                {{- $context.Date | time.Format (site.Params.FormatDate | default site.Data.default_params.formatdate) -}}
+                {{- if ne $context.Date $context.Date }} (updated on {{ $context.Date | time.Format (site.Params.FormatDate | default site.Data.default_params.formatdate) -}}){{- end -}}
             </time>
         </li>
         {{- else if eq $meta "reading" -}}
