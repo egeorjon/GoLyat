@@ -5,7 +5,7 @@
             {{- with .Description -}}{{- $string = . -}}{{- end -}}
             {{- with $string -}}
                 <div class="page-summary col mb-5">
-                    <p>{{- . | markdownify -}}</p>
+                    <p>{{- . -}}</p>
                 </div><!-- col -->
             {{- end -}}
         </div><!-- row -->
