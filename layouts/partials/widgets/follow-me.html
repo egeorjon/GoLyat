@@ -1,8 +1,8 @@
 {{/* Parameters      */}}
 {{/* .context Page   */}}
-{{- $title         := .params.title        | default (i18n site.Data.default_params.params.widget_follow_me.title) -}}
-{{- $direction     := .params.direction    | default site.Data.default_params.params.widget_follow_me.direction    -}}
-{{- $heading_level := int (.params.heading | default site.Data.default_params.params.widgets.heading)              -}}
+{{- $title         := .params.title        | default (i18n site.Data.default_params.widgets.follow_me.title) -}}
+{{- $direction     := .params.direction    | default site.Data.default_params.widgets.follow_me.direction    -}}
+{{- $heading_level := int (.params.heading | default site.Data.default_params.widgets.default.heading)              -}}
 {{- $heading_tag   := printf "h%d" $heading_level -}}
 {{- with site.Params.FollowLinks -}}
 <aside class="col widget widget-follow {{- printf " widget-follow-%s" $direction -}}">

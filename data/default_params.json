@@ -49,12 +49,7 @@
         },
         "authorslist": {
             "numposts"          : true,
-            "lastposts"         : 10
-        },
-        "widget_area": {
-            "limitedwidth"      : false,
-            "cache"             : false,
-            "columns"           : { "xs": 1, "sm": 1, "md": 1, "lg": 1, "xl": 1 }
+            "lastposts"         : 0
         },
         "manifest": {
             "display"           : "browser",
@@ -67,63 +62,79 @@
             "safaritabColor"    : "#ffffff",
             "mstilecolor"       : "#00aba9",
             "themecolor"        : "#ffffff"
+        }
+    },
+    "widgets": {
+        "areas": {
+            "limitedwidth"      : false,
+            "columns"           : { "xs": 1, "sm": 1, "md": 1, "lg": 1, "xl": 1 }
         },
-        "widgets": {
-            "heading"           : 2,
+        "default": {
+            "heading"           : 3,
             "columns"           : { "xs": 1, "sm": 1, "md": 3, "lg": 3, "xl": 3 },
-            "format"            : "image-full"
+            "format"            : "image-full",
+            "cache"             : false
         },
-        "widget_follow_me": {
+        "follow_me": {
             "title"             : "follow-me",
             "direction"         : "horizontal"
         },
-        "widget_popular": {
+        "popular": {
             "title"             : "most-popular-posts",
             "numposts"          : 6,
             "filename"          : "popularposts.json"
         },
-        "widget_gallery": {
+        "gallery": {
             "title"             : "portfolio",
             "columns"           : 2,
-            "nuposts"           : 6,
+            "numposts"          : 6,
             "taxonomy"          : "tags"
         },
-        "widget_related": {
+        "related": {
             "title"             : "related-posts",
             "columns"           : { "xs": 1, "sm": 1, "md": 3, "lg": 3, "xl": 3 },
             "numposts"          : 3
         },
-        "widget_sections": {
+        "sections": {
             "title"             : "sections-list",
             "columns"           : { "xs": 1, "sm": 1, "md": 2, "lg": 4, "xl": 4 },
             "format"            : "image-title"
         },
-        "widget_serieslist": {
-            "title"             : "series-list",
+        "serieslist": {
+            "title"             : "series",
             "columns"           : { "xs": 1, "sm": 1, "md": 3, "lg": 3, "xl": 3 },
             "format"            : "image-title"
         },
-        "widget_seriesame": {
+        "seriesame": {
             "title"             : "in-same-serie",
             "numposts"          : 10
         },
-        "widget_share": {
+        "share": {
             "title"             : "share-this-post"
         },
-        "widget_tagscloud": {
+        "tagscloud": {
             "title"             : "tags",
             "largest"           : 2,
             "smallest"          : 0.875
         },
-        "widget_tagslist": {
+        "tagslist": {
             "title"             : "tags"
         },
-        "widget_tags": {
+        "tags": {
             "title"             : "tags"
         },
-        "widget_posts": {
+        "posts": {
             "title"             : "last-posts-published",
-            "numposts"          : 6
+            "numposts"          : 6,
+            "columns"           : { "xs": 1, "sm": 1, "md": 3, "lg": 3, "xl": 3 }
+        }
+    },
+    "shortcodes": {
+        "gallery": {
+            "files"             : "gallery",
+            "size"              : 250,
+            "caption"           : true,
+            "overlay"           : "bottom"
         }
     },
     "services": {

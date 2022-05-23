@@ -5,16 +5,16 @@
 {{/*    .type      */}}
 {{/*    .columns   */}}
 {{/*    .heading   */}}
-{{- $context := .context                                                                                   -}}
-{{- if isset site.Taxonomies "series"                                                                      -}}
-    {{- $nb_series      := len site.Taxonomies.series                                                      -}}
-    {{- $title          := .params.title | default (i18n site.Data.default_params.params.serieslist.title $nb_series) -}}
-    {{- $widget_format  := .params.type | default site.Data.default_params.params.serieslist.format        -}}
-    {{- $heading_level  := int (.params.heading | default site.Data.default_params.params.widgets.heading) -}}
-    {{- $columns        := .params.columns | default site.Data.default_params.params.serieslist.columns   -}}
-    {{- $class          := partialCached "partials/class-columns.html" $columns (delimit $columns "-")     -}}
-    {{- $heading_tag    := printf "h%d" $heading_level                                                     -}}
-    {{- $subheading_tag := printf "h%d" (add $heading_level 1)                                             -}}
+{{- $context := .context -}}
+{{- if isset site.Taxonomies "series" -}}
+    {{- $nb_series      := len site.Taxonomies.series -}}
+    {{- $title          := .params.title | default (i18n site.Data.default_params.widgets.serieslist.title $nb_series) -}}
+    {{- $widget_format  := .params.type | default site.Data.default_params.widgets.serieslist.format -}}
+    {{- $heading_level  := int (.params.heading | default site.Data.default_params.widgets.default.heading) -}}
+    {{- $columns        := .params.columns | default site.Data.default_params.widgets.serieslist.columns -}}
+    {{- $class          := partialCached "partials/class-columns.html" $columns (delimit $columns "-") -}}
+    {{- $heading_tag    := printf "h%d" $heading_level -}}
+    {{- $subheading_tag := printf "h%d" (add $heading_level 1) -}}
     {{- with site.Taxonomies.series }}
         {{- if or (eq $widget_format "image-full") (eq $widget_format "image-title") -}}
             <div class="col widget widget-series widget-series-images">

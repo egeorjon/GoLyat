@@ -3,11 +3,11 @@
 {{/* .params     */}}
 {{/*    .title   */}}
 {{/*    .heading */}}
-{{- $heading_level := int (.params.heading | default site.Data.default_params.params.widgets.heading) -}}
+{{- $heading_level := int (.params.heading | default site.Data.default_params.widgets.default.heading) -}}
 {{- $heading_tag := printf "h%d" $heading_level -}}
 {{- if isset site.Taxonomies "tags" -}}
     {{- $nb_tags := len site.Taxonomies.tags -}}
-    {{- $title   := .params.title | default (i18n site.Data.default_params.params.widget_tagslist.title $nb_tags) -}}
+    {{- $title   := .params.title | default (i18n site.Data.default_params.widgets.tagslist.title $nb_tags) -}}
     {{- with site.Taxonomies.tags }}
 
     <aside class="col widget widget-tags-list">

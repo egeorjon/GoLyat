@@ -7,9 +7,9 @@
 {{/*    .heading   */}}
 {{- $context        := .context                                                                          -}}
 {{- $title          := .params.title | default (i18n "sections-list")                                    -}}
-{{- $widget_format  := .params.format | default site.Data.default_params.params.widget_sections.format   -}}
-{{- $heading_level  := int (.params.heading | default site.Data.default_params.params.widgets.heading)   -}}
-{{- $columns        := .params.columns | default site.Data.default_params.params.widget_sections.columns -}}
+{{- $widget_format  := .params.format | default site.Data.default_params.widgets.sections.format   -}}
+{{- $heading_level  := int (.params.heading | default site.Data.default_params.widgets.default.heading)   -}}
+{{- $columns        := .params.columns | default site.Data.default_params.widgets.sections.columns -}}
 {{- $heading_tag    := printf "h%d" $heading_level                                                       -}}
 {{- $subheading_tag := printf "h%d" (add $heading_level 1)                                               -}}
 {{- $class          := partialCached "partials/class-columns.html" $columns (delimit $columns "-")       -}}
