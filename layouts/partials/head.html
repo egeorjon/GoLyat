@@ -1,121 +1,117 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<script>document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/,'js');</script>
+<script>
+    document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/, 'js');
+</script>
 
-{{- $title := slice .Title -}}
-{{- if not .IsHome -}}
+{{- $title := slice .Title -}} 
+{{- if not .IsHome -}} 
     {{- $title = $title | slice (site.Title | markdownify | plainify) -}}
 {{- end -}}
 <title>{{- delimit $title " &dash; " -}}</title>
 
-{{- if ne .Kind "404" -}}
-    {{- $description := .Params.description | default site.Params.Description | default "" -}}
+{{- if ne .Kind "404" -}} 
+    {{- $description := .Params.description | default site.Params.Description | default "" -}} 
     {{ with $description }}
         <meta name="description" content="{{- . | markdownify | plainify | htmlUnescape -}}" />
     {{ end }}
     {{- $keywords := .Params.tags | default site.Params.Keywords | default "" -}}
     {{ with $keywords }}
-        <meta name="keywords" content="{{- delimit . "," | plainify | htmlUnescape -}}" />
+        <meta name="keywords" content="{{- delimit . " , " | plainify | htmlUnescape -}}" />
     {{ end }}
 {{- end -}}
-
 {{- with site.Author.name -}}
-<meta name="author" content="{{- . -}}">
+    <meta name="author" content="{{- . -}}">
 {{- end -}}
 
-<meta name="rating" content="General">
-
+<meta name="rating" content="General"> 
 {{- if .IsHome -}}
     <meta name="application-name" content="{{- site.Title -}}" />
-{{- end -}}
+{{- end -}} 
 
-{{- hugo.Generator -}}
+{{- hugo.Generator -}} 
 
-{{- if ne .Kind "404" -}}
-    {{- $opengraph := site.Params.opengraph | default site.Data.default_params.params.opengraph -}}
-    {{- if eq $opengraph "internal" -}}
+{{- if ne .Kind "404" -}} 
+    {{- $opengraph := site.Params.opengraph | default site.Data.default_params.params.opengraph -}} 
+    {{- if eq $opengraph "internal" -}} 
         {{- template "_internal/opengraph.html" . -}}
-    {{- else if eq $opengraph "theme" -}}
+     {{- else if eq $opengraph "theme" -}} 
         {{- partial "partials/opengraph.html" . -}}
-    {{- end -}}
+    {{- end -}} 
+    {{- $twitter := site.Params.twitterCards | default site.Data.default_params.params.twittercards -}} 
+    {{- if eq $twitter "internal" -}} 
+        {{- template "_internal/twitter_cards.html" . -}} 
+    {{- else if eq $twitter "theme" -}} 
+        {{- partial "partials/twitter.html" . -}} 
+    {{- end -}} 
+    {{- $schema := site.Params.schema | default site.Data.default_params.params.schema -}} 
+    {{- if eq $schema "internal" -}} 
+        {{- template "_internal/schema.html" . -}} 
+    {{- else if eq $schema "theme" -}} 
+        {{- $param := anchorize (print "%s-%s" .Kind .Title) -}} 
+        {{- partial "partials/schema.html" . $param -}} 
+    {{- end -}} 
+{{- end -}} 
 
-    {{- $twitter := site.Params.twitterCards | default site.Data.default_params.params.twittercards -}}
-    {{- if eq $twitter "internal" -}}
-        {{- template "_internal/twitter_cards.html" . -}}
-    {{- else if eq $twitter "theme" -}}
-        {{- partial "partials/twitter.html" . -}}
-    {{- end -}}
+{{- partialCached "partials/favicons.html" . -}} 
 
-    {{- $schema := site.Params.schema | default site.Data.default_params.params.schema -}}
-    {{- if eq $schema "internal" -}}
-        {{- template "_internal/schema.html" . -}}
-    {{- else if eq $schema "theme" -}}
-        {{- $param := anchorize (print "%s-%s" .Kind .Title) -}}
-        {{- partial "partials/schema.html" . $param -}}
-    {{- end -}}
-{{- end -}}
-
-{{- partialCached "partials/favicons.html" . -}}
-
-{{- $production := or (or (eq (getenv "HUGO_ENV") "production") hugo.IsProduction) (not .Site.IsServer) -}}
+{{- $production := or (or (eq (getenv "HUGO_ENV") "production") hugo.IsProduction) (not .Site.IsServer) -}} 
 {{- if $production -}}
-    <meta name="robots" content="index,follow" />
+    <meta name="robots" content="index,follow" /> 
 {{- else -}}
     <meta name="robots" content="noindex,nofollow" />
-    <meta http-equiv="cache-control" content="no-cache" />
-{{- end }}
+    <meta http-equiv="cache-control" content="no-cache" /> 
+{{- end }} 
 
-{{- if eq .Kind "section" -}}
-    {{- with . -}}<link rel="first" href="{{- .Permalink -}}">{{- end -}}
-    {{- with .PrevInSection -}}<link rel="prev" href="{{- .Permalink -}}">{{- end -}}
-    {{- with .NextInSection -}}<link rel="next" href="{{- .Permalink -}}">{{- end -}}
-    {{/*- with (last 1 .Pages) -}}<link rel="last" href="{{- .Permalink -}}">{{- end -*/}}
-{{- end -}}
-
-{{- with .Parent -}}
+{{- if eq .Kind "section" -}} 
+    {{- with . -}}<link rel="first" href="{{- .Permalink -}}" />{{- end -}} 
+    {{- with .PrevInSection -}}<link rel="prev" href="{{- .Permalink -}}" />{{- end -}} 
+    {{- with .NextInSection -}}<link rel="next" href="{{- .Permalink -}}" />{{- end -}} 
+    {{/*- with (last 1 .Pages) -}}<link rel="last" href="{{- .Permalink -}}">{{- end -*/}} 
+{{- end -}} 
+{{- with .Parent -}} 
     {{- if eq .Kind "section" -}}
-        <link rel="index" href="{{- .Permalink -}}">
-    {{- end -}}
+        <link rel="index" href="{{- .Permalink -}}"> 
+    {{- end -}} 
 {{- else -}}
-        <link rel="index" href="{{- site.BaseURL -}}">
-{{- end -}}
-
-{{- if eq .Kind "page" -}}
-    {{- with .GetTerms "authors" -}}
+    <link rel="index" href="{{- site.BaseURL -}}"> 
+{{- end -}} 
+{{- if eq .Kind "page" -}} 
+    {{- with .GetTerms "authors" -}} 
         {{- range first 1 . -}}
-            <link rel="author" href="{{- .Permalink -}}">
-        {{- end -}}
-    {{- end -}}
-{{- end -}}
-
-  
+            <link rel="author" href="{{- .Permalink -}}"> 
+        {{- end -}} 
+    {{- end -}} 
+{{- end -}} 
 {{- with site.Params.licenceURL -}}
-    <link rel="license" href="{{- . -}}">
-{{- end -}}
+    <link rel="license" href="{{- . -}}"> 
+{{- end -}} 
+{{- with .OutputFormats.Get "rss" -}} 
+    {{- printf "<link rel=\"%s\" type=\"%s\" href=\"%s\" title=\"%s\" />" .Rel .MediaType.Type .Permalink site.Title | safeHTML -}} 
+{{- end -}} 
+{{- if site.Params.mainSections -}} 
+    {{- range site.Params.mainSections -}} 
+        {{ with site.GetPage . -}} 
+            {{- $title := .Title -}} 
+            {{- with .OutputFormats.Get "rss" -}} 
+                {{- printf "<link rel=\"%s\" type=\"%s\" href=\"%s\" title=\"%s\" />" .Rel .MediaType.Type .Permalink $title | safeHTML -}} 
+            {{- end -}} 
+        {{- end -}} 
+    {{- end -}} 
+{{- end -}} 
+{{- with .Site -}} 
+    {{- with ((.GetPage "home").OutputFormats.Get "webmanifest") }} 
+        {{- printf `<link rel="%s" type="%s" href="%s" />` .Rel .MediaType.Type .RelPermalink | safeHTML -}} 
+    {{- end -}} 
+{{- end -}} 
 
-{{- with .OutputFormats.Get "rss" -}}
-    {{- printf `<link rel="%s" type="%s" href="%s" title="%s" />` .Rel .MediaType.Type .Permalink site.Title | safeHTML -}}
-{{- end -}}
-{{- if site.Params.mainSections -}}
-    {{- range site.Params.mainSections -}}
-        {{ with site.GetPage . -}}
-            {{- $title := .Title -}}
-            {{- with .OutputFormats.Get "rss" -}}
-                {{- printf `<link rel="%s" type="%s" href="%s" title="%s" />` .Rel .MediaType.Type .Permalink $title | safeHTML -}}
-            {{- end -}}
-        {{- end -}}
-    {{- end -}}
-{{- end -}}
-{{- with .Site -}}
-    {{- with ((.GetPage "home").OutputFormats.Get "webmanifest") }}
-        {{- printf `<link rel="%s" type="%s" href="%s" />` .Rel .MediaType.Type .RelPermalink | safeHTML -}}
-    {{- end -}}
-{{- end -}}
-{{- partialCached "partials/styles.html" . -}}
+{{- partialCached "partials/styles.html" . -}} 
+
 {{- with site.Params.googleWMT | default false -}}
-    <meta name="google-site-verification" content="{{- . -}}" />
-{{- end -}}
-{{- if or $production (site.Params.debugMode | default false) -}}
-    {{- partialCached "piwikpro.html" . -}}
+    <meta name="google-site-verification" content="{{- . -}}" /> 
+{{- end -}} 
+
+{{- if or $production (site.Params.debugMode | default false) -}} 
+    {{- partialCached "piwikpro.html" . -}} 
 {{- end -}}
