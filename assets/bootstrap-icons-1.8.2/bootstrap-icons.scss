@@ -1223,7 +1223,7 @@ $bootstrap-icons-map: (
  /*  "tablet-landscape": "\f5ad", */
  /*  "tablet": "\f5ae", */
  /*  "tag-fill": "\f5af", */
- /*  "tag": "\f5b0", */
+   "tag": "\f5b0",
  /*  "tags-fill": "\f5b1",*/
    "tags": "\f5b2",
  /*  "telegram": "\f5b3", */
@@ -2910,7 +2910,7 @@ $bootstrap-icons-map: (
 /* .bi-tag-fill::before { content: map-get($bootstrap-icons-map, "tag-fill"); } */
 .bi-tag::before { content: map-get($bootstrap-icons-map, "tag"); }
 /* .bi-tags-fill::before { content: map-get($bootstrap-icons-map, "tags-fill"); } */
-/* .bi-tags::before { content: map-get($bootstrap-icons-map, "tags"); } */
+.bi-tags::before { content: map-get($bootstrap-icons-map, "tags"); }
 /* .bi-telegram::before { content: map-get($bootstrap-icons-map, "telegram"); } */
 /* .bi-telephone-fill::before { content: map-get($bootstrap-icons-map, "telephone-fill"); } */
 /* .bi-telephone-forward-fill::before { content: map-get($bootstrap-icons-map, "telephone-forward-fill"); } */
