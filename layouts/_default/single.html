@@ -61,7 +61,7 @@
     {{- $current_page := . -}}
     {{- partial "partials/pagination-single.html" . -}}
     {{- range sort site.Data.single.Rows "weight" -}}{{/* $defaultBottomline */}}
-        <section class="page-bottomline page-bottomline-{{- .name}}">
+        <div class="page-bottomline page-bottomline-{{- .name}}">
             {{- $limit := cond (.limitedWidth | default site.Data.default_params.widgets.areas.limitedwidth) "limit-width" "" -}}
             <div class="container {{ $limit -}}">
                 {{- $columns := .columns | default site.Data.default_params.widgets.areas.columns -}}
@@ -95,10 +95,10 @@
                     {{- end -}}
                 </div><!-- row -->
             </div><!-- end of container -->
-        </section>
+        </div>
     {{- end -}}
     {{- if site.Params.utteranc_repo | default false -}}
-    <section class="page-bottomline page-bottom-line-comments">
+    <div class="page-bottomline page-bottom-line-comments">
         <div class="container">
             <div class="row" id="posts-comments">
                 <div class="col">
@@ -113,6 +113,6 @@
                 </div>
             </div>
         </div>
-    </section>
+    </div>
     {{- end -}}
 {{- end -}}

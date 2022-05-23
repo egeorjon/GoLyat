@@ -1,7 +1,7 @@
 {{- $current_page := . -}}
 <footer id="page-footer">
     {{- range sort site.Data.footer.Rows "weight" -}}
-        <section class="footer-{{- .name }}">
+        <div class="footer-{{- .name }}">
             {{- $limit := cond (.limitedWidth | default site.Data.default_params.widgets.areas.limitedwidth) "limit-width" "" -}}
             <div class="container {{ $limit -}}">
                 {{- $columns := .columns | default site.Data.default_params.widgets.areas.columns -}}
@@ -35,9 +35,9 @@
                     {{- end -}}
                 </div><!-- row -->
             </div><!-- end of container -->
-        </section>
+        </div>
     {{- end -}}
-    <section class="footer-bottom">
+    <div class="footer-bottom">
         <div class="container">
             <div class="row">
                 <div class="col-11">
@@ -48,5 +48,5 @@
                 </div><!-- col -->
             </div><!-- row -->
         </div><!-- container -->
-    </section>
+    </div>
 </footer>
