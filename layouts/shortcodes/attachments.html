@@ -2,8 +2,8 @@
 {{/* Parameters    */}}
 {{/*   files     string  relative path to the image (default: none, value mandatory) */}}
 {{/*   fields    list of fields to display (comma separated). Possible values: icon,title,filename,size */}}
-{{- $listfiles := .Get "files" | default site.default_params.shortcodes.attachments.files -}}
-{{- $fields    := .Get "fields" | default site.default_params.shortcodes.attachments.fields -}}
+{{- $listfiles := .Get "files" | default site.Data.default_params.shortcodes.attachments.files -}}
+{{- $fields    := .Get "fields" | default site.Data.default_params.shortcodes.attachments.fields -}}
 {{- with .Page.Resources.Match $listfiles }}
 <div class="table-responsive-md">
     <table class="table attachments">
