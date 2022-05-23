@@ -135,6 +135,10 @@
             "size"              : 250,
             "caption"           : true,
             "overlay"           : "bottom"
+        },
+        "attachments": {
+            "fields"            : "icon,title,size",
+            "files"             : "*"
         }
     },
     "services": {
