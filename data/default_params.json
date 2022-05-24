@@ -20,6 +20,10 @@
             "columns"           : { "xs": 1, "sm": 1, "md": 2, "lg": 2, "xl": 2 },
             "meta"              : { "top": { }, "middle": { "1": "linkedsection" }, "bottom": {} }
         },
+        "authorslist": {
+            "numposts"          : true,
+            "lastposts"         : 10
+        },
         "meta": {
             "format_image_left": { 
                 "top"           : { "1": "section" },
@@ -46,10 +50,6 @@
                 "middle"        : { "2": "tags" },
                 "bottom"        : { "1": "date", "2": "reading" }
             }
-        },
-        "authorslist": {
-            "numposts"          : true,
-            "lastposts"         : 0
         },
         "manifest": {
             "display"           : "browser",
@@ -127,6 +127,10 @@
             "title"             : "last-posts-published",
             "numposts"          : 6,
             "columns"           : { "xs": 1, "sm": 1, "md": 3, "lg": 3, "xl": 3 }
+        },
+        "authors": {
+            "numposts"          : false,
+            "lastposts"         : 0
         }
     },
     "shortcodes": {
