@@ -144,7 +144,7 @@ The theme provides two shortcodes
 Parameters: 
 
 | Parameter | type   | Purpose | Mandatory | Default | Possible values |
-|-----------|--------|-----------|---------|-----------------|
+|-----------|--------|-----------|---------|---------|-----------------|
 | files     | string | relative path to the attachments | Yes |  | |
 | fields    | string | list of fields to display | No | icon,title,size | icon,title,filename,size |
 
@@ -169,7 +169,7 @@ and the result will be
 Parameters: 
 
 | Parameter | type    | Purpose | Mandatory | Default | Possible values |
-|-----------|---------|-----------|---------|-----------------|
+|-----------|---------|-----------|---------|---------|-----------------|
 | files     | string  | relative path to the images | Yes | | |
 | size      | int     | size of the thumbnails      | No  | 250 | Any numeric value |
 | caption   | boolean | Display the caption or not  | No | true | 1, true: display the caption, 0,false: don't display |
@@ -213,7 +213,6 @@ The following parameters
 {{<imggallery files="gallery2" overlay="center" >}}
 ```
 will give the following result:
-
 ![Example of a photo gallery](images/shortcode_gallery.png)
 
 ### Blockquotes
@@ -225,7 +224,7 @@ There is no shortcode for `blockquotes`, but **Goyat** takes into account the st
 > Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 {.info | .warning | .error}
 
-![Blockquotes styles](images/bloqkuotes.png)
+![Blockquotes styles](images/blockquotes.png)
 
 ### Markups
 
