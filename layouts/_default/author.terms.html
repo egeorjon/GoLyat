@@ -10,9 +10,10 @@
             {{- end -}}
         </div>
         <div class="post-list row row-cols-1">
-            {{- $numposts  := site.Params.authorsList.numposts  | default site.Data.params.authorslist.numposts -}}
-            {{- $lastposts := site.Params.authorsList.lastposts | default site.Data.params.authorslist.lastposts -}}
-            {{- partial "partials/widgets/authors-list.html" (dict "context" . "params" (dict "list" .Pages "numposts" $numposts "lastposts" $lastposts)) -}}
+            {{- $numposts  := site.Params.authorsList.numposts  | default site.Data.default_params.params.authorslist.numposts -}}
+            {{- $lastposts := site.Params.authorsList.lastposts | default site.Data.default_params.params.authorslist.lastposts -}}
+            {{- $params    := dict "list" .Pages "numposts" $numposts "lastposts" $lastposts -}}
+            {{- partial "partials/widgets/authors.html" (dict "context" . "params" $params) -}}
         </div><!-- row -->
     </div><!-- container -->
 {{- end -}}
