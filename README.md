@@ -6,34 +6,42 @@ Goyat is for huGO Yet Another Theme.
 
 > This version is not yet finalized: Improvements are planned to stabilize it, and make it easier to use.
 
-You can find a live demo of the original Fresh theme [here](https://www.emmanuelgeorjon.com) (will be completed when the theme will be deployed in production).
-This theme is intended for personal website and blog. If you'd like to extend the theme to include other functionalities, please submit a pull request.
+You can find a live demo of the theme [here](https://www.emmanuelgeorjon.com). This theme is intended for personal website and blog.
 
 ## Table of Contents
 
-- [Goliath](#goliath)
+- [GoYat](#goyat)
+  - [Table of Contents](#table-of-contents)
   - [Features](#features)
   - [Tools and libraries](#tools-and-libraries)
-  - [Installation](#Installation)
+  - [Installation](#installation)
+    - [Option 1: Git clone](#option-1-git-clone)
+    - [Option 2: Git submodule (recommended)](#option-2-git-submodule-recommended)
+    - [Option 3: Download ZIP and manual install](#option-3-download-zip-and-manual-install)
+    - [Once the theme is deployed](#once-the-theme-is-deployed)
   - [Usage](#usage)
-  - [Markups](#markups)
-  - [Shortcodes](#shortcodes)
+  - [Shortcodes and markups](#shortcodes-and-markups)
     - [Attachments](#attachments)
-    - [imggallery ](#imggallery )
+    - [imggallery](#imggallery)
+    - [Blockquotes](#blockquotes)
+    - [Markups](#markups)
+  - [Basic configuration](#basic-configuration)
+    - [Tests, production, and debug](#tests-production-and-debug)
     - [Language](#language)
     - [Date format](#date-format)
     - [Pagination](#pagination)
     - [Site title / brand](#site-title--brand)
-    - [Navigation](#Navigation)
+    - [Navigation](#navigation)
     - [Search configuration](#search-configuration)
   - [SEO and other configurations](#seo-and-other-configurations)
-    - [SEO configuration](#SEO configuration)
+    - [SEO configuration](#seo-configuration)
     - [RSS configuration](#rss-configuration)
     - [File site.manifest](#file-sitemanifest)
   - [Content configuration](#content-configuration)
     - [Meta information](#meta-information)
     - [Widgets](#widgets)
     - [Footer](#footer)
+    - [Footer (bottom)](#footer-bottom)
   - [Design configuration](#design-configuration)
   - [Configuration of the social media](#configuration-of-the-social-media)
     - [SEO features](#seo-features)
@@ -44,13 +52,13 @@ This theme is intended for personal website and blog. If you'd like to extend th
     - [Manifest file](#manifest-file)
     - [Styles](#styles)
  
-
 ## Features
 
 * Responsive design,
 * No sidebar,
 * Customizable,
 * Widget based,
+* Taxonomies: Tags, and series,
 * Search features,
 * Contact form (by Netlify),
 * Piwik Pro integration,
@@ -59,11 +67,11 @@ This theme is intended for personal website and blog. If you'd like to extend th
 
 ## Tools and libraries
 
-This theme uses
+The theme is based on
 * [BootStrap 5.1.3](https://getbootstrap.com/docs/5.0/getting-started/introduction/)
-* [BootStrap Icons 1.8.1](https://icons.getbootstrap.com/)
+* [BootStrap Icons 1.8.2](https://icons.getbootstrap.com/)
 * [Simple Lightbox 2.10.1](https://simplelightbox.com/)
-* [FuseJS 6.5.3](https://fusejs.io/
+* [FuseJS 6.6.2](https://fusejs.io/)
 
 ## Installation
 
@@ -72,7 +80,7 @@ This theme uses
 * Install [Hugo](https://gohugo.io), 
 * and create a new site ([procedure](https://gohugo.io/getting-started/quick-start/#step-2-create-a-new-site)).
 
-Then **Goliath** can be deployed as many other themes, with 3 possible ways:
+Then **Goyat** can be deployed as many other themes, with 3 possible ways:
 
 1. Git clone
 2. Git submodule
@@ -82,7 +90,7 @@ Then **Goliath** can be deployed as many other themes, with 3 possible ways:
 
 From the root directory of your site, 
 ```bash
-git clone https://github.com/egeorjon/Goliath themes/Goliath
+git clone https://github.com/egeorjon/Goyat themes/Goyat
 ```
 This method could generate some issues with some hosting platforms (like Netlify).
 
@@ -90,19 +98,19 @@ This method could generate some issues with some hosting platforms (like Netlify
 
 From the root directory of your site,
 ```bash
-git submodule add https://github.com/egeorjon/Goliath themes/Goliath
+git submodule add https://github.com/egeorjon/Goyat themes/Goyat
 ```
 This is the method officially supported by Netlify.
 
 ### Option 3: Download ZIP and manual install
 
-[Download the ZIP file](https://github.com/egeorjon/Goliath/archive/refs/heads/main.zip), and unpack it into the folder `themes/Goliath`.
+[Download the ZIP file](https://github.com/egeorjon/Goyat/archive/refs/heads/main.zip), and unpack it into the folder `themes/Goyat`.
 
 ### Once the theme is deployed 
 
 Edit the file `config.toml`, and update the first line
 ```toml
-theme = "goliath"
+theme = "Goyat"
 ```
 
 ## Usage
@@ -116,44 +124,15 @@ hugo server -D
 if not, you can get the content from `examplesite`
 ```bash
 cd my-site
-cp themes/Goliath/examplesite content
+cp themes/Goyat/examplesite content
 hugo server -D
 ```
 
 Then, to see the result, use the following url [`localhost:1313`](http://localhost:1313) in your favorite browser, 
 
-==> Style guide
+## Shortcodes and markups
 
-## Markups
-
-The theme provides two markups
-
-* The first one improves the links design: when you write a link with markdown, like `[the link](the url's link)`, icons are added if the link is an external link, a link to GitHub, or a link to Wikipedia.
-* The second one manages the images: a markdown sentence like the following `![image.png](url to the image)` will generate a fuilly responsive image in HTML
-
-```HTML
-<figure class="figure-img figure-center">
-  <a href="url to the image" title="Framework Archimate">
-    <img sizes="(max-width: 576px) 480px, 
-                (max-width: 768px) 660px, 
-                (max-width: 992px) 900px, 
-                100vw" 
-          srcset="url to the 480 image" 480w,
-                "url to the 660 image" 660w,
-                "url to the 800 image" 800w
-          src="url to the image" 
-          alt="Framework Archimate" 
-          title="Framework Archimate" 
-          width="800px" 
-          height="593px">
-        </a>
-  <figcaption>Caption of the image</figcaption>
-</figure>
-```
-
-## Shortcodes
-
-The theme provides some shortcodes 
+The theme provides two shortcodes 
 
 | Shortcodes   | Description    |
 |--------------|----------------|
@@ -183,9 +162,7 @@ With the Front Matter above, the syntax of the shortcode could be
 {{< attachements file="attachements/*" >}}
 ``` 
 and the result will be
-![List of attachments displayed by the shortcode](#)
-
-==> 
+![List of attachments displayed by the shortcode](images/shortcode_attachments.png)
 
 ### imggallery 
 
@@ -214,13 +191,9 @@ src = "gallery1/photo2.jpg"
 title = "title 3"
 src = "gallery2/photo4.jpg"
 
-==>
-
 [[resources]]
 title = "title 4"
 src = "gallery2/photo5.jpg"
-
-==>
 
 [[resources]]
 title = "title 5"
@@ -241,27 +214,89 @@ The following parameters
 ```
 will give the following result:
 
-![Example of a photo gallery](#)
+![Example of a photo gallery](images/shortcode_gallery.png)
 
-==>
+### Blockquotes
 
-### The specific case of blockquote
-
-We have no shortcode for `blockquotes`, but **Goliath** takes into account the styles you can provide below the blockquote: 
+There is no shortcode for `blockquotes`, but **Goyat** takes into account the styles you can provide below the blockquote: 
 
 > Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 
 > Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 {.info | .warning | .error}
 
-==> image
+![Blockquotes styles](images/bloqkuotes.png)
 
-## Initial configuration
+### Markups
 
-### Tests and production
+The theme provides two markups
 
-By default, the theme runs in test mode.
-For moving to the production mode, you have to set the environment variable `HUGO_ENV`
+* The first one improves the links design: when you write a link with markdown, like `[the link](the url's link)`, icons are added if the link is an external link, a link to GitHub, or a link to Wikipedia.
+* The second one manages the images: a markdown sentence like the following `![image.png](url to the image)` will generate a fuilly responsive image in HTML
+
+
+The markup link will generate the following code
+```HTML
+<!-- Code of an internal link -->
+<a href="#" title="Title of the link">consectetur adipiscing elit</a>
+
+<!-- Code for an external link -->
+<a href="#" title="Title of the link" target="_blank" rel="noopener noreferrer">consectetur adipiscing elit <i class="bi-link-45deg"></i></a>
+``` 
+
+![Example of an external link](images/markup_link.png)
+
+The markup image will generate the following code:
+
+```HTML
+<figure class="figure-img figure-center">
+  <a href="url to the image" title="Framework Archimate">
+    <img sizes="(max-width: 576px) 480px, 
+                (max-width: 768px) 660px, 
+                (max-width: 992px) 900px, 
+                100vw" 
+          srcset="url to the 480 image" 480w,
+                "url to the 660 image" 660w,
+                "url to the 800 image" 800w
+          src="url to the image" 
+          alt="Framework Archimate" 
+          title="Framework Archimate" 
+          width="800px" 
+          height="593px">
+        </a>
+  <figcaption>Caption of the image</figcaption>
+</figure>
+```
+
+![Example of an image](images/markup_images.png)
+
+## Basic configuration
+
+```toml
+theme                  = "Goyat"
+title                  = "Le blog d'Emmanuel GEORJON"
+baseURL                = ""   # baseURL set during builds
+DefaultContentLanguage = "fr"
+languageCode           = "fr-fr"
+Paginate               = 8
+timeout                = 100000
+
+[params]
+  debugMode           = true # default false. For development environment only. Allow the loading of scripts like Piwik, allow cache, and indexation.
+  Description         = ""   # Use to fill meta description (not required if the tags, and description are filled in the Front-matter of the posts)
+  Keywords            = ""   # Use to fill meta keywords (not required if the tags, and description are filled in the Front-matter of the posts)
+  licenceText          = "Contenu sous license Creative Commons: Attribution - Pas d'Utilisation Commerciale 4.0 International [BY-NC 4.0]"
+  licenceURL           = "https://creativecommons.org/licenses/by-nc/4.0/"
+  licenceShortText     = "<a href=\"/assets/img/creative_commons.png\" title=\"Contenu sous license Creative Commons: Attribution - Pas d Utilisation Commerciale 4.0 International [BY-NC 4.0]\" />"
+  formatdate           = ":date_medium"
+  mainSections         = [ "blog", "architecture", "project", "photo" ]
+  brandlogo            = "/img/site-logo.png"
+  brandtitle           = "Le blog d'Emmanuel"
+  ```
+
+### Tests, production, and debug
+
+By default, the theme runs in test mode. For moving to the production mode, you have to set the environment variable `HUGO_ENV`
 ```bash
 export HUGO_ENV=production
 ```
@@ -273,10 +308,15 @@ SET HUGO_ENV=production
 
 In the Production environment,
 
-==> 
-* Google Analytics is enabled,
-* RSS links are enabled,
-* ROBOTS directive are set to INDEX, FOLLOW.
+* Google verification code is enabled,
+* ROBOTS directive are set to INDEX, FOLLOW,
+* Piwik is enabled (if the code and url are set, see below)
+
+Even in development / test mode, you can "simulate" the production mode using the `debug_mode` parameter. 
+```toml
+[params]
+  debugMode = true
+```
 
 ### Language
 
@@ -322,6 +362,7 @@ paginate = "<the number of posts>"
 The navigation bar includes the main menu, and the title of the site/blog (the brand). You can fully customize the brand. In the configuration file of the site:
 
 ```toml
+title = "Le blog d'Emmanuel GEORJON"
 [params]
   brandlogo   = "<the path of the image related to the /static folder>"
   brandtitle  = "<the title of the site>"
@@ -346,7 +387,7 @@ Examples:
 3. Example 3: Nothing specify
 
 ```toml
-theme="goliath"
+theme="Goyat"
 title=< title of the blog >
 [params]
 #    ...
@@ -407,7 +448,7 @@ For a more accurate search, you can specify the sections in which your posts are
 
 ### SEO configuration
 
-**Goliath** proposes a complete head in each page with metadata, links, and informations used by searchbot, and social medias.
+**Goyat** proposes a complete head in each page with metadata, links, and informations used by searchbot, and social medias.
 
 ```
 theme                  = "golyat"
@@ -431,8 +472,8 @@ copyright              = "2008-2022 (c) Emmanuel Georjon"  # Use in the RSS Inte
 
 About `opengraph`, `twitter` and `schema`: 
 * By default, Hugo provides internal templates. 
-* The theme **Goliath** provides its own template, in order to provide additional features.
-* You can choose to use internal templates, **Goliath** template by setting `theme`, `internal` values.
+* The theme **Goyat** provides its own template, in order to provide additional features.
+* You can choose to use internal templates, **Goyat** template by setting `theme`, `internal` values.
 
 ==> Sitemap
 
@@ -482,7 +523,7 @@ copyright     = "< Copyright sentence >"
 
 ** In both cases**
 
-Whatever your choice (internal template, or Goliath's template), you have to specify in the file `config.toml`, where you want to build the RSS feeds.
+Whatever your choice (internal template, or Goyat's template), you have to specify in the file `config.toml`, where you want to build the RSS feeds.
 In the following example, the RSS files will be generate for the home page, and each of the sections:
 
 ```toml
@@ -493,7 +534,7 @@ In the following example, the RSS files will be generate for the home page, and 
 
 ### File site.manifest
 
-**Goliath** can generate the manifest file of your site. In order to enable this feature, the `config.toml` file must contain the following parameters:
+**Goyat** can generate the manifest file of your site. In order to enable this feature, the `config.toml` file must contain the following parameters:
 ```toml
 [mediaTypes]
   [mediaTypes."application/manifest+json"]
@@ -621,7 +662,7 @@ The possible widgets are
 | text              | Display the content of a file / post |
 
 
-Of course, if you want, you can develop you own widget, and put it in the folder `themes\Goliath\layout\partial\widgets`.
+Of course, if you want, you can develop you own widget, and put it in the folder `themes\Goyat\layout\partial\widgets`.
 
 ### Footer (bottom)
 
@@ -642,8 +683,8 @@ Example:
 [params.copyright]
   FirstDate     = "2008"
   Attribution   = "Emmanuel Georjon"
-  SentenceSmall = "[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode), thème [Goliath](https://github.com/egeorjon/Goliath)"
-  SentenceFull  = "Contenu sous license Creative Commons [BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode), thème [Goliath](https://github.com/egeorjon/Goliath)"
+  SentenceSmall = "[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode), thème [Goyat](https://github.com/egeorjon/Goyat)"
+  SentenceFull  = "Contenu sous license Creative Commons [BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode), thème [Goyat](https://github.com/egeorjon/Goyat)"
 ```
 
 ## Design configuration
@@ -656,7 +697,7 @@ The design of the site can be updated in several manners
 
 **Change the color scheme**
 
-For changing colors, you can edit the file `themes/goliath/assets/styles.scss`, and change the following lines
+For changing colors, you can edit the file `themes/Goyat/assets/styles.scss`, and change the following lines
 
 ```scss
     $primary:       "color 1";
@@ -668,7 +709,7 @@ For changing colors, you can edit the file `themes/goliath/assets/styles.scss`, 
 
 **Change the site's layout according the device width**
 
-**Goliath** is based on the [BootStrap](https://getbootstrap.com/) framework. This framework use a set of breakpoints to adjust the site layout according the device with
+**Goyat** is based on the [BootStrap](https://getbootstrap.com/) framework. This framework use a set of breakpoints to adjust the site layout according the device with
 ```scss
     $grid-breakpoints: (
     xs: 0,          # eXtra Small
@@ -857,7 +898,7 @@ In order to allow this, you have to add the following parameters
 So far, the theme doen't provide an easy way to customize styles.
 However, you can customize the theme with two ways
 
-* All default `Bootstrap` values used by the theme are in the file `themes/Goliath/assets/customization.scss`.
-* The theme styles are in the file `themes/Goliath/assets/styles.scss`
+* All default `Bootstrap` values used by the theme are in the file `themes/Goyat/assets/customization.scss`.
+* The theme styles are in the file `themes/Goyat/assets/styles.scss`
 
-The theme uses the icons from [FontAwesome](https://fontawesome.com/). You can add icons if required, by editing the file `themes/Goliath/assets/fontawesome-free-5.15.2-web/scss/_icons.scss`, and uncomment the line corresponding to the icon you want to display.
+The theme uses the icons from [FontAwesome](https://fontawesome.com/). You can add icons if required, by editing the file `themes/Goyat/assets/fontawesome-free-5.15.2-web/scss/_icons.scss`, and uncomment the line corresponding to the icon you want to display.
