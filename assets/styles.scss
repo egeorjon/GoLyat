@@ -380,29 +380,16 @@ h3 a {
     }
 }
 
-// ---- widget-series ------------------
-/*
-.widget-series {
-    font-size: 1rem;
-    ol {
-        padding-left: 0;
-    }
-}
-*/
 /* -------------------------------------------------
-   --- Figure                                    ---
+   --- Typo                                   ---
    ------------------------------------------------- */
 
-.img-center,
-.figure-center {
-    display: block;
-    text-align: center;
+ol > li p {
+    margin-bottom: 0;
 }
 
-.figure-caption {
-    font-style: italic;
-    text-align: center;
-    margin-top: 0.5rem;
+ol, ul, dl {
+  margin-bottom: $spacer;
 }
 
 /* -------------------------------------------------
@@ -601,4 +588,98 @@ h3 a {
     a:after {
         content: "( "attr(href)" )"
     }
+}
+
+/* ------------------------------------------ */
+/* --- Figures / Images --------------------- */
+/* ------------------------------------------ */
+
+.figure {
+    margin-bottom: 3 * $spacer;
+}
+  
+.figure-img {
+    margin-bottom: $spacer * .5;
+    line-height: 1;
+}
+
+.img-center,
+.figure-center {
+    display:block!important;
+    text-align: center;
+}
+  
+.figure-caption {
+    margin-top: 0.25rem;
+    font-style: italic;
+    text-align: center;
+}
+
+/* ------------------------------------------ */
+/* --- Tables ------------------------------- */
+/* ------------------------------------------ */
+
+.table {
+    margin-bottom: 3 * $spacer;
+}
+
+
+/* ------------------------------------------ */
+/* --- Blokcquote --------------------------- */
+/* ------------------------------------------ */
+
+blockquote {
+    position: relative;
+
+    border: 1px solid $powder-blue;
+    border-left: 15px solid $powder-blue;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    margin: 2rem 3rem 2rem 5rem;
+}
+
+blockquote p {
+    margin-bottom: 0;
+}
+
+blockquote p:before {
+    display: inline-block;
+    font-family: $bootstrap-icons-font !important;
+    font-size: 2rem;
+    line-height: 1;
+    vertical-align: -.125em;
+
+    position: absolute;
+    left: 1rem;
+    top: -1rem;
+    content: "\f6b0";
+    color: $powder-blue;
+    background-color: white;
+}
+
+blockquote.info {
+    border-color: $blue-300;
+}
+
+blockquote.info p:before {
+    content: "\f431";
+    color: $blue-300;
+}
+
+blockquote.warning {
+    border-color: orange;
+}
+
+blockquote.warning p:before {
+    content: "\f335";
+    color: orange;
+}
+
+blockquote.error {
+    border-color: red;
+}
+
+blockquote.error p:before {
+    content: "\f629";
+    color: red;
 }
