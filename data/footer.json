@@ -22,7 +22,7 @@
               "columns": { "xs": 1, "sm": 1, "md": 1, "lg": 1, "xl": 1 },
               "Widgets": [
                 {
-                  "widget" : "posts-gallery",
+                  "widget" : "gallery",
                   "cache"  : false,
                   "weight" : 1,
                   "params" : { "term": "galerie" }
