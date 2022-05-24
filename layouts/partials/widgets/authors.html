@@ -4,8 +4,8 @@
 {{- $title         := .params.title | default ""                                                        -}}
 {{- $heading_level := int (.params.heading | default site.Data.default_params.widgets.default.heading)   -}}
 {{- $heading_tag   := printf "h%d" $heading_level                                                       -}}
-{{- $numposts      := .params.numposts | default site.Data.default_params.params.authorslist.numposts   -}}
-{{- $lastposts     := .params.lastposts | default site.Data.default_params.params.authorslist.lastposts -}}
+{{- $numposts      := .params.numposts | default site.Data.default_params.widgets.authors.numposts   -}}
+{{- $lastposts     := .params.lastposts | default site.Data.default_params.widgets.authors.lastposts -}}
 {{- $list          := .params.list | default (.context.GetTerms "authors") -}}
 {{- with $list -}}
     {{- range . -}}
