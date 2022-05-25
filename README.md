@@ -31,23 +31,22 @@ You can find a live demo of the theme [here](https://www.emmanuelgeorjon.com). T
     - [Date format](#date-format)
     - [Pagination](#pagination)
     - [Site title / brand](#site-title--brand)
-    - [Navigation](#navigation)
+  - [Navigation](#navigation)
     - [Search configuration](#search-configuration)
-  - [SEO and other configurations](#seo-and-other-configurations)
-    - [SEO configuration](#seo-configuration)
+  - [SEO](#seo)
+  - [RSS, Manifest and sitemap](#rss-manifest-and-sitemap)
     - [RSS configuration](#rss-configuration)
     - [File site.manifest](#file-sitemanifest)
+    - [Sitemap](#sitemap)
   - [Content configuration](#content-configuration)
-    - [Meta information](#meta-information)
+    - [Widget areas](#widget-areas)
+    - [Columns](#columns)
     - [Widgets](#widgets)
-    - [Footer](#footer)
-    - [Footer (bottom)](#footer-bottom)
+    - [Meta information](#meta-information)
   - [Design configuration](#design-configuration)
   - [Configuration of the social media](#configuration-of-the-social-media)
     - [SEO features](#seo-features)
     - [Favicons](#favicons)
-    - [RSS feeds](#rss-feeds)
-    - [Sitemap](#sitemap)
   - [Advanced configuration](#advanced-configuration)
     - [Manifest file](#manifest-file)
     - [Styles](#styles)
@@ -213,6 +212,7 @@ The following parameters
 {{<imggallery files="gallery2" overlay="center" >}}
 ```
 will give the following result:
+
 ![Example of a photo gallery](images/shortcode_gallery.png)
 
 ### Blockquotes
@@ -281,16 +281,14 @@ Paginate               = 8
 timeout                = 100000
 
 [params]
-  debugMode           = true # default false. For development environment only. Allow the loading of scripts like Piwik, allow cache, and indexation.
-  Description         = ""   # Use to fill meta description (not required if the tags, and description are filled in the Front-matter of the posts)
-  Keywords            = ""   # Use to fill meta keywords (not required if the tags, and description are filled in the Front-matter of the posts)
-  licenceText          = "Contenu sous license Creative Commons: Attribution - Pas d'Utilisation Commerciale 4.0 International [BY-NC 4.0]"
-  licenceURL           = "https://creativecommons.org/licenses/by-nc/4.0/"
-  licenceShortText     = "<a href=\"/assets/img/creative_commons.png\" title=\"Contenu sous license Creative Commons: Attribution - Pas d Utilisation Commerciale 4.0 International [BY-NC 4.0]\" />"
-  formatdate           = ":date_medium"
-  mainSections         = [ "blog", "architecture", "project", "photo" ]
-  brandlogo            = "/img/site-logo.png"
-  brandtitle           = "Le blog d'Emmanuel"
+  debugMode         = false # For the development environment only. Allow the loading of scripts like Piwik, allow cache, and indexation.
+  Description       = ""    # Use to fill meta description (not required and description are filled in the Front-matter of the root index.md file)
+  Keywords          = ""    # Use to fill meta keywords (not required if the tags are filled in the Front-matter of the root index.md file)
+  licenceURL        = ""    # URL to the licence post (either a post of the blog, either an external link to the creative common site
+                            # Use in the RSS.xml file generation, and the meta tag licence in the head.
+  formatdate        = ":date_medium"
+  brandlogo         = "< path to an image >" # Example: enter /img/logo.png if the image is in /assets/img/logo.png
+  brandtitle        = "< site title if different than Title >" 
   ```
 
 ### Tests, production, and debug
@@ -395,12 +393,14 @@ title=< title of the blog >
 ```
 In this case, the theme will display the title of the blog as a brand title.
 
-### Navigation
+## Navigation
 
 You have two ways for configuring the navigation menu (in the top bar).
 You can start by
 ```toml
   sectionPagesMenu = "main"
+  [params]
+    mainSections = [ < list of sections > ]
 ```
 The menu will list the sections, and the pages in `/content`.
 
@@ -443,30 +443,26 @@ For a more accurate search, you can specify the sections in which your posts are
   mainSections = [ "blog", "architecture", "project", "photo" ]
 ```
 
-## SEO and other configurations
-
-### SEO configuration
+## SEO
 
 **Goyat** proposes a complete head in each page with metadata, links, and informations used by searchbot, and social medias.
-
-```
-theme                  = "golyat"
-title                  = "< title of the blog >"
-baseURL                = "< root url >"
-DefaultContentLanguage = "ll"
-LanguageCode           = "ll-cc"
-copyright              = "2008-2022 (c) Emmanuel Georjon"  # Use in the RSS Internal template
-
+The configuration parameters are the following:
+```toml
 [params]
-  description         = "< description used if not description is found in the page to display"
-  keywords            = [ "Project Management", "Architecture IT", "Photo", "gestion de projet", "urbanisation" ]
-  themecolor          = "< main color of the theme >"
-  opengraph           = "theme"      # Internal (default Hugo template), theme (the theme's template), or none
-  twitterCards        = "theme"      # Internal (default Hugo template), theme (the theme's template), or none
-  schema              = "theme"      # Internal (default Hugo template), theme (the theme's template), or none
+  Description         = ""   # Use to fill meta description (not required if the tags, and description are filled in the Front-matter of the posts)
+  Keywords            = ""   # Use to fill meta keywords (not required if the tags, and description are filled in the Front-matter of the posts)
+  licenceURL           = "https://creativecommons.org/licenses/by-nc/4.0/"
+  opengraph            = "theme"   # internal, theme, or none. Internal for the default Hugo template, theme for the theme's template.
+  twitterCards         = "theme"   # internal, theme, or none. Internal for the default Hugo template, theme for the theme's template.
+  schema               = "theme"   # internal, theme, or none. Internal for the default Hugo template, theme for the theme's template.
 
 [author]
-  name                = "< name of the site webmaster >"
+  name  = "< author or editor of the website >"
+
+[sitemap]
+  changefreq = "< frequency > "  # daily, weekly, monthly
+  filename = "sitemap.xml"
+  priority = 0.5
 ```
 
 About `opengraph`, `twitter` and `schema`: 
@@ -474,53 +470,35 @@ About `opengraph`, `twitter` and `schema`:
 * The theme **Goyat** provides its own template, in order to provide additional features.
 * You can choose to use internal templates, **Goyat** template by setting `theme`, `internal` values.
 
-==> Sitemap
+The `author`field is used to set a meta tag into the `head`section.
+
+## RSS, Manifest and sitemap
 
 ### RSS configuration
 
 By default, Hugo provide an internal template for generating the RSS files.
-The theme **Goliat** proposes an enhanced version of the RSS template, including images, link to the licence.
+The theme **Goyat** proposes an enhanced version of the RSS template, including images, link to the licence, etc ...
 
-** If you want to use the internal RSS feeds, 
+If you want to use the internal RSS feeds
 
-* You have to delete the file `/themes/goliat/layout/_default/rss.xml`**
+* You have to delete the file `/themes/goyat/layout/_default/rss.xml`**
 * The following parameters will be used
 
 ```toml
 title         = "< title of the blog >"
 LanguageCode  = "fr-fr" # or en-US, ...
-copyright     = "< Copyright sentence >"
+copyright     = "(c) 20xx-2022 Your own copyright string" 
 
-[Config.Services.RSS]
-  Limit       = 5
+  [params]
+    mainSections = [ "blog", "architecture", "project", "photo" ]
 
-[author]
-  name        = "< name of the site webmaster >"
-  email       = "< email adress >"
+  [config.services.rss]
+    Limit     = 5 # max number of posts to be displayed
+
+  [author]
+    name      = "< name of the site webmaster >"
+    email     = "< email adress >"
 ```
-
-** If you want to use the theme's RSS feeds, you need to ensure the the following fields**
-
-You can configure the RSS feeds by using the following parameters:
-
-```toml
-title         = "< title of the blog >"
-LanguageCode  = "fr-fr" # or en-US, ...
-copyright     = "< Copyright sentence >"
-
-[params]
-  LicenceURL  = "https:// < url to the licence > "  # Example: http://creativecommons.org/licenses/by-nc/4.0/
-  Description = "< description >"
-
-[Config.Services.RSS]
-  Limit       = 5
-
-[author]
-  name        = "< name of the site webmaster >"
-  email       = "< email adress >"
-```
-
-** In both cases**
 
 Whatever your choice (internal template, or Goyat's template), you have to specify in the file `config.toml`, where you want to build the RSS feeds.
 In the following example, the RSS files will be generate for the home page, and each of the sections:
@@ -568,122 +546,100 @@ Then, the information that will be put into the file, can be tuned with the foll
   favicons        = ""    # Default: /assets/favicons
 ```
 
-## Content configuration
+### Sitemap
 
-### Meta information
-
-* `meta`: list of meta field to be displayed, with the display order. The available fields are
-  * section,
-  * date,
-  * reading (the estimation duration of read),
-  * tags,
-  * authors,
-  * category.
+The theme generates the `sitemap.xml`.
+It uses the standard Hugo's template. The configuration can be done with the parameters described in the [Hugo's documentation](https://gohugo.io/variables/sitemap/#readout)
 
 Example: 
 
 ```toml
-[params.list]
-  postcolumns   = { "sm" = 1, "md" = 1, "lg" = 2, "xl" = 2 }
-  displayimage  = false
-  meta = { 1 = "section", 2 = "date", 3 = "reading", 4 = "tags" }
-#    meta = { 1 = "section", 2 = "date", 3 = "reading", 4 = "tags", 5 = "authors", 6 = "category" }
+[sitemap]
+  changefreq = "weekly"
+  filename   = "sitemap.xml"
+  priority   = 0.5
 ```
 
-### Widgets
+## Content configuration
 
-==> Widgets
+### Widget areas
 
-Three widgets area
+Three areas of the blog can be configured with widgets
 
 * The homepage itself,
 * The bottom area of the posts,
 * The footer
 
+Configure means choose what you want to display, by selecting widgets. The possible widgets are 
 
-You can also configure what is displayed at the bottom of the post. You can selected "widgets".
-
-Example: 
-```toml
-[params.Single.Widgets]
-  related     = { type = "series-or-related", weight = 3 }
-  share       = { type = "share-links",       weight = 2 }
-  author      = { type = "authors",           weight = 1 }
-``` 
-
-The `weight` allow to display the widgets is a specific order.
-The possible widgets listed in the chapter [Footer](#Footer)
-
-### Footer
-
-The top part of the footer contains widgets. You can select the widgets you want to display. The syntax is the following:
-
-```toml
-[params.FooterWidgets]
-  columns    = { <number of columns according the screen's width> }
-  [params.FooterWidgets.Widgets]
-    [params.FooterWidgets.Widgets.<widget id>]
-      type   = "<type of the widget>"
-      weight = <order>
-```
-
-Example:
-```toml
-[params.FooterWidgets]
-  columns    = { "sm" = 1, "md" = 2, "lg" = 2, "xl" = 3 }
-  [params.FooterWidgets.Widgets]
-    [params.FooterWidgets.Widgets.series]
-      type   = "series"
-      weight = 1
-    [params.FooterWidgets.Widgets.about-links]
-      type   = "text"
-      weight = 2
-      params = "links"
-    [params.FooterWidgets.Widgets.followme]
-      type   = "follow"
-      weight = 3
-```
-
-The possible widgets are 
-
-| Widget            | Description  |
+| Widget            | Description |
 |-------------------|----------------------------------------------|
 | authors           | Display the list of the authors of the posts |
-| categories        | Give the lst of sections |
-| follow            | Display a list of "follow" links |
+| follow-me         | Display a list of "follow" links |
+| gallery           | Display the feature images of a list of posts |
+| last-posts        | Display the last posts of the blog |
+| page              | Display the content of a specific post       |
+| popular           | Display a list of popular posts according aconfigurable list |
 | related-posts     | Give a list of posts related to the current post |
-| same-series       | Display the list of posts belonging to the same serie than the current post |
+| sections-list     | Give the list of sections |
+| series-same       | Display the list of posts belonging to the same serie than the current post |
 | series-or-related | a combination of the two previous widgets |
-| series            | List of the series |
+| series-list       | Display the list of series available in the blog |
 | share-links       | set of links to share the current post |
 | tags-cloud        | Display the cloud of the tags |
-| tags              | List of tags |
-| text              | Display the content of a file / post |
+| tags-posts        | List of the tags related to the current post |
+
+The configuration of the widgets areas can be done through JSON configuration files:
+
+| Area | Configuration file | 
+|------|--------------------|
+| Homepage | /data/homepage.json |
+| footer   | /data/footer.json |
+| bottom of pages | /data/single.json |
+
+### Columns
 
 
-Of course, if you want, you can develop you own widget, and put it in the folder `themes\Goyat\layout\partial\widgets`.
 
-### Footer (bottom)
+### Widgets
 
-The bottom part of the footer shows the copyright information of the site.
-The parameters are grouped into the `[Params.copyright]` section.
+
+
+### Meta information
+
+* `meta`: list of meta fields to be displayed, with the display order. The available fields are
+  * section,
+  * date,
+  * fulldate,
+  * reading (the estimation duration of read),
+  * tags,
+  * post-tags,
+  * series,
+  * posts-series,
+  * sections,
+  * authors,
+  * category,
+  * linkedsection.
+
+Example: 
 
 ```toml
-[params.copyright]
-  FirstDate     = "first date of the publication"
-  Attribution   = "Name of the blog's owner"
-  SentenceSmall = "reduced copyright sentence"
-  SentenceFull  = "the full copyright sentence, with all details"
-```
-
-Example:
-
-```toml
-[params.copyright]
-  FirstDate     = "2008"
-  Attribution   = "Emmanuel Georjon"
-  SentenceSmall = "[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode), thème [Goyat](https://github.com/egeorjon/Goyat)"
-  SentenceFull  = "Contenu sous license Creative Commons [BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode), thème [Goyat](https://github.com/egeorjon/Goyat)"
+[params.xxx.meta]
+  [params.xxx.meta.top]
+    "1" = ""
+    "2" = ""
+    "3" = ""
+    "4" = ""
+  [params.xxx.meta.middle]
+    "1" = ""
+    "2" = ""
+    "3" = ""
+    "4" = ""
+  [params.xxx.meta.bottom]
+    "1" = ""
+    "2" = ""
+    "3" = ""
+    "4" = ""
 ```
 
 ## Design configuration
@@ -833,43 +789,6 @@ apple-touch-icon-180x180.png
 favicon.ico
 ms-icon-144x144.png
 site-logo.svg
-```
-
-### RSS feeds
-
-The RSS file is generated by the default Hugo template. The feeds can be configured using the following parameters:
-```toml
-copyright = "(c) 2008-2022 Your own copyright string"  # Use in the RSS Internal template
-
-[config.services.rss]
-  limit = 10 # max number of posts to be displayed
-
-[author] # Used in RSS internal template
-  name  = "Firstname Lastname"
-  email = "blog@firstname.suffix"
-```
-
-You have also to specify for which page you want to generate a RSS file
-In the following example, the RSS file will generated for the home page, and for each section.
-
-```toml
-[outputs]
-  home    = ["HTML", "RSS", "JSON", "MANIFEST"]
-  section = ["HTML", "RSS"]
-```
-
-### Sitemap
-
-The theme generates the `sitemap.xml`.
-It uses the standard Hugo's template. The configuration can be done with the parameters described in the [Hugo's documentation](https://gohugo.io/variables/sitemap/#readout)
-
-Example: 
-
-```toml
-[sitemap]
-  changefreq = "weekly"
-  filename = "sitemap.xml"
-  priority = 0.5
 ```
 
 
