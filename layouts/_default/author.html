@@ -1,0 +1,17 @@
+{{- define "main" -}}
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <ul class="author-full-posts-list">
+                {{- range .Data.Pages -}}
+                    <li>
+                        <a href="{{- .RelPermalink -}}" title="{{- .Title -}}">
+                            {{- .Title }} ({{- .Date | time.Format (site.Params.FormatDate | default site.Data.default_params.formatdate) -}})
+                        </a>
+                    </li>
+                {{- end -}}
+            </ul>
+        </div><!-- col -->
+    </div><!-- row -->
+</div><!-- container ->
+{{- end -}}
