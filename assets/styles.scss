@@ -309,6 +309,9 @@ h3 a {
 }
 
 .author-full-posts-list {
+
+    margin-bottom: 3 * $spacer;
+
     a {
         color: $dark;
         text-decoration: none;
@@ -613,7 +616,7 @@ ol, ul, dl {
 .figure {
     margin-bottom: 3 * $spacer;
 }
-  
+
 .figure-img {
     margin-bottom: $spacer * .5;
     line-height: 1;
@@ -624,7 +627,7 @@ ol, ul, dl {
     display:block!important;
     text-align: center;
 }
-  
+
 .figure-caption {
     margin-top: 0.25rem;
     font-style: italic;
