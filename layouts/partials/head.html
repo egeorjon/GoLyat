@@ -64,15 +64,17 @@
     <meta http-equiv="cache-control" content="no-cache" /> 
 {{- end }} 
 
+<link rel="canonical" href="{{- .Permalink -}}" />
+
 {{- if eq .Kind "section" -}} 
-    {{- with . -}}<link rel="first" href="{{- .Permalink -}}" />{{- end -}} 
-    {{- with .PrevInSection -}}<link rel="prev" href="{{- .Permalink -}}" />{{- end -}} 
-    {{- with .NextInSection -}}<link rel="next" href="{{- .Permalink -}}" />{{- end -}} 
-    {{/*- with (last 1 .Pages) -}}<link rel="last" href="{{- .Permalink -}}">{{- end -*/}} 
-{{- end -}} 
+    {{- range first 1 .Pages -}}<link rel="first" href="{{- .Permalink -}}" />{{- end -}} 
+    {{- range last  1 .Pages -}}<link rel="last" href="{{- .Permalink -}}">{{- end -}} 
+{{- end -}}
 {{- with .Parent -}} 
     {{- if eq .Kind "section" -}}
-        <link rel="index" href="{{- .Permalink -}}"> 
+        <link rel="index" href="{{- .Permalink -}}">
+        {{- with $.PrevInSection -}}<link rel="prev" href="{{- $.Permalink -}}" />{{- end -}} 
+        {{- with $.NextInSection -}}<link rel="next" href="{{- $.Permalink -}}" />{{- end -}} 
     {{- end -}} 
 {{- else -}}
     <link rel="index" href="{{- site.BaseURL -}}"> 
