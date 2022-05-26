@@ -304,6 +304,22 @@ h3 a {
     }
 }
 
+.author-posts-list {
+    margin-top: 2 * $spacer;
+}
+
+.author-full-posts-list {
+    a {
+        color: $dark;
+        text-decoration: none;
+    }
+
+    a:hover {
+        color: $primary;
+        text-decoration: underline;
+    }
+}
+
 // ---- widget-page ------------------------
 .widget-page {
     text-align: justify;
