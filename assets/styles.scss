@@ -649,9 +649,8 @@ ol, ul, dl {
 
 blockquote {
     position: relative;
-
-    border: 1px solid $powder-blue;
-    border-left: 15px solid $powder-blue;
+    border: 1px solid $celadon-blue; // $powder-blue;
+    border-left: 15px solid $celadon-blue; // $powder-blue;
     border-radius: 0.5rem;
     padding: 1rem;
     margin: 2rem 3rem 2rem 5rem;
@@ -672,17 +671,17 @@ blockquote p:before {
     left: 1rem;
     top: -1rem;
     content: "\f6b0";
-    color: $powder-blue;
+    color: $celadon-blue; // $powder-blue;
     background-color: white;
 }
 
 blockquote.info {
-    border-color: $blue-300;
+    border-color: $celadon-blue; // $blue-300;
 }
 
 blockquote.info p:before {
     content: "\f431";
-    color: $blue-300;
+    color: $celadon-blue; // $blue-300;
 }
 
 blockquote.warning {
