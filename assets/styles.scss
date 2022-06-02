@@ -711,3 +711,13 @@ blockquote.error p:before {
         content: "."
     }
 }
+
+.ref-links {
+    a {
+        color: $dark;
+    }
+
+    a:hover {
+        color: $primary;
+    }
+}
