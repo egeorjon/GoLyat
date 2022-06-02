@@ -22,6 +22,7 @@
     {{- else if .IsPage -}}
         {{- $class = $class | append (slice "single-page") -}}
         {{- $class = $class | append (slice (printf "page-%s" (.Layout | default "standard"))) -}}
+        {{- $class = $class | append (slice (printf "page-%s" (.Type | default "page"))) -}}
     {{- else -}}
         {{- $class = $class | append (slice "list-page") -}}
         {{- if .IsSection }}
