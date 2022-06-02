@@ -6,6 +6,8 @@
         "twittercards"          : "internal",
         "schema"                : "internal",
         "lighbox_for_big_image" : true,
+        "ref_heading"           : 3,
+        "ref_title"             : "references",
         "single": {
             "displayimage"      : true,
             "meta"              : { "top": {}, "middle": { "1": "fulldate", "2": "reading"}, "bottom": {} }
