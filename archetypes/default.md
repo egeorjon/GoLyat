@@ -20,6 +20,25 @@ toc         = true
 [[resources]]
     title = ""
     src = ""
+
+[[references]]
+    site     = ""
+    site_url = ""
+    title    = ""
+    url      = ""
+    lic      = ""
+    lic_url  = ""
+    comments = ""
+
+
+[[references]]
+    site     = ""
+    site_url = ""
+    title    = ""
+    url      = ""
+    lic      = ""
+    lic_url  = ""
+    comments = ""
 +++
 Summary
 <!--more-->
