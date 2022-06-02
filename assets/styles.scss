@@ -701,3 +701,13 @@ blockquote.error p:before {
     content: "\f629";
     color: red;
 }
+
+.post-ref li {
+    &:after {
+        content: ","
+    }
+
+    &:last-child:after {
+        content: "."
+    }
+}
