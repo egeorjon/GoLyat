@@ -253,3 +253,13 @@
 
 [score]
     other = "Score"
+
+[on-the-site]
+    other = "in the site"
+
+[available-under-lic]
+    other = "available under the license"
+
+[references]
+    one   = "Reference"
+    other = "References"
