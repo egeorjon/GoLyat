@@ -53,9 +53,10 @@
 
     /* --- Add the title --- */
     if (document.querySelector(".footnotes")) {
-        var notes = document.createElement("span");
+        var notes = document.createElement("h3");
         notes.classList.add("footnotes-title");
         notes.textContent = "Notes";
         insertAfter(notes, document.querySelector(".footnotes > hr"));
+        document.querySelector(".footnotes > hr").remove();
     }
 </script>
