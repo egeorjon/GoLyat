@@ -114,6 +114,10 @@
     <meta name="google-site-verification" content="{{- . -}}" /> 
 {{- end -}} 
 
+{{- with site.Params.microsoftWMT | default false -}}
+    <meta name="msvalidate.01" content="{{- . -}}" /> 
+{{- end -}} 
+
 {{- if or $production (site.Params.debugMode | default false) -}} 
     {{- partialCached "piwikpro.html" . -}} 
 {{- end -}}
