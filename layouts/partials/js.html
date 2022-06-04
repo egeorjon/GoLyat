@@ -38,6 +38,7 @@
     -------------------------------------------- */
 
     /* --- Update the badge (to fit with bootstrap styles) --- */
+/*
     document.querySelectorAll(".footnote-ref").forEach(
         fr => {
             fr.classList.add("badge","bg-primary");
@@ -46,7 +47,7 @@
             fr.textContent = "[" + text + "]";
         }
     );
-
+*/
     function insertAfter(newNode, referenceNode) {
         referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
     }
@@ -57,6 +58,5 @@
         notes.classList.add("footnotes-title");
         notes.textContent = "Notes";
         insertAfter(notes, document.querySelector(".footnotes > hr"));
-        document.querySelector(".footnotes > hr").remove();
     }
 </script>

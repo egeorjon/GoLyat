@@ -721,6 +721,23 @@ blockquote.error p:before {
         color: $primary;
     }
 }
+
+.footnotes {
+    > hr {
+      display: none;
+    }
+ }
+
+a[href^="#fn:"]:before{ content: '[' }
+a[href^="#fn:"]:after{ content: ']' }
+
+a[href^="#fn:"],
+a[href^="#fnref:"] {
+    text-decoration: none;
+    color: $primary;
+    font-family: monospace;
+}
+
 /*
 .footnote-backref {
     background-color: white;
