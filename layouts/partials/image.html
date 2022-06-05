@@ -24,7 +24,7 @@
 {{- if eq $imgtype 0 -}}
     <div class="ratio ratio-47x20"><div>{{- i18n "image-not-found" -}}</div></div>
 {{- else if lt $imgtype 3 -}}
-    <img class="img-fluid" src="{{- $imgpath | safeURL -}}" alt="{{- .Text | safeHTML -}}" {{- with .Title -}}title="{{- . | safeHTML -}}"{{- end -}} />
+    <img class="img-fluid round-corner {{ with .class -}}{{- . | safeHTML -}}{{- end -}}" src="{{- $imgpath | safeURL -}}" alt="{{- .Text | safeHTML -}}" {{- with .Title -}}title="{{- . | safeHTML -}}"{{- end -}} />
 {{- else -}}
     {{- $sizes     := slice -}}
     {{- $brkpoints := slice 1200 992 768 576 -}}
@@ -46,6 +46,6 @@
     {{- end -}}
     {{/*- if gt (len $srcsets) 0 -*/}}{{- $srcsets = $srcsets | append (printf "%s %dw" $image.RelPermalink $width) -}}{{/*- end -*/}}
     {{- if .Link -}}<a href="{{- .Link -}}" title="{{- .Title -}}">{{- end -}}
-        <img {{ with $sizes -}}sizes="{{ delimit . "," }}"{{- end }} {{ with $srcsets -}}srcset="{{ delimit . "," }}"{{- end }} class="img-fluid {{ with .class -}}{{- . | safeHTML -}}{{- end -}}" src="{{- $image.RelPermalink | safeURL -}}" alt="{{- .Text | safeHTML -}}" {{ with .Title -}}title="{{- . | safeHTML -}}"{{- end }} />
+        <img {{ with $sizes -}}sizes="{{ delimit . "," }}"{{- end }} {{ with $srcsets -}}srcset="{{ delimit . "," }}"{{- end }} class="img-fluid round-corner {{ with .class -}}{{- . | safeHTML -}}{{- end -}}" src="{{- $image.RelPermalink | safeURL -}}" alt="{{- .Text | safeHTML -}}" {{ with .Title -}}title="{{- . | safeHTML -}}"{{- end }} />
     {{- if .Link -}}</a>{{- end -}}
 {{- end -}}
