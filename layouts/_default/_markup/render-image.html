@@ -35,23 +35,30 @@
             {{- $title = delimit (slice $title $string) " - " -}}
         {{- end -}}
     {{ end }}
-    {{- $sizes      := slice -}}
-    {{- $brkpoints  := slice 1200 992 768 576 -}}
-    {{- $viewpoints := slice 80 85 90 95 -}}
-    {{- $index      := 0 -}}
+    {{- $sizes      := slice                    -}}
+    {{- $brkpoints  := slice 576 768 992 1200   -}}
+    {{- $viewpoints := slice 95 90 85 80        -}}
+    {{- $srcsets    := slice                    -}}
+    {{- $imgsizes   := slice 480 660 880 1024   -}}
+    {{- $width      := int $image.Width         -}}
+    {{- $index      := 0                        -}}
     {{- range $size := $viewpoints -}}
-        {{- $sizes   = $sizes | append (printf "(min-width: %dpx) %dvw" (index $brkpoints $index) $size) -}}
+        {{- $bp := index $brkpoints $index -}}
+        {{- if gt $width $bp -}}
+            {{- $sizes = $sizes | append (printf "(min-width: %dpx) %dvw" $bp $size) -}}
+        {{- end -}}
         {{- $index = add $index 1 -}}
     {{- end -}}
-    {{- $sizes = $sizes | append "100vw" -}}
-    {{- $srcsets    := slice -}}
-    {{- $imgsizes   := slice 480 660 880 1024 -}}
-    {{- $width      := $image.Width -}}
+    {{- if gt (len $sizes) 1 -}}
+        {{- $sizes = $sizes | append "100vw" -}}
+    {{- end -}}
+    {{- $index := 0 -}}
     {{- range $size := $imgsizes -}}
-        {{- if gt $width $size -}}
+        {{- if gt $width (index $brkpoints $index) -}}
             {{- $img    := $image.Resize (printf "%dx" $size) -}}
             {{- $srcsets = $srcsets | append (printf "%s %dw" $img.RelPermalink $size) -}}
         {{- end -}}
+        {{- $index = add $index 1 -}}
     {{- end -}}
     {{- if gt (len $srcsets) 0 -}}{{- $srcsets = $srcsets | append (printf "%s %dw" $image.RelPermalink $width) -}}{{- end -}}
     {{- $lightbox := and (gt $width 1024) (site.Params.lighbox_for_big_image | default site.Data.default_params.params.lighbox_for_big_image) -}}
@@ -59,12 +66,16 @@
     {{- if $lightbox -}}
         <a href="{{- $image.RelPermalink -}}" {{ with $title -}}title="{{- . | safeHTML -}}"{{- end }}>
     {{- end -}}
-    <img sizes="{{ delimit $sizes "," }}" 
-        {{ with $srcsets -}}srcset="{{ delimit $srcsets "," }}"{{- end }} 
+    <img 
+        {{ with $sizes -}} sizes="{{ delimit $sizes "," }}" {{ end }}
+        {{ with $srcsets -}} srcset="{{ delimit $srcsets "," }}" {{- end }} 
         class="img-fluid" 
         src="{{- .Destination | safeURL -}}" 
-        {{ with $alt_caption -}}alt="{{- . | safeHTML -}}"{{- end -}}
-        {{ with $title -}}title="{{- . | safeHTML -}}"{{- end -}} />
+        {{ with $alt_caption -}}alt="{{- . | safeHTML -}}"
+        {{- else -}}
+            alt="{{- . | safeHTML -}}"
+        {{- end -}}
+        />
     {{- if $lightbox -}}</a>{{- end -}}
     {{- with $alt_caption -}}<figcaption class="figure-caption">{{- . | safeHTML -}}</figcaption>{{- end -}}
 </figure>
