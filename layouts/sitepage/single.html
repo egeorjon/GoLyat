@@ -4,7 +4,7 @@
     <div class="single-page-image">
         <div class="container">
             <div class="row">
-                <div class="col mb-5 text-center">
+                <div class="col text-center">
                     {{- partial "partials/image.html" (dict "context" . "Destination" .Params.images "Title" .Title "Text" .Title) -}}
                 </div><!-- col -->
             </div><!-- row -->
@@ -14,7 +14,7 @@
     <div class="single-page-content">
         <div class="container limit-width">
             <div class="row row-cols-1">
-                <div class="post-content col mb-6">
+                <div class="post-content col">
                     {{- .Content -}}
                 </div><!-- col -->
             </div><!-- row -->

@@ -2,7 +2,7 @@
     {{- $current_page := . -}}
     <div class="container limit-width">
         <div class="row">
-            <div class="col post-summary mb-4">
+            <div class="col post-summary">
                 {{- .Summary -}}
             </div><!-- col -->
         </div><!-- row -->
@@ -11,7 +11,7 @@
     {{- if $display_image -}}
         <div class="container">
             <div class="row">
-                <div class="col mb-5 text-center">
+                <div class="col text-center">
                     {{- partial "partials/image.html" (dict "context" . "Destination" .Params.images "Title" .Title "Text" .Title) -}}
                 </div><!-- col -->
             </div><!-- row -->
@@ -19,25 +19,25 @@
     {{- end -}}
     <div class="container limit-width">
         <div class="row row-cols-1">
-            <article class="post-content col mb-5">
+            <article class="post-content col">
                 <div id="form-alert" class="alert alert-success d-none" role="alert">
                     {{- i18n "message-recorded" -}}<br />
                 </div>
                 {{- .Content -}}
                 <form id="contact-form" name="contact" method="POST" data-netlify-recaptcha="true" data-netlify="true">
-                    <div class="form-group mb-3">
+                    <div class="form-group">
                         <label for="form-your-name">{{- i18n "your-name" -}}</label>
                         <input type="text" class="form-control" id="form-your-name" name="form-your-name" aria-describedby="nameHelp" placeholder="{{- i18n "placeholder-name" -}}">
                     </div>
-                    <div class="form-group mb-3">
+                    <div class="form-group">
                         <label for="form-your-email">{{- i18n "email-address" -}}</label>
                         <input type="email" class="form-control" id="form-your-email" name="form-your-email" aria-describedby="emailHelp" placeholder="{{- i18n "placeholder-email" -}}">
                     </div>
-                    <div class="form-group mb-3">
+                    <div class="form-group">
                         <label for="form-subject">{{- i18n "subject" -}}</label>
                         <input type="text" class="form-control" id="form-subject" name="form-subject" aria-describedby="subjectHelp" placeholder="{{- i18n "placeholder-subject" -}}" >
                     </div>
-                    <div class="form-group mb-3">
+                    <div class="form-group">
                         <label for="form-msg">{{- i18n "your-message" -}}</label>
                         <textarea class="form-control" id="form-msg" name="form-msg" rows="5" placeholder="{{- i18n "placeholder-message" -}}"></textarea>
                     </div>

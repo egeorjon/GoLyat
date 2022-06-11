@@ -2,14 +2,14 @@
     {{- $current_page := . -}}
     <div class="container limit-width">
         <div class="row">
-            <div class="col post-summary mb-4">
+            <div class="col post-summary">
                 {{- i18n "404-error-desc" -}}
             </div><!-- col -->
         </div><!-- row -->
     </div><!-- container -->
     <div class="container">
         <div class="row">
-            <div class="col mb-5 text-center">
+            <div class="col text-center">
                 <img src="/img/404.jpg" width="1200" height="370" alt="{{- i18n "404-page-not-found" -}}" />
             </div><!-- col -->
         </div><!-- row -->
@@ -21,7 +21,7 @@
                 <p>{{- i18n "content-not-found" -}}</p>
                 <h2>{{- i18n "you-can" -}}</h2>
             </div>
-            <div class="col mb-5">
+            <div class="col">
                 <h3>{{- i18n "use-search" -}}</h3>
                 {{- partialCached "partials/search-form.html" . -}}
             </div>

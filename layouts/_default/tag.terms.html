@@ -4,13 +4,13 @@
             {{- $string := .Summary -}}
             {{- with .Description -}}{{- $string = . -}}{{- end -}}
             {{- with $string -}}
-                <div class="page-summary col mb-5">
+                <div class="page-summary col">
                     <p>{{- . -}}</p>
                 </div><!-- col -->
             {{- end -}}
         </div><!-- row -->
         <div class="row tags-list">
-            <div class="col mb-4">
+            <div class="col">
                 {{- partialCached "partials/widgets/tags-cloud.html" (dict "context" . "params" (dict "title" " ")) -}}
             </div><!-- col -->
         </div><!-- row -->

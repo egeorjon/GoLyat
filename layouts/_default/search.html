@@ -4,7 +4,7 @@
     {{- if $display_image -}}
         <div class="container">
             <div class="row">
-                <div class="col mb-5 text-center">
+                <div class="col text-center">
                     {{- partial "partials/image.html" (dict "context" . "Destination" .Params.images "Title" .Title "Text" .Title) -}}
                 </div><!-- col -->
             </div><!-- row -->
@@ -13,7 +13,7 @@
     <div id="search-form" class="mb-5">
         <div class="container limit-width">
             <div class="row">
-                <h2 class="col mb-5">{{- i18n "search-form" -}}</h2>
+                <h2 class="col">{{- i18n "search-form" -}}</h2>
             </div>
             {{- partialCached "partials/search-form.html" . -}}
         </div><!-- container -->
