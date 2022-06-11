@@ -9,6 +9,7 @@
 {{- $imgtype     := 0 -}}{{/* 0: not found, 1: external, 2: found but not manageable, 3: found and manageable */}}
 {{- $image       := "" -}}
 {{- $exts        := (slice ".jpg" ".jpeg" ".gif" ".tif" ".png" ".webp") -}}
+{{- $columns     := 1 -}}
 {{- if strings.HasPrefix .Destination "http" -}}
     {{- $imgtype = 1 -}}
 {{- else -}}
@@ -35,39 +36,30 @@
             {{- $title = delimit (slice $title $string) " - " -}}
         {{- end -}}
     {{ end }}
-    {{- $sizes      := slice                    -}}
-    {{- $brkpoints  := slice 576 768 992 1200   -}}
-    {{- $viewpoints := slice 95 90 85 80        -}}
-    {{- $srcsets    := slice                    -}}
-    {{- $imgsizes   := slice 480 660 880 1024   -}}
-    {{- $width      := int $image.Width         -}}
-    {{- $index      := 0                        -}}
-    {{- range $size := $viewpoints -}}
-        {{- $bp := index $brkpoints $index -}}
-        {{- if gt $width $bp -}}
-            {{- $sizes = $sizes | append (printf "(min-width: %dpx) %dvw" $bp $size) -}}
-        {{- end -}}
-        {{- $index = add $index 1 -}}
-    {{- end -}}
-    {{- if gt (len $sizes) 1 -}}
-        {{- $sizes = $sizes | append "100vw" -}}
-    {{- end -}}
-    {{- $index := 0 -}}
+    {{- $width    := int $image.Width          -}}
+    {{- $imgsizes    := slice 320 540 720 960 1140 -}}
+    {{- $width    := int $image.Width          -}}
+    {{- $srcsets  := slice                     -}}
     {{- range $size := $imgsizes -}}
-        {{- if gt $width (index $brkpoints $index) -}}
-            {{- $img    := $image.Resize (printf "%dx" $size) -}}
+        {{- if gt $width $size -}}
+            {{- $img := $image.Resize (printf "%dx" $size) -}}
             {{- $srcsets = $srcsets | append (printf "%s %dw" $img.RelPermalink $size) -}}
         {{- end -}}
-        {{- $index = add $index 1 -}}
     {{- end -}}
-    {{- if gt (len $srcsets) 0 -}}{{- $srcsets = $srcsets | append (printf "%s %dw" $image.RelPermalink $width) -}}{{- end -}}
-    {{- $lightbox := and (gt $width 1024) (site.Params.lighbox_for_big_image | default site.Data.default_params.params.lighbox_for_big_image) -}}
+    {{- $srcsets = $srcsets | append (printf "%s %dw" $image.RelPermalink $width) -}}
+
+    {{/*- $sizes := "100vw" -*/}}
+    {{/*- if lt $width 930 -*/}}
+    {{- $sizes := printf "(min-width: %dpx) %dpx, 100vw" $width $width -}}
+    {{/*- end -*/}}
+
+    {{- $lightbox := and (gt $width 930) (site.Params.lighbox_for_big_image | default site.Data.default_params.params.lighbox_for_big_image) -}}
 <figure class="figure figure-center">
     {{- if $lightbox -}}
         <a href="{{- $image.RelPermalink -}}" {{ with $title -}}title="{{- . | safeHTML -}}"{{- end }}>
     {{- end -}}
     <img 
-        {{ with $sizes -}} sizes="{{ delimit $sizes "," }}" {{ end }}
+        {{ with $sizes -}} sizes="{{- $sizes -}}" {{ end }}
         {{ with $srcsets -}} srcset="{{ delimit $srcsets "," }}" {{- end }} 
         class="img-fluid" 
         src="{{- .Destination | safeURL -}}" 

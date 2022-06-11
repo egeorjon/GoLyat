@@ -9,6 +9,7 @@
 {{- $imgtype := 0  -}}{{/* 0: not found, 1: external, 2: found but not manageable, 3: found and manageable */}}
 {{- $image   := "" -}}
 {{- $exts    := (slice ".jpg" ".jpeg" ".gif" ".tif" ".png" ".webp") -}}
+{{- $colnum  := .colnum | default "mono" -}}
 {{- if strings.HasPrefix $imgpath "http" -}}
     {{- $imgtype = 1 -}}
 {{- else -}}
@@ -26,33 +27,38 @@
 {{- else if lt $imgtype 3 -}}
     <img class="img-fluid round-corner {{ with .class -}}{{- . | safeHTML -}}{{- end -}}" src="{{- $imgpath | safeURL -}}" alt="{{- .Text | safeHTML -}}" {{- with .Title -}}title="{{- . | safeHTML -}}"{{- end -}} />
 {{- else -}}
-    {{- $sizes      := slice                    -}}
-    {{- $brkpoints  := slice 576 768 992 1200   -}}
-    {{- $viewpoints := slice 95 90 85 80        -}}
-    {{- $srcsets    := slice                    -}}
-    {{- $imgsizes   := slice 480 660 880 1024   -}}
-    {{- $width      := int $image.Width         -}}
-    {{- $index      := 0                        -}}
-    {{- range $size := $viewpoints -}}
-        {{- $bp := index $brkpoints $index -}}
-        {{- if gt $width $bp -}}
-            {{- $sizes = $sizes | append (printf "(min-width: %dpx) %dvw" $bp $size) -}}
-        {{- end -}}
-        {{- $index = add $index 1 -}}
-    {{- end -}}
-    {{- if gt (len $sizes) 1 -}}
-        {{- $sizes = $sizes | append "100vw" -}}
-    {{- end -}}
-    {{- $index := 0 -}}
+
+    {{- $width       := int $image.Width       -}}
+    {{- $imgsizes    := slice 320 540 720 960 1140 -}}
+    {{- $breakpoints := slice 1200 992 768 576 -}}
+    {{- $viewports   := slice 33 33 50 100     -}}
+    {{- $srcsets     := slice                  -}}
+    {{- $sizes       := slice                  -}}
     {{- range $size := $imgsizes -}}
-        {{- if gt $width (index $brkpoints $index) -}}
-            {{- $img    := $image.Resize (printf "%dx" $size) -}}
+        {{- if gt $width $size -}}
+            {{- $img := $image.Resize (printf "%dx" $size) -}}
             {{- $srcsets = $srcsets | append (printf "%s %dw" $img.RelPermalink $size) -}}
         {{- end -}}
-        {{- $index = add $index 1 -}}
     {{- end -}}
-    {{- if gt (len $srcsets) 0 -}}{{- $srcsets = $srcsets | append (printf "%s %dw" $image.RelPermalink $width) -}}{{- end -}}
-    {{- if .Link -}}<a href="{{- .Link -}}" title="{{- .Title -}}">{{- end -}}
-        <img {{ with $sizes -}}sizes="{{ delimit . "," }}"{{- end }} {{ with $srcsets -}}srcset="{{ delimit . "," }}"{{- end }} class="img-fluid round-corner {{ with .class -}}{{- . | safeHTML -}}{{- end -}}" src="{{- $image.RelPermalink | safeURL -}}" alt="{{- .Text | safeHTML -}}" {{ with .Title -}}title="{{- . | safeHTML -}}"{{- end }} />
+    {{- $srcsets = $srcsets | append (printf "%s %dw" $image.RelPermalink $width) -}}
+    
+    {{- if eq $colnum "mono" -}}
+        {{- $sizes = $sizes | append (printf "(min-width: %dpx) %dpx" $width $width) -}}
+        {{- $sizes = $sizes | append (printf "%dvw" 100) -}}
+    {{- else -}}
+        {{- $index := 0 -}}
+        {{- range $bkpts := $breakpoints -}}
+            {{- $vpts := index $viewports $index -}}
+            {{- $sizes = $sizes | append (printf "(min-width: %dpx) %dvw" $bkpts $vpts) -}}
+            {{- $index = add $index 1 -}}
+        {{- end -}}
+        {{- $sizes = $sizes | append (printf "%dpx" 100) -}}
+    {{- end -}}
+    {{- if .Link -}}<a href="{{- .Link -}}" {{ with .Title -}}title="{{- . | safeHTML -}}"{{- end }}>{{- end -}}
+        <img {{ with $sizes -}}sizes="{{ delimit . "," }}"{{- end }} 
+             {{ with $srcsets -}}srcset="{{ delimit . "," }}"{{- end }} 
+             class="img-fluid round-corner {{ with .class -}}{{- . | safeHTML -}}{{- end -}}" 
+             src="{{- $image.RelPermalink | safeURL -}}" 
+             alt="{{- .Text | safeHTML -}}" />
     {{- if .Link -}}</a>{{- end -}}
 {{- end -}}
