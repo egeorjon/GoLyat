@@ -6,7 +6,7 @@
 <article class="post post-format post-format-image-top">
     <div class="post-inner">
     {{- if $display_image -}}
-        {{- partial "image.html" (dict "context" $context "Destination" $context.Params.images "Title" $context.Title "Text" $context.Title "Class" "pt-1") -}}<!-- "Link" $context.RelPermalink -->
+        {{- partial "image.html" (dict "context" $context "Destination" $context.Params.images "Title" $context.Title "Text" $context.Title) -}}<!-- "Link" $context.RelPermalink -->
     {{- end -}}
         {{- with $meta.top -}}
             {{- partial "partials/meta.html" (dict "context" $context "kindctx" $kindctx "typectx" $typectx "meta" . "class" "meta-top") -}}

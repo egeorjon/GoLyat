@@ -26,7 +26,7 @@
             {{- range first $numposts (shuffle .Pages) -}}
                 <aside class="col">
                     {{- if isset .Params "images" -}}
-                        {{- partial "partials/image.html" (dict "context" . "Destination" .Params.images "Title" .Title "Text" .Title "Link" .RelPermalink) -}}
+                        {{- partial "partials/image.html" (dict "context" . "Destination" .Params.images "Title" .Title "Text" .Title "Link" .RelPermalink "colnum" "multi") -}}
                     {{- end -}}
                 </aside><!-- col -->
             {{- end -}}

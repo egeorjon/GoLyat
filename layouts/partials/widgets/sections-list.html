@@ -25,7 +25,7 @@
                         {{- with site.GetPage . -}} 
                             <aside class="col">
                                 {{- if isset .Params "images" -}}
-                                    {{- partial "partials/image.html" (dict "context" . "Destination" .Params.images "Title" .Title "Text" .Title "Link" .Permalink) -}}
+                                    {{- partial "partials/image.html" (dict "context" . "Destination" .Params.images "Title" .Title "Text" .Title "Link" .Permalink "colnum" "multi") -}}
                                 {{- end -}}
                                 {{- (printf "<%s class=\"widget-title\"><a href=\"%s\" title=\"%s\">%s</a></%s>" $subheading_tag .RelPermalink (.Title | plainify | htmlUnescape) .Title $subheading_tag) | safeHTML -}}
                                 {{- if eq $widget_format "image-full" -}}

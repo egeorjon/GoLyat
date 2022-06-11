@@ -27,7 +27,7 @@
                             <aside class="col">
                                 {{- with .Page -}}
                                     {{- if isset .Params "images" -}}
-                                        {{- partial "partials/image.html" (dict "context" . "Destination" .Params.images "Title" .Title "Text" .Title "Link" .RelPermalink) -}}
+                                        {{- partial "partials/image.html" (dict "context" . "Destination" .Params.images "Title" .Title "Text" .Title "Link" .RelPermalink "colnum" "multi") -}}
                                     {{- end -}}
                                     {{- (printf "<%s class=\"widget-title\"><a href=\"%s\" title=\"%s\">%s</a></%s>" $subheading_tag .RelPermalink (.Title | plainify | htmlUnescape) .Title $subheading_tag) | safeHTML -}}
                                     {{- if eq $widget_format "image-full" -}}

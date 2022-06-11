@@ -43,7 +43,7 @@
         </div><!-- col -->
         {{- if $display_image -}}
         <div class="col-12 col-md-5">
-            {{- partial "image.html" (dict "context" $context "Destination" $context.Params.images "Title" $context.Title "Text" $context.Title "Class" "pt-1") -}}<!-- "Link" $context.RelPermalink -->
+            {{- partial "image.html" (dict "context" $context "Destination" $context.Params.images "Title" $context.Title "Text" $context.Title "colnum" "multi") -}}<!-- "Link" $context.RelPermalink -->
         </div><!-- col -->
         {{- end -}}
     </div><!-- row -->

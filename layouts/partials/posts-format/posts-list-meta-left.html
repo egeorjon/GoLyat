@@ -22,7 +22,7 @@
                 {{/*- . | replaceRE "<p>(.*|\n)</p>" "$1" -*/}}
             {{- end -}}
             {{- if $display_image -}}
-                {{- partial "image.html" (dict "context" $context "Destination" $context.Params.images "Title" $context.Title "Text" $context.Title "Class" "pt-1") -}}<!-- "Link" $context.RelPermalink -->
+                {{- partial "image.html" (dict "context" $context "Destination" $context.Params.images "Title" $context.Title "Text" $context.Title "colunm" "multi") -}}<!-- "Link" $context.RelPermalink -->
             {{- end -}}
             </div><!-- col -->
         </div><!-- row -->
