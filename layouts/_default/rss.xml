@@ -1,5 +1,6 @@
 {{- $rfc822_date := "Mon, 02 Jan 2006 15:04:05 -0700" -}}
-{{- $limit := 20 -}}
+{{- $limit    := 20 -}}
+{{- $protocol := "https:" -}}
 {{- if gt site.Config.Services.RSS.Limit 0 -}}{{- $limit = site.Config.Services.RSS.Limit | default site.Data.default_params.services.rss -}}{{- end -}}
 {{- $pages := .RegularPages | first $limit -}}
 {{- if .IsHome -}}
@@ -17,13 +18,13 @@
       {{- $title = printf "%s on %s" .Title site.Title -}}
     {{- end -}}
     <title>{{- $title | plainify | htmlUnescape -}}</title>
-    <link>{{- .Permalink -}}</link>
+    <link>{{- $protocol -}}{{- .Permalink -}}</link>
     {{- with .OutputFormats.Get "RSS" -}}
-      {{- printf "<atom:link href=%q rel=\"self\" type=%q />" .Permalink .MediaType | safeHTML -}}
+      {{- printf "<atom:link href=\"%s%s\" rel=\"self\" type=\"%s\" />" $protocol .Permalink .MediaType | safeHTML -}}
     {{- end -}}
     {{- $description := .Params.description | default site.Params.description | default "" -}}
     {{- with $description -}}
-      <description>{{- (printf "<![CDATA[%s]]>" ($description | plainify)) | htmlUnescape -}}</description>
+      <description>{{- printf "<![CDATA[%s]]>" ($description | plainify | htmlUnescape) -}}</description>
     {{- end -}}
     {{- with site.Params.licenceURL -}}<creativeCommons:license>{{- . | safeHTML -}}</creativeCommons:license>{{- end -}}
     {{- with site.LanguageCode -}}<language>{{- . -}}</language>{{- end -}}
@@ -46,18 +47,24 @@
     {{- with site.Copyright -}}<copyright>{{- . | htmlUnescape -}}</copyright>{{- end -}}
     {{- if not .Date.IsZero -}}<lastBuildDate>{{- .Date.Format $rfc822_date -}}</lastBuildDate>{{- end -}}
     {{- range $pages -}}
-      {{- $title        := .Title   | plainify | htmlUnescape -}}
-      {{- $summary      := .Summary | plainify | htmlUnescape -}}
+      {{- $title        := .Title   | plainify | html -}}{{/* plainify | htmlUnescape */}}
       {{- $authors_list := slice -}}
       {{- range .GetTerms "authors" -}}
-        {{- $authors_list = $authors_list | append (slice .Params.Title) -}}
+        {{- with .Params -}}
+          {{- $name := .Title -}}
+          {{- with .email -}}
+            {{- $authors_list = $authors_list | append (slice (printf "%s (%s)" . ($name | plainify | htmlUnescape))) -}}
+          {{- else -}}
+            {{- $authors_list = $authors_list | append (slice (printf "%s" . )) -}}
+          {{- end -}}
+        {{- end -}}
       {{- end -}}
       <item>
         <title>{{- .Title | safeHTML -}}</title>
-        <link>{{- .Permalink -}}</link>
-        <guid isPermaLink="true">{{- .Permalink -}}</guid>
+        <link>{{- $protocol -}}{{- .Permalink -}}</link>
+        <guid isPermaLink="true">{{- $protocol -}}{{- .Permalink -}}</guid>
         <pubDate>{{- .Lastmod.Format $rfc822_date -}}</pubDate>
-        <description>{{- (printf "<![CDATA[%s]]>" ($summary | plainify)) | htmlUnescape -}}</description>
+        {{- with .Summary -}}<description>{{- printf "<![CDATA[%s]]>" (. | plainify | htmlUnescape) -}}</description>{{- end -}}
         {{- with $authors_list -}}<author>{{- delimit $authors_list "," -}}</author>{{- end -}}
         {{- if not .IsHome -}}
           {{- with .CurrentSection -}}<category domain="{{- .Permalink -}}">{{- .Title -}}</category>{{- end -}}
@@ -65,7 +72,7 @@
         {{- if isset .Params "images" -}}
             {{- $image := .Resources.GetMatch (index .Params.Images 0) -}}
             {{- with $image -}}
-              <media:content url="{{- .Permalink -}}" type="{{- .MediaType -}}" height="{{- .Height -}}" width="{{- .Width -}}" />
+              <media:content url="{{- $protocol -}}{{- .Permalink -}}" type="{{- .MediaType -}}" height="{{- .Height -}}" width="{{- .Width -}}" />
             {{- end -}}
         {{- end -}}
       </item>
