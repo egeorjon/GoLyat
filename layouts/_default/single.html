@@ -33,7 +33,7 @@
         </div><!-- row -->
     {{- end -}}
     {{- if site.Params.Single.displayserie | default site.Data.default_params.params.single.displayserie -}}
-        <div class="row single-post-meta single-post-meta-middle">
+        <div class="row single-post-serie">
             <div class="col">
                 {{- partial "partials/series-post.html" (dict "context" $current_page) -}}
             </div>
