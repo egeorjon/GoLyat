@@ -1,0 +1,20 @@
+{{- $context := .context -}}
+{{- $serie := first 1 ($context.GetTerms "series") -}}
+{{- range $serie -}}
+    {{- $title   := i18n site.Data.default_params.params.series.title   -}}
+    {{- $heading := site.Data.default_params.params.series.heading -}}
+    {{- printf "<%s>%s</%s>" $heading (printf $title .Title ) $heading | safeHTML -}}
+    <ol>
+        {{- range .Pages.ByPublishDate }}
+        <li>
+            {{- if eq . $context -}}
+            <strong>{{- .Title }}</strong>
+            {{- else -}}
+            <a href="{{- .RelPermalink -}}" rel="bookmark">
+                {{- .Title }} ({{- .Date | time.Format (site.Params.FormatDate | default site.Data.default_params.formatdate)  -}})
+            </a>
+            {{- end -}}
+        </li>
+        {{- end }}
+    </ol>
+{{- end }}
