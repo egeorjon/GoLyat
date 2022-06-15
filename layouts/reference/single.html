@@ -1,6 +1,6 @@
 {{- define "main" -}}
     {{- $current_page := . -}}
-    {{- $meta := site.Params.Single.meta | default site.Data.defaults_params.params.single.meta -}}
+    {{- $meta := site.Params.Single.meta | default site.Data.default_params.params.single.meta -}}
     <div class="container single-post-summary limit-width">
         <div class="row">
             <div class="col">
@@ -20,7 +20,7 @@
             </div><!-- row -->
         </div><!-- container -->
     {{- end -}}
-    {{- $display_image := and (isset .Params "images") (site.Params.Single.displayimage | default site.Data.defaults_params.params.single.displayimage) -}}
+    {{- $display_image := and (isset .Params "images") (site.Params.Single.displayimage | default site.Data.default_params.params.single.displayimage) -}}
     {{- if $display_image -}}
         <div class="container single-post-image">
             <div class="row">
