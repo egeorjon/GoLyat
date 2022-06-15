@@ -263,3 +263,6 @@
 [references]
     one   = "Reference"
     other = "References"
+
+[part-of-a-serie]
+    other = "This post is part of the serie &laquo;%s&raquo;: "

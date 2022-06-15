@@ -268,3 +268,6 @@
 [references]
     one   = "Référence"
     other = "Références"
+
+[part-of-a-serie]
+    other = "Cet article fait parti du dossier &laquo;%s&raquo; : "
