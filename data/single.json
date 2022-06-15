@@ -25,7 +25,7 @@
       "columns": { "xs": 1, "sm": 1, "md": 2, "lg": 2, "xl": 2 },
       "Groups": [
         {
-          "name": "tags-share",
+          "name": "tags",
           "columns": { "xs": 1, "sm": 1, "md": 1, "lg": 1, "xl": 1 },
           "Widgets": [
             {
@@ -33,23 +33,17 @@
               "cache": false,
               "weight": 1,
               "params": {}
-            },
-            {
-              "widget": "share-links",
-              "cache": false,
-              "weight": 2,
-              "params": {}
             }
           ]
         },
         {
-          "name": "series",
+          "name": "share",
           "columns": { "xs": 1, "sm": 1, "md": 1, "lg": 1, "xl": 1 },
-          "Widgets": [
+          "Widgets": [          
             {
-              "widget": "series-same",
+              "widget": "share-links",
               "cache": false,
-              "weight": 1,
+              "weight": 2,
               "params": {}
             }
           ]
@@ -58,8 +52,8 @@
     },
     {
       "name": "related",
-      "columns": { "xs": 1, "sm": 1, "md": 1, "lg": 1, "xl": 1 },
       "limitwidth": false,
+      "columns": { "xs": 1, "sm": 1, "md": 1, "lg": 1, "xl": 1 },
       "Groups": [
         {
           "name": "related",
@@ -70,6 +64,25 @@
               "cache": false,
               "weight": 1,
               "params": {}
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "popular",
+      "columns": { "xs": 1, "sm": 1, "md": 1, "lg": 1, "xl": 1 },
+      "limitwidth": false,
+      "Groups": [
+        {
+          "name": "popular",
+          "columns": { "xs": 1, "sm": 1, "md": 1, "lg": 1, "xl": 1 },
+          "Widgets": [
+            {
+              "widget": "popular",
+              "cache": false,
+              "weight": 1,
+              "params": { "numposts": 3 }
             }
           ]
         }
