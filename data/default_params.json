@@ -10,6 +10,7 @@
         "ref_title"             : "references",
         "single": {
             "displayimage"      : true,
+            "displayserie"      : true,
             "meta"              : { "top": {}, "middle": { "1": "fulldate", "2": "reading"}, "bottom": {} }
         },
         "postslist": {
@@ -52,6 +53,10 @@
                 "middle"        : { "2": "tags" },
                 "bottom"        : { "1": "date", "2": "reading" }
             }
+        },
+        "series": {
+            "heading": "p",
+            "title"  : "part-of-a-serie"
         },
         "manifest": {
             "display"           : "browser",
