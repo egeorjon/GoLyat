@@ -24,7 +24,7 @@
     {{- end -}}
     {{- $description := .Params.description | default site.Params.description | default "" -}}
     {{- with $description -}}
-      <description>{{- printf "<![CDATA[%s]]>" ($description | plainify | htmlUnescape) -}}</description>
+      <description>{{- $description | plainify | htmlUnescape -}}{{/*- printf "<![CDATA[%s]]>" ($description | plainify | htmlUnescape) -*/}}</description>
     {{- end -}}
     {{- with site.Params.licenceURL -}}<creativeCommons:license>{{- . | safeHTML -}}</creativeCommons:license>{{- end -}}
     {{- with site.LanguageCode -}}<language>{{- . -}}</language>{{- end -}}
@@ -47,7 +47,7 @@
     {{- with site.Copyright -}}<copyright>{{- . | htmlUnescape -}}</copyright>{{- end -}}
     {{- if not .Date.IsZero -}}<lastBuildDate>{{- .Date.Format $rfc822_date -}}</lastBuildDate>{{- end -}}
     {{- range $pages -}}
-      {{- $title        := .Title   | plainify | html -}}{{/* plainify | htmlUnescape */}}
+      {{- $title := .Title | plainify | html -}}{{/* plainify | htmlUnescape */}}
       {{- $authors_list := slice -}}
       {{- range .GetTerms "authors" -}}
         {{- with .Params -}}
@@ -64,7 +64,7 @@
         <link>{{- $protocol -}}{{- .Permalink -}}</link>
         <guid isPermaLink="true">{{- $protocol -}}{{- .Permalink -}}</guid>
         <pubDate>{{- .Lastmod.Format $rfc822_date -}}</pubDate>
-        {{- with .Summary -}}<description>{{- printf "<![CDATA[%s]]>" (. | plainify | htmlUnescape) -}}</description>{{- end -}}
+        {{- with .Summary -}}<description>{{- . | plainify | htmlUnescape -}}{{/*- printf "<![CDATA[%s]]>" (. | plainify | htmlUnescape) -*/}}</description>{{- end -}}
         {{- with $authors_list -}}<author>{{- delimit $authors_list "," -}}</author>{{- end -}}
         {{- if not .IsHome -}}
           {{- with .CurrentSection -}}<category domain="{{- .Permalink -}}">{{- .Title -}}</category>{{- end -}}
