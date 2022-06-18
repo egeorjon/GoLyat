@@ -64,16 +64,18 @@
         <link>{{- $protocol -}}{{- .Permalink -}}</link>
         <guid isPermaLink="true">{{- $protocol -}}{{- .Permalink -}}</guid>
         <pubDate>{{- .Lastmod.Format $rfc822_date | htmlUnescape -}}</pubDate>
-        {{- with .Description }}
+        {{- with .Description -}}
           <summary>
-              {{ (printf "<![CDATA[%s]]>" .) | htmlUnescape }}
+              {{/* (printf "<![CDATA[%s]]>" .) | htmlUnescape */}}
+              {{- . | htmlEscape -}}
           </summary>
         {{ end -}}
-        {{- with .Summary }}
+        {{- with .Summary -}}
           <content type="html" xml:lang="{{- site.LanguageCode | default site.Data.default_params.languagecode -}}">
-          {{ (printf "<![CDATA[%s]]>" .) | htmlUnescape }}
+          {{/* (printf "<![CDATA[%s]]>" .) | htmlUnescape */}}
+          {{- . | htmlEscape -}}
           </content>
-        {{ end }}
+        {{- end -}}
         {{ with $authors_list -}}<author>{{- delimit $authors_list "," -}}</author>{{- end -}}
         {{- if not .IsHome -}}
           {{- with .CurrentSection -}}<category domain="{{- .Permalink -}}">{{- .Title -}}</category>{{- end -}}
