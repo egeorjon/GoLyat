@@ -31,7 +31,7 @@
     {{- $width       := int $image.Width       -}}
     {{- $imgsizes    := slice 320 540 720 960 1140 -}}
     {{- $breakpoints := slice 1200 992 768 576 -}}
-    {{- $viewports   := slice 33 33 50 100     -}}
+    {{- $viewports   := slice 33 33 50 97     -}}
     {{- $srcsets     := slice                  -}}
     {{- $sizes       := slice                  -}}
     {{- range $size := $imgsizes -}}
@@ -44,7 +44,7 @@
     
     {{- if eq $colnum "mono" -}}
         {{- $sizes = $sizes | append (printf "(min-width: %dpx) %dpx" $width $width) -}}
-        {{- $sizes = $sizes | append (printf "%dvw" 100) -}}
+        {{- $sizes = $sizes | append (printf "%dvw" 97) -}}
     {{- else -}}
         {{- $index := 0 -}}
         {{- range $bkpts := $breakpoints -}}
@@ -52,7 +52,7 @@
             {{- $sizes = $sizes | append (printf "(min-width: %dpx) %dvw" $bkpts $vpts) -}}
             {{- $index = add $index 1 -}}
         {{- end -}}
-        {{- $sizes = $sizes | append (printf "%dpx" 100) -}}
+        {{- $sizes = $sizes | append (printf "%dvw" 95) -}}
     {{- end -}}
     {{- if .Link -}}<a href="{{- .Link -}}" {{ with .Title -}}title="{{- . | safeHTML -}}"{{- end }}>{{- end -}}
         <img {{ with $sizes -}}sizes="{{ delimit . "," }}"{{- end }} 
