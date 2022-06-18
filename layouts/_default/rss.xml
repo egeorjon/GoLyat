@@ -64,7 +64,16 @@
         <link>{{- $protocol -}}{{- .Permalink -}}</link>
         <guid isPermaLink="true">{{- $protocol -}}{{- .Permalink -}}</guid>
         <pubDate>{{- .Lastmod.Format $rfc822_date -}}</pubDate>
-        {{- with .Summary -}}<description>{{- . | plainify | htmlUnescape -}}{{/*- printf "<![CDATA[%s]]>" (. | plainify | htmlUnescape) -*/}}</description>{{- end -}}
+        {{- with .Description -}}
+        <summary>
+          {{ printf "<![CDATA[%s]]>" (. | plainify ) }}
+        </summary>
+        {{- end -}}
+        {{- with .Summary -}}
+        <content type="html" xml:lang="fr">
+          {{ printf "<![CDATA[%s]]>" . }}
+        </content>
+        {{- end -}}
         {{- with $authors_list -}}<author>{{- delimit $authors_list "," -}}</author>{{- end -}}
         {{- if not .IsHome -}}
           {{- with .CurrentSection -}}<category domain="{{- .Permalink -}}">{{- .Title -}}</category>{{- end -}}
@@ -72,7 +81,10 @@
         {{- if isset .Params "images" -}}
             {{- $image := .Resources.GetMatch (index .Params.Images 0) -}}
             {{- with $image -}}
-              <media:content url="{{- $protocol -}}{{- .Permalink -}}" type="{{- .MediaType -}}" height="{{- .Height -}}" width="{{- .Width -}}" />
+              {{- $img := $image.Resize (printf "%dx" 800) -}}
+              {{- with $img -}}
+                <media:content url="{{- $protocol -}}{{- .Permalink -}}" type="{{- .MediaType -}}" expression="full" width="{{- .Width -}}" height="{{- .Height -}}" />
+              {{- end -}}
             {{- end -}}
         {{- end -}}
       </item>
