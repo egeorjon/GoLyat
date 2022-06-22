@@ -62,7 +62,7 @@
         {{ with site.Author.email -}}
             <author>{{- . -}}{{- with site.Author.name }} ({{- . -}}){{- end -}}</author>
         {{ end -}}
-        <description>{{- .Summary | htmlEscape -}}</description>
+        <description>{{- .Summary | replaceRE "^<p>(.*)</p>$" "$1" | htmlEscape -}}</description>
         {{- if isset .Params "images" -}}
             {{- $image := .Resources.GetMatch (index .Params.Images 0) -}}
             {{- with $image -}}
