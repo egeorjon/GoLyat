@@ -66,6 +66,7 @@
               {{- $img := $image.Resize (printf "%dx" 800) -}}
               {{- with $img -}}
                 <media:content url="{{- $protocol -}}{{- .Permalink -}}" type="{{- .MediaType -}}" expression="full" width="{{- .Width -}}" height="{{- .Height -}}" />
+                <enclosure url="{{- $protocol -}}{{- .Permalink -}}" length="{{- len $img.Content -}}" type="image/png" />
               {{- end -}}
             {{- end -}}
         {{- end -}}
