@@ -14,13 +14,13 @@
 {{- $pages = $pages | first $limit -}}
 {{- end -}}
 {{- printf "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\"?>" | safeHTML }}
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" xmlns:creativeCommons="http://backend.userland.com/creativeCommonsRssModule">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:creativeCommons="http://backend.userland.com/creativeCommonsRssModule">
   <channel>
     {{- $title := site.Title -}}
     {{- if not .IsHome -}}
         {{- $title = printf "%s on %s" .Title site.Title -}}
     {{- end -}}
-    <title>{{- $title | plainify }}</title>
+    <title>{{- $title | htmlEscape -}}</title>
     {{- $current_link := printf "%s%s" $protocol .Permalink -}}
     <link>$current_link</link>
     {{ with .OutputFormats.Get "RSS" -}}
@@ -65,7 +65,6 @@
             {{- with $image -}}
               {{- $img := $image.Resize (printf "%dx" 800) -}}
               {{- with $img -}}
-                <media:content url="{{- $protocol -}}{{- .Permalink -}}" type="{{- .MediaType -}}" expression="full" width="{{- .Width -}}" height="{{- .Height -}}" />
                 <enclosure url="{{- $protocol -}}{{- .Permalink -}}" length="{{- len $img.Content -}}" type="image/png" />
               {{- end -}}
             {{- end -}}
