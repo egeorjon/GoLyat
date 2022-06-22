@@ -9,7 +9,10 @@
 {{- else -}}
 {{- $pages = $pctx.Pages -}}
 {{- end -}}
-{{- $limit := site.Config.Services.RSS.Limit -}}
+{{- $limit := 20 -}}
+{{- if gt site.Config.Services.RSS.Limit 0 -}}
+    {{- $limit = site.Config.Services.RSS.Limit | default site.Data.default_params.services.rss -}}
+{{- end -}}
 {{- if ge $limit 1 -}}
 {{- $pages = $pages | first $limit -}}
 {{- end -}}
