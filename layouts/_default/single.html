@@ -3,15 +3,16 @@
     {{- $meta := site.Params.Single.meta | default site.Data.default_params.params.single.meta -}}
     <div class="container limit-width">
         <div class="row row-cols-1">
+            {{- with .Summary -}}
             <div class="col single-post-summary">
-                {{- .Summary -}}
-            </div>
+                <p>{{- . -}}</p>
+            </div><!-- col -->
+            {{- end -}}
             {{- with $meta.top -}}
             <div class="col single-post-meta single-post-meta-top">
                 {{- partial "partials/meta.html" (dict "context" $current_page "kindctx" .Kind "meta" . "class" "meta-top") -}}
-            </div>
-            {{- end -}}
             </div><!-- col -->
+            {{- end -}}
         </div><!-- row -->
     </div><!-- container -->
     {{- $display_image := and (isset .Params "images") (site.Params.Single.displayimage | default site.Data.default_params.params.single.displayimage) -}}
