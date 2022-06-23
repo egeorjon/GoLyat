@@ -1,20 +1,13 @@
 {{- $rfc822_date := "Mon, 02 Jan 2006 15:04:05 -0700" -}}
 {{- $protocol := "" -}}
 {{- if site.IsServer -}}{{- $protocol = "http:" -}}{{- end -}}
-{{- $pctx := . -}}
-{{- if .IsHome -}}{{ $pctx = .Site }}{{- end -}}
-{{- $pages := slice -}}
-{{- if or $.IsHome $.IsSection -}}
-{{- $pages = $pctx.RegularPages -}}
-{{- else -}}
-{{- $pages = $pctx.Pages -}}
-{{- end -}}
 {{- $limit := 20 -}}
 {{- if gt site.Config.Services.RSS.Limit 0 -}}
     {{- $limit = site.Config.Services.RSS.Limit | default site.Data.default_params.services.rss -}}
 {{- end -}}
-{{- if ge $limit 1 -}}
-{{- $pages = $pages | first $limit -}}
+{{- $pages := .RegularPages | first $limit -}}
+{{- if .IsHome -}}
+  {{- $pages = first $limit (where site.RegularPages "Type" "in" site.Params.mainSections) -}}
 {{- end -}}
 {{- printf "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\"?>" | safeHTML }}
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:creativeCommons="http://backend.userland.com/creativeCommonsRssModule">
