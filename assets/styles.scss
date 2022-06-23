@@ -146,11 +146,19 @@ h3 a {
 
 .post-format-meta-left {
     .post-meta {
-        text-align: right;
+        text-align: left;
     }
 
     h2 {
         margin-bottom: 0.25rem;
+    }
+}
+
+@media (min-width: map-get($grid-breakpoints, "md")) {
+    .post-format-meta-left {
+        .post-meta {
+            text-align: right;
+        }
     }
 }
 
