@@ -11,9 +11,7 @@
     <section class="page-list">
         <div class="container limit-width">
             <div class="row list-summary">
-                {{- $string := .Summary -}}
-                {{- with .Description -}}{{- $string = . -}}{{- end -}}
-                {{- with $string -}}
+                {{- with .Summary -}}
                     <div class="col page-summary">
                         <p>{{- . | markdownify -}}</p>
                     </div><!-- col -->
