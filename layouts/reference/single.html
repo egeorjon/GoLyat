@@ -1,25 +1,20 @@
 {{- define "main" -}}
     {{- $current_page := . -}}
     {{- $meta := site.Params.Single.meta | default site.Data.default_params.params.single.meta -}}
-    <div class="container single-post-summary limit-width">
-        <div class="row">
-            <div class="col">
-                {{- .Summary -}}
-                {{- with $meta.top -}}
-                    {{- partial "partials/meta.html" (dict "context" $current_page "kindctx" .Kind "meta" . "class" "meta-top") -}}
-                {{- end -}}
+    <div class="container limit-width">
+        <div class="row row-cols-1">
+            {{- with .Summary -}}
+            <div class="col single-post-summary">
+                <p>{{- . -}}</p>
             </div><!-- col -->
+            {{- end -}}
+            {{- with $meta.top -}}
+            <div class="col single-post-meta single-post-meta-top">
+                {{- partial "partials/meta.html" (dict "context" $current_page "kindctx" .Kind "meta" . "class" "meta-top") -}}
+            </div><!-- col -->
+            {{- end -}}
         </div><!-- row -->
     </div><!-- container -->
-    {{- with $meta.top -}}
-        <div class="container limit-width single-post-meta single-post-meta-top">
-            <div class="row row-cols-1">
-                <div class="col">
-                    {{- partial "partials/meta.html" (dict "context" $current_page "kindctx" .Kind "meta" . "class" "meta-middle") -}}
-                </div><!-- col -->
-            </div><!-- row -->
-        </div><!-- container -->
-    {{- end -}}
     {{- $display_image := and (isset .Params "images") (site.Params.Single.displayimage | default site.Data.default_params.params.single.displayimage) -}}
     {{- if $display_image -}}
         <div class="container single-post-image">
@@ -30,55 +25,53 @@
             </div><!-- row -->
         </div><!-- container -->
     {{- end -}}
-    {{- with $meta.middle -}}
-        <div class="container limit-width single-post-meta single-post-meta-middle">
-            <div class="row row-cols-1">
+    <div class="container">
+        {{- with $meta.middle -}}
+            <div class="row single-post-meta single-post-meta-middle">
                 <div class="col">
                     {{- partial "partials/meta.html" (dict "context" $current_page "kindctx" .Kind "meta" . "class" "meta-middle") -}}
                 </div><!-- col -->
             </div><!-- row -->
-        </div><!-- container -->
-    {{- end -}}
-        <div class="container limit-width single-post-content">
-            <div class="row">
-                <div class="col">
-                    {{- .Content -}}
-                    {{- $table   := dict    -}}
-                    {{- range .Parent.Pages -}}
+        {{- end -}}
+        <div class="row limit-width single-post-content">
+            <div class="col">
+                {{- .Content       -}}
+                {{- $table := dict -}}
+                {{- range .Parent.Pages -}}
                     {{- if .Params.references -}}
-                            {{- $first_tag := first 1 .Params.Tags -}}
-                            {{- $slice  := slice -}}
-                            {{- if isset $table $first_tag -}}
-                                {{- $slice = index $table $first_tag -}}
-                            {{- end -}}
-                            {{- range .Params.references -}}
-                                {{- $ref := . -}}
-                                {{- $string := printf "<a href=\"%s\" title=\"%s\" >%s</a>" .url (.title | plainify) .title -}}
-                                {{- with .site -}}
-                                    {{- $string = printf "%s %s <a href=\"%s\" title=\"%s\">%s</a>" $string (i18n "on-the-site") $ref.site_url (. | plainify) . -}}
-                                {{- end -}}
-                                {{- with .lic -}}
-                                    {{- $string = printf "%s %s <a href=\"%s\" title=\"%s\">%s</a>" $string (i18n "available-under-lic") $ref.lic_url (. | plainify) . -}}
-                                {{- end -}}
-                                {{- with .comments -}}
-                                    {{- $string = printf "%s %s" $string (. | markdownify) -}}
-                                {{- end -}}
-                                {{- $slice = $slice | append $string -}}
-                            {{- end -}}
-                            {{- $table = merge $table (dict $first_tag $slice) -}}
+                        {{- $first_tag := index .Params.Tags 0 -}}
+                        {{- $slice := slice -}}
+                        {{- if isset $table $first_tag -}}
+                            {{- $slice = index $table $first_tag -}}
                         {{- end -}}
+                        {{- range .Params.references -}}
+                            {{- $ref := . -}}
+                            {{- $string := printf "<a href=\"%s\" title=\"%s\" >%s</a>" .url (.title | plainify) .title -}}
+                            {{- with .site -}}
+                                {{- $string = printf "%s %s <a href=\"%s\" title=\"%s\">%s</a>" $string (i18n "on-the-site") $ref.site_url (. | plainify) . -}}
+                            {{- end -}}
+                            {{- with .lic -}}
+                                {{- $string = printf "%s %s <a href=\"%s\" title=\"%s\">%s</a>" $string (i18n "available-under-lic") $ref.lic_url (. | plainify) . -}}
+                            {{- end -}}
+                            {{- with .comments -}}
+                                {{- $string = printf "%s %s" $string (. | markdownify) -}}
+                            {{- end -}}
+                            {{- $slice = $slice | append $string -}}
+                        {{- end -}}
+                        {{- $table = merge $table (dict $first_tag $slice) -}}
                     {{- end -}}
-                    <section class="ref-links">
-                    {{- range $key, $value := $table -}}
-                        <h2>{{- i18n "tags" 1 }} &laquo; {{ $key }} &raquo;</h2>
-                            <ul>
-                                <li>{{- delimit $value "</li><li>" -}}</li>
-                            </ul>
-                    {{- end -}}
-                    </section>
-                </div><!-- col -->
-            </div><!-- row -->
-        </div><!-- container -->
+                {{- end -}}
+                <section class="ref-links">
+                {{- range $key, $value := $table -}}
+                    <h2>{{- i18n "tags" 1 }} &laquo; {{- $key -}} &raquo;</h2>
+                    <ul>
+                        <li>{{- delimit $value "</li><li>" -}}</li>
+                    </ul>
+                {{- end -}}
+                </section>
+            </div><!-- col -->
+        </div><!-- row -->
+    </div><!-- container -->
     {{- with $meta.bottom -}}
         <div class="container limit-width single-post-meta single-post-meta-bottom">
             <div class="row row-cols-1">
