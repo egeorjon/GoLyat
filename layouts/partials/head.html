@@ -7,7 +7,7 @@
 
 {{- $title := slice .Title -}} 
 {{- if not .IsHome -}} 
-    {{- $title = $title | slice (site.Title | markdownify | plainify) -}}
+    {{- $title = $title | append (slice (site.Title | markdownify | plainify)) -}}
 {{- end -}}
 <title>{{- delimit $title " &dash; " -}}</title>
 
