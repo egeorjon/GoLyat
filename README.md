@@ -68,7 +68,7 @@ You can find a live demo of the theme [here](https://www.emmanuelgeorjon.com). T
 
 The theme is based on
 * [BootStrap 5.1.3](https://getbootstrap.com/docs/5.0/getting-started/introduction/)
-* [BootStrap Icons 1.8.2](https://icons.getbootstrap.com/)
+* [BootStrap Icons 1.9.0](https://icons.getbootstrap.com/)
 * [Simple Lightbox 2.10.1](https://simplelightbox.com/)
 * [FuseJS 6.6.2](https://fusejs.io/)
 
