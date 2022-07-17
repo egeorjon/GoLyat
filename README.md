@@ -20,17 +20,17 @@ You can find a live demo of the theme [here](https://www.emmanuelgeorjon.com). T
     - [Option 3: Download ZIP and manual install](#option-3-download-zip-and-manual-install)
     - [Once the theme is deployed](#once-the-theme-is-deployed)
   - [Usage](#usage)
-  - [Shortcodes and markups](#shortcodes-and-markups)
-    - [Attachments](#attachments)
-    - [imggallery](#imggallery)
-    - [Blockquotes](#blockquotes)
-    - [Markups](#markups)
   - [Basic configuration](#basic-configuration)
     - [Tests, production, and debug](#tests-production-and-debug)
     - [Language](#language)
     - [Date format](#date-format)
     - [Pagination](#pagination)
     - [Site title / brand](#site-title--brand)
+  - [Shortcodes and markups](#shortcodes-and-markups)
+    - [Attachments](#attachments)
+    - [imggallery](#imggallery)
+    - [Blockquotes](#blockquotes)
+    - [Markups](#markups)
     - [URL configuration](#url-configuration)
   - [Navigation](#navigation)
   - [Search configuration](#search-configuration)
@@ -53,7 +53,7 @@ You can find a live demo of the theme [here](https://www.emmanuelgeorjon.com). T
   - [Advanced configuration](#advanced-configuration)
     - [Manifest file](#manifest-file)
     - [Styles](#styles)
- 
+
 ## Features
 
 * Responsive design,
@@ -132,150 +132,7 @@ hugo server -D
 
 Then, to see the result, use the following url [`localhost:1313`](http://localhost:1313) in your favorite browser, 
 
-## Shortcodes and markups
-
-The theme provides two shortcodes 
-
-| Shortcodes   | Description    |
-|--------------|----------------|
-| attachments | Display the list of documents attached to the current post |
-| imggallery   | Display a photo gallery |
-
-### Attachments
-
-This shortcode displays a list of documents <<attached>> to a post.
-
-Parameters: 
-
-| Parameter | type   | Purpose | Mandatory | Default | Possible values |
-|-----------|--------|-----------|---------|---------|-----------------|
-| files     | string | **relative** path to the attachments | Yes |  | |
-| fields    | string | list of fields to display | No | icon,title,size | icon,title,filename,size |
-
-By default, the shortcode knows only the files' name. If you want to display the title of the files, you have to fill the title in the Front-Matter of the page, like in the following example:
-```toml
-[[resources]]
-  src = "attachments/matrice_eisenhower.xlsx"
-  title = "Matrice d'Eisenhower sous Excel"
-[[resources]]
-  src = "attachments/archimate_poster.pdf"
-  title = "The Archimate elements"
-``` 
-With the Front Matter above, the syntax of the shortcode could be
-```
-{{< attachements file="attachements/*" >}}
-``` 
-and the result will be
-![List of attachments displayed by the shortcode](images/shortcode_attachments.png)
-
-### imggallery 
-
-This shortcode displays a list of images with thumbnails.
-
-Parameters: 
-
-| Parameter | type    | Purpose | Mandatory | Default | Possible values |
-|-----------|---------|-----------|---------|---------|-----------------|
-| files     | string  | **relative** path to the images | Yes | | |
-| size      | int     | size of the thumbnails      | No  | 250 | Any numeric value |
-| caption   | boolean | Display the caption or not  | No | true | 1, true: display the caption, 0,false: don't display |
-| overlay   | string  | Position of the caption     | No | bottom | top, bottom or center |
-
-
-Similarly to the `attachments` shortcode, you can add a title (that will be the caption) to the thumbnails of the gallery. You can also specify if you want to display EXIF data.
-The following example show the Front-Matter of a page, with 3 galleries, 2 photos in each, and the EXIF data enabled in the second one:
- ```toml
-[[resources]]
-title = "title 1"
-src = "gallery1/photo1.jpg"
-
-[[resources]]
-title = "title 2"
-src = "gallery1/photo2.jpg"
-
-[[resources]]
-title = "title 3"
-src = "gallery2/photo4.jpg"
-
-[[resources]]
-title = "title 4"
-src = "gallery2/photo5.jpg"
-
-[[resources]]
-title = "title 5"
-src = "gallery3/photo7.jpg"
-
-[[resources]]
-title = "title 6"
-src = "gallery3/photo8.jpg"
-
-[[resources]]
-title = "title 7"
-src = "gallery3/photo9.jpg"
- ```
-
-The following parameters
-```
-{{<imggallery files="gallery2" overlay="center" >}}
-```
-will give the following result:
-
-![Example of a photo gallery](images/shortcode_gallery.png)
-
-### Blockquotes
-
-There is no shortcode for `blockquotes`, but **Goyat** takes into account the styles you can provide below the blockquote: 
-
-> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-
-> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-{.info | .warning | .error}
-
-![Blockquotes styles](images/blockquotes.png)
-
-### Markups
-
-The theme provides two markups
-
-* The first one improves the links design: when you write a link with markdown in your post, like `[the link](the url's link)`, icons are added if the link is an external link, a link to GitHub, or a link to Wikipedia.
-* The second markup manages the images: a markdown sentence like the following `![image.png](url to the image)` will generate a fuilly responsive image in HTML
-
-The markup link will generate the following code
-```HTML
-<!-- Code of an internal link -->
-<a href="#" title="Title of the link">consectetur adipiscing elit</a>
-
-<!-- Code for an external link -->
-<a href="#" title="Title of the link" target="_blank" rel="noopener noreferrer">consectetur adipiscing elit <i class="bi-link-45deg"></i></a>
-``` 
-
-![Example of an external link](images/markup_link.png)
-
-The markup image will generate the following code:
-
-```HTML
-<figure class="figure-img figure-center">
-  <a href="url to the image" title="description of the image">
-    <img 
-        sizes="(min-width: 883px) 883px,97vw" 
-        srcset="<path to 320px width image> 320w,
-                <path to 540px width image> 540w,
-                <path to 720px width image> 720w,
-                <path to the full size image> 883w" 
-        class="img-fluid" 
-        src="<path to the full size image>" 
-        alt="description of the image"
-    >
-  </a>
-  <figcaption>Caption of the image</figcaption>
-</figure>
-```
-
-![Example of an image](images/markup_image.png)
-
 ## Basic configuration
-
-
 
 ```toml
 theme                  = "Goyat"
@@ -397,6 +254,155 @@ title = "title of the blog"
 #    ...
 ```
 In this case, the theme will display the title of the blog as a brand title.
+
+## Shortcodes and markups
+
+The theme provides two shortcodes 
+
+| Shortcodes   | Description    |
+|--------------|----------------|
+| attachments | Display the list of documents attached to the current post |
+| imggallery   | Display a photo gallery |
+
+### Attachments
+
+This shortcode displays a list of documents <<attached>> to a post.
+
+Parameters: 
+
+| Parameter | type   | Purpose | Mandatory | Default | Possible values |
+|-----------|--------|-----------|---------|---------|-----------------|
+| files     | string | **relative** path to the attachments | Yes |  | |
+| fields    | string | list of fields to display | No | icon,title,size | icon,title,filename,size |
+
+By default, the shortcode knows only the files' name. If you want to display the title of the files, you have to fill the title in the Front-Matter of the page, like in the following example:
+```toml
+[[resources]]
+  src = "attachments/matrice_eisenhower.xlsx"
+  title = "Matrice d'Eisenhower sous Excel"
+[[resources]]
+  src = "attachments/archimate_poster.pdf"
+  title = "The Archimate elements"
+``` 
+With the Front Matter above, the syntax of the shortcode could be
+```
+{{< attachements file="attachements/*" >}}
+``` 
+and the result will be
+![List of attachments displayed by the shortcode](images/shortcode_attachments.png)
+
+### imggallery 
+
+This shortcode displays a list of images with thumbnails.
+
+Parameters: 
+
+| Parameter | type    | Purpose | Mandatory | Default | Possible values |
+|-----------|---------|-----------|---------|---------|-----------------|
+| files     | string  | **relative** path to the images | Yes | | |
+| size      | int     | size of the thumbnails      | No  | 250 | Any numeric value |
+| caption   | boolean | Display the caption or not  | No | true | 1, true: display the caption, 0,false: don't display |
+| overlay   | string  | Position of the caption     | No | bottom | top, bottom or center |
+
+
+Similarly to the `attachments` shortcode, you can add a title (that will be the caption) to the thumbnails of the gallery. You can also specify if you want to display EXIF data.
+The following example show the Front-Matter of a page, with 3 galleries, 2 photos in each, and the EXIF data enabled in the second one:
+ ```toml
+[[resources]]
+title = "title 1"
+src = "gallery1/photo1.jpg"
+
+[[resources]]
+title = "title 2"
+src = "gallery1/photo2.jpg"
+
+[[resources]]
+title = "title 3"
+src = "gallery2/photo4.jpg"
+
+[[resources]]
+title = "title 4"
+src = "gallery2/photo5.jpg"
+
+[[resources]]
+title = "title 5"
+src = "gallery3/photo7.jpg"
+
+[[resources]]
+title = "title 6"
+src = "gallery3/photo8.jpg"
+
+[[resources]]
+title = "title 7"
+src = "gallery3/photo9.jpg"
+ ```
+
+The following parameters
+```
+{{<imggallery files="gallery2" overlay="center" >}}
+```
+will give the following result:
+
+![Example of a photo gallery](images/shortcode_gallery.png)
+
+### Blockquotes
+
+There is no shortcode for `blockquotes`, but **Goyat** takes into account the styles you can provide below the blockquote: 
+
+```markdown
+> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+
+> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+{.info | .warning | .error}
+```
+
+The result is
+![Blockquotes styles](images/blockquotes.png)
+
+### Markups
+
+The theme provides two markups
+
+* The first one improves the links design: when you write a link with markdown in your post, like `[the link](the url's link)`, icons are added if the link is an external link, a link to GitHub, or a link to Wikipedia.
+* The second markup manages the images: a markdown sentence like the following `![image.png](url to the image)` will generate a fuilly responsive image in HTML
+
+The markup link will generate the following code
+```HTML
+<!-- Code of an internal link -->
+<a href="#" title="Title of the link">consectetur adipiscing elit</a>
+
+<!-- Code for an external link -->
+<a href="#" title="Title of the link" target="_blank" rel="noopener noreferrer">consectetur adipiscing elit <i class="bi-link-45deg"></i></a>
+``` 
+
+About the image, if in a post, you write :
+```markdown
+![Example of an external link](images/markup_link.png)
+```
+
+Then the markup <<image>> will generate the following code:
+
+```HTML
+<figure class="figure-img figure-center">
+  <a href="url to the image" title="description of the image">
+    <img 
+        sizes="(min-width: 883px) 883px,97vw" 
+        srcset="<path to 320px width image> 320w,
+                <path to 540px width image> 540w,
+                <path to 720px width image> 720w,
+                <path to the full size image> 883w" 
+        class="img-fluid" 
+        src="<path to the full size image>" 
+        alt="description of the image"
+    >
+  </a>
+  <figcaption>Caption of the image</figcaption>
+</figure>
+```
+
+This will be displayed as follow : 
+
+![Example of an image](images/markup_image.png)
 
 ### URL configuration
 
