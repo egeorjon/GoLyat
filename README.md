@@ -31,22 +31,25 @@ You can find a live demo of the theme [here](https://www.emmanuelgeorjon.com). T
     - [Date format](#date-format)
     - [Pagination](#pagination)
     - [Site title / brand](#site-title--brand)
+    - [URL configuration](#url-configuration)
   - [Navigation](#navigation)
-    - [Search configuration](#search-configuration)
+  - [Search configuration](#search-configuration)
   - [SEO](#seo)
   - [RSS, Manifest and sitemap](#rss-manifest-and-sitemap)
     - [RSS configuration](#rss-configuration)
     - [File site.manifest](#file-sitemanifest)
     - [Sitemap](#sitemap)
+  - [Favicons](#favicons)
   - [Content configuration](#content-configuration)
+    - [Taxonomies, and authors](#taxonomies-and-authors)
     - [Widget areas](#widget-areas)
     - [Columns](#columns)
     - [Widgets](#widgets)
     - [Meta information](#meta-information)
-  - [Design configuration](#design-configuration)
+  - [Avanced configuration](#avanced-configuration)
   - [Configuration of the social media](#configuration-of-the-social-media)
     - [SEO features](#seo-features)
-    - [Favicons](#favicons)
+    - [Favicons](#favicons-1)
   - [Advanced configuration](#advanced-configuration)
     - [Manifest file](#manifest-file)
     - [Styles](#styles)
@@ -74,7 +77,7 @@ The theme is based on
 
 ## Installation
 
-**GoLyat** is a Hugo theme. So, before installing the theme, you need to 
+**Goyat** is a Hugo theme. So, before installing the theme, you need to 
 
 * Install [Hugo](https://gohugo.io), 
 * and create a new site ([procedure](https://gohugo.io/getting-started/quick-start/#step-2-create-a-new-site)).
@@ -91,7 +94,7 @@ From the root directory of your site,
 ```bash
 git clone https://github.com/egeorjon/Goyat themes/Goyat
 ```
-This method could generate some issues with some hosting platforms (like Netlify).
+This method could generate some issues with some hosting platforms, like Netlify.
 
 ### Option 2: Git submodule (recommended)
 
@@ -140,11 +143,13 @@ The theme provides two shortcodes
 
 ### Attachments
 
+This shortcode displays a list of documents <<attached>> to a post.
+
 Parameters: 
 
 | Parameter | type   | Purpose | Mandatory | Default | Possible values |
 |-----------|--------|-----------|---------|---------|-----------------|
-| files     | string | relative path to the attachments | Yes |  | |
+| files     | string | **relative** path to the attachments | Yes |  | |
 | fields    | string | list of fields to display | No | icon,title,size | icon,title,filename,size |
 
 By default, the shortcode knows only the files' name. If you want to display the title of the files, you have to fill the title in the Front-Matter of the page, like in the following example:
@@ -165,17 +170,19 @@ and the result will be
 
 ### imggallery 
 
+This shortcode displays a list of images with thumbnails.
+
 Parameters: 
 
 | Parameter | type    | Purpose | Mandatory | Default | Possible values |
 |-----------|---------|-----------|---------|---------|-----------------|
-| files     | string  | relative path to the images | Yes | | |
+| files     | string  | **relative** path to the images | Yes | | |
 | size      | int     | size of the thumbnails      | No  | 250 | Any numeric value |
 | caption   | boolean | Display the caption or not  | No | true | 1, true: display the caption, 0,false: don't display |
 | overlay   | string  | Position of the caption     | No | bottom | top, bottom or center |
 
 
-Similarly to the `attachments`shortcode, you can add a title (that will be the caption) to the thumbnails of the gallery. You can also specify if you want to display EXIF data.
+Similarly to the `attachments` shortcode, you can add a title (that will be the caption) to the thumbnails of the gallery. You can also specify if you want to display EXIF data.
 The following example show the Front-Matter of a page, with 3 galleries, 2 photos in each, and the EXIF data enabled in the second one:
  ```toml
 [[resources]]
@@ -230,9 +237,8 @@ There is no shortcode for `blockquotes`, but **Goyat** takes into account the st
 
 The theme provides two markups
 
-* The first one improves the links design: when you write a link with markdown, like `[the link](the url's link)`, icons are added if the link is an external link, a link to GitHub, or a link to Wikipedia.
-* The second one manages the images: a markdown sentence like the following `![image.png](url to the image)` will generate a fuilly responsive image in HTML
-
+* The first one improves the links design: when you write a link with markdown in your post, like `[the link](the url's link)`, icons are added if the link is an external link, a link to GitHub, or a link to Wikipedia.
+* The second markup manages the images: a markdown sentence like the following `![image.png](url to the image)` will generate a fuilly responsive image in HTML
 
 The markup link will generate the following code
 ```HTML
@@ -249,47 +255,46 @@ The markup image will generate the following code:
 
 ```HTML
 <figure class="figure-img figure-center">
-  <a href="url to the image" title="Framework Archimate">
-    <img sizes="(max-width: 576px) 480px, 
-                (max-width: 768px) 660px, 
-                (max-width: 992px) 900px, 
-                100vw" 
-          srcset="url to the 480 image" 480w,
-                "url to the 660 image" 660w,
-                "url to the 800 image" 800w
-          src="url to the image" 
-          alt="Framework Archimate" 
-          title="Framework Archimate" 
-          width="800px" 
-          height="593px">
-        </a>
+  <a href="url to the image" title="description of the image">
+    <img 
+        sizes="(min-width: 883px) 883px,97vw" 
+        srcset="<path to 320px width image> 320w,
+                <path to 540px width image> 540w,
+                <path to 720px width image> 720w,
+                <path to the full size image> 883w" 
+        class="img-fluid" 
+        src="<path to the full size image>" 
+        alt="description of the image"
+    >
+  </a>
   <figcaption>Caption of the image</figcaption>
 </figure>
 ```
 
-![Example of an image](images/markup_images.png)
+![Example of an image](images/markup_image.png)
 
 ## Basic configuration
 
+
+
 ```toml
 theme                  = "Goyat"
-title                  = "Le blog d'Emmanuel GEORJON"
-baseURL                = ""   # baseURL set during builds
-DefaultContentLanguage = "fr"
-languageCode           = "fr-fr"
-Paginate               = 8
-timeout                = 100000
+title                  = "< title of the blog >"
+baseURL                = ""       # baseURL set during builds
+DefaultContentLanguage = "fr"     # Short language string fr, en,de,es
+languageCode           = "fr-FR"  # Full language string fr-FR, en-US, de-DE, ...
+Paginate               = 8        # Number of posts per page in the lists of posts
+timeout                = 100000   # For the Hugo Engine
 
 [params]
-  debugMode         = false # For the development environment only. Allow the loading of scripts like Piwik, allow cache, and indexation.
-  Description       = ""    # Use to fill meta description (not required and description are filled in the Front-matter of the root index.md file)
-  Keywords          = ""    # Use to fill meta keywords (not required if the tags are filled in the Front-matter of the root index.md file)
-  licenceURL        = ""    # URL to the licence post (either a post of the blog, either an external link to the creative common site
-                            # Use in the RSS.xml file generation, and the meta tag licence in the head.
-  formatdate        = ":date_medium"
-  brandlogo         = "< path to an image >" # Example: enter /img/logo.png if the image is in /assets/img/logo.png
-  brandtitle        = "< site title if different than Title >" 
-  ```
+  debugMode            = true # default false. For development environment only. Allow the loading of scripts like Piwik, allow cache, and indexation.
+  formatdate           = ":date_medium"         # format of the date you want to use
+  brandlogo            = "< path to an image >"   # Logo of the site (root path)
+  brandtitle           = "< title of the blog >"   # Title of the site
+
+[Permalinks]
+  posts = "/:section/:filename/"
+```
 
 ### Tests, production, and debug
 
@@ -359,7 +364,7 @@ paginate = "<the number of posts>"
 The navigation bar includes the main menu, and the title of the site/blog (the brand). You can fully customize the brand. In the configuration file of the site:
 
 ```toml
-title = "Le blog d'Emmanuel GEORJON"
+title = "title of the blog"
 [params]
   brandlogo   = "<the path of the image related to the /static folder>"
   brandtitle  = "<the title of the site>"
@@ -384,14 +389,23 @@ Examples:
 3. Example 3: Nothing specify
 
 ```toml
-theme="Goyat"
-title=< title of the blog >
+theme = "Goyat"
+title = "title of the blog"
 [params]
 #    ...
 #    brandlogo is not specified, nor brandtitle
 #    ...
 ```
 In this case, the theme will display the title of the blog as a brand title.
+
+### URL configuration
+
+This a standard parameter for an Hugo site. Please read [the documentation](https://gohugo.io/content-management/urls/#permalinks "URL Management - Permalink")
+
+```toml
+[Permalinks]
+  posts = "/:section/:filename/"
+```
 
 ## Navigation
 
@@ -400,7 +414,7 @@ You can start by
 ```toml
   sectionPagesMenu = "main"
   [params]
-    mainSections = [ < list of sections > ]
+    mainSections = [ <section 1>, <section 2>, ..., <section n> ]
 ```
 The menu will list the sections, and the pages in `/content`.
 
@@ -434,7 +448,19 @@ Example:
   weight     = 20
 ```
 
-### Search configuration
+## Search configuration
+
+**Goyat** can manage a search page. The search feature is based on [FuseJS](https://fusejs.io/).
+
+For configuring the search, you have to
+1. Allow the generation of JSON file
+2. Configure the section in which you want to enable the search
+
+Allow JSON file generation :
+```toml
+[outputs]
+  home = [ "HTML", ..., ..., "JSON" ]
+```
 
 For a more accurate search, you can specify the sections in which your posts are, using the `mainSection` parameter:
 
@@ -445,24 +471,21 @@ For a more accurate search, you can specify the sections in which your posts are
 
 ## SEO
 
-**Goyat** proposes a complete head in each page with metadata, links, and informations used by searchbot, and social medias.
+**Goyat** proposes a complete list of tags in the head section of each page with metadata, links, and informations used by searchbot, and social medias.
 The configuration parameters are the following:
+
 ```toml
 [params]
-  Description         = ""   # Use to fill meta description (not required if the tags, and description are filled in the Front-matter of the posts)
-  Keywords            = ""   # Use to fill meta keywords (not required if the tags, and description are filled in the Front-matter of the posts)
-  licenceURL           = "https://creativecommons.org/licenses/by-nc/4.0/"
-  opengraph            = "theme"   # internal, theme, or none. Internal for the default Hugo template, theme for the theme's template.
-  twitterCards         = "theme"   # internal, theme, or none. Internal for the default Hugo template, theme for the theme's template.
-  schema               = "theme"   # internal, theme, or none. Internal for the default Hugo template, theme for the theme's template.
+#  Description         = ""   # Use to fill meta description. Not required if the tags, and description are filled in the Front-matter of the posts, including the root
+#  Keywords            = ""   # Use to fill meta keywords. Not required if the tags, and description are filled in the Front-matter of the posts, including the root
+
+  opengraph            = "internal"   # Internal (default Hugo template), theme (the theme's template), or none
+  twitterCards         = "theme"      # Internal (default Hugo template), theme (the theme's template), or none
+  schema               = "theme"      # Internal (default Hugo template), theme (the theme's template), or none
 
 [author]
-  name  = "< author or editor of the website >"
-
-[sitemap]
-  changefreq = "< frequency > "  # daily, weekly, monthly
-  filename = "sitemap.xml"
-  priority = 0.5
+  name  = "< name of the site webmaster >"
+  email = "< email address >"
 ```
 
 About `opengraph`, `twitter` and `schema`: 
@@ -479,25 +502,26 @@ The `author`field is used to set a meta tag into the `head`section.
 By default, Hugo provide an internal template for generating the RSS files.
 The theme **Goyat** proposes an enhanced version of the RSS template, including images, link to the licence, etc ...
 
-If you want to use the internal RSS feeds
 
-* You have to delete the file `/themes/goyat/layout/_default/rss.xml`**
-* The following parameters will be used
+If you want to use 
+* The default Hugo RSS feeds, You have to delete the file `/themes/goyat/layout/_default/rss.xml`
+* The **Goyat** RSS feeds, you have to configure the following parameters
 
 ```toml
-title         = "< title of the blog >"
-LanguageCode  = "fr-fr" # or en-US, ...
-copyright     = "(c) 20xx-2022 Your own copyright string" 
+title          = "< title of the blog >"
+LanguageCode   = "fr-fr" # or en-US, ...
+copyright      = "< copyright sentence >" 
 
-  [params]
-    mainSections = [ "blog", "architecture", "project", "photo" ]
+[params]
+  mainSections = [ "blog", "architecture", "project", "photo" ]
+  licenceURL   = "< url to the licence you are using >"   # Example: https://creativecommons.org/licenses/by-nc/4.0/
 
-  [config.services.rss]
-    Limit     = 5 # max number of posts to be displayed
+[config.services.rss]
+  Limit        = 5 # max number of posts to be displayed
 
-  [author]
-    name      = "< name of the site webmaster >"
-    email     = "< email adress >"
+[author]
+  name         = "< name of the site webmaster >"
+  email        = "< email adress >"
 ```
 
 Whatever your choice (internal template, or Goyat's template), you have to specify in the file `config.toml`, where you want to build the RSS feeds.
@@ -525,7 +549,7 @@ In the following example, the RSS files will be generate for the home page, and 
     rel         = "manifest"
 
 [outputs]
-  home    = [ "HTML", "... ...", "webmanifest" ]
+  home    = [ "HTML", ..., ... , "webmanifest" ]
 ```
 
 With this configuration, Hugo will generate a file `site.webmanifest`, in the root of the site. 
@@ -555,12 +579,61 @@ Example:
 
 ```toml
 [sitemap]
-  changefreq = "weekly"
+  changefreq = "... ..."   # Daily, weekly, ...
   filename   = "sitemap.xml"
   priority   = 0.5
 ```
 
+## Favicons
+
+**Goyat** geneates automaticaly the favicon files. 
+
+For ernabling these links into the `head`section of your pages, you have to 
+* Put the <<icons>> images into the folder `/static/favicons`, and put the file `favicons.ico`, into the folder `/static`.
+* Add parameters in the file `config.toml` file of your site.
+
+Example of favicons files:
+```
+.
+└── static
+    ├── favicons.ico
+    └── favicons
+      ├── android-chrome-192x192.png
+      ├── android-chrome-256x256.png
+      ├── apple-touch-icon.png
+      ├── browserconfig.xml
+      ├── favicon-16x16.png
+      ├── favicon-32x32.png
+      ├── mstile-150x150.png
+      └── safari-pinned-tab.svg
+```
+
+Parameters : 
+```toml
+[params]
+  appName              = "< a short name for your site >"
+  safaritabColor       = "< Hex code of a color >"
+  mstileColor          = "< Hex code of a color >"
+  themeColor           = "< Hex code of a color >"
+```
+
 ## Content configuration
+
+### Taxonomies, and authors
+
+**Goyat** supports three taxonomies : 
+* **series** used to group together, posts speaking about a same topic,
+* **authors** used to link posts, and authors.
+* **tags**
+
+You have to enable these taxonomies if you want to get all the features of **Goyat**.
+
+```toml
+[taxonomies]
+serie  = "series"
+author = "authors"
+tag    = "tags"
+```
 
 ### Widget areas
 
@@ -642,7 +715,7 @@ Example:
     "4" = ""
 ```
 
-## Design configuration
+## Avanced configuration
 
 The design of the site can be updated in several manners
 
