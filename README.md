@@ -31,7 +31,7 @@ You can find a live demo of the theme [here](https://www.emmanuelgeorjon.com). T
     - [imggallery](#imggallery)
     - [Blockquotes](#blockquotes)
     - [Markups](#markups)
-    - [URL configuration](#url-configuration)
+  - [URL configuration](#url-configuration)
   - [Navigation](#navigation)
   - [Search configuration](#search-configuration)
   - [SEO](#seo)
@@ -43,13 +43,12 @@ You can find a live demo of the theme [here](https://www.emmanuelgeorjon.com). T
   - [Content configuration](#content-configuration)
     - [Taxonomies, and authors](#taxonomies-and-authors)
     - [Widget areas](#widget-areas)
+    - [Post format in the lists](#post-format-in-the-lists)
     - [Columns](#columns)
-    - [Widgets](#widgets)
     - [Meta information](#meta-information)
   - [Avanced configuration](#avanced-configuration)
   - [Configuration of the social media](#configuration-of-the-social-media)
     - [SEO features](#seo-features)
-    - [Favicons](#favicons-1)
   - [Advanced configuration](#advanced-configuration)
     - [Manifest file](#manifest-file)
     - [Styles](#styles)
@@ -266,7 +265,7 @@ The theme provides two shortcodes
 
 ### Attachments
 
-This shortcode displays a list of documents <<attached>> to a post.
+This shortcode displays a list of documents **attached** to a post.
 
 Parameters: 
 
@@ -366,7 +365,15 @@ The theme provides two markups
 * The first one improves the links design: when you write a link with markdown in your post, like `[the link](the url's link)`, icons are added if the link is an external link, a link to GitHub, or a link to Wikipedia.
 * The second markup manages the images: a markdown sentence like the following `![image.png](url to the image)` will generate a fuilly responsive image in HTML
 
-The markup link will generate the following code
+
+
+The markup **link** 
+About the image, if in a post, you write :
+```markdown
+[Example of an external link](images/markup_link.png)
+```
+
+will generate the following code
 ```HTML
 <!-- Code of an internal link -->
 <a href="#" title="Title of the link">consectetur adipiscing elit</a>
@@ -377,10 +384,10 @@ The markup link will generate the following code
 
 About the image, if in a post, you write :
 ```markdown
-![Example of an external link](images/markup_link.png)
+![Description of the image](images/markup_link.png "Another description of the image")
 ```
 
-Then the markup <<image>> will generate the following code:
+will generate the following HTML code:
 
 ```HTML
 <figure class="figure-img figure-center">
@@ -404,7 +411,7 @@ This will be displayed as follow :
 
 ![Example of an image](images/markup_image.png)
 
-### URL configuration
+## URL configuration
 
 This a standard parameter for an Hugo site. Please read [the documentation](https://gohugo.io/content-management/urls/#permalinks "URL Management - Permalink")
 
@@ -420,7 +427,7 @@ You can start by
 ```toml
   sectionPagesMenu = "main"
   [params]
-    mainSections = [ <section 1>, <section 2>, ..., <section n> ]
+    mainSections = [ < section 1 >, < section 2 >, ... , < section > ]
 ```
 The menu will list the sections, and the pages in `/content`.
 
@@ -465,11 +472,10 @@ For configuring the search, you have to
 Allow JSON file generation :
 ```toml
 [outputs]
-  home = [ "HTML", ..., ..., "JSON" ]
+  home = [ "HTML", ... , ... , "JSON" ]
 ```
 
-For a more accurate search, you can specify the sections in which your posts are, using the `mainSection` parameter:
-
+For a more accurate search, you can specify the sections in which your posts are, using the `mainSection` parameter. For example :
 ```toml
 [params]
   mainSections = [ "blog", "architecture", "project", "photo" ]
@@ -594,9 +600,18 @@ Example:
 
 **Goyat** geneates automaticaly the favicon files. 
 
-For ernabling these links into the `head`section of your pages, you have to 
-* Put the <<icons>> images into the folder `/static/favicons`, and put the file `favicons.ico`, into the folder `/static`.
+If you want to setup [favicons](https://en.wikipedia.org/wiki/Favicon "Favicons definition in Wikipedia"), you just need to put the file in the folder `/static` :
+* Put the **icons** images into the folder `/static/favicons`, and put the file `favicons.ico`, into the folder `/static`.
 * Add parameters in the file `config.toml` file of your site.
+
+The name of the icons 
+
+* for IOS (apple), must start by `apple`,
+* for androit must start by `android`, 
+* for the legacy browsers with `favicon.ico`, 
+* for the microsoft operating systems, must start with `ms-`, 
+
+You can configure also an SVG icon (any name with the `svg` extension).
 
 Example of favicons files:
 ```
@@ -676,11 +691,25 @@ The configuration of the widgets areas can be done through JSON configuration fi
 | footer   | /data/footer.json |
 | bottom of pages | /data/single.json |
 
+You can find, the examples for these files in the theme folders `themes/goyat/data/homepage.json (or single.json or footer.json)`.
+
+### Post format in the lists
+
+You can choose the format of the posts displayed in lists (sections, tags, categories, series, ...). You have 4 formats available:
+
+| image-left | image-right | image-top | no-image |
+|------------|-------------|-----------|----------|
+| ![](#) | ![](#) | ![](#) | ![](#) |
+
+**Combination of columns, and posts' format**
+
+If you combine the two last points, you can drastically change the theme layout: 
+
+==> ![](#)
+
+
+
 ### Columns
-
-
-
-### Widgets
 
 
 
@@ -765,20 +794,6 @@ In the configuration file `config.toml`, you can change this adjustment, by sele
 
 The parameter `columns` is used in many places in the theme, mainly in the widgets area (in the homepage, for example, or the footer).
 
-**Change the format of the posts displayed in the post's list**
-
-You can choose the format of the posts displayed in lists (sections, tags, categories, series, ...). You have 4 formats available:
-
-| image-left | image-right | image-top | no-image |
-|------------|-------------|-----------|----------|
-| ![](#) | ![](#) | ![](#) | ![](#) |
-
-**Combination of columns, and posts' format**
-
-If you combine the two last points, you can drastically change the theme layout: 
-
-==> ![](#)
-
 
 ## Configuration of the social media
 
@@ -841,33 +856,6 @@ You can configure the S.E.O features with the following parameters:
   schema        = true # Enable Schema JSON file
   twitter_cards = true # Enable Twitter Cards if true
   themecolor    = "#ffffff"
-```
-
-### Favicons
-
-If you want to setup [favicons](https://en.wikipedia.org/wiki/Favicon "Favicons definition in Wikipedia"), you just need to put the file in the folder `/static/assets/favicons`.
-
-The name of the icons 
-
-* for IOS (apple), must start by `apple`,
-* for androit must start by `android`, 
-* for the legacy browsers with `favicon.ico`, 
-* for the microsoft operating systems, must start with `ms-`, 
-
-You can configure also an SVG icon (any name with the `svg` extension).
-
-For example:
-```
-android-icon-512x512.png
-android-icon-96x96.png
-android-icon_192x192.png
-apple-touch-icon-120x120.png
-apple-touch-icon-152x152.png
-apple-touch-icon-167x167.png
-apple-touch-icon-180x180.png
-favicon.ico
-ms-icon-144x144.png
-site-logo.svg
 ```
 
 
