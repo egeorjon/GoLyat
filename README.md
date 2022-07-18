@@ -135,7 +135,7 @@ Then, to see the result, use the following url [`localhost:1313`](http://localho
 
 ```toml
 theme                  = "Goyat"
-title                  = "< title of the blog >"
+title                  = "< Title of the blog >"
 baseURL                = ""       # baseURL set during builds
 DefaultContentLanguage = "fr"     # Short language string fr, en,de,es
 languageCode           = "fr-FR"  # Full language string fr-FR, en-US, de-DE, ...
@@ -182,8 +182,8 @@ Available translations are in the `/i18n` directory of the theme. Today only eng
 You can configure the language modifying the following key, in the site configuration file (usually `config.toml`).
 
 ```toml
-DefaultContentLanguage = "fr"
-languageCode           = "fr-fr"
+DefaultContentLanguage = "nn"     # fr, en, de, ...
+languageCode           = "nn-NN"  # fr-FR, en-US, de-DE, ...
 ```
 
 ### Date format
@@ -212,7 +212,7 @@ will display Apr 19, 2022.
 You can define the number of posts listed in each page of the lists. In the configuration file `config.toml`
 
 ```toml
-paginate = "<the number of posts>"
+paginate = "<the number of posts>"  # default 10
 ```
 
 ### Site title / brand
@@ -303,7 +303,6 @@ Parameters:
 | caption   | boolean | Display the caption or not  | No | true | 1, true: display the caption, 0,false: don't display |
 | overlay   | string  | Position of the caption     | No | bottom | top, bottom or center |
 
-
 Similarly to the `attachments` shortcode, you can add a title (that will be the caption) to the thumbnails of the gallery. You can also specify if you want to display EXIF data.
 The following example show the Front-Matter of a page, with 3 galleries, 2 photos in each, and the EXIF data enabled in the second one:
  ```toml
@@ -365,15 +364,12 @@ The theme provides two markups
 * The first one improves the links design: when you write a link with markdown in your post, like `[the link](the url's link)`, icons are added if the link is an external link, a link to GitHub, or a link to Wikipedia.
 * The second markup manages the images: a markdown sentence like the following `![image.png](url to the image)` will generate a fuilly responsive image in HTML
 
-
-
-The markup **link** 
-About the image, if in a post, you write :
+If in a post you write, 
 ```markdown
-[Example of an external link](images/markup_link.png)
+[Example of an external link](link url)
 ```
 
-will generate the following code
+the markup **link** will generate the following code
 ```HTML
 <!-- Code of an internal link -->
 <a href="#" title="Title of the link">consectetur adipiscing elit</a>
@@ -382,12 +378,15 @@ will generate the following code
 <a href="#" title="Title of the link" target="_blank" rel="noopener noreferrer">consectetur adipiscing elit <i class="bi-link-45deg"></i></a>
 ``` 
 
-About the image, if in a post, you write :
+It will give the following result
+[Example of link](images/markup_link.png)
+
+About the **image** : if in a post, you write
 ```markdown
 ![Description of the image](images/markup_link.png "Another description of the image")
 ```
 
-will generate the following HTML code:
+the markup will generate the following HTML code:
 
 ```HTML
 <figure class="figure-img figure-center">
@@ -449,6 +448,7 @@ url = "/<url of the item 2>"
 weight = 20
 # ...
 ```
+
 The `weight` field define the order of the item in the list (smaller weights are displayed first).
 
 Example:
@@ -478,7 +478,7 @@ Allow JSON file generation :
 For a more accurate search, you can specify the sections in which your posts are, using the `mainSection` parameter. For example :
 ```toml
 [params]
-  mainSections = [ "blog", "architecture", "project", "photo" ]
+  mainSections = [ "section 1", "section 2", " ... ", "section n" ]
 ```
 
 ## SEO
@@ -488,16 +488,16 @@ The configuration parameters are the following:
 
 ```toml
 [params]
-#  Description         = ""   # Use to fill meta description. Not required if the tags, and description are filled in the Front-matter of the posts, including the root
-#  Keywords            = ""   # Use to fill meta keywords. Not required if the tags, and description are filled in the Front-matter of the posts, including the root
+  Description  = " a short description of the site "   # Use to fill meta description. Use as default values, if there is no description in the Front-matter of posts
+  Keywords     = " significant keywords of the site"   # Use to fill meta tag. Use as default values, if there is no tag in the Front-matter of posts
 
-  opengraph            = "internal"   # Internal (default Hugo template), theme (the theme's template), or none
-  twitterCards         = "theme"      # Internal (default Hugo template), theme (the theme's template), or none
-  schema               = "theme"      # Internal (default Hugo template), theme (the theme's template), or none
+  opengraph    = "internal"   # Internal (default Hugo template), theme (the theme's template), or none
+  twitterCards = "theme"      # Internal (default Hugo template), theme (the theme's template), or none
+  schema       = "theme"      # Internal (default Hugo template), theme (the theme's template), or none
 
 [author]
-  name  = "< name of the site webmaster >"
-  email = "< email address >"
+  name  = " name of the site webmaster "
+  email = " email address "
 ```
 
 About `opengraph`, `twitter` and `schema`: 
@@ -520,13 +520,13 @@ If you want to use
 * The **Goyat** RSS feeds, you have to configure the following parameters
 
 ```toml
-title          = "< title of the blog >"
+title          = " title of the blog "
 LanguageCode   = "fr-fr" # or en-US, ...
-copyright      = "< copyright sentence >" 
+copyright      = " copyright sentence " 
 
 [params]
-  mainSections = [ "blog", "architecture", "project", "photo" ]
-  licenceURL   = "< url to the licence you are using >"   # Example: https://creativecommons.org/licenses/by-nc/4.0/
+  mainSections = [ "section 1", "section 2", " ... ", "section n" ]
+  licenceURL   = " url to the licence you are using "   # Example: https://creativecommons.org/licenses/by-nc/4.0/
 
 [config.services.rss]
   Limit        = 5 # max number of posts to be displayed
@@ -697,9 +697,12 @@ You can find, the examples for these files in the theme folders `themes/goyat/da
 
 You can choose the format of the posts displayed in lists (sections, tags, categories, series, ...). You have 4 formats available:
 
-| image-left | image-right | image-top | no-image |
-|------------|-------------|-----------|----------|
-| ![](#) | ![](#) | ![](#) | ![](#) |
+| Format | Result |
+|--------|--------|
+| meta-left  | ![](images/format-meta-left.png) |
+| image-left | ![](images/format-image-left.png)  |
+| meta-right | ![](images/format-image-right.png) |
+| no-image   | ![](images/format-no-image.png)  |
 
 **Combination of columns, and posts' format**
 
