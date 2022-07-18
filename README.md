@@ -170,7 +170,7 @@ In the Production environment,
 * ROBOTS directive are set to INDEX, FOLLOW,
 * Piwik is enabled (if the code and url are set, see below)
 
-Even in development / test mode, you can "simulate" the production mode using the `debug_mode` parameter. 
+Even in development / test mode, you can "simulate" the production mode using the `debugMode` parameter. 
 ```toml
 [params]
   debugMode = true
@@ -178,7 +178,7 @@ Even in development / test mode, you can "simulate" the production mode using th
 
 ### Language
 
-Available translations are in the `/i18n` directory of the theme. Today only frenh, and english are available.
+Available translations are in the `/i18n` directory of the theme. Today only english, and frenh are available.
 You can configure the language modifying the following key, in the site configuration file (usually `config.toml`).
 
 ```toml
