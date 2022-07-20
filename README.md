@@ -9,6 +9,7 @@ Goyat is for huGO Yet Another Theme.
 You can find a live demo of the theme [here](https://www.emmanuelgeorjon.com). This theme is intended for personal website and blog.
 
 ## Table of Contents
+
 - [GoYat](#goyat)
   - [Table of Contents](#table-of-contents)
   - [Features](#features)
@@ -49,8 +50,7 @@ You can find a live demo of the theme [here](https://www.emmanuelgeorjon.com). T
     - [Posts lists layout](#posts-lists-layout)
     - [Meta information](#meta-information)
   - [Avanced configuration](#avanced-configuration)
-  - [Advanced configuration](#advanced-configuration)
-    - [Styles](#styles)
+    - [Other styles](#other-styles)
 
 ## Features
 
@@ -855,17 +855,20 @@ For example, the following configuration
 ```
 
 will display 3 columns, for a very large screen
+
 ![Extra large](images/columns-xl.png)
 
 will display two columns, for a medium screen (tablet)
+
 ![Medium, and large](images/columns-md-lg.png)
 
 will display 1 columns for a small screen (smartphone)
+
 ![Small](images/columns-sm.png)
 
 ### Meta information
 
-* `meta`: list of meta fields to be displayed, with the display order. The available fields are
+In the lists of posts, or i a single page, you can choose the meta data to be displayed. The available fields are
   * section,
   * date,
   * fulldate,
@@ -879,26 +882,52 @@ will display 1 columns for a small screen (smartphone)
   * category,
   * linkedsection.
 
-Example: 
-
+You can choose also where to display them: on top of the post, between the title, and the content of a post, or after the content.
+The parameters are the following 
 ```toml
 [params.xxx.meta]
   [params.xxx.meta.top]
-    "1" = ""
-    "2" = ""
-    "3" = ""
-    "4" = ""
+    "1" = "1st meta field"
+    "2" = "2nd meta field"
+    "3" = "3rd meta field"
+    "4" = "4th meta field"
   [params.xxx.meta.middle]
-    "1" = ""
-    "2" = ""
-    "3" = ""
-    "4" = ""
+    "1" = "5th meta field"
+    "2" = "6th meta field"
+    "3" = "7th meta field"
+    "4" = "8th meta field"
   [params.xxx.meta.bottom]
-    "1" = ""
-    "2" = ""
-    "3" = ""
-    "4" = ""
+    "1" = "9th meta field"
+    "2" = "10th meta field"
+    "3" = "11th meta field"
+    "4" = "12th meta field"
 ```
+
+xxx = either `postsList`, either `Single`.
+
+For example: the following configuration will display in all posts lists, the `section`, and `date`, on top of the posts, the field `reading` between the title, and the content, and the fields `tags`, and `series`, after the content of the posts.
+```toml
+[params.postsList]
+  [params.postsList.Meta]
+    [params.postsList.Meta.top]
+        "1" = "section"
+        "2" = "date"
+    [params.postsList.Meta.middle]
+        "1" = "reading"
+    [params.postsList.Meta.bottom]
+        "1" = "tags"
+        "2" = "series"
+```
+
+Another example, with the single post :
+```toml
+[params.Single]
+  [params.Single.meta]
+    [params.Single.meta.middle]
+        "1" = "fulldate"
+        "2" = "reading"
+```
+
 
 ## Avanced configuration
 
@@ -913,45 +942,18 @@ The design of the site can be updated in several manners
 For changing colors, you can edit the file `themes/Goyat/assets/styles.scss`, and change the following lines
 
 ```scss
-    $primary:       "color 1";
-    $secondary:     "color 2";
-    $light:         "color 3";
-    $medium:        "color 4";
-    $dark:          "color 5";
+    $primary:   "color 1";
+    $secondary: "color 2";
+    $light:     "color 3";
+    $medium:    "color 4";
+    $dark:      "color 5";
 ```
 
-**Change the site's layout according the device width**
+### Other styles
 
-**Goyat** is based on the [BootStrap](https://getbootstrap.com/) framework. This framework use a set of breakpoints to adjust the site layout according the device with
-```scss
-    $grid-breakpoints: (
-    xs: 0,          # eXtra Small
-    sm: 576px,      # SMall
-    md: 768px,      # MeDium
-    lg: 992px,      # LarGe
-    xl: 1200px,     # eXtra Large
-    xxl: 1400px     # eXtra eXtra Large
-) !default;
-```
-
-In the configuration file `config.toml`, you can change this adjustment, by selecting the number of columns you want according the width. For example, if you want to display the list of posts using two columns (and not only one), you can update the following value:
-```toml
-[params.list]
-  columns = { "sm" = 1, "md" = 2, "lg" = 2, "xl" = 2 }
-```
-
-=> Image.
-
-The parameter `columns` is used in many places in the theme, mainly in the widgets area (in the homepage, for example, or the footer).
-
-## Advanced configuration
-
-### Styles
-
-So far, the theme doen't provide an easy way to customize styles.
-However, you can customize the theme with two ways
+So far, the theme doen't provide an easy way to customize styles. However, you can customize the theme with two files
 
 * All default `Bootstrap` values used by the theme are in the file `themes/Goyat/assets/customization.scss`.
 * The theme styles are in the file `themes/Goyat/assets/styles.scss`
 
-The theme uses the icons from [FontAwesome](https://fontawesome.com/). You can add icons if required, by editing the file `themes/Goyat/assets/fontawesome-free-5.15.2-web/scss/_icons.scss`, and uncomment the line corresponding to the icon you want to display.
+The theme uses the icons from [Bootstrap Icons](https://icons.getbootstrap.com/). You can add icons if required, by editing the file `themes/Goyat/assets/bootstrap-icons-1.9.0`, and uncomment the line corresponding to the icon you want to display.
