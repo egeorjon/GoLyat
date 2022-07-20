@@ -11,11 +11,11 @@
                             <img id="logo" class="site-brand-logo" src="{{- site.Params.BrandLogo | relURL -}}" width="{{- .Width -}}" height="{{- .Height -}}" alt="{{- $title -}}" />
                         </a>
                     {{- end -}}
-                {{- else -}}
-                    <a class="navbar-brand me-auto" href="{{- site.BaseURL -}}" title="{{- $title -}}">
-                        {{- $title -}}
-                    </a>                    
                 {{- end -}}
+            {{- else -}}
+                <a class="navbar-brand me-auto" href="{{- site.BaseURL -}}" title="{{- $title -}}">
+                    {{- $title -}}
+                </a>                    
             {{- end -}}
             {{- $search_page := site.GetPage "search" -}}
             <form class="search-form input-group d-none d-md-flex" action="{{- $search_page.Permalink -}}" method="GET">
