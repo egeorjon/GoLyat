@@ -220,9 +220,10 @@ The navigation bar includes the main menu, and the title of the site/blog (the b
 
 ```toml
 title = "title of the blog"
+
 [params]
-  brandlogo   = "<the path of the image related to the /static folder>"
-  brandtitle  = "<the title of the site>"
+  brandlogo  = "the path of the image related to the /static folder"
+  brandtitle = "the title of the site"
 ```
 
 Examples:
@@ -442,7 +443,6 @@ weight = 10
 [[menu.main]]
 identifier = "id of the item 2"
 name = "Item 2"
-pre  = "html code to be added before the name"
 url = "/<url of the item 2>"
 weight = 20
 # ...
@@ -455,7 +455,6 @@ Example:
 [[menu.main]] 
   identifier = "photo"
   name       = "Photography"
-  pre        = "<i class='bi-camera'></i>"
   url        = "/photo/"
   weight     = 20
 ```
