@@ -9,7 +9,6 @@ Goyat is for huGO Yet Another Theme.
 You can find a live demo of the theme [here](https://www.emmanuelgeorjon.com). This theme is intended for personal website and blog.
 
 ## Table of Contents
-
 - [GoYat](#goyat)
   - [Table of Contents](#table-of-contents)
   - [Features](#features)
@@ -40,17 +39,17 @@ You can find a live demo of the theme [here](https://www.emmanuelgeorjon.com). T
     - [File site.manifest](#file-sitemanifest)
     - [Sitemap](#sitemap)
   - [Favicons](#favicons)
+  - [Configuration of the social media](#configuration-of-the-social-media)
+    - [Follow links](#follow-links)
+    - [Share links](#share-links)
   - [Content configuration](#content-configuration)
     - [Taxonomies, and authors](#taxonomies-and-authors)
     - [Widget areas](#widget-areas)
-    - [Post format in the lists](#post-format-in-the-lists)
-    - [Columns](#columns)
+    - [Widget &laquo; related posts &raquo;](#widget--related-posts-)
+    - [Posts lists layout](#posts-lists-layout)
     - [Meta information](#meta-information)
   - [Avanced configuration](#avanced-configuration)
-  - [Configuration of the social media](#configuration-of-the-social-media)
-    - [SEO features](#seo-features)
   - [Advanced configuration](#advanced-configuration)
-    - [Manifest file](#manifest-file)
     - [Styles](#styles)
 
 ## Features
@@ -426,7 +425,7 @@ You can start by
 ```toml
   sectionPagesMenu = "main"
   [params]
-    mainSections = [ < section 1 >, < section 2 >, ... , < section > ]
+    mainSections = [ "section 1", "section 2", ... , "section n" ]
 ```
 The menu will list the sections, and the pages in `/content`.
 
@@ -529,11 +528,11 @@ copyright      = " copyright sentence "
   licenceURL   = " url to the licence you are using "   # Example: https://creativecommons.org/licenses/by-nc/4.0/
 
 [config.services.rss]
-  Limit        = 5 # max number of posts to be displayed
+  Limit = 5 # max number of posts to be displayed
 
 [author]
-  name         = "< name of the site webmaster >"
-  email        = "< email adress >"
+  name  = " name of the site webmaster "
+  email = " email adress "
 ```
 
 Whatever your choice (internal template, or Goyat's template), you have to specify in the file `config.toml`, where you want to build the RSS feeds.
@@ -541,8 +540,8 @@ In the following example, the RSS files will be generate for the home page, and 
 
 ```toml
 [outputs]
-  home        = [ "HTML", "RSS" ]
-  section     = [ "HTML", "RSS" ]
+  home    = [ "HTML", "RSS" ]
+  section = [ "HTML", "RSS" ]
 ```
 
 ### File site.manifest
@@ -638,6 +637,96 @@ Parameters :
   themeColor           = "< Hex code of a color >"
 ```
 
+## Configuration of the social media
+
+### Follow links
+
+The links &laquo; follow-me &raquo; can be configured in `config.toml`, with the following syntax: 
+```toml
+[[params.followlinks]]
+  id      = "<social media id 1"
+  account = "<account id for this social media>"
+  weight  = <order>
+
+[[params.followlinks]]
+  id      = "<social media id 2"
+  account = "<account id for this social media>"
+  weight  = <order>
+
+... ...
+
+[[params.followlinks]]
+  id      = "<social media id 1"
+  account = "<account id for this social media>"
+  weight  = <order>
+```
+
+Example:
+```toml
+[[params.followlinks]]
+  id      = "rss"
+  weight  = 1
+[[params.followlinks]]
+  id      = "linkedin"
+  account = "johndoe"
+  weight  = 2
+[[params.followlinks]]
+  id      = "twitter"
+  account = "johndoe"
+  weight  = 3
+[[params.followlinks]]
+  id      = "github"
+  account = "jdoe"
+  weight  = 4
+[[params.followlinks]]
+  id      = "facebook"
+  account = ""
+  weight  = 5
+[[params.followlinks]]
+  id      = "pinterest"
+  account = "doejohn"
+  weight  = 6
+```
+
+The list of supported media is
+* Facebook,
+* Ttwitter,
+* Github,
+* Instagram,
+* Pinterest,
+* LinkedIn.
+
+### Share links
+
+At the bottom of your posts, you can display a list of &laquo; share buttons &raquo;, using the widget `share-links` (See section [Widget areas](#widget-areas))
+
+The syntax to make the media appears is the following
+```toml
+[params.sharelinks]
+  [params.sharelinks.media 1]
+    id      = "media 1"
+    account = "account for the media 1"
+    weight  = 1
+  [params.sharelinks.media 2]
+    id      = "media 2"
+    account = "account for the media 2"
+    weight  = 2
+  [params.sharelinks.media 3]
+    id      = "media 3"
+    account = "account for the media 3"
+    weight  = 3
+```
+
+The `weight` field define the order of the item in the list (smaller weights are displayed first).
+
+The list of supported media is
+* email,
+* Facebook,
+* Ttwitter,
+* Pinterest,
+* LinkedIn,
+* WhatsApp
+
 ## Content configuration
 
 ### Taxonomies, and authors
@@ -660,9 +749,9 @@ tag    = "tags"
 
 Three areas of the blog can be configured with widgets
 
-* The homepage itself,
-* The bottom area of the posts,
-* The footer
+* The homepage itself: the whole home page can be configured with widget
+* The bottom area of the posts: all the blocks displayed at the bottom of the posts
+* The footer: the whole footer can be configured with widget
 
 Configure means choose what you want to display, by selecting widgets. The possible widgets are 
 
@@ -693,28 +782,86 @@ The configuration of the widgets areas can be done through JSON configuration fi
 
 You can find, the examples for these files in the theme folders `themes/goyat/data/homepage.json (or single.json or footer.json)`.
 
-### Post format in the lists
+### Widget &laquo; related posts &raquo;
 
-You can choose the format of the posts displayed in lists (sections, tags, categories, series, ...). You have 4 formats available:
+The widget *related posts* is based of the [standard Hugo feature](https://gohugo.io/content-management/related/#list-related-content "Related content").
+The parameters are the standard one:
+```toml
+[related]
+  includeNewer = true
+  threshold    = 75
+  toLower      = false
 
-| Format | Result |
-|--------|--------|
-| meta-left  | ![](images/format-meta-left.png) |
+  [[related.indices]]
+    name   = "tags"
+    weight = 100
+
+  [[related.indices]]
+    name   = "date"
+    weight = 10
+```
+
+### Posts lists layout
+
+You can choose the format of the posts displayed in lists (sections, tags, categories, series, ...), and the number of columns. 
+
+```toml
+[params.postsList]
+  "postFormat" = " post format"
+
+  [params.postsList.columns]
+      "xs" = number of column
+      "sm" = number of column
+      "md" = number of column
+      "lg" = number of column
+      "xl" = number of column
+```
+
+Four formats are available:
+
+| Format     | Result                             |
+|------------|------------------------------------|
+| meta-left  | ![](images/format-meta-left.png)   |
 | image-left | ![](images/format-image-left.png)  |
+| image-top | ![](images/format-image-top.png)  |
 | meta-right | ![](images/format-image-right.png) |
-| no-image   | ![](images/format-no-image.png)  |
+| no-image   | ![](images/format-no-image.png)    |
 
-**Combination of columns, and posts' format**
+In parallel of the post format, you can choose the number of columns you want to use, according the screen sizes.
+**Goyat** is based on the Bootstrap CSS framework. So, `xs, sm, md, lg, xl`are a list of screen sizes, defined in this framework.
 
-If you combine the two last points, you can drastically change the theme layout: 
+```CSS
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1400px
+)
+```
 
-==> ![](#)
+For example, the following configuration
+```toml
+[params.postsList]
+  "postFormat" = "image-top"
 
+  [params.postsList.columns]
+      "xs" = 1
+      "sm" = 1
+      "md" = 2
+      "lg" = 2
+      "xl" = 3
+```
 
+will display 3 columns, for a very large screen
+![Extra large](images/columns-xl.png)
 
-### Columns
+will display two columns, for a medium screen (tablet)
+![Medium, and large](images/columns-md-lg.png)
 
-
+will display 1 columns for a small screen (smartphone)
+![Small](images/columns-sm.png)
 
 ### Meta information
 
@@ -797,89 +944,7 @@ In the configuration file `config.toml`, you can change this adjustment, by sele
 
 The parameter `columns` is used in many places in the theme, mainly in the widgets area (in the homepage, for example, or the footer).
 
-
-## Configuration of the social media
-
-The social links can be configured also, with the following syntax: 
-```toml
-[[params.followlinks]]
-  id      = "<social media id 1"
-  account = "<account id for this social media>"
-  weight  = <order>
-
-[[params.followlinks]]
-  id      = "<social media id 2"
-  account = "<account id for this social media>"
-  weight  = <order>
-
-... ...
-
-[[params.followlinks]]
-  id      = "<social media id 1"
-  account = "<account id for this social media>"
-  weight  = <order>
-```
-
-Example:
-```toml
-[[params.followlinks]]
-  id      = "rss"
-  weight  = 1
-[[params.followlinks]]
-  id      = "linkedin"
-  account = "johndoe"
-  weight  = 2
-[[params.followlinks]]
-  id      = "twitter"
-  account = "johndoe"
-  weight  = 3
-[[params.followlinks]]
-  id      = "github"
-  account = "jdoe"
-  weight  = 4
-[[params.followlinks]]
-  id      = "facebook"
-  account = ""
-  weight  = 5
-[[params.followlinks]]
-  id      = "pinterest"
-  account = "doejohn"
-  weight  = 6
-```
-
-### SEO features
-
-You can configure the S.E.O features with the following parameters:
-
-```toml
-[params]
-  description   = "short description of the blog" # Short description for the meta description
-  keywords      = [ "keyword 1", "keyword 2", "... ...", "keyword n" ] # List of tags for the meta keywords
-  opengraph     = true # Enable OpenGraph if true
-  schema        = true # Enable Schema JSON file
-  twitter_cards = true # Enable Twitter Cards if true
-  themecolor    = "#ffffff"
-```
-
-
 ## Advanced configuration
-
-### Manifest file
-
-The theme is able to generate the **manifest** file of the site.
-In order to allow this, you have to add the following parameters
-
-```toml
-[outputFormats]
-  [outputFormats.MANIFEST]
-    mediaType       = "application/json"
-    baseName        = "manifest"
-    isPlainText     = true
-    notAlternative  = true
-
-[outputs]
-  home    = ["HTML", "RSS", "JSON", "MANIFEST"]
-```
 
 ### Styles
 
