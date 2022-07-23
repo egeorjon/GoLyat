@@ -130,6 +130,9 @@
         "tags": {
             "title"             : "tags"
         },
+        "page": {
+            "displaydate"       : false
+        },
         "posts": {
             "title"             : "last-posts-published",
             "numposts"          : 6,
