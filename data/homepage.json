@@ -13,7 +13,7 @@
                     "widget": "page",
                     "cache": true,
                     "weight": 1,
-                    "params": { "method": "field", "value": "edito", "heading": 2 }
+                    "params": { "method": "field", "value": "edito", "heading": 2, "date": true }
                 }
               ]
             }
