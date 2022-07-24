@@ -192,7 +192,7 @@ $utilities: map-remove($utilities,
 // @import "bootstrap-5.2.0/scss/progress";
 @import "bootstrap-5.2.0/scss/reboot";
 // @import "bootstrap-5.2.0/scss/spinners";
-// @import "bootstrap-5.2.0/scss/tables";
+@import "bootstrap-5.2.0/scss/tables";
 // @import "bootstrap-5.2.0/scss/toasts";
 // @import "bootstrap-5.2.0/scss/tooltip";
 @import "bootstrap-5.2.0/scss/transitions";
@@ -211,5 +211,5 @@ $utilities: map-remove($utilities,
     @import "bootstrap-5.2.0/scss/helpers/visually-hidden";
     // @import "bootstrap-5.2.0/scss/helpers/vr";
 
-// @import "bootstrap-5.2.0/scss/utilities/api";
+@import "bootstrap-5.2.0/scss/utilities/api";
 // @import "bootstrap-5.2.0/scss/vendor/rfs";
