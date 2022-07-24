@@ -69,6 +69,7 @@ $aspect-ratios: map-merge($aspect-ratios, (
 @import "bootstrap-5.2.0/scss/maps";
 @import "bootstrap-5.2.0/scss/mixins";
 @import "bootstrap-5.2.0/scss/root";
+@import "bootstrap-5.2.0/scss/utilities";
 
 $utilities: map-remove($utilities,
     "align",
@@ -196,7 +197,7 @@ $utilities: map-remove($utilities,
 // @import "bootstrap-5.2.0/scss/tooltip";
 @import "bootstrap-5.2.0/scss/transitions";
 // @import "bootstrap-5.2.0/scss/type";
-// @import "bootstrap-5.2.0/scss/utilities";
+
 
 // @import "bootstrap-5.2.0/scss/helpers";
     // @import "bootstrap-5.2.0/scss/helpers/clearfix";
@@ -207,7 +208,7 @@ $utilities: map-remove($utilities,
     // @import "bootstrap-5.2.0/scss/helpers/stacks";
     // @import "bootstrap-5.2.0/scss/helpers/stretched-link";
     // @import "bootstrap-5.2.0/scss/helpers/text-truncation";
-    s@import "bootstrap-5.2.0/scss/helpers/visually-hidden";
+    @import "bootstrap-5.2.0/scss/helpers/visually-hidden";
     // @import "bootstrap-5.2.0/scss/helpers/vr";
 
 // @import "bootstrap-5.2.0/scss/utilities/api";
