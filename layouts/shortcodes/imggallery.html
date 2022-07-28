@@ -8,6 +8,7 @@
 {{- $size    := .Get "size"    | default site.Data.default_params.shortcodes.gallery.size    -}}
 {{- $caption := .Get "caption" | default site.Data.default_params.shortcodes.gallery.caption -}}
 {{- $overlay := .Get "overlay" | default site.Data.default_params.shortcodes.gallery.overlay -}}
+{{- $exif    := .Get "exif"    | default site.Data.default_params.shortcodes.gallery.exif    -}}
 {{- if eq (path.Dir $files) "." -}}
     {{- $files = path.Join $files "*" -}}
 {{- end -}}
@@ -18,7 +19,7 @@
         {{- $thumb := .Fill (printf "%sx%s smart" (string $size) (string $size)) }}
         <figure class="gallery-thumb">
             {{- $title := .Title | default "" -}}
-            {{- if (isset .Params "exif") -}}
+            {{- if $exif -}}
                 {{- with .Exif -}}
                     {{- $string := printf "f/%.1f, %s, ISO%d (%.0fmm)" .Tags.ApertureValue .Tags.ExposureTime .Tags.ISOSpeedRatings .Tags.FocalLength -}}
                     {{- $title = delimit (slice $title $string) " - " -}}
@@ -32,10 +33,10 @@
                     {{ with $title -}}title="{{- . | safeHTML -}}"{{- end }} />
             {{- if $caption -}}
                 <figcaption class="{{- $overlay -}}">
-                    {{- if eq .Title .Name -}}
+                    {{- if eq $title .Name -}}
                         {{- path.Base .Name | safeHTML -}}
                     {{- else -}}
-                        {{- .Title | safeHTML -}}
+                        {{- $title | safeHTML -}}
                     {{- end -}}
                 </figcaption>
             {{- end }}
