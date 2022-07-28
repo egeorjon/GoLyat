@@ -95,7 +95,8 @@
             "title"             : "portfolio",
             "columns"           : 2,
             "numposts"          : 6,
-            "taxonomy"          : "tags"
+            "taxonomy"          : "tags",
+            "exif"              : false
         },
         "related": {
             "title"             : "related-posts",
