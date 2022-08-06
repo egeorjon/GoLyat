@@ -41,57 +41,38 @@
     {{- $srcsets    := slice                          -}}
     {{- $sizes      := ""                             -}} 
     {{- $width      := int $image.Width               -}}
-
+    {{- $link       := .Destination                   -}}
     {{- $lightbox   := and (gt $width site.Data.default_params.params.lighbox_max_size) (site.Params.lighbox_for_big_image | default site.Data.default_params.params.lighbox_for_big_image) -}}
    
-    {{- if not $lightbox -}}
-        {{- range $size := $imgsizes -}}
-            {{- if ge $width $size -}}
-                {{- $img := $image.Resize (printf "%dx" $size) -}}
-                {{- $srcsets = $srcsets | append (printf "%s %dw" $img.RelPermalink $size) -}}
-            {{- end -}}
-        {{- end -}}
-        {{- $srcsets = $srcsets | append (printf "%s %dw" $image.RelPermalink $width) -}}
-        {{- $sizes := printf "(min-width: %dpx) %dpx, 100vw" $width $width -}}
-        <figure class="figure figure-center">
-            <img 
-                {{ with $sizes -}} sizes="{{- $sizes -}}" {{ end }}
-                {{ with $srcsets -}} srcset="{{ delimit $srcsets "," }}" {{- end }} 
-                class="img-fluid" 
-                src="{{- .Destination | safeURL -}}"
-                {{ with $alt_caption -}}alt="{{- . | safeHTML -}}"
-                {{- else -}}
-                    alt="{{- . | safeHTML -}}"
-                {{- end -}}
-                />
-            {{- with $alt_caption -}}<figcaption class="figure-caption">{{- . | safeHTML -}}</figcaption>{{- end -}}
-        </figure>
-    {{- else -}}
-        {{- $link := "" -}}
+    {{- if $lightbox -}}
         {{- $width = int ( math.Min $width site.Data.default_params.params.lighbox_max_size ) -}}
-        {{- range $size := $imgsizes -}}
-            {{- if ge $width $size -}}
-                {{- $img := $image.Resize (printf "%dx" $size) -}}
-                {{- $srcsets = $srcsets | append (printf "%s %dw" $img.RelPermalink $size) -}}
-                {{- $link = $img.RelPermalink -}}
-            {{- end -}}
+    {{- end -}}
+    {{- range $size := $imgsizes -}}
+        {{- if ge $width $size -}}
+            {{- $img := $image.Resize (printf "%dx" $size) -}}
+            {{- $srcsets = $srcsets | append (printf "%s %dw" $img.RelPermalink $size) -}}
+            {{- $link = $img.RelPermalink -}}
         {{- end -}}
-        {{- $srcsets = $srcsets | append (printf "%s %dw" $link $width) -}}
-        {{- $sizes := printf "(min-width: %dpx) %dpx, 100vw" $width $width -}}
+    {{- end -}}
+    {{- $srcsets = $srcsets | append (printf "%s %dw" $image.RelPermalink $width) -}}
+    {{- $sizes := printf "(min-width: %dpx) %dpx, 100vw" $width $width -}}
+    {{- if $lightbox -}}
         <a href="{{- $image.RelPermalink -}}" {{ with $title -}}title="{{- . | safeHTML -}}"{{- end }}>
-            <figure class="figure figure-center">
-                <img 
-                    {{ with $sizes -}} sizes="{{- $sizes -}}" {{ end }}
-                    {{ with $srcsets -}} srcset="{{ delimit $srcsets "," }}" {{- end }} 
-                    class="img-fluid" 
-                    src="{{- $link | safeURL -}}"
-                    {{ with $alt_caption -}}alt="{{- . | safeHTML -}}"
-                    {{- else -}}
-                        alt="{{- . | safeHTML -}}"
-                    {{- end -}}
-                    />
-                {{- with $alt_caption -}}<figcaption class="figure-caption">{{- . | safeHTML -}}</figcaption>{{- end -}}
-            </figure>
+    {{- end -}}
+    <figure class="figure figure-center">
+        <img 
+            {{ with $sizes -}} sizes="{{- $sizes -}}" {{ end }}
+            {{ with $srcsets -}} srcset="{{ delimit $srcsets "," }}" {{- end }} 
+            class="img-fluid" 
+            src="{{- $link | safeURL -}}"
+            {{ with $alt_caption -}}alt="{{- . | safeHTML -}}"
+            {{- else -}}
+                alt="{{- . | safeHTML -}}"
+            {{- end -}}
+            />
+        {{- with $alt_caption -}}<figcaption class="figure-caption">{{- . | safeHTML -}}</figcaption>{{- end -}}
+    </figure>
+    {{- if $lightbox -}}
         </a>
     {{- end -}}
 {{- end -}}
