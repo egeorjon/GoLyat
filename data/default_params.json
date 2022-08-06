@@ -6,6 +6,7 @@
         "twittercards"          : "internal",
         "schema"                : "internal",
         "lighbox_for_big_image" : true,
+        "lighbox_max_size"      : 800,
         "ref_heading"           : 3,
         "ref_title"             : "references",
         "single": {
