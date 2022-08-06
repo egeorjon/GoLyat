@@ -56,10 +56,10 @@
     {{- end -}}
     {{- $srcsets = $srcsets | append (printf "%s %dw" $image.RelPermalink $width) -}}
     {{- $sizes := printf "(min-width: %dpx) %dpx, 100vw" $width $width -}}
-    {{- if $lightbox -}}
-        <a href="{{- $image.RelPermalink -}}" {{ with $title -}}title="{{- . | safeHTML -}}"{{- end }}>
-    {{- end -}}
     <figure class="figure figure-center">
+        {{- if $lightbox -}}
+            <a href="{{- $image.RelPermalink -}}" {{ with $title -}}title="{{- . | safeHTML -}}"{{- end }}>
+        {{- end -}}
         <img 
             {{ with $sizes -}} sizes="{{- $sizes -}}" {{ end }}
             {{ with $srcsets -}} srcset="{{ delimit $srcsets "," }}" {{- end }} 
@@ -70,9 +70,9 @@
                 alt="{{- . | safeHTML -}}"
             {{- end -}}
             />
+        {{- if $lightbox -}}
+            </a>
+        {{- end -}}
         {{- with $alt_caption -}}<figcaption class="figure-caption">{{- . | safeHTML -}}</figcaption>{{- end -}}
     </figure>
-    {{- if $lightbox -}}
-        </a>
-    {{- end -}}
 {{- end -}}
