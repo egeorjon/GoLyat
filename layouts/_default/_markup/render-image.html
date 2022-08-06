@@ -31,44 +31,67 @@
 {{- else -}}
     {{- if (isset $image.Params "exif") -}}
         {{- with $image.Exif -}}
-            {{- $string := printf "f/%.1f, %s, ISO%d (%.0fmm)" .Tags.ApertureValue .Tags.ExposureTime .Tags.ISOSpeedRatings .Tags.FocalLength -}}
+            {{- $string     := printf "f/%.1f, %s, ISO%d (%.0fmm)" .Tags.ApertureValue .Tags.ExposureTime .Tags.ISOSpeedRatings .Tags.FocalLength -}}
             {{- $alt_caption = delimit (slice $alt_caption $string) " - " -}}
-            {{- $title = delimit (slice $title $string) " - " -}}
+            {{- $title       = delimit (slice $title $string) " - " -}}
         {{- end -}}
     {{ end }}
-    {{- $width    := int $image.Width          -}}
-    {{- $imgsizes    := slice 320 540 720 960 1140 -}}
-    {{- $width    := int $image.Width          -}}
-    {{- $srcsets  := slice                     -}}
-    {{- range $size := $imgsizes -}}
-        {{- if gt $width $size -}}
-            {{- $img := $image.Resize (printf "%dx" $size) -}}
-            {{- $srcsets = $srcsets | append (printf "%s %dw" $img.RelPermalink $size) -}}
+
+    {{- $imgsizes   := slice 320 540 720 800 960 1140 -}}
+    {{- $srcsets    := slice                          -}}
+    {{- $sizes      := ""                             -}} 
+    {{- $width      := int $image.Width               -}}
+
+    {{- $lightbox   := and (gt $width site.Data.default_params.params.lighbox_max_size) (site.Params.lighbox_for_big_image | default site.Data.default_params.params.lighbox_for_big_image) -}}
+   
+    {{- if not $lightbox -}}
+        {{- range $size := $imgsizes -}}
+            {{- if ge $width $size -}}
+                {{- $img := $image.Resize (printf "%dx" $size) -}}
+                {{- $srcsets = $srcsets | append (printf "%s %dw" $img.RelPermalink $size) -}}
+            {{- end -}}
         {{- end -}}
-    {{- end -}}
-    {{- $srcsets = $srcsets | append (printf "%s %dw" $image.RelPermalink $width) -}}
-
-    {{/*- $sizes := "100vw" -*/}}
-    {{/*- if lt $width 930 -*/}}
-    {{- $sizes := printf "(min-width: %dpx) %dpx, 100vw" $width $width -}}
-    {{/*- end -*/}}
-
-    {{- $lightbox := and (gt $width 930) (site.Params.lighbox_for_big_image | default site.Data.default_params.params.lighbox_for_big_image) -}}
-<figure class="figure figure-center">
-    {{- if $lightbox -}}
+        {{- $srcsets = $srcsets | append (printf "%s %dw" $image.RelPermalink $width) -}}
+        {{- $sizes := printf "(min-width: %dpx) %dpx, 100vw" $width $width -}}
+        <figure class="figure figure-center">
+            <img 
+                {{ with $sizes -}} sizes="{{- $sizes -}}" {{ end }}
+                {{ with $srcsets -}} srcset="{{ delimit $srcsets "," }}" {{- end }} 
+                class="img-fluid" 
+                src="{{- .Destination | safeURL -}}"
+                {{ with $alt_caption -}}alt="{{- . | safeHTML -}}"
+                {{- else -}}
+                    alt="{{- . | safeHTML -}}"
+                {{- end -}}
+                />
+            {{- with $alt_caption -}}<figcaption class="figure-caption">{{- . | safeHTML -}}</figcaption>{{- end -}}
+        </figure>
+    {{- else -}}
+        {{- $link := "" -}}
+        {{- $width = int ( math.Min $width site.Data.default_params.params.lighbox_max_size ) -}}
+        {{- range $size := $imgsizes -}}
+            {{- if ge $width $size -}}
+                {{- $img := $image.Resize (printf "%dx" $size) -}}
+                {{- $srcsets = $srcsets | append (printf "%s %dw" $img.RelPermalink $size) -}}
+                {{- $link = $img.RelPermalink -}}
+            {{- end -}}
+        {{- end -}}
+        {{- $srcsets = $srcsets | append (printf "%s %dw" $link $width) -}}
+        {{- $sizes := printf "(min-width: %dpx) %dpx, 100vw" $width $width -}}
         <a href="{{- $image.RelPermalink -}}" {{ with $title -}}title="{{- . | safeHTML -}}"{{- end }}>
+            <figure class="figure figure-center">
+                <img 
+                    {{ with $sizes -}} sizes="{{- $sizes -}}" {{ end }}
+                    {{ with $srcsets -}} srcset="{{ delimit $srcsets "," }}" {{- end }} 
+                    class="img-fluid" 
+                    src="{{- $link | safeURL -}}"
+                    {{ with $alt_caption -}}alt="{{- . | safeHTML -}}"
+                    {{- else -}}
+                        alt="{{- . | safeHTML -}}"
+                    {{- end -}}
+                    />
+                {{- with $alt_caption -}}<figcaption class="figure-caption">{{- . | safeHTML -}}</figcaption>{{- end -}}
+            </figure>
+        </a>
     {{- end -}}
-    <img 
-        {{ with $sizes -}} sizes="{{- $sizes -}}" {{ end }}
-        {{ with $srcsets -}} srcset="{{ delimit $srcsets "," }}" {{- end }} 
-        class="img-fluid" 
-        src="{{- .Destination | safeURL -}}" 
-        {{ with $alt_caption -}}alt="{{- . | safeHTML -}}"
-        {{- else -}}
-            alt="{{- . | safeHTML -}}"
-        {{- end -}}
-        />
-    {{- if $lightbox -}}</a>{{- end -}}
-    {{- with $alt_caption -}}<figcaption class="figure-caption">{{- . | safeHTML -}}</figcaption>{{- end -}}
-</figure>
 {{- end -}}
