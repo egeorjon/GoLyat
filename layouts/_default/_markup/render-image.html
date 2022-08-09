@@ -37,26 +37,25 @@
         {{- end -}}
     {{ end }}
 
-    {{- $imgsizes   := slice 320 480 540 720 800 960 1140 -}}
-    {{- $srcsets    := slice                          -}}
-    {{- $sizes      := ""                             -}} 
     {{- $width      := int $image.Width               -}}
     {{- $height     := int $image.Height              -}}
     {{- $link       := .Destination                   -}}
-
     {{- $max_width  := site.Data.default_params.params.lighbox_max_width -}}
     {{- $max_height := site.Data.default_params.params.lighbox_max_height -}}
     {{- $lightbox   := and (or (gt $width $max_width) (gt $height $max_height)) (site.Params.lighbox_for_big_image | default site.Data.default_params.params.lighbox_for_big_image) -}}
 
+    {{- $imgsizes   := slice 320 540 720 960 1140 -}}
     {{- if $lightbox -}}
         {{- if ge $width $height -}}
             {{- $width = int ( math.Min $width $max_width) -}}
-            {{- else -}}
+        {{- else -}}
             {{- if gt $height $max_height -}}
                 {{- $width = int ( math.Min $max_width (div (mul $width $max_height) $height)) -}}
             {{- end -}}
         {{- end -}}
+        {{- $imgsizes = sort ($imgsizes | append $width) -}}
     {{- end -}}
+    {{- $srcsets := slice -}}
     {{- range $size := $imgsizes -}}
         {{- if ge $width $size -}}
             {{- $img := $image.Resize (printf "%dx" $size) -}}
@@ -64,7 +63,7 @@
             {{- if $lightbox -}}{{- $link = $img.RelPermalink -}}{{- end -}}
         {{- end -}}
     {{- end -}}
-    {{- $srcsets = $srcsets | append (printf "%s %dw" $link $width) -}}
+    {{- if not $lightbox -}}{{- $srcsets = $srcsets | append (printf "%s %dw" $link $width) -}}{{- end -}}
     {{- $sizes := printf "(min-width: %dpx) %dpx, 100vw" $width $width -}}
     <figure class="figure figure-center">
         {{- if $lightbox -}}
