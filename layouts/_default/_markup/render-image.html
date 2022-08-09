@@ -31,7 +31,7 @@
 {{- else -}}
     {{- if (isset $image.Params "exif") -}}
         {{- with $image.Exif -}}
-            {{- $string     := printf "f/%.1f, %s, ISO%d (%.0fmm)" .Tags.ApertureValue .Tags.ExposureTime .Tags.ISOSpeedRatings .Tags.FocalLength -}}
+            {{- $string     := printf "ISO%d, f/%.1f, %s (%.0fmm)" .Tags.ISOSpeedRatings .Tags.ApertureValue .Tags.ExposureTime .Tags.FocalLength -}}
             {{- $alt_caption = delimit (slice $alt_caption $string) " - " -}}
             {{- $title       = delimit (slice $title $string) " - " -}}
         {{- end -}}
