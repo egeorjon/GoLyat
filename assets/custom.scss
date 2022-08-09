@@ -13,6 +13,35 @@ $paragraph-margin-bottom: $spacer;
 
 $nav-link-font-size: $font-size-lg;
 
+// $accordion-padding-y:                     1rem;
+// $accordion-padding-x:                     1.25rem;
+// $accordion-color:                         var(--#{$prefix}body-color);
+// $accordion-bg:                            $body-bg;
+// $accordion-border-width:                  $border-width;
+$accordion-border-color:                  $light; // var(--#{$prefix}border-color);
+// $accordion-border-radius:                 $border-radius;
+// $accordion-inner-border-radius:           subtract($accordion-border-radius, $accordion-border-width);
+
+// $accordion-body-padding-y:                $accordion-padding-y;
+// $accordion-body-padding-x:                $accordion-padding-x;
+
+// $accordion-button-padding-y:              $accordion-padding-y;
+// $accordion-button-padding-x:              $accordion-padding-x;
+// $accordion-button-color:                  $accordion-color;
+$accordion-button-bg:                       $light; // var(--#{$prefix}accordion-bg);
+// $accordion-transition:                    $btn-transition, border-radius .15s ease;
+$accordion-button-active-bg:                $light; // tint-color($component-active-bg, 90%);
+// $accordion-button-active-color:           shade-color($primary, 10%);
+
+// $accordion-button-focus-border-color:     $input-focus-border-color;
+$accordion-button-focus-box-shadow:       0; // $btn-focus-box-shadow;
+
+// $accordion-icon-width:                    1.25rem;
+// $accordion-icon-color:                    $accordion-button-color;
+// $accordion-icon-active-color:             $accordion-button-active-color;
+// $accordion-icon-transition:               transform .2s ease-in-out;
+// $accordion-icon-transform:                rotate(-180deg);
+
 @import "bootstrap-5.2.0/scss/variables";
 
 $display-font-sizes: map-remove($display-font-sizes,
@@ -158,7 +187,7 @@ $utilities: map-remove($utilities,
 );
 
 
-// @import "bootstrap-5.2.0/scss/accordion";
+@import "bootstrap-5.2.0/scss/accordion";
 // @import "bootstrap-5.2.0/scss/alert";
 @import "bootstrap-5.2.0/scss/badge";
 @import "bootstrap-5.2.0/scss/breadcrumb";

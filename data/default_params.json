@@ -12,7 +12,8 @@
         "single": {
             "displayimage"      : true,
             "displayserie"      : true,
-            "meta"              : { "top": {}, "middle": { "1": "fulldate", "2": "reading"}, "bottom": {} }
+            "meta"              : { "top": {}, "middle": { "1": "fulldate", "2": "reading"}, "bottom": {} },
+            "toc"               : false
         },
         "postslist": {
             "format"            : "meta-left",
