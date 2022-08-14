@@ -153,6 +153,7 @@
             "size"              : 250,
             "caption"           : true,
             "overlay"           : "bottom",
+            "ratio"             : "1:1",
             "galcaption"        : ""
         },
         "attachments": {
