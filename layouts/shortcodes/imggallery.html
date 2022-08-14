@@ -5,7 +5,8 @@
 {{/*   caption       int     display caption below the thumbnails */}}
 {{/*   overlay       string  top, bottom, or center */}}
 {{- $files      := .Get "files"      | default site.Data.default_params.shortcodes.gallery.files      -}}
-{{- $size       := .Get "size"       | default site.Data.default_params.shortcodes.gallery.size       -}}
+{{- $size       := int (.Get "size"  | default site.Data.default_params.shortcodes.gallery.size)      -}}
+{{- $ratio      := .Get "ratio"      | default site.Data.default_params.shortcodes.gallery.ratio      -}}
 {{- $caption    := .Get "caption"    | default site.Data.default_params.shortcodes.gallery.caption    -}}
 {{- $overlay    := .Get "overlay"    | default site.Data.default_params.shortcodes.gallery.overlay    -}}
 {{- $exif       := .Get "exif"       | default site.Data.default_params.shortcodes.gallery.exif       -}}
@@ -18,7 +19,16 @@
 <div class="gallery-wrapper" id="{{- anchorize $files -}}">
     <div class="gallery" id="gallery-{{- $.Ordinal -}}">
         {{- range . -}}
-        {{- $thumb := .Fill (printf "%sx%s smart" (string $size) (string $size)) }}
+        {{- $rw := $size -}}
+        {{- $rh := $size -}}
+        {{- if ne $ratio "1:1" -}}
+            {{- if gt .Width .Height -}}
+                {{- $rh = int ( math.Min $size (div (mul .Height $size) .Width)) -}}
+            {{- else -}}
+            {{- $rw = int ( math.Min $size (div (mul .Width $size) .Height)) -}}
+            {{- end -}}
+        {{- end -}}
+        {{- $thumb := .Fill (printf "%sx%s smart" (string $rw) (string $rh)) }}
         <figure class="gallery-thumb">
             {{- $title := .Title | default "" -}}
             {{- if $exif -}}
