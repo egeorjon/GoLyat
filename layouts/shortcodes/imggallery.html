@@ -4,16 +4,18 @@
 {{/*   size          int     size of the thumbnails */}}
 {{/*   caption       int     display caption below the thumbnails */}}
 {{/*   overlay       string  top, bottom, or center */}}
-{{- $files   := .Get "files"   | default site.Data.default_params.shortcodes.gallery.files   -}}
-{{- $size    := .Get "size"    | default site.Data.default_params.shortcodes.gallery.size    -}}
-{{- $caption := .Get "caption" | default site.Data.default_params.shortcodes.gallery.caption -}}
-{{- $overlay := .Get "overlay" | default site.Data.default_params.shortcodes.gallery.overlay -}}
-{{- $exif    := .Get "exif"    | default site.Data.default_params.shortcodes.gallery.exif    -}}
+{{- $files      := .Get "files"      | default site.Data.default_params.shortcodes.gallery.files      -}}
+{{- $size       := .Get "size"       | default site.Data.default_params.shortcodes.gallery.size       -}}
+{{- $caption    := .Get "caption"    | default site.Data.default_params.shortcodes.gallery.caption    -}}
+{{- $overlay    := .Get "overlay"    | default site.Data.default_params.shortcodes.gallery.overlay    -}}
+{{- $exif       := .Get "exif"       | default site.Data.default_params.shortcodes.gallery.exif       -}}
+{{- $galcaption := .Get "galcaption" | default site.Data.default_params.shortcodes.gallery.galcaption -}}
+
 {{- if eq (path.Dir $files) "." -}}
     {{- $files = path.Join $files "*" -}}
 {{- end -}}
 {{- with $.Page.Resources.Match $files -}}
-<div class="gallery-wrapper">
+<div class="gallery-wrapper" id="{{- anchorize $files -}}">
     <div class="gallery" id="gallery-{{- $.Ordinal -}}">
         {{- range . -}}
         {{- $thumb := .Fill (printf "%sx%s smart" (string $size) (string $size)) }}
@@ -43,6 +45,9 @@
             </a>
         </figure>
         {{- end }}
-    </div>
-</div>
+    </div><!-- gallery -->
+    {{- with $galcaption -}}
+        <div class="gallery-caption">{{- . | safeHTML -}}</div>
+    {{- end -}}
+</div><!-- gallery-wrapper -->
 {{- end -}}
