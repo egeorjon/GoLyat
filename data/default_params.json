@@ -152,7 +152,8 @@
             "files"             : "gallery",
             "size"              : 250,
             "caption"           : true,
-            "overlay"           : "bottom"
+            "overlay"           : "bottom",
+            "galcaption"        : ""
         },
         "attachments": {
             "fields"            : "icon,title,size",

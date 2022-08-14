@@ -440,14 +440,22 @@ ol, ul, dl {
    $gallery-caption-fontsize: $font-size-sm;
 
    .gallery-wrapper {
-       justify-content : center;
+       // justify-content : center;
        margin-bottom   : $gallery-margin-bottom;
    }
 
    .gallery {
-       display   : flex;
-       flex-wrap : wrap;
-       margin    : (-1 * $gallery-margin) (-1 * $gallery-margin);
+        display   : flex;
+        flex-wrap : wrap;
+        -webkit-box-pack: center;
+        justify-content: center;
+        margin    : (-1 * $gallery-margin) (-1 * $gallery-margin);
+   }
+
+   .gallery-caption {
+        margin-top: 0.5rem;
+        font-style: italic;
+        text-align: center;
    }
 
    .gallery-thumb {
