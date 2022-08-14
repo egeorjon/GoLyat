@@ -23,65 +23,75 @@
 {{- end -}}
 {{- if eq $imgtype 0 -}}
     <div class="ratio ratio-47x20"><div>{{- i18n "image-not-found" -}}</div></div>
-{{- else if lt $imgtype 3 -}}
-<figure class="figure figure-center">
-    <img class="img-fluid" src="{{- .Destination | safeURL -}}" {{ with $alt_caption -}}alt="{{- . | safeHTML -}}"{{- end }} />
-    {{- with $alt_caption -}}<figcaption class="figure-caption">{{ . | safeHTML -}}</figcaption>{{- end -}}
-</figure>
 {{- else -}}
-    {{- if (isset $image.Params "exif") -}}
-    {{- with $image.Exif -}}
-            {{- $string     := printf "ISO%d, f/%.1f, %s sec. (%.0fmm)" .Tags.ISOSpeedRatings .Tags.FNumber (string .Tags.ExposureTime) .Tags.FocalLength -}}
-            {{- $alt_caption = delimit (slice $alt_caption $string) " - " -}}
-            {{- $title       = delimit (slice $title $string) " - " -}}
-        {{- end -}}
-    {{ end }}
-
-    {{- $width      := int $image.Width               -}}
-    {{- $height     := int $image.Height              -}}
-    {{- $link       := .Destination                   -}}
-    {{- $max_width  := site.Data.default_params.params.lighbox_max_width -}}
-    {{- $max_height := site.Data.default_params.params.lighbox_max_height -}}
-    {{- $lightbox   := and (or (gt $width $max_width) (gt $height $max_height)) (site.Params.lighbox_for_big_image | default site.Data.default_params.params.lighbox_for_big_image) -}}
-
-    {{- $imgsizes   := slice 320 540 720 960 1140 -}}
-    {{- if $lightbox -}}
-        {{- if ge $width $height -}}
-            {{- $width = int ( math.Min $width $max_width) -}}
-        {{- else -}}
-            {{- if gt $height $max_height -}}
-                {{- $width = int ( math.Min $max_width (div (mul $width $max_height) $height)) -}}
+    {{- if gt $imgtype 1 -}}
+        {{- if and (isset $image.Params "lic") site.Params.licenceImagesText -}}
+            {{- if $image.Params.lic -}}
+            {{- $title = printf "%s - %s" $title site.Params.licenceImagesText -}}
+                {{- $alt_caption = printf "%s - %s" $alt_caption site.Params.licenceImagesText -}}
             {{- end -}}
         {{- end -}}
-        {{- $imgsizes = sort ($imgsizes | append $width) -}}
     {{- end -}}
-    {{- $srcsets := slice -}}
-    {{- range $size := $imgsizes -}}
-        {{- if ge $width $size -}}
-            {{- $img := $image.Resize (printf "%dx" $size) -}}
-            {{- $srcsets = $srcsets | append (printf "%s %dw" $img.RelPermalink $size) -}}
-            {{- if $lightbox -}}{{- $link = $img.RelPermalink -}}{{- end -}}
-        {{- end -}}
-    {{- end -}}
-    {{- if not $lightbox -}}{{- $srcsets = $srcsets | append (printf "%s %dw" $link $width) -}}{{- end -}}
-    {{- $sizes := printf "(min-width: %dpx) %dpx, 100vw" $width $width -}}
+    {{- if lt $imgtype 3 -}}
     <figure class="figure figure-center">
-        {{- if $lightbox -}}
-            <a href="{{- $image.RelPermalink -}}" {{ with $title -}}title="{{- . | safeHTML -}}"{{- end }}>
-        {{- end -}}
-        <img 
-            {{ with $sizes -}} sizes="{{- $sizes -}}" {{ end }}
-            {{ with $srcsets -}} srcset="{{ delimit $srcsets "," }}" {{- end }} 
-            class="img-fluid" 
-            src="{{- $link | safeURL -}}"
-            {{ with $alt_caption -}}alt="{{- . | safeHTML -}}"
-            {{- else -}}
-                alt="{{- . | safeHTML -}}"
-            {{- end -}}
-            />
-        {{- if $lightbox -}}
-            </a>
-        {{- end -}}
-        {{- with $alt_caption -}}<figcaption class="figure-caption">{{- . | safeHTML -}}</figcaption>{{- end -}}
+        <img class="img-fluid" src="{{- .Destination | safeURL -}}" {{ with $alt_caption -}}alt="{{- . | safeHTML -}}"{{- end }} />
+        {{- with $alt_caption -}}<figcaption class="figure-caption">{{ . | safeHTML -}}</figcaption>{{- end -}}
     </figure>
+    {{- else -}}
+        {{- if (isset $image.Params "exif") -}}
+        {{- with $image.Exif -}}
+                {{- $string     := printf "ISO%d, f/%.1f, %s sec. (%.0fmm)" .Tags.ISOSpeedRatings .Tags.FNumber (string .Tags.ExposureTime) .Tags.FocalLength -}}
+                {{- $alt_caption = delimit (slice $alt_caption $string) " - " -}}
+                {{- $title       = delimit (slice $title $string) " - " -}}
+            {{- end -}}
+        {{ end }}
+
+        {{- $width      := int $image.Width               -}}
+        {{- $height     := int $image.Height              -}}
+        {{- $link       := .Destination                   -}}
+        {{- $max_width  := site.Data.default_params.params.lighbox_max_width -}}
+        {{- $max_height := site.Data.default_params.params.lighbox_max_height -}}
+        {{- $lightbox   := and (or (gt $width $max_width) (gt $height $max_height)) (site.Params.lighbox_for_big_image | default site.Data.default_params.params.lighbox_for_big_image) -}}
+
+        {{- $imgsizes   := slice 320 540 720 960 1140 -}}
+        {{- if $lightbox -}}
+            {{- if ge $width $height -}}
+                {{- $width = int ( math.Min $width $max_width) -}}
+            {{- else -}}
+                {{- if gt $height $max_height -}}
+                    {{- $width = int ( math.Min $max_width (div (mul $width $max_height) $height)) -}}
+                {{- end -}}
+            {{- end -}}
+            {{- $imgsizes = sort ($imgsizes | append $width) -}}
+        {{- end -}}
+        {{- $srcsets := slice -}}
+        {{- range $size := $imgsizes -}}
+            {{- if ge $width $size -}}
+                {{- $img := $image.Resize (printf "%dx" $size) -}}
+                {{- $srcsets = $srcsets | append (printf "%s %dw" $img.RelPermalink $size) -}}
+                {{- if $lightbox -}}{{- $link = $img.RelPermalink -}}{{- end -}}
+            {{- end -}}
+        {{- end -}}
+        {{- if not $lightbox -}}{{- $srcsets = $srcsets | append (printf "%s %dw" $link $width) -}}{{- end -}}
+        {{- $sizes := printf "(min-width: %dpx) %dpx, 100vw" $width $width -}}
+        <figure class="figure figure-center">
+            {{- if $lightbox -}}
+                <a href="{{- $image.RelPermalink -}}" {{ with $title -}}title="{{- . | safeHTML -}}"{{- end }}>
+            {{- end -}}
+            <img 
+                {{ with $sizes -}} sizes="{{- $sizes -}}" {{ end }}
+                {{ with $srcsets -}} srcset="{{ delimit $srcsets "," }}" {{- end }} 
+                class="img-fluid" 
+                src="{{- $link | safeURL -}}"
+                {{ with $alt_caption -}}alt="{{- . | safeHTML -}}"
+                {{- else -}}
+                    alt="{{- . | safeHTML -}}"
+                {{- end -}}
+                />
+            {{- if $lightbox -}}
+                </a>
+            {{- end -}}
+            {{- with $alt_caption -}}<figcaption class="figure-caption">{{- . | safeHTML -}}</figcaption>{{- end -}}
+        </figure>
+    {{- end -}}
 {{- end -}}
