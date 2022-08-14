@@ -23,7 +23,7 @@
             {{- $title := .Title | default "" -}}
             {{- if $exif -}}
                 {{- with .Exif -}}
-                    {{- $string := printf "f/%.1f, %s, ISO%d (%.0fmm)" .Tags.ApertureValue .Tags.ExposureTime .Tags.ISOSpeedRatings .Tags.FocalLength -}}
+                    {{- $string := printf "ISO%d, f/%.1f, %s sec. (%.0fmm)" .Tags.ISOSpeedRatings .Tags.FNumber (string .Tags.ExposureTime) .Tags.FocalLength -}}
                     {{- $title = delimit (slice $title $string) " - " -}}
                 {{- end -}}
             {{ end }}
