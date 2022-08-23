@@ -44,14 +44,14 @@
     {{- end -}}
     {{- if .Params.Toc | default .Site.Params.Single.TableOfContents | default site.Data.default_params.single.toc -}}
     <div class="row single-post-toc">
-        <div class="col accordion" id="accordionExample">
+        <div class="col accordion" id="accordion-toc">
             <div class="accordion-item">
                 <h3 class="accordion-header" id="headingOne">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
                         {{- i18n "toc" -}}
                     </button>
                 </h3>
-                <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample" style="">
+                <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordion-toc" style="">
                     <div class="accordion-body">
                         {{- .TableOfContents -}}
                     </div>
