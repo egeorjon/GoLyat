@@ -154,7 +154,8 @@
             "caption"           : true,
             "overlay"           : "bottom",
             "ratio"             : "1:1",
-            "galcaption"        : ""
+            "galcaption"        : "",
+            "licence"           : false
         },
         "attachments": {
             "fields"            : "icon,title,size",
