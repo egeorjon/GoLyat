@@ -11,12 +11,23 @@
 {{- $overlay    := .Get "overlay"    | default site.Data.default_params.shortcodes.gallery.overlay    -}}
 {{- $exif       := .Get "exif"       | default site.Data.default_params.shortcodes.gallery.exif       -}}
 {{- $galcaption := .Get "galcaption" | default site.Data.default_params.shortcodes.gallery.galcaption -}}
+{{- $lic        := .Get "licence"    | default site.Data.default_params.shortcodes.gallery.licence    -}}
 
+{{- $images := slice -}}
 {{- if eq (path.Dir $files) "." -}}
     {{- $files = path.Join $files "*" -}}
+    {{- $images = $.Page.Resources.Match $files -}}
+{{- else -}}
+    {{- $files := split $files "," -}}
+    {{- range $files -}}
+        {{- $img := $.Page.Resources.Match . -}}
+        {{- with $img -}}
+            {{- $images = $images | append $img -}}
+        {{- end -}}
+    {{- end -}}
 {{- end -}}
-{{- with $.Page.Resources.Match $files -}}
-<div class="gallery-wrapper" id="{{- anchorize $files -}}">
+{{- with $images -}}
+<div class="gallery-wrapper" id="gallery-{{- $.Ordinal -}}-wrapper">{{/*- anchorize $files -*/}}
     <div class="gallery" id="gallery-{{- $.Ordinal -}}">
         {{- range . -}}
         {{- $rw := $size -}}
@@ -31,33 +42,35 @@
         {{- $thumb := .Fill (printf "%sx%s smart" (string $rw) (string $rh)) }}
         <figure class="gallery-thumb">
             {{- $title := .Title | default "" -}}
+            {{- if eq $title .Name -}}
+                {{- $title = path.Base .Name | safeHTML -}}
+            {{- end -}}
             {{- if $exif -}}
                 {{- with .Exif -}}
                     {{- $string := printf "ISO%d, f/%.1f, %s sec. (%.0fmm)" .Tags.ISOSpeedRatings .Tags.FNumber (string .Tags.ExposureTime) .Tags.FocalLength -}}
                     {{- $title = delimit (slice $title $string) " - " -}}
                 {{- end -}}
             {{ end }}
-            <a href="{{- .RelPermalink -}}"
-                {{ with .Title -}}title="{{- . | safeHTML -}}"{{end}} >
+            <a href="{{- .RelPermalink -}}" {{ with .Title -}}title="{{- . | plainify -}}"{{end}} >
                 <img src="{{- $thumb.RelPermalink}}"
                     class="gallery-image" 
-                    {{ with $title -}}alt="{{- . | safeHTML -}}"{{- end }}
-                    {{ with $title -}}title="{{- . | safeHTML -}}"{{- end }} />
-            {{- if $caption -}}
-                <figcaption class="{{- $overlay -}}">
-                    {{- if eq $title .Name -}}
-                        {{- path.Base .Name | safeHTML -}}
-                    {{- else -}}
-                        {{- $title | safeHTML -}}
-                    {{- end -}}
-                </figcaption>
-            {{- end }}
+                    {{ with $title -}}alt="{{- . | plainify -}}"{{- end }}
+                    {{ with $title -}}title="{{- . | plainify -}}"{{- end }} />
             </a>
+                {{- if $caption -}}
+                    <figcaption class="{{- $overlay -}}">
+                        {{- $title | plainify -}}
+                    </figcaption>
+                {{- end }}
         </figure>
         {{- end }}
     </div><!-- gallery -->
     {{- with $galcaption -}}
-        <div class="gallery-caption">{{- . | safeHTML -}}</div>
+        {{- $galcaptionStr := . -}}
+        {{- if and $lic site.Params.licenceImagesText -}}
+            {{- $galcaptionStr = printf "%s - %s" $galcaptionStr site.Params.licenceImagesText -}}
+        {{- end -}}
+        <div class="gallery-caption">{{- $galcaptionStr | safeHTML -}}</div>
     {{- end -}}
 </div><!-- gallery-wrapper -->
 {{- end -}}
