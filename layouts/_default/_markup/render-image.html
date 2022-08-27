@@ -10,6 +10,8 @@
 {{- $image       := "" -}}
 {{- $exts        := (slice ".jpg" ".jpeg" ".gif" ".tif" ".png" ".webp") -}}
 {{- $columns     := 1 -}}
+{{- $lic_string  := "" -}}
+{{- $exif_string := "" -}}
 {{- if strings.HasPrefix .Destination "http" -}}
     {{- $imgtype = 1 -}}
 {{- else -}}
@@ -27,25 +29,24 @@
     {{- if gt $imgtype 1 -}}
         {{- if and (isset $image.Params "lic") site.Params.licenceImagesText -}}
             {{- if $image.Params.lic -}}
-            {{- $title = printf "%s - %s" $title site.Params.licenceImagesText -}}
-                {{- $alt_caption = printf "%s - %s" $alt_caption site.Params.licenceImagesText -}}
+                {{- $lic_string = printf " - %s" site.Params.licenceImagesText -}}
             {{- end -}}
         {{- end -}}
     {{- end -}}
     {{- if lt $imgtype 3 -}}
     <figure class="figure figure-center">
-        <img class="img-fluid" src="{{- .Destination | safeURL -}}" {{ with $alt_caption -}}alt="{{- . | safeHTML -}}"{{- end }} />
-        {{- with $alt_caption -}}<figcaption class="figure-caption">{{ . | safeHTML -}}</figcaption>{{- end -}}
+        {{- $string := printf "%s%s" $alt_caption $lic_string | safeHTML -}}
+        <img class="img-fluid" src="{{- .Destination | safeURL -}}" {{ with $alt_caption -}}alt="{{- $string -}}"{{- end }} />
+        {{- with $alt_caption -}}<figcaption class="figure-caption">{{ $string -}}</figcaption>{{- end -}}
     </figure>
     {{- else -}}
         {{- if (isset $image.Params "exif") -}}
-        {{- with $image.Exif -}}
-                {{- $string     := printf "ISO%d, f/%.1f, %s sec. (%.0fmm)" .Tags.ISOSpeedRatings .Tags.FNumber (string .Tags.ExposureTime) .Tags.FocalLength -}}
-                {{- $alt_caption = delimit (slice $alt_caption $string) " - " -}}
-                {{- $title       = delimit (slice $title $string) " - " -}}
+            {{- with $image.Exif -}}
+                {{- $exif_string = printf " - ISO%d, f/%.1f, %s sec. (%.0fmm)" .Tags.ISOSpeedRatings .Tags.FNumber (string .Tags.ExposureTime) .Tags.FocalLength -}}
             {{- end -}}
         {{ end }}
-
+        {{- $alt_caption = printf "%s%s%s" $alt_caption $exif_string $lic_string -}}
+        {{- $title       = printf "%s%s%s" $title $exif_string $lic_string -}}
         {{- $width      := int $image.Width               -}}
         {{- $height     := int $image.Height              -}}
         {{- $link       := .Destination                   -}}
