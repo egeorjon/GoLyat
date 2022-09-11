@@ -433,7 +433,7 @@ ol > li p {
 ol, ul, dl {
   margin-bottom: $spacer;
 }
-
+/*
 p+ul, p+ol {
     margin-top: -1 * $spacer;
 }
@@ -441,7 +441,7 @@ p+ul, p+ol {
 p+ul.post-meta {
     margin-top: 0;
 }
-
+*/
 /* -------------------------------------------------
    --- Gallery                                   ---
    ------------------------------------------------- */
@@ -471,6 +471,7 @@ p+ul.post-meta {
    }
 
    .gallery-thumb {
+       height: 100%;
        position   : relative;
        margin     : $gallery-margin;
        // box-shadow : 0.3rem 0.4rem 0.4rem rgba(0, 0, 0, 0.4);
