@@ -17,7 +17,8 @@
             {{- end -}}
             <div class="col-12 col-md-8 col-lg-9 post-summary">
             {{- with $context.Summary -}}
-                <p>{{- . -}}</p>
+                <!--<p>-->{{/*- . -*/}}<!--</p>-->
+                {{- . | replaceRE "<p></p>"  "" | safeHTML -}}
             {{- end -}}
             {{- if $display_image -}}
                 {{- partial "image.html" (dict "context" $context "Destination" $context.Params.images "Title" $context.Title "Text" $context.Title "colunm" "multi") -}}<!-- "Link" $context.RelPermalink -->

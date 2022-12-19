@@ -16,8 +16,8 @@
             {{- end -}}
             {{- with $context.Summary -}}
                 <p class="post-summary">
-                    {{- . -}}
-                {{/*- . | replaceRE "<p>(.*|\n)</p>"  "$1" | safeHTML -*/}}
+                <!--<p>-->{{/*- . -*/}}<!--</p>-->
+                {{- . | replaceRE "<p></p>"  "" | safeHTML -}}
                 </p>
             {{- end -}}
             {{- with $meta.bottom -}}
