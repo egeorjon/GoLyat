@@ -21,8 +21,12 @@
                         {{- $media := . -}}
                         {{- if and (ne site.Data.socials.config nil) (ne .id nil) -}}
                             {{- with (index site.Data.socials.config .id) }}
+                                {{- $target := "" -}}
+                                {{- if ne .target "" -}}
+                                    {{- $target = printf "target=\"%s\"" .target -}}
+                                {{- end -}}
                             <li>
-                                <a href="{{- printf .follow $media.account -}}" target="_blank" rel="noopener noreferrer" title="{{- i18n .followtext . -}}"><i class="{{- .icon }}"></i><span class="visually-hidden">{{- i18n .followtext . }}</span>{{/* .name -*/}}</a>
+                                <a href="{{- printf .follow $media.account -}}" rel="noopener noreferrer" title="{{- i18n .followtext . -}}" {{ $target | safeHTMLAttr -}} ><i class="{{- .icon }}"></i><span class="visually-hidden">{{- i18n .followtext . }}</span>{{/* .name -*/}}</a>
                             </li>
                             {{- end -}}
                         {{- end -}}

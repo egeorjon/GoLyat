@@ -7,6 +7,7 @@
         icon        = "bi-envelope"
         share       = "mailto:?subject=%%TITLE%%&body=%%BODY%%"
         sharetext   = "share-by-mail"
+        target      = ""
         mobile      = false
     [config.facebook]
         name        = "Facebook"
@@ -15,6 +16,7 @@
         icon        = "bi-facebook"
         share       = "https://www.facebook.com/sharer.php?u=%%URL%%%%PICTURE%%&title=%%TITLE%%&description=%%DESC%%&caption=%%SITE%%"
         sharetext   = "share-on"
+        target      = "_blank"
         mobile      = false
     [config.twitter]
         name        = "Twitter"
@@ -23,6 +25,7 @@
         icon        = "bi-twitter"
         share       = "https://twitter.com/share?url=%%URL%%&text=%%TITLE%%%%HASHTAGS%%%%VIA%%"
         sharetext   = "share-on"
+        target      = "_blank"
         mobile      = false
     [config.github]
         name        = "GitHub"
@@ -31,6 +34,7 @@
         icon        = "bi-github"
         share       = ""
         sharetext   = ""
+        target      = "_blank"
         mobile      = false
     [config.instagram]
         name        = "Instagram"
@@ -39,6 +43,7 @@
         icon        = "bi-instagram"    
         share       = ""
         sharetext   = ""
+        target      = "_blank"
         mobile      = true
     [config.pinterest]
         name        = "Pinterest"
@@ -47,6 +52,7 @@
         icon        = "bi-pinterest"
         share       = "https://pinterest.com/pin/create/bookmarklet/?url=%%URL%%%%MEDIA%%&desc=%%TITLE%%"
         sharetext   = "share-on"
+        target      = "_blank"
         mobile      = false
     [config.linkedin]
         name        = "LinkedIn"
@@ -55,6 +61,7 @@
         icon        = "bi-linkedin"
         share       = "http://www.linkedin.com/shareArticle?mini=true&url=%%URL%%&title=%%TITLE%%&summary=%%DESC%%&source=%%HOME%%"
         sharetext   = "share-on"
+        target      = "_blank"
         mobile      = false
     [config.whatsapp]
         name        = "Whatsapp"
@@ -63,4 +70,5 @@
         icon        = "bi-whatsapp"
         share       = "https://wa.me/?text=%%URL%%"
         sharetext   = "share-on"
+        target      = ""
         mobile      = true

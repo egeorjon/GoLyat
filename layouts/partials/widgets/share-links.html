@@ -50,7 +50,11 @@
                                 {{/*- $share_url = partial "share_regex" (dict  "pattern" "%%TEXT%%"     "param" "%s"              "value" $title       "string" $share_url) -*/}}
                                 <li>
                                     {{- $text := printf (i18n .sharetext) .name -}}
-                                    <a href="{{- $share_url -}}" class="share-link share-{{- $share.id -}}" title="{{- $text -}}" aria-label="{{- $text -}}" rel="noopener noreferrer" target="_blank">
+                                    {{- $target := "" -}}
+                                    {{- if ne .target "" -}}
+                                        {{- $target = printf "target=\"%s\"" .target -}}
+                                    {{- end -}}
+                                    <a href="{{- $share_url -}}" class="share-link share-{{- $share.id -}}" title="{{- $text -}}" aria-label="{{- $text -}}" rel="noopener noreferrer" {{ $target | safeHTMLAttr -}}>
                                         <i class="{{- .icon -}}"></i><span class="visually-hidden" aria-hidden="true"> {{ .name -}}</span></a>
                                 </li>
                             {{- end -}}
