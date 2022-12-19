@@ -32,7 +32,11 @@
                     {{- with .Params.Socials -}}
                     <ul class="author-socials inline-list">
                         {{- range . -}}
-                            <li><a href="{{- .url -}}" title="{{- .alt -}}"><i class="bi-{{- .icon -}}"></i></a></li>
+                            {{- $target := "" -}}
+                            {{- with .target -}}
+                                {{- $target = printf "target=\"%s\"" . | safeHTMLAttr -}}
+                            {{- end -}}
+                            <li><a href="{{- .url -}}" title="{{- .alt -}}" {{ $target -}}><i class="bi-{{- .icon -}}"></i></a></li>
                         {{- end -}}
                     </ul>
                     {{- end -}}
