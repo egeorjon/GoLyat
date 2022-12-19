@@ -22,8 +22,8 @@
                         {{- if and (ne site.Data.socials.config nil) (ne .id nil) -}}
                             {{- with (index site.Data.socials.config .id) }}
                                 {{- $target := "" -}}
-                                {{- if ne .target "" -}}
-                                    {{- $target = printf "target=\"%s\"" .target -}}
+                                {{- with .target -}}
+                                    {{- $target = printf "target=\"%s\"" . -}}
                                 {{- end -}}
                             <li>
                                 <a href="{{- printf .follow $media.account -}}" rel="noopener noreferrer" title="{{- i18n .followtext . -}}" {{ $target | safeHTMLAttr -}} ><i class="{{- .icon }}"></i><span class="visually-hidden">{{- i18n .followtext . }}</span>{{/* .name -*/}}</a>

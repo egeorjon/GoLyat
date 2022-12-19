@@ -51,8 +51,8 @@
                                 <li>
                                     {{- $text := printf (i18n .sharetext) .name -}}
                                     {{- $target := "" -}}
-                                    {{- if ne .target "" -}}
-                                        {{- $target = printf "target=\"%s\"" .target -}}
+                                    {{- with .target -}}
+                                        {{- $target = printf "target=\"%s\"" . -}}
                                     {{- end -}}
                                     <a href="{{- $share_url -}}" class="share-link share-{{- $share.id -}}" title="{{- $text -}}" aria-label="{{- $text -}}" rel="noopener noreferrer" {{ $target | safeHTMLAttr -}}>
                                         <i class="{{- .icon -}}"></i><span class="visually-hidden" aria-hidden="true"> {{ .name -}}</span></a>
