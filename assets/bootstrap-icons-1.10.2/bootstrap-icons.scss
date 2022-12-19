@@ -1,9 +1,9 @@
 $bootstrap-icons-font: "bootstrap-icons" !default;
 // $bootstrap-icons-font-dir: "/fonts" !default;
 // $bootstrap-icons-font-file: #{$bootstrap-icons-font-dir}/#{$bootstrap-icons-font} !default;
-// $bootstrap-icons-font-hash: "8d200481aa7f02a2d63a331fc782cfaf" !default;
-// $bootstrap-icons-font-src: url("#{$bootstrap-icons-font-file}.woff2?#{$bootstrap-icons-font-hash}") format("woff2"), url("#{$bootstrap-icons-font-file}.woff?#{$bootstrap-icons-font-hash}") format("woff") !default;
-$bootstrap-icons-font-src: url("/fonts/bootstrap-icons.woff2?8d200481aa7f02a2d63a331fc782cfaf") format("woff2"), url("/fonts/bootstrap-icons.woff?8d200481aa7f02a2d63a331fc782cfaf") format("woff") !default;
+// $bootstrap-icons-font-hash: "28df46889dced875dea48cfe64755198" !default;
+$bootstrap-icons-font-src: url("/fonts/bootstrap-icons.woff2?28df46889dced875dea48cfe64755198") format("woff2"), 
+                           url("/fonts/bootstrap-icons.woff?28df46889dced875dea48cfe64755198") format("woff") !default;
 
 @font-face {
   font-display: block;
@@ -118,7 +118,8 @@ $bootstrap-icons-map: (
 .bi-filetype-xml::before { content: map-get($bootstrap-icons-map, "filetype-xml"); }
 .bi-fileype-json::before { content: map-get($bootstrap-icons-map, "filetype-json"); }
 
-/* $bootstrap-icons-map: (*/
+
+/* $bootstrap-icons-map: ( */
 /*   "123": "\f67f", */
 /*   "alarm-fill": "\f101", */
 /*   "alarm": "\f102", */
@@ -395,7 +396,7 @@ $bootstrap-icons-map: (
 /*   "calendar3-range": "\f211", */
 /*   "calendar3-week-fill": "\f212", */
 /*   "calendar3-week": "\f213", */
-/*    "calendar3": "\f214", */
+/*   "calendar3": "\f214", */
 /*   "calendar4-event": "\f215", */
 /*   "calendar4-range": "\f216", */
 /*   "calendar4-week": "\f217", */
@@ -497,19 +498,19 @@ $bootstrap-icons-map: (
 /*   "chevron-bar-right": "\f277", */
 /*   "chevron-bar-up": "\f278", */
 /*   "chevron-compact-down": "\f279", */
-/*    "chevron-compact-left": "\f27a",  */
-/*    "chevron-compact-right": "\f27b",  */
+/*   "chevron-compact-left": "\f27a", */
+/*   "chevron-compact-right": "\f27b", */
 /*   "chevron-compact-up": "\f27c", */
 /*   "chevron-contract": "\f27d", */
 /*   "chevron-double-down": "\f27e", */
-/*    "chevron-double-left": "\f27f",  */
-/*    "chevron-double-right": "\f280",  */
+/*   "chevron-double-left": "\f27f", */
+/*   "chevron-double-right": "\f280", */
 /*   "chevron-double-up": "\f281", */
 /*   "chevron-down": "\f282", */
 /*   "chevron-expand": "\f283", */
-/*    "chevron-left": "\f284",  */
-/*    "chevron-right": "\f285",  */
-/*    "chevron-up": "\f286", */
+/*   "chevron-left": "\f284", */
+/*   "chevron-right": "\f285", */
+/*   "chevron-up": "\f286", */
 /*   "circle-fill": "\f287", */
 /*   "circle-half": "\f288", */
 /*   "circle-square": "\f289", */
@@ -522,7 +523,7 @@ $bootstrap-icons-map: (
 /*   "clipboard": "\f290", */
 /*   "clock-fill": "\f291", */
 /*   "clock-history": "\f292", */
-/*    "clock": "\f293",  */
+/*   "clock": "\f293", */
 /*   "cloud-arrow-down-fill": "\f294", */
 /*   "cloud-arrow-down": "\f295", */
 /*   "cloud-arrow-up-fill": "\f296", */
@@ -678,7 +679,7 @@ $bootstrap-icons-map: (
 /*   "envelope-fill": "\f32c", */
 /*   "envelope-open-fill": "\f32d", */
 /*   "envelope-open": "\f32e", */
-/*    "envelope": "\f32f",  */
+/*   "envelope": "\f32f", */
 /*   "eraser-fill": "\f330", */
 /*   "eraser": "\f331", */
 /*   "exclamation-circle-fill": "\f332", */
@@ -699,7 +700,7 @@ $bootstrap-icons-map: (
 /*   "eye": "\f341", */
 /*   "eyedropper": "\f342", */
 /*   "eyeglasses": "\f343", */
-/*    "facebook": "\f344", */
+/*   "facebook": "\f344", */
 /*   "file-arrow-down-fill": "\f345", */
 /*   "file-arrow-down": "\f346", */
 /*   "file-arrow-up-fill": "\f347", */
@@ -728,8 +729,8 @@ $bootstrap-icons-map: (
 /*   "file-earmark-break": "\f35e", */
 /*   "file-earmark-check-fill": "\f35f", */
 /*   "file-earmark-check": "\f360", */
-/* "file-earmark-code-fill": "\f361", */
-/*    "file-earmark-code": "\f362",  */
+/*   "file-earmark-code-fill": "\f361", */
+/*   "file-earmark-code": "\f362", */
 /*   "file-earmark-diff-fill": "\f363", */
 /*   "file-earmark-diff": "\f364", */
 /*   "file-earmark-easel-fill": "\f365", */
@@ -738,7 +739,7 @@ $bootstrap-icons-map: (
 /*   "file-earmark-excel": "\f368", */
 /*   "file-earmark-fill": "\f369", */
 /*   "file-earmark-font-fill": "\f36a", */
-/*    "file-earmark-font": "\f36b", */
+/*   "file-earmark-font": "\f36b", */
 /*   "file-earmark-image-fill": "\f36c", */
 /*   "file-earmark-image": "\f36d", */
 /*   "file-earmark-lock-fill": "\f36e", */
@@ -754,21 +755,21 @@ $bootstrap-icons-map: (
 /*   "file-earmark-person-fill": "\f378", */
 /*   "file-earmark-person": "\f379", */
 /*   "file-earmark-play-fill": "\f37a", */
-/*    "file-earmark-play": "\f37b", */
+/*   "file-earmark-play": "\f37b", */
 /*   "file-earmark-plus-fill": "\f37c", */
 /*   "file-earmark-plus": "\f37d", */
 /*   "file-earmark-post-fill": "\f37e", */
 /*   "file-earmark-post": "\f37f", */
 /*   "file-earmark-ppt-fill": "\f380", */
-/*    "file-earmark-ppt": "\f381",  */
+/*   "file-earmark-ppt": "\f381", */
 /*   "file-earmark-richtext-fill": "\f382", */
-/*    "file-earmark-richtext": "\f383", */
+/*   "file-earmark-richtext": "\f383", */
 /*   "file-earmark-ruled-fill": "\f384", */
 /*   "file-earmark-ruled": "\f385", */
 /*   "file-earmark-slides-fill": "\f386", */
 /*   "file-earmark-slides": "\f387", */
 /*   "file-earmark-spreadsheet-fill": "\f388", */
-/*    "file-earmark-spreadsheet": "\f389", */
+/*   "file-earmark-spreadsheet": "\f389", */
 /*   "file-earmark-text-fill": "\f38a", */
 /*   "file-earmark-text": "\f38b", */
 /*   "file-earmark-word-fill": "\f38c", */
@@ -777,7 +778,7 @@ $bootstrap-icons-map: (
 /*   "file-earmark-x": "\f38f", */
 /*   "file-earmark-zip-fill": "\f390", */
 /*   "file-earmark-zip": "\f391", */
-/*    "file-earmark": "\f392", */
+/*   "file-earmark": "\f392", */
 /*   "file-easel-fill": "\f393", */
 /*   "file-easel": "\f394", */
 /*   "file-excel-fill": "\f395", */
@@ -786,7 +787,7 @@ $bootstrap-icons-map: (
 /*   "file-font-fill": "\f398", */
 /*   "file-font": "\f399", */
 /*   "file-image-fill": "\f39a", */
-/*    "file-image": "\f39b", */
+/*   "file-image": "\f39b", */
 /*   "file-lock-fill": "\f39c", */
 /*   "file-lock": "\f39d", */
 /*   "file-lock2-fill": "\f39e", */
@@ -796,7 +797,7 @@ $bootstrap-icons-map: (
 /*   "file-minus-fill": "\f3a2", */
 /*   "file-minus": "\f3a3", */
 /*   "file-music-fill": "\f3a4", */
-/*    "file-music": "\f3a5",  */
+/*   "file-music": "\f3a5", */
 /*   "file-person-fill": "\f3a6", */
 /*   "file-person": "\f3a7", */
 /*   "file-play-fill": "\f3a8", */
@@ -818,14 +819,14 @@ $bootstrap-icons-map: (
 /*   "file-text-fill": "\f3b8", */
 /*   "file-text": "\f3b9", */
 /*   "file-word-fill": "\f3ba", */
-/*    "file-word": "\f3bb",  */
+/*   "file-word": "\f3bb", */
 /*   "file-x-fill": "\f3bc", */
 /*   "file-x": "\f3bd", */
 /*   "file-zip-fill": "\f3be", */
-/*    "file-zip": "\f3bf",  */
+/*   "file-zip": "\f3bf", */
 /*   "file": "\f3c0", */
 /*   "files-alt": "\f3c1", */
-/*    "files": "\f3c2", */
+/*   "files": "\f3c2", */
 /*   "film": "\f3c3", */
 /*   "filter-circle-fill": "\f3c4", */
 /*   "filter-circle": "\f3c5", */
@@ -844,10 +845,10 @@ $bootstrap-icons-map: (
 /*   "folder-minus": "\f3d2", */
 /*   "folder-plus": "\f3d3", */
 /*   "folder-symlink-fill": "\f3d4", */
-/*    "folder-symlink": "\f3d5", */
+/*   "folder-symlink": "\f3d5", */
 /*   "folder-x": "\f3d6", */
-/*    "folder": "\f3d7", */
-/*    "folder2-open": "\f3d8", */
+/*   "folder": "\f3d7", */
+/*   "folder2-open": "\f3d8", */
 /*   "folder2": "\f3d9", */
 /*   "fonts": "\f3da", */
 /*   "forward-fill": "\f3db", */
@@ -868,7 +869,7 @@ $bootstrap-icons-map: (
 /*   "geo": "\f3ea", */
 /*   "gift-fill": "\f3eb", */
 /*   "gift": "\f3ec", */
-/*    "github": "\f3ed", */
+/*   "github": "\f3ed", */
 /*   "globe": "\f3ee", */
 /*   "globe2": "\f3ef", */
 /*   "google": "\f3f0", */
@@ -924,7 +925,7 @@ $bootstrap-icons-map: (
 /*   "house-door-fill": "\f422", */
 /*   "house-door": "\f423", */
 /*   "house-fill": "\f424", */
-/*    "house": "\f425", */
+/*   "house": "\f425", */
 /*   "hr": "\f426", */
 /*   "hurricane": "\f427", */
 /*   "image-alt": "\f428", */
@@ -942,7 +943,7 @@ $bootstrap-icons-map: (
 /*   "info": "\f434", */
 /*   "input-cursor-text": "\f435", */
 /*   "input-cursor": "\f436", */
-/*    "instagram": "\f437",  */
+/*   "instagram": "\f437", */
 /*   "intersect": "\f438", */
 /*   "journal-album": "\f439", */
 /*   "journal-arrow-down": "\f43a", */
@@ -999,9 +1000,9 @@ $bootstrap-icons-map: (
 /*   "lightning-charge": "\f46d", */
 /*   "lightning-fill": "\f46e", */
 /*   "lightning": "\f46f", */
-/*    "link-45deg": "\f470",  */
+/*   "link-45deg": "\f470", */
 /*   "link": "\f471", */
-/*    "linkedin": "\f472",  */
+/*   "linkedin": "\f472", */
 /*   "list-check": "\f473", */
 /*   "list-nested": "\f474", */
 /*   "list-ol": "\f475", */
@@ -1143,7 +1144,7 @@ $bootstrap-icons-map: (
 /*   "plus-square": "\f4fd", */
 /*   "plus": "\f4fe", */
 /*   "power": "\f4ff", */
-/*    "printer-fill": "\f500",  */
+/*   "printer-fill": "\f500", */
 /*   "printer": "\f501", */
 /*   "puzzle-fill": "\f502", */
 /*   "puzzle": "\f503", */
@@ -1163,7 +1164,7 @@ $bootstrap-icons-map: (
 /*   "reception-1": "\f511", */
 /*   "reception-2": "\f512", */
 /*   "reception-3": "\f513", */
-/*    "reception-4": "\f514", */
+/*   "reception-4": "\f514", */
 /*   "record-btn-fill": "\f515", */
 /*   "record-btn": "\f516", */
 /*   "record-circle-fill": "\f517", */
@@ -1177,7 +1178,7 @@ $bootstrap-icons-map: (
 /*   "reply-fill": "\f51f", */
 /*   "reply": "\f520", */
 /*   "rss-fill": "\f521", */
-/*    "rss": "\f522", */
+/*   "rss": "\f522", */
 /*   "rulers": "\f523", */
 /*   "save-fill": "\f524", */
 /*   "save": "\f525", */
@@ -1185,7 +1186,7 @@ $bootstrap-icons-map: (
 /*   "save2": "\f527", */
 /*   "scissors": "\f528", */
 /*   "screwdriver": "\f529", */
-/*    "search": "\f52a", */
+/*   "search": "\f52a", */
 /*   "segmented-nav": "\f52b", */
 /*   "server": "\f52c", */
 /*   "share-fill": "\f52d", */
@@ -1319,9 +1320,9 @@ $bootstrap-icons-map: (
 /*   "tablet-landscape": "\f5ad", */
 /*   "tablet": "\f5ae", */
 /*   "tag-fill": "\f5af", */
-/*    "tag": "\f5b0",  */
+/*   "tag": "\f5b0", */
 /*   "tags-fill": "\f5b1", */
-/*    "tags": "\f5b2",  */
+/*   "tags": "\f5b2", */
 /*   "telegram": "\f5b3", */
 /*   "telephone-fill": "\f5b4", */
 /*   "telephone-forward-fill": "\f5b5", */
@@ -1382,7 +1383,7 @@ $bootstrap-icons-map: (
 /*   "tv-fill": "\f5ec", */
 /*   "tv": "\f5ed", */
 /*   "twitch": "\f5ee", */
-/*    "twitter": "\f5ef",  */
+/*   "twitter": "\f5ef", */
 /*   "type-bold": "\f5f0", */
 /*   "type-h1": "\f5f1", */
 /*   "type-h2": "\f5f2", */
@@ -1720,8 +1721,8 @@ $bootstrap-icons-map: (
 /*   "filetype-ai": "\f73f", */
 /*   "filetype-bmp": "\f740", */
 /*   "filetype-cs": "\f741", */
-/*    "filetype-css": "\f742",  */
-/*    "filetype-csv": "\f743", */
+/*   "filetype-css": "\f742", */
+/*   "filetype-csv": "\f743", */
 /*   "filetype-doc": "\f744", */
 /*   "filetype-docx": "\f745", */
 /*   "filetype-exe": "\f746", */
@@ -1761,7 +1762,7 @@ $bootstrap-icons-map: (
 /*   "filetype-woff": "\f768", */
 /*   "filetype-xls-1": "\f769", */
 /*   "filetype-xls": "\f76a", */
-/*  "filetype-xml": "\f76b", */
+/*   "filetype-xml": "\f76b", */
 /*   "filetype-yml": "\f76c", */
 /*   "heart-arrow": "\f76d", */
 /*   "heart-pulse-fill": "\f76e", */
@@ -1799,7 +1800,7 @@ $bootstrap-icons-map: (
 /*   "wrench-adjustable-circle-fill": "\f78e", */
 /*   "wrench-adjustable-circle": "\f78f", */
 /*   "wrench-adjustable": "\f790", */
-/*    "filetype-json": "\f791", */
+/*   "filetype-json": "\f791", */
 /*   "filetype-pptx": "\f792", */
 /*   "filetype-xlsx": "\f793", */
 /*   "1-circle-1": "\f794", */
@@ -1973,6 +1974,148 @@ $bootstrap-icons-map: (
 /*   "fuel-pump-diesel": "\f83c", */
 /*   "fuel-pump-fill": "\f83d", */
 /*   "fuel-pump": "\f83e", */
+/*   "0-circle-fill": "\f83f", */
+/*   "0-circle": "\f840", */
+/*   "0-square-fill": "\f841", */
+/*   "0-square": "\f842", */
+/*   "rocket-fill": "\f843", */
+/*   "rocket-takeoff-fill": "\f844", */
+/*   "rocket-takeoff": "\f845", */
+/*   "rocket": "\f846", */
+/*   "stripe": "\f847", */
+/*   "subscript": "\f848", */
+/*   "superscript": "\f849", */
+/*   "trello": "\f84a", */
+/*   "envelope-at-fill": "\f84b", */
+/*   "envelope-at": "\f84c", */
+/*   "regex": "\f84d", */
+/*   "text-wrap": "\f84e", */
+/*   "sign-dead-end-fill": "\f84f", */
+/*   "sign-dead-end": "\f850", */
+/*   "sign-do-not-enter-fill": "\f851", */
+/*   "sign-do-not-enter": "\f852", */
+/*   "sign-intersection-fill": "\f853", */
+/*   "sign-intersection-side-fill": "\f854", */
+/*   "sign-intersection-side": "\f855", */
+/*   "sign-intersection-t-fill": "\f856", */
+/*   "sign-intersection-t": "\f857", */
+/*   "sign-intersection-y-fill": "\f858", */
+/*   "sign-intersection-y": "\f859", */
+/*   "sign-intersection": "\f85a", */
+/*   "sign-merge-left-fill": "\f85b", */
+/*   "sign-merge-left": "\f85c", */
+/*   "sign-merge-right-fill": "\f85d", */
+/*   "sign-merge-right": "\f85e", */
+/*   "sign-no-left-turn-fill": "\f85f", */
+/*   "sign-no-left-turn": "\f860", */
+/*   "sign-no-parking-fill": "\f861", */
+/*   "sign-no-parking": "\f862", */
+/*   "sign-no-right-turn-fill": "\f863", */
+/*   "sign-no-right-turn": "\f864", */
+/*   "sign-railroad-fill": "\f865", */
+/*   "sign-railroad": "\f866", */
+/*   "building-add": "\f867", */
+/*   "building-check": "\f868", */
+/*   "building-dash": "\f869", */
+/*   "building-down": "\f86a", */
+/*   "building-exclamation": "\f86b", */
+/*   "building-fill-add": "\f86c", */
+/*   "building-fill-check": "\f86d", */
+/*   "building-fill-dash": "\f86e", */
+/*   "building-fill-down": "\f86f", */
+/*   "building-fill-exclamation": "\f870", */
+/*   "building-fill-gear": "\f871", */
+/*   "building-fill-lock": "\f872", */
+/*   "building-fill-slash": "\f873", */
+/*   "building-fill-up": "\f874", */
+/*   "building-fill-x": "\f875", */
+/*   "building-fill": "\f876", */
+/*   "building-gear": "\f877", */
+/*   "building-lock": "\f878", */
+/*   "building-slash": "\f879", */
+/*   "building-up": "\f87a", */
+/*   "building-x": "\f87b", */
+/*   "buildings-fill": "\f87c", */
+/*   "buildings": "\f87d", */
+/*   "bus-front-fill": "\f87e", */
+/*   "bus-front": "\f87f", */
+/*   "ev-front-fill": "\f880", */
+/*   "ev-front": "\f881", */
+/*   "globe-americas": "\f882", */
+/*   "globe-asia-australia": "\f883", */
+/*   "globe-central-south-asia": "\f884", */
+/*   "globe-europe-africa": "\f885", */
+/*   "house-add-fill": "\f886", */
+/*   "house-add": "\f887", */
+/*   "house-check-fill": "\f888", */
+/*   "house-check": "\f889", */
+/*   "house-dash-fill": "\f88a", */
+/*   "house-dash": "\f88b", */
+/*   "house-down-fill": "\f88c", */
+/*   "house-down": "\f88d", */
+/*   "house-exclamation-fill": "\f88e", */
+/*   "house-exclamation": "\f88f", */
+/*   "house-gear-fill": "\f890", */
+/*   "house-gear": "\f891", */
+/*   "house-lock-fill": "\f892", */
+/*   "house-lock": "\f893", */
+/*   "house-slash-fill": "\f894", */
+/*   "house-slash": "\f895", */
+/*   "house-up-fill": "\f896", */
+/*   "house-up": "\f897", */
+/*   "house-x-fill": "\f898", */
+/*   "house-x": "\f899", */
+/*   "person-add": "\f89a", */
+/*   "person-down": "\f89b", */
+/*   "person-exclamation": "\f89c", */
+/*   "person-fill-add": "\f89d", */
+/*   "person-fill-check": "\f89e", */
+/*   "person-fill-dash": "\f89f", */
+/*   "person-fill-down": "\f8a0", */
+/*   "person-fill-exclamation": "\f8a1", */
+/*   "person-fill-gear": "\f8a2", */
+/*   "person-fill-lock": "\f8a3", */
+/*   "person-fill-slash": "\f8a4", */
+/*   "person-fill-up": "\f8a5", */
+/*   "person-fill-x": "\f8a6", */
+/*   "person-gear": "\f8a7", */
+/*   "person-lock": "\f8a8", */
+/*   "person-slash": "\f8a9", */
+/*   "person-up": "\f8aa", */
+/*   "scooter": "\f8ab", */
+/*   "taxi-front-fill": "\f8ac", */
+/*   "taxi-front": "\f8ad", */
+/*   "amd": "\f8ae", */
+/*   "database-add": "\f8af", */
+/*   "database-check": "\f8b0", */
+/*   "database-dash": "\f8b1", */
+/*   "database-down": "\f8b2", */
+/*   "database-exclamation": "\f8b3", */
+/*   "database-fill-add": "\f8b4", */
+/*   "database-fill-check": "\f8b5", */
+/*   "database-fill-dash": "\f8b6", */
+/*   "database-fill-down": "\f8b7", */
+/*   "database-fill-exclamation": "\f8b8", */
+/*   "database-fill-gear": "\f8b9", */
+/*   "database-fill-lock": "\f8ba", */
+/*   "database-fill-slash": "\f8bb", */
+/*   "database-fill-up": "\f8bc", */
+/*   "database-fill-x": "\f8bd", */
+/*   "database-fill": "\f8be", */
+/*   "database-gear": "\f8bf", */
+/*   "database-lock": "\f8c0", */
+/*   "database-slash": "\f8c1", */
+/*   "database-up": "\f8c2", */
+/*   "database-x": "\f8c3", */
+/*   "database": "\f8c4", */
+/*   "houses-fill": "\f8c5", */
+/*   "houses": "\f8c6", */
+/*   "nvidia": "\f8c7", */
+/*   "person-vcard-fill": "\f8c8", */
+/*   "person-vcard": "\f8c9", */
+/*   "sina-weibo": "\f8ca", */
+/*   "tencent-qq": "\f8cb", */
+/*   "wikipedia": "\f8cc", */
 /* ); */
 
 /* .bi-123::before { content: map-get($bootstrap-icons-map, "123"); } */
@@ -2251,7 +2394,7 @@ $bootstrap-icons-map: (
 /* .bi-calendar3-range::before { content: map-get($bootstrap-icons-map, "calendar3-range"); } */
 /* .bi-calendar3-week-fill::before { content: map-get($bootstrap-icons-map, "calendar3-week-fill"); } */
 /* .bi-calendar3-week::before { content: map-get($bootstrap-icons-map, "calendar3-week"); } */
- .bi-calendar3::before { content: map-get($bootstrap-icons-map, "calendar3"); }
+/* .bi-calendar3::before { content: map-get($bootstrap-icons-map, "calendar3"); } */
 /* .bi-calendar4-event::before { content: map-get($bootstrap-icons-map, "calendar4-event"); } */
 /* .bi-calendar4-range::before { content: map-get($bootstrap-icons-map, "calendar4-range"); } */
 /* .bi-calendar4-week::before { content: map-get($bootstrap-icons-map, "calendar4-week"); } */
@@ -2353,7 +2496,7 @@ $bootstrap-icons-map: (
 /* .bi-chevron-bar-right::before { content: map-get($bootstrap-icons-map, "chevron-bar-right"); } */
 /* .bi-chevron-bar-up::before { content: map-get($bootstrap-icons-map, "chevron-bar-up"); } */
 /* .bi-chevron-compact-down::before { content: map-get($bootstrap-icons-map, "chevron-compact-down"); } */
-/* .bi-chevron-compact-left::before { content: map-get($bootstrap-icons-map, "chevron-compact-left"); }  */
+/* .bi-chevron-compact-left::before { content: map-get($bootstrap-icons-map, "chevron-compact-left"); } */
 /* .bi-chevron-compact-right::before { content: map-get($bootstrap-icons-map, "chevron-compact-right"); } */
 /* .bi-chevron-compact-up::before { content: map-get($bootstrap-icons-map, "chevron-compact-up"); } */
 /* .bi-chevron-contract::before { content: map-get($bootstrap-icons-map, "chevron-contract"); } */
@@ -2378,7 +2521,7 @@ $bootstrap-icons-map: (
 /* .bi-clipboard::before { content: map-get($bootstrap-icons-map, "clipboard"); } */
 /* .bi-clock-fill::before { content: map-get($bootstrap-icons-map, "clock-fill"); } */
 /* .bi-clock-history::before { content: map-get($bootstrap-icons-map, "clock-history"); } */
-/* .bi-clock::before { content: map-get($bootstrap-icons-map, "clock"); }  */
+/* .bi-clock::before { content: map-get($bootstrap-icons-map, "clock"); } */
 /* .bi-cloud-arrow-down-fill::before { content: map-get($bootstrap-icons-map, "cloud-arrow-down-fill"); } */
 /* .bi-cloud-arrow-down::before { content: map-get($bootstrap-icons-map, "cloud-arrow-down"); } */
 /* .bi-cloud-arrow-up-fill::before { content: map-get($bootstrap-icons-map, "cloud-arrow-up-fill"); } */
@@ -2624,7 +2767,7 @@ $bootstrap-icons-map: (
 /* .bi-file-earmark-slides-fill::before { content: map-get($bootstrap-icons-map, "file-earmark-slides-fill"); } */
 /* .bi-file-earmark-slides::before { content: map-get($bootstrap-icons-map, "file-earmark-slides"); } */
 /* .bi-file-earmark-spreadsheet-fill::before { content: map-get($bootstrap-icons-map, "file-earmark-spreadsheet-fill"); } */
-/* .bi-file-earmark-spreadsheet::before { content: map-get($bootstrap-icons-map, "file-earmark-spreadsheet"); }  */
+/* .bi-file-earmark-spreadsheet::before { content: map-get($bootstrap-icons-map, "file-earmark-spreadsheet"); } */
 /* .bi-file-earmark-text-fill::before { content: map-get($bootstrap-icons-map, "file-earmark-text-fill"); } */
 /* .bi-file-earmark-text::before { content: map-get($bootstrap-icons-map, "file-earmark-text"); } */
 /* .bi-file-earmark-word-fill::before { content: map-get($bootstrap-icons-map, "file-earmark-word-fill"); } */
@@ -2642,7 +2785,7 @@ $bootstrap-icons-map: (
 /* .bi-file-font-fill::before { content: map-get($bootstrap-icons-map, "file-font-fill"); } */
 /* .bi-file-font::before { content: map-get($bootstrap-icons-map, "file-font"); } */
 /* .bi-file-image-fill::before { content: map-get($bootstrap-icons-map, "file-image-fill"); } */
-/* .bi-file-image::before { content: map-get($bootstrap-icons-map, "file-image"); }  */
+/* .bi-file-image::before { content: map-get($bootstrap-icons-map, "file-image"); } */
 /* .bi-file-lock-fill::before { content: map-get($bootstrap-icons-map, "file-lock-fill"); } */
 /* .bi-file-lock::before { content: map-get($bootstrap-icons-map, "file-lock"); } */
 /* .bi-file-lock2-fill::before { content: map-get($bootstrap-icons-map, "file-lock2-fill"); } */
@@ -2681,7 +2824,7 @@ $bootstrap-icons-map: (
 /* .bi-file-zip::before { content: map-get($bootstrap-icons-map, "file-zip"); } */
 /* .bi-file::before { content: map-get($bootstrap-icons-map, "file"); } */
 /* .bi-files-alt::before { content: map-get($bootstrap-icons-map, "files-alt"); } */
-/* .bi-files::before { content: map-get($bootstrap-icons-map, "files"); }  */
+/* .bi-files::before { content: map-get($bootstrap-icons-map, "files"); } */
 /* .bi-film::before { content: map-get($bootstrap-icons-map, "film"); } */
 /* .bi-filter-circle-fill::before { content: map-get($bootstrap-icons-map, "filter-circle-fill"); } */
 /* .bi-filter-circle::before { content: map-get($bootstrap-icons-map, "filter-circle"); } */
@@ -3177,7 +3320,7 @@ $bootstrap-icons-map: (
 /* .bi-tag-fill::before { content: map-get($bootstrap-icons-map, "tag-fill"); } */
 /* .bi-tag::before { content: map-get($bootstrap-icons-map, "tag"); } */
 /* .bi-tags-fill::before { content: map-get($bootstrap-icons-map, "tags-fill"); } */
-/* .bi-tags::before { content: map-get($bootstrap-icons-map, "tags"); }  */
+/* .bi-tags::before { content: map-get($bootstrap-icons-map, "tags"); } */
 /* .bi-telegram::before { content: map-get($bootstrap-icons-map, "telegram"); } */
 /* .bi-telephone-fill::before { content: map-get($bootstrap-icons-map, "telephone-fill"); } */
 /* .bi-telephone-forward-fill::before { content: map-get($bootstrap-icons-map, "telephone-forward-fill"); } */
@@ -3238,7 +3381,7 @@ $bootstrap-icons-map: (
 /* .bi-tv-fill::before { content: map-get($bootstrap-icons-map, "tv-fill"); } */
 /* .bi-tv::before { content: map-get($bootstrap-icons-map, "tv"); } */
 /* .bi-twitch::before { content: map-get($bootstrap-icons-map, "twitch"); } */
- .bi-twitter::before { content: map-get($bootstrap-icons-map, "twitter"); }
+/* .bi-twitter::before { content: map-get($bootstrap-icons-map, "twitter"); } */
 /* .bi-type-bold::before { content: map-get($bootstrap-icons-map, "type-bold"); } */
 /* .bi-type-h1::before { content: map-get($bootstrap-icons-map, "type-h1"); } */
 /* .bi-type-h2::before { content: map-get($bootstrap-icons-map, "type-h2"); } */
@@ -3577,7 +3720,7 @@ $bootstrap-icons-map: (
 /* .bi-filetype-bmp::before { content: map-get($bootstrap-icons-map, "filetype-bmp"); } */
 /* .bi-filetype-cs::before { content: map-get($bootstrap-icons-map, "filetype-cs"); } */
 /* .bi-filetype-css::before { content: map-get($bootstrap-icons-map, "filetype-css"); } */
-/* .bi-filetype-csv::before { content: map-get($bootstrap-icons-map, "filetype-csv"); }  */
+/* .bi-filetype-csv::before { content: map-get($bootstrap-icons-map, "filetype-csv"); } */
 /* .bi-filetype-doc::before { content: map-get($bootstrap-icons-map, "filetype-doc"); } */
 /* .bi-filetype-docx::before { content: map-get($bootstrap-icons-map, "filetype-docx"); } */
 /* .bi-filetype-exe::before { content: map-get($bootstrap-icons-map, "filetype-exe"); } */
@@ -3617,7 +3760,7 @@ $bootstrap-icons-map: (
 /* .bi-filetype-woff::before { content: map-get($bootstrap-icons-map, "filetype-woff"); } */
 /* .bi-filetype-xls-1::before { content: map-get($bootstrap-icons-map, "filetype-xls-1"); } */
 /* .bi-filetype-xls::before { content: map-get($bootstrap-icons-map, "filetype-xls"); } */
-/* .bi-filetype-xml::before { content: map-get($bootstrap-icons-map, "filetype-xml"); }  */
+/* .bi-filetype-xml::before { content: map-get($bootstrap-icons-map, "filetype-xml"); } */
 /* .bi-filetype-yml::before { content: map-get($bootstrap-icons-map, "filetype-yml"); } */
 /* .bi-heart-arrow::before { content: map-get($bootstrap-icons-map, "heart-arrow"); } */
 /* .bi-heart-pulse-fill::before { content: map-get($bootstrap-icons-map, "heart-pulse-fill"); } */
@@ -3655,7 +3798,7 @@ $bootstrap-icons-map: (
 /* .bi-wrench-adjustable-circle-fill::before { content: map-get($bootstrap-icons-map, "wrench-adjustable-circle-fill"); } */
 /* .bi-wrench-adjustable-circle::before { content: map-get($bootstrap-icons-map, "wrench-adjustable-circle"); } */
 /* .bi-wrench-adjustable::before { content: map-get($bootstrap-icons-map, "wrench-adjustable"); } */
-/* .bi-filetype-json::before { content: map-get($bootstrap-icons-map, "filetype-json"); }  */
+/* .bi-filetype-json::before { content: map-get($bootstrap-icons-map, "filetype-json"); } */
 /* .bi-filetype-pptx::before { content: map-get($bootstrap-icons-map, "filetype-pptx"); } */
 /* .bi-filetype-xlsx::before { content: map-get($bootstrap-icons-map, "filetype-xlsx"); } */
 /* .bi-1-circle-1::before { content: map-get($bootstrap-icons-map, "1-circle-1"); } */
@@ -3829,3 +3972,145 @@ $bootstrap-icons-map: (
 /* .bi-fuel-pump-diesel::before { content: map-get($bootstrap-icons-map, "fuel-pump-diesel"); } */
 /* .bi-fuel-pump-fill::before { content: map-get($bootstrap-icons-map, "fuel-pump-fill"); } */
 /* .bi-fuel-pump::before { content: map-get($bootstrap-icons-map, "fuel-pump"); } */
+/* .bi-0-circle-fill::before { content: map-get($bootstrap-icons-map, "0-circle-fill"); } */
+/* .bi-0-circle::before { content: map-get($bootstrap-icons-map, "0-circle"); } */
+/* .bi-0-square-fill::before { content: map-get($bootstrap-icons-map, "0-square-fill"); } */
+/* .bi-0-square::before { content: map-get($bootstrap-icons-map, "0-square"); } */
+/* .bi-rocket-fill::before { content: map-get($bootstrap-icons-map, "rocket-fill"); } */
+/* .bi-rocket-takeoff-fill::before { content: map-get($bootstrap-icons-map, "rocket-takeoff-fill"); } */
+/* .bi-rocket-takeoff::before { content: map-get($bootstrap-icons-map, "rocket-takeoff"); } */
+/* .bi-rocket::before { content: map-get($bootstrap-icons-map, "rocket"); } */
+/* .bi-stripe::before { content: map-get($bootstrap-icons-map, "stripe"); } */
+/* .bi-subscript::before { content: map-get($bootstrap-icons-map, "subscript"); } */
+/* .bi-superscript::before { content: map-get($bootstrap-icons-map, "superscript"); } */
+/* .bi-trello::before { content: map-get($bootstrap-icons-map, "trello"); } */
+/* .bi-envelope-at-fill::before { content: map-get($bootstrap-icons-map, "envelope-at-fill"); } */
+/* .bi-envelope-at::before { content: map-get($bootstrap-icons-map, "envelope-at"); } */
+/* .bi-regex::before { content: map-get($bootstrap-icons-map, "regex"); } */
+/* .bi-text-wrap::before { content: map-get($bootstrap-icons-map, "text-wrap"); } */
+/* .bi-sign-dead-end-fill::before { content: map-get($bootstrap-icons-map, "sign-dead-end-fill"); } */
+/* .bi-sign-dead-end::before { content: map-get($bootstrap-icons-map, "sign-dead-end"); } */
+/* .bi-sign-do-not-enter-fill::before { content: map-get($bootstrap-icons-map, "sign-do-not-enter-fill"); } */
+/* .bi-sign-do-not-enter::before { content: map-get($bootstrap-icons-map, "sign-do-not-enter"); } */
+/* .bi-sign-intersection-fill::before { content: map-get($bootstrap-icons-map, "sign-intersection-fill"); } */
+/* .bi-sign-intersection-side-fill::before { content: map-get($bootstrap-icons-map, "sign-intersection-side-fill"); } */
+/* .bi-sign-intersection-side::before { content: map-get($bootstrap-icons-map, "sign-intersection-side"); } */
+/* .bi-sign-intersection-t-fill::before { content: map-get($bootstrap-icons-map, "sign-intersection-t-fill"); } */
+/* .bi-sign-intersection-t::before { content: map-get($bootstrap-icons-map, "sign-intersection-t"); } */
+/* .bi-sign-intersection-y-fill::before { content: map-get($bootstrap-icons-map, "sign-intersection-y-fill"); } */
+/* .bi-sign-intersection-y::before { content: map-get($bootstrap-icons-map, "sign-intersection-y"); } */
+/* .bi-sign-intersection::before { content: map-get($bootstrap-icons-map, "sign-intersection"); } */
+/* .bi-sign-merge-left-fill::before { content: map-get($bootstrap-icons-map, "sign-merge-left-fill"); } */
+/* .bi-sign-merge-left::before { content: map-get($bootstrap-icons-map, "sign-merge-left"); } */
+/* .bi-sign-merge-right-fill::before { content: map-get($bootstrap-icons-map, "sign-merge-right-fill"); } */
+/* .bi-sign-merge-right::before { content: map-get($bootstrap-icons-map, "sign-merge-right"); } */
+/* .bi-sign-no-left-turn-fill::before { content: map-get($bootstrap-icons-map, "sign-no-left-turn-fill"); } */
+/* .bi-sign-no-left-turn::before { content: map-get($bootstrap-icons-map, "sign-no-left-turn"); } */
+/* .bi-sign-no-parking-fill::before { content: map-get($bootstrap-icons-map, "sign-no-parking-fill"); } */
+/* .bi-sign-no-parking::before { content: map-get($bootstrap-icons-map, "sign-no-parking"); } */
+/* .bi-sign-no-right-turn-fill::before { content: map-get($bootstrap-icons-map, "sign-no-right-turn-fill"); } */
+/* .bi-sign-no-right-turn::before { content: map-get($bootstrap-icons-map, "sign-no-right-turn"); } */
+/* .bi-sign-railroad-fill::before { content: map-get($bootstrap-icons-map, "sign-railroad-fill"); } */
+/* .bi-sign-railroad::before { content: map-get($bootstrap-icons-map, "sign-railroad"); } */
+/* .bi-building-add::before { content: map-get($bootstrap-icons-map, "building-add"); } */
+/* .bi-building-check::before { content: map-get($bootstrap-icons-map, "building-check"); } */
+/* .bi-building-dash::before { content: map-get($bootstrap-icons-map, "building-dash"); } */
+/* .bi-building-down::before { content: map-get($bootstrap-icons-map, "building-down"); } */
+/* .bi-building-exclamation::before { content: map-get($bootstrap-icons-map, "building-exclamation"); } */
+/* .bi-building-fill-add::before { content: map-get($bootstrap-icons-map, "building-fill-add"); } */
+/* .bi-building-fill-check::before { content: map-get($bootstrap-icons-map, "building-fill-check"); } */
+/* .bi-building-fill-dash::before { content: map-get($bootstrap-icons-map, "building-fill-dash"); } */
+/* .bi-building-fill-down::before { content: map-get($bootstrap-icons-map, "building-fill-down"); } */
+/* .bi-building-fill-exclamation::before { content: map-get($bootstrap-icons-map, "building-fill-exclamation"); } */
+/* .bi-building-fill-gear::before { content: map-get($bootstrap-icons-map, "building-fill-gear"); } */
+/* .bi-building-fill-lock::before { content: map-get($bootstrap-icons-map, "building-fill-lock"); } */
+/* .bi-building-fill-slash::before { content: map-get($bootstrap-icons-map, "building-fill-slash"); } */
+/* .bi-building-fill-up::before { content: map-get($bootstrap-icons-map, "building-fill-up"); } */
+/* .bi-building-fill-x::before { content: map-get($bootstrap-icons-map, "building-fill-x"); } */
+/* .bi-building-fill::before { content: map-get($bootstrap-icons-map, "building-fill"); } */
+/* .bi-building-gear::before { content: map-get($bootstrap-icons-map, "building-gear"); } */
+/* .bi-building-lock::before { content: map-get($bootstrap-icons-map, "building-lock"); } */
+/* .bi-building-slash::before { content: map-get($bootstrap-icons-map, "building-slash"); } */
+/* .bi-building-up::before { content: map-get($bootstrap-icons-map, "building-up"); } */
+/* .bi-building-x::before { content: map-get($bootstrap-icons-map, "building-x"); } */
+/* .bi-buildings-fill::before { content: map-get($bootstrap-icons-map, "buildings-fill"); } */
+/* .bi-buildings::before { content: map-get($bootstrap-icons-map, "buildings"); } */
+/* .bi-bus-front-fill::before { content: map-get($bootstrap-icons-map, "bus-front-fill"); } */
+/* .bi-bus-front::before { content: map-get($bootstrap-icons-map, "bus-front"); } */
+/* .bi-ev-front-fill::before { content: map-get($bootstrap-icons-map, "ev-front-fill"); } */
+/* .bi-ev-front::before { content: map-get($bootstrap-icons-map, "ev-front"); } */
+/* .bi-globe-americas::before { content: map-get($bootstrap-icons-map, "globe-americas"); } */
+/* .bi-globe-asia-australia::before { content: map-get($bootstrap-icons-map, "globe-asia-australia"); } */
+/* .bi-globe-central-south-asia::before { content: map-get($bootstrap-icons-map, "globe-central-south-asia"); } */
+/* .bi-globe-europe-africa::before { content: map-get($bootstrap-icons-map, "globe-europe-africa"); } */
+/* .bi-house-add-fill::before { content: map-get($bootstrap-icons-map, "house-add-fill"); } */
+/* .bi-house-add::before { content: map-get($bootstrap-icons-map, "house-add"); } */
+/* .bi-house-check-fill::before { content: map-get($bootstrap-icons-map, "house-check-fill"); } */
+/* .bi-house-check::before { content: map-get($bootstrap-icons-map, "house-check"); } */
+/* .bi-house-dash-fill::before { content: map-get($bootstrap-icons-map, "house-dash-fill"); } */
+/* .bi-house-dash::before { content: map-get($bootstrap-icons-map, "house-dash"); } */
+/* .bi-house-down-fill::before { content: map-get($bootstrap-icons-map, "house-down-fill"); } */
+/* .bi-house-down::before { content: map-get($bootstrap-icons-map, "house-down"); } */
+/* .bi-house-exclamation-fill::before { content: map-get($bootstrap-icons-map, "house-exclamation-fill"); } */
+/* .bi-house-exclamation::before { content: map-get($bootstrap-icons-map, "house-exclamation"); } */
+/* .bi-house-gear-fill::before { content: map-get($bootstrap-icons-map, "house-gear-fill"); } */
+/* .bi-house-gear::before { content: map-get($bootstrap-icons-map, "house-gear"); } */
+/* .bi-house-lock-fill::before { content: map-get($bootstrap-icons-map, "house-lock-fill"); } */
+/* .bi-house-lock::before { content: map-get($bootstrap-icons-map, "house-lock"); } */
+/* .bi-house-slash-fill::before { content: map-get($bootstrap-icons-map, "house-slash-fill"); } */
+/* .bi-house-slash::before { content: map-get($bootstrap-icons-map, "house-slash"); } */
+/* .bi-house-up-fill::before { content: map-get($bootstrap-icons-map, "house-up-fill"); } */
+/* .bi-house-up::before { content: map-get($bootstrap-icons-map, "house-up"); } */
+/* .bi-house-x-fill::before { content: map-get($bootstrap-icons-map, "house-x-fill"); } */
+/* .bi-house-x::before { content: map-get($bootstrap-icons-map, "house-x"); } */
+/* .bi-person-add::before { content: map-get($bootstrap-icons-map, "person-add"); } */
+/* .bi-person-down::before { content: map-get($bootstrap-icons-map, "person-down"); } */
+/* .bi-person-exclamation::before { content: map-get($bootstrap-icons-map, "person-exclamation"); } */
+/* .bi-person-fill-add::before { content: map-get($bootstrap-icons-map, "person-fill-add"); } */
+/* .bi-person-fill-check::before { content: map-get($bootstrap-icons-map, "person-fill-check"); } */
+/* .bi-person-fill-dash::before { content: map-get($bootstrap-icons-map, "person-fill-dash"); } */
+/* .bi-person-fill-down::before { content: map-get($bootstrap-icons-map, "person-fill-down"); } */
+/* .bi-person-fill-exclamation::before { content: map-get($bootstrap-icons-map, "person-fill-exclamation"); } */
+/* .bi-person-fill-gear::before { content: map-get($bootstrap-icons-map, "person-fill-gear"); } */
+/* .bi-person-fill-lock::before { content: map-get($bootstrap-icons-map, "person-fill-lock"); } */
+/* .bi-person-fill-slash::before { content: map-get($bootstrap-icons-map, "person-fill-slash"); } */
+/* .bi-person-fill-up::before { content: map-get($bootstrap-icons-map, "person-fill-up"); } */
+/* .bi-person-fill-x::before { content: map-get($bootstrap-icons-map, "person-fill-x"); } */
+/* .bi-person-gear::before { content: map-get($bootstrap-icons-map, "person-gear"); } */
+/* .bi-person-lock::before { content: map-get($bootstrap-icons-map, "person-lock"); } */
+/* .bi-person-slash::before { content: map-get($bootstrap-icons-map, "person-slash"); } */
+/* .bi-person-up::before { content: map-get($bootstrap-icons-map, "person-up"); } */
+/* .bi-scooter::before { content: map-get($bootstrap-icons-map, "scooter"); } */
+/* .bi-taxi-front-fill::before { content: map-get($bootstrap-icons-map, "taxi-front-fill"); } */
+/* .bi-taxi-front::before { content: map-get($bootstrap-icons-map, "taxi-front"); } */
+/* .bi-amd::before { content: map-get($bootstrap-icons-map, "amd"); } */
+/* .bi-database-add::before { content: map-get($bootstrap-icons-map, "database-add"); } */
+/* .bi-database-check::before { content: map-get($bootstrap-icons-map, "database-check"); } */
+/* .bi-database-dash::before { content: map-get($bootstrap-icons-map, "database-dash"); } */
+/* .bi-database-down::before { content: map-get($bootstrap-icons-map, "database-down"); } */
+/* .bi-database-exclamation::before { content: map-get($bootstrap-icons-map, "database-exclamation"); } */
+/* .bi-database-fill-add::before { content: map-get($bootstrap-icons-map, "database-fill-add"); } */
+/* .bi-database-fill-check::before { content: map-get($bootstrap-icons-map, "database-fill-check"); } */
+/* .bi-database-fill-dash::before { content: map-get($bootstrap-icons-map, "database-fill-dash"); } */
+/* .bi-database-fill-down::before { content: map-get($bootstrap-icons-map, "database-fill-down"); } */
+/* .bi-database-fill-exclamation::before { content: map-get($bootstrap-icons-map, "database-fill-exclamation"); } */
+/* .bi-database-fill-gear::before { content: map-get($bootstrap-icons-map, "database-fill-gear"); } */
+/* .bi-database-fill-lock::before { content: map-get($bootstrap-icons-map, "database-fill-lock"); } */
+/* .bi-database-fill-slash::before { content: map-get($bootstrap-icons-map, "database-fill-slash"); } */
+/* .bi-database-fill-up::before { content: map-get($bootstrap-icons-map, "database-fill-up"); } */
+/* .bi-database-fill-x::before { content: map-get($bootstrap-icons-map, "database-fill-x"); } */
+/* .bi-database-fill::before { content: map-get($bootstrap-icons-map, "database-fill"); } */
+/* .bi-database-gear::before { content: map-get($bootstrap-icons-map, "database-gear"); } */
+/* .bi-database-lock::before { content: map-get($bootstrap-icons-map, "database-lock"); } */
+/* .bi-database-slash::before { content: map-get($bootstrap-icons-map, "database-slash"); } */
+/* .bi-database-up::before { content: map-get($bootstrap-icons-map, "database-up"); } */
+/* .bi-database-x::before { content: map-get($bootstrap-icons-map, "database-x"); } */
+/* .bi-database::before { content: map-get($bootstrap-icons-map, "database"); } */
+/* .bi-houses-fill::before { content: map-get($bootstrap-icons-map, "houses-fill"); } */
+/* .bi-houses::before { content: map-get($bootstrap-icons-map, "houses"); } */
+/* .bi-nvidia::before { content: map-get($bootstrap-icons-map, "nvidia"); } */
+/* .bi-person-vcard-fill::before { content: map-get($bootstrap-icons-map, "person-vcard-fill"); } */
+/* .bi-person-vcard::before { content: map-get($bootstrap-icons-map, "person-vcard"); } */
+/* .bi-sina-weibo::before { content: map-get($bootstrap-icons-map, "sina-weibo"); } */
+/* .bi-tencent-qq::before { content: map-get($bootstrap-icons-map, "tencent-qq"); } */
+/* .bi-wikipedia::before { content: map-get($bootstrap-icons-map, "wikipedia"); } */
