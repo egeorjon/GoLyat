@@ -2,7 +2,7 @@
 <html class="no-js" lang="{{- site.LanguageCode | default site.Data.default_params.languagecode -}}">
     {{- $class := partial "main_class.html" . -}}
     <head>
-        {{- partialCached "head.html" . (.Scratch.Get "page-id") -}}
+        {{- partial "head.html" . -}}
     </head>
     <body class="{{- $class -}}">
         {{- partialCached "header.html" . (.Scratch.Get "page-id") -}}
