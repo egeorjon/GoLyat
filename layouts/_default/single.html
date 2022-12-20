@@ -20,6 +20,7 @@
         <div class="container single-post-image">
             <div class="row">
                 <div class="col img-center">
+                    {{/*- partialCached "partials/image.html" (dict "context" . "Destination" .Params.images "Title" .Title "Text" .Title ) ($current_page.Scratch.Get "page-id") -*/}}
                     {{- partial "partials/image.html" (dict "context" . "Destination" .Params.images "Title" .Title "Text" .Title ) -}}
                 </div><!-- col -->
             </div><!-- row -->

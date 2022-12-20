@@ -30,7 +30,7 @@
               "Widgets": [
                 {
                   "widget": "last-posts",
-                  "cache": false,
+                  "cache": true,
                   "weight": 1,
                   "params": { "heading": 2 }
                 }
@@ -48,7 +48,7 @@
               "Widgets": [
                 {
                   "widget": "sections-list",
-                  "cache": false,
+                  "cache": true,
                   "weight": 1,
                   "params": { "heading": 2, "columns": { "xs": 1, "sm": 1, "md": 2, "lg": 4, "xl": 4 } }
                 }
@@ -67,7 +67,7 @@
               "Widgets": [
                 {
                   "widget": "popular",
-                  "cache": false,
+                  "cache": true,
                   "weight": 1,
                   "params": { "heading": 2 }
                 }

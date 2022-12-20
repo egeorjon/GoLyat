@@ -54,7 +54,7 @@
               "Widgets": [
                 {
                   "widget": "follow-me",
-                  "cache": false,
+                  "cache": true,
                   "weight": 1,
                   "params": { }
                 },
