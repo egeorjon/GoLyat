@@ -31,27 +31,27 @@
             "lastposts"         : 10
         },
         "meta": {
-            "format_image_left": { 
+            "format_image_left": {
                 "top"           : { "1": "section" },
                 "middle"        : { "2": "tags" },
                 "bottom"        : { "1": "date", "2": "reading" }
             },
-            "format_image_right": { 
+            "format_image_right": {
                 "top"           : { "1": "section" },
                 "middle"        : { "2": "tags" },
                 "bottom"        : { "1": "date", "2": "reading" }
             },
-            "format_image_top": { 
+            "format_image_top": {
                 "top"           : { "1": "section" },
                 "middle"        : { "2": "tags" },
                 "bottom"        : { "1": "date", "2": "reading" }
             },
-            "format_meta_left": { 
+            "format_meta_left": {
                 "top"           : { "1": "section", "2": "date", "3": "tags", "4": "series", "5": "reading" },
                 "middle"        : {},
                 "bottom"        : {}
             },
-            "format_no_image": { 
+            "format_no_image": {
                 "top"           : { "1": "section" },
                 "middle"        : { "2": "tags" },
                 "bottom"        : { "1": "date", "2": "reading" }
