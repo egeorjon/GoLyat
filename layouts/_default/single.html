@@ -20,7 +20,6 @@
         <div class="container single-post-image">
             <div class="row">
                 <div class="col img-center">
-                    {{/*- partialCached "partials/image.html" (dict "context" . "Destination" .Params.images "Title" .Title "Text" .Title ) ($current_page.Scratch.Get "page-id") -*/}}
                     {{- partial "partials/image.html" (dict "context" . "Destination" .Params.images "Title" .Title "Text" .Title ) -}}
                 </div><!-- col -->
             </div><!-- row -->
@@ -102,7 +101,8 @@
                                 {{- $partialPath := printf "partials/widgets/%s.html" .widget -}}
                                 {{- if templates.Exists $partialPath -}}
                                     {{- if .cache | default site.Data.default_params.widgets.default.cache -}}
-                                        {{- partialCached $partialPath (dict "context" $current_page "params" .params) (printf "%s-%s" .widget .params) -}}
+                                        {{- partialCached $partialPath (dict "context" $current_page "params" .params) (printf "%s" .widget) -}}
+                                        {{/* (printf "%s-%s" .widget .params) */}}
                                     {{- else -}}
                                         {{- partial $partialPath (dict "context" $current_page "params" .params) -}}
                                     {{- end -}}
