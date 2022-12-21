@@ -20,7 +20,7 @@
                             {{- $partialPath := printf "partials/widgets/%s.html" .widget -}}
                             {{- if templates.Exists $partialPath -}}
                                 {{- if .cache | default site.Data.default_params.widgets.default.cache -}}
-                                    {{- partialCached $partialPath (dict "context" $current_page "params" .params) (printf "%s" .widget) -}}
+                                    {{- partialCached $partialPath (dict "context" $current_page "params" .params) (printf "%s-%s" .widget .params) -}}
                                     {{/* ($current_page.Scratch.Get "page-id") */}}
                                     {{/* (printf "%s-%s" .widget .params) */}}
                                 {{- else -}}
