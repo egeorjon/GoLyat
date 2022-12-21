@@ -1,25 +1,6 @@
 {
     "Rows": [
         {
-          "name": "edito",
-          "columns": { "xs": 1, "sm": 1, "md": 1, "lg": 1, "xl": 1 },
-          "limitwidth": true, 
-          "Groups": [
-            {
-              "name": "edito",
-              "columns": { "xs": 1, "sm": 1, "md": 1, "lg": 1, "xl": 1 },
-              "Widgets": [
-                {
-                    "widget": "page",
-                    "cache": true,
-                    "weight": 1,
-                    "params": { "method": "field", "value": "edito", "heading": 2, "date": true }
-                }
-              ]
-            }
-          ]
-        },
-        {
           "name": "last-posts",
           "limitwidth": true,
           "columns": { "xs": 1, "sm": 1, "md": 1, "lg": 1, "xl": 1 },
@@ -37,7 +18,8 @@
               ]
             }
           ]
-        },        {
+        },        
+        {
           "name": "sections",
           "limitwidth": true,
           "columns": { "xs": 1, "sm": 1, "md": 1, "lg": 1, "xl": 1 },
@@ -51,25 +33,6 @@
                   "cache": true,
                   "weight": 1,
                   "params": { "heading": 2, "columns": { "xs": 1, "sm": 1, "md": 2, "lg": 4, "xl": 4 } }
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "name": "popular",
-          "columns": { "xs": 1, "sm": 1, "md": 1, "lg": 1, "xl": 1 },
-          "limitwidth": false,
-          "Groups": [
-            {
-              "name": "popular",
-              "columns": { "xs": 1, "sm": 1, "md": 1, "lg": 1, "xl": 1 },
-              "Widgets": [
-                {
-                  "widget": "popular",
-                  "cache": true,
-                  "weight": 1,
-                  "params": { "heading": 2 }
                 }
               ]
             }
