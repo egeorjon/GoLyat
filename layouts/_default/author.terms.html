@@ -8,12 +8,12 @@
                     <p>{{- . | markdownify -}}</p>
                 </div><!-- col -->
             {{- end -}}
-        </div>
+        </div><!-- row -->
         <div class="post-list row row-cols-1">
             {{- $numposts  := site.Params.authorsList.numposts  | default site.Data.default_params.params.authorslist.numposts -}}
             {{- $lastposts := site.Params.authorsList.lastposts | default site.Data.default_params.params.authorslist.lastposts -}}
             {{- $params    := dict "list" .Pages "numposts" $numposts "lastposts" $lastposts -}}
-            {{- partial "partials/widgets/authors.html" (dict "context" . "params" $params) -}}
+            {{- partialCached "partials/widgets/authors.html" (dict "context" . "params" $params) (printf "%s-%s" "authors" $params) -}}
         </div><!-- row -->
     </div><!-- container -->
 {{- end -}}
