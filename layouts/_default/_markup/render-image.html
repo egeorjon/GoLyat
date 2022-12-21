@@ -46,11 +46,11 @@
             {{- end -}}
         {{ end }}
         {{- $alt_caption = printf "%s%s%s" $alt_caption $exif_string $lic_string -}}
-        {{- $title       = printf "%s%s%s" $title $exif_string $lic_string -}}
-        {{- $width      := int $image.Width               -}}
-        {{- $height     := int $image.Height              -}}
-        {{- $link       := .Destination                   -}}
-        {{- $max_width  := site.Data.default_params.params.lighbox_max_width -}}
+        {{- $title       = printf "%s%s%s" $title $exif_string $lic_string    -}}
+        {{- $width      := int $image.Width                                   -}}
+        {{- $height     := int $image.Height                                  -}}
+        {{- $link       := .Destination                                       -}}
+        {{- $max_width  := site.Data.default_params.params.lighbox_max_width  -}}
         {{- $max_height := site.Data.default_params.params.lighbox_max_height -}}
         {{- $lightbox   := and (or (gt $width $max_width) (gt $height $max_height)) (site.Params.lighbox_for_big_image | default site.Data.default_params.params.lighbox_for_big_image) -}}
 
@@ -73,16 +73,18 @@
                 {{- if $lightbox -}}{{- $link = $img.RelPermalink -}}{{- end -}}
             {{- end -}}
         {{- end -}}
-        {{- if not $lightbox -}}{{- $srcsets = $srcsets | append (printf "%s %dw" $link $width) -}}{{- end -}}
+        {{- if not $lightbox -}}
+            {{- $srcsets = $srcsets | append (printf "%s %dw" $link $width) -}}
+        {{- end -}}
         {{- $sizes := printf "(min-width: %dpx) %dpx, 100vw" $width $width -}}
         <figure class="figure figure-center">
             {{- if $lightbox -}}
                 <a href="{{- $image.RelPermalink -}}" {{ with $title -}}title="{{- . | safeHTML -}}"{{- end }}>
             {{- end -}}
-            <img 
+            <img
                 {{ with $sizes -}} sizes="{{- $sizes -}}" {{ end }}
-                {{ with $srcsets -}} srcset="{{ delimit $srcsets "," }}" {{- end }} 
-                class="img-fluid" 
+                {{ with $srcsets -}} srcset="{{ delimit $srcsets "," }}" {{- end }}
+                class="img-fluid"
                 src="{{- $link | safeURL -}}"
                 {{ with $alt_caption -}}alt="{{- . | safeHTML -}}"
                 {{- else -}}
