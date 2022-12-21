@@ -1,5 +1,6 @@
 {{- define "main" -}}
     {{- $current_page := . -}}
+    {{- $page_id := (.Scratch.Get "page-id") -}}
     <div class="container limit-width">
         <div class="row">
             <div class="col post-summary">
@@ -23,11 +24,11 @@
             </div>
             <div class="col">
                 <h3>{{- i18n "use-search" -}}</h3>
-                {{- partialCached "partials/search-form.html" . -}}
+                {{- partialCached "partials/search-form.html" . $page_id -}}
             </div>
-            {{- partialCached "partials/widgets/sections-list.html" (dict "context" . "params" (dict "title" (i18n "navigate-sections")))       -}}
+            {{- partialCached "partials/widgets/sections-list.html" (dict "context" . "params" (dict "title" (i18n "navigate-sections"))) $page_id -}}
             {{- partial "partials/widgets/tags-cloud.html"    (dict "context" . "params" (dict "title" (i18n "navigate-tags") "heading" 2 )) -}}
-            {{- partialCached "partials/widgets/series-list.html"   (dict "context" . "params" (dict "title" (i18n "navigate-series")))           -}}
+            {{- partialCached "partials/widgets/series-list.html"   (dict "context" . "params" (dict "title" (i18n "navigate-series"))) $page_id -}}
         </div><!-- row -->
     </div><!-- container -->
 {{- end -}}
