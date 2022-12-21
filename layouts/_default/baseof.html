@@ -14,11 +14,11 @@
             {{- block "bottomline" . }}{{- end }}
         </main>
         {{- partialCached "footer.html" . (.Scratch.Get "page-id") -}}
-        {{- partialCached "js.html" . (printf "%s-%s" .Type .Layout) -}}
+        {{- partialCached "js.html" . (.Scratch.Get "page-id") -}}
     </body>
 </html>
 {{- define "partials/main_class.html" -}}
-    {{- $page_id := "" -}}
+    {{- $page_id := (printf "%s-%s-%s" (.Layout | default "standard") (.Type | default "page") .Slug) -}}
     {{- $class := slice "page-content " -}}
     {{ if .IsHome }}
         {{- $class = $class | append (slice "home") -}}
@@ -27,20 +27,15 @@
         {{- $class = $class | append (slice "single-page") -}}
         {{- $class = $class | append (slice (printf "page-%s" (.Layout | default "standard"))) -}}
         {{- $class = $class | append (slice (printf "page-%s" (.Type | default "page"))) -}}
-        {{/*- $page_id = printf "page-%s-%s" (.Layout | default "standard") (.Type | default "page") -*/}}
-        {{- $page_id = printf "page-%s" .Slug -}}
     {{- else -}}
         {{- $class = $class | append (slice "list-page") -}}
         {{- $page_id = "list-page" -}}
         {{- if .IsSection }}
             {{- $class = $class | append (slice (printf "section-%s" .Type)) -}}
-            {{- $page_id = printf "section-%s" .Type -}}
         {{- else if eq .Kind "taxonomy" -}}
             {{- $class = $class | append (slice (printf "taxonomy taxonomy-%s" .Type )) -}}
-            {{- $page_id = printf "taxonomy-%s" .Type -}}
         {{- else if eq .Kind "term" }}
             {{- $class = $class | append (slice (printf "%s-term" .Type )) -}}
-            {{- $page_id = printf "%s-term" .Type -}}
         {{- end -}}
     {{- end -}}
     {{- .Scratch.Set "page-id" $page_id -}}
