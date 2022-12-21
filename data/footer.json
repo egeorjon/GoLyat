@@ -11,7 +11,7 @@
               "Widgets": [
                 {
                   "widget" : "series-list",
-                  "cache"  : false,
+                  "cache"  : true,
                   "weight" : 1,
                   "params" : { "type": "list" }
                 }
@@ -60,7 +60,7 @@
                 },
                 {
                   "widget": "page",
-                  "cache": false,
+                  "cache": true,
                   "weight": 2,
                   "params": { "method": "path", "value": "/pages/links"}
                 }
