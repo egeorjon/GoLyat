@@ -7,7 +7,8 @@
     <body class="{{- $class -}}">
         {{- partialCached "header.html" . (.Scratch.Get "page-id") -}}
         <main role="main" id="page-main">
-            {{- partialCached "partials/headline.html" . (.Scratch.Get "page-id") -}}
+            {{- partial "partials/headline.html" . -}}
+            {{/*- partialCached "partials/headline.html" . (.Scratch.Get "page-id") -*/}}
             <!-- <section > -->
                 {{- block "main" . }}{{- end }}
             <!-- </section> -->
