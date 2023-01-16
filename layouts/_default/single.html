@@ -1,82 +1,89 @@
 {{- define "main" -}}
     {{- $current_page := . -}}
     {{- $meta := site.Params.Single.meta | default site.Data.default_params.params.single.meta -}}
-    <div class="container limit-width">
-        <div class="row row-cols-1">
-            {{- with .Summary -}}
-            <div class="col single-post-summary">
-                <p>{{- . -}}</p>
-            </div><!-- col -->
+    <article>
+        <header>
+            <div class="container limit-width">
+                <div class="row row-cols-1">
+                    {{- with .Summary -}}
+                    <div class="col single-post-summary">
+                        <p>{{- . -}}</p>
+                    </div><!-- col -->
+                    {{- end -}}
+                    {{- with $meta.top -}}
+                    <div class="col single-post-meta single-post-meta-top">
+                        {{- partial "partials/meta.html" (dict "context" $current_page "kindctx" .Kind "meta" . "class" "meta-top") -}}
+                    </div><!-- col -->
+                    {{- end -}}
+                </div><!-- row -->
+            </div><!-- container -->
+            {{- $display_image := and (isset .Params "images") (site.Params.Single.displayimage | default site.Data.default_params.params.single.displayimage) -}}
+            {{- if $display_image -}}
+                <div class="container single-post-image">
+                    <div class="row">
+                        <div class="col img-center">
+                            {{- partial "partials/image.html" (dict "context" . "Destination" .Params.images "Title" .Title "Text" .Title ) -}}
+                        </div><!-- col -->
+                    </div><!-- row -->
+                </div><!-- container -->
             {{- end -}}
-            {{- with $meta.top -}}
-            <div class="col single-post-meta single-post-meta-top">
-                {{- partial "partials/meta.html" (dict "context" $current_page "kindctx" .Kind "meta" . "class" "meta-top") -}}
-            </div><!-- col -->
+            <div class="container">
+            {{- with $meta.middle -}}
+                <div class="row single-post-meta single-post-meta-middle">
+                    <div class="col">
+                        {{- partial "partials/meta.html" (dict "context" $current_page "kindctx" .Kind "meta" . "class" "meta-middle") -}}
+                    </div><!-- col -->
+                </div><!-- row -->
             {{- end -}}
-        </div><!-- row -->
-    </div><!-- container -->
-    {{- $display_image := and (isset .Params "images") (site.Params.Single.displayimage | default site.Data.default_params.params.single.displayimage) -}}
-    {{- if $display_image -}}
-        <div class="container single-post-image">
-            <div class="row">
-                <div class="col img-center">
-                    {{- partial "partials/image.html" (dict "context" . "Destination" .Params.images "Title" .Title "Text" .Title ) -}}
-                </div><!-- col -->
-            </div><!-- row -->
-        </div><!-- container -->
-    {{- end -}}
-    <div class="container">
-    {{- with $meta.middle -}}
-        <div class="row single-post-meta single-post-meta-middle">
-            <div class="col">
-                {{- partial "partials/meta.html" (dict "context" $current_page "kindctx" .Kind "meta" . "class" "meta-middle") -}}
-            </div><!-- col -->
-        </div><!-- row -->
-    {{- end -}}
-    {{- if site.Params.Single.displayserie | default site.Data.default_params.params.single.displayserie -}}
-        {{- with (.GetTerms "series") -}}
-        <div class="row single-post-serie">
-            <div class="col">
-                {{- partial "partials/series-post.html" (dict "context" $current_page) -}}
-            </div>
-        </div>
-        {{- end -}}
-    {{- end -}}
-    {{- if .Params.Toc | default .Site.Params.Single.TableOfContents | default site.Data.default_params.single.toc -}}
-    <div class="row single-post-toc">
-        <div class="col accordion" id="accordion-toc">
-            <div class="accordion-item">
-                <h3 class="accordion-header" id="headingOne">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                        {{- i18n "toc" -}}
-                    </button>
-                </h3>
-                <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordion-toc" style="">
-                    <div class="accordion-body">
-                        {{- .TableOfContents -}}
+            {{- if site.Params.Single.displayserie | default site.Data.default_params.params.single.displayserie -}}
+                {{- with (.GetTerms "series") -}}
+                <div class="row single-post-serie">
+                    <div class="col">
+                        {{- partial "partials/series-post.html" (dict "context" $current_page) -}}
                     </div>
-                </div><!-- collapse -->
-            </div><!-- item -->
-        </div><!-- col / accordion-->
-    </div><!-- row -->
-    {{- end -}}
-    <div class="row single-post-content">
-        <div class="col">
-            {{/*- .Content -*/}}
-            {{- replace .Content .Summary "" | safeHTML -}}
-            {{- with .Params.references -}}
-                {{- partial "partials/references.html" (dict "context" $current_page "refs" .) -}}
+                </div>
+                {{- end -}}
             {{- end -}}
-        </div><!-- col -->
-    </div><!-- row -->
-    {{- with $meta.bottom -}}
-        <div class="row single-post-meta single-post-meta-bottom">
+            {{- if .Params.Toc | default .Site.Params.Single.TableOfContents | default site.Data.default_params.single.toc -}}
+            <div class="row single-post-toc">
+                <div class="col accordion" id="accordion-toc">
+                    <div class="accordion-item">
+                        <h3 class="accordion-header" id="headingOne">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                                {{- i18n "toc" -}}
+                            </button>
+                        </h3>
+                        <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordion-toc" style="">
+                            <div class="accordion-body">
+                                {{- .TableOfContents -}}
+                            </div>
+                        </div><!-- collapse -->
+                    </div><!-- item -->
+                </div><!-- col / accordion-->
+            </div><!-- row -->
+            {{- end -}}
+        </header>
+        <div class="row single-post-content">
             <div class="col">
-                {{- partial "partials/meta.html" (dict "context" $current_page "kindctx" .Kind "meta" . "class" "meta-bottom") -}}
+                {{/*- .Content -*/}}
+                {{- replace .Content .Summary "" | safeHTML -}}
+                {{- with .Params.references -}}
+                    {{- partial "partials/references.html" (dict "context" $current_page "refs" .) -}}
+                {{- end -}}
             </div><!-- col -->
         </div><!-- row -->
-    {{- end -}}
-    </div><!-- container -->
+        </article>
+        {{- with $meta.bottom -}}
+            <footer>
+                <div class="row single-post-meta single-post-meta-bottom">
+                    <div class="col">
+                        {{- partial "partials/meta.html" (dict "context" $current_page "kindctx" .Kind "meta" . "class" "meta-bottom") -}}
+                    </div><!-- col -->
+                </div><!-- row -->
+            </footer>
+        {{- end -}}
+        </div><!-- container -->
+    </article>
 {{- end -}}
 {{- define "bottomline" -}}
     {{- $current_page := . -}}
