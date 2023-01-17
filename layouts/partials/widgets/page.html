@@ -11,7 +11,7 @@
 {{- $post          := slice -}}
 {{- if eq $method "field" -}}
     {{- $post = where site.Pages (printf "Params.%s" $value) true -}}
-        {{- range first 1 $post -}}
+    {{- range first 1 $post -}}
         <aside class="col widget widget-page">
             <div class="widget-inner">
                 {{- (printf "<%s class=\"widget-title\">%s</%s>" $heading_tag .Title $heading_tag) | safeHTML -}}
