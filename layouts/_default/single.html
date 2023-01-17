@@ -62,17 +62,18 @@
                 </div><!-- col / accordion-->
             </div><!-- row -->
             {{- end -}}
+            </div>
         </header>
-        <div class="row single-post-content">
-            <div class="col">
-                {{/*- .Content -*/}}
-                {{- replace .Content .Summary "" | safeHTML -}}
-                {{- with .Params.references -}}
-                    {{- partial "partials/references.html" (dict "context" $current_page "refs" .) -}}
-                {{- end -}}
-            </div><!-- col -->
-        </div><!-- row -->
-        </article>
+        <div class="container">
+            <div class="row single-post-content">
+                <div class="col">
+                    {{/*- .Content -*/}}
+                    {{- replace .Content .Summary "" | safeHTML -}}
+                    {{- with .Params.references -}}
+                        {{- partial "partials/references.html" (dict "context" $current_page "refs" .) -}}
+                    {{- end -}}
+                </div><!-- col -->
+            </div><!-- row -->
         {{- with $meta.bottom -}}
             <footer>
                 <div class="row single-post-meta single-post-meta-bottom">
