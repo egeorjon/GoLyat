@@ -12,7 +12,7 @@
                 {{- $sl = $sl | append (printf "<a href=\"%s\">%s</a>" .Permalink (humanize .LinkTitle)) -}}
             {{- end -}}
             {{- with $title -}}{{- (printf "<%s class=\"widget-title\">%s</%s>" $heading_tag . $heading_tag) | safeHTML -}}{{- end -}}
-            <p class="widget-content"><i class="bi-tags"></i> <span class="visually-hidden" aria-hidden="true">Tags ({{ (len $sl) -}}) : </span> {{- delimit $sl ", " -}}</p>
+            <p class="widget-content"><i class="bi-tags"></i> <span class="visually-hidden" aria-hidden="true">Tags ({{ (len $sl) -}}) : </span> {{- delimit $sl ", " | safeHTML -}}</p>
         </div>
     </aside>
 {{- end -}}
