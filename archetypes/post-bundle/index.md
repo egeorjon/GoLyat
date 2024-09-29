@@ -12,9 +12,11 @@ images      = [ "images/post-logo.png" ]
     title = ""
 
 [[resources]]
-    src   = ""
-    title = ""
-
+   src=""
+   title=""
+   [resources.params]
+        lic=true
+        exif=true
 
 [[references]]
     site     = ""

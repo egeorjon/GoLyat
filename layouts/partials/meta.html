@@ -43,7 +43,7 @@
             <li class="post-tags">
                 <i class="bi-tags" aria-hidden="true"></i>
                 <span class="visually-hidden">{{- i18n "tags" (len $sl) }} ({{- len $sl -}}):</span>
-                {{- delimit $sl ", " -}} 
+                {{- delimit $sl ", " | safeHTML  -}} 
             </li>
             {{- end -}}
         {{- else if eq $meta "series" -}}
@@ -58,7 +58,7 @@
                 <li class="post-series">
                     <i class="bi-files" aria-hidden="true"></i>
                     <span class="visually-hidden">{{- i18n "series" (len $sl) }} {{ (len $sl) -}}:</span>
-                    {{- delimit $sl ", " -}} 
+                    {{- delimit $sl ", " | safeHTML -}} 
                 </li>
                 {{- end -}}
             {{- end -}}

@@ -230,11 +230,11 @@
     other = "Author's posts {{ .Params.Title }}"
 
 [list-published-posts]
-    one   = "Article publié"
-    other = "Derniers articles publiés"
+    one   = "Published post"
+    other = "Published posts"
 
 [see-all-posts]
-    other = "Tous les articles"
+    other = "All the posts"
 
 [toc]
     other = "Table of content"

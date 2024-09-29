@@ -12,6 +12,9 @@ toc         = true
 [[resources]]
     title = ""
     src = ""
+    [resources.params]
+        lic=true
+        exif=true
 
 [[resources]]
     title = ""
